@@ -29,9 +29,9 @@ export default function About() {
     "@type": "WebPage",
     name: "About",
     alternateName: "realm. | About",
-    mainEntityOfPage: "https://irvanma.eu.org/about",
+    mainEntityOfPage: "https://isaiahthings.eu.org/about",
     description: "Slice and dice!",
-    url: "https://irvanma.eu.org/about",
+    url: "https://isaiahthings.eu.org/about",
     breadcrumb: {
       "@type": "BreadcrumbList",
       itemListElement: [
@@ -39,25 +39,25 @@ export default function About() {
           "@type": "ListItem",
           position: 1,
           name: "Landing",
-          item: "https://irvanma.eu.org/",
+          item: "https://isaiahthings.eu.org/",
         },
         {
           "@type": "ListItem",
           position: 2,
           name: "About",
-          item: "https://irvanma.eu.org/about",
+          item: "https://isaiahthings.eu.org/about",
         },
         {
           "@type": "ListItem",
           position: 3,
           name: "Server Status",
-          item: "https://irvanma.eu.org/status",
+          item: "https://isaiahthings.eu.org/status",
         },
         {
           "@type": "ListItem",
           position: 4,
           name: "Blog",
-          item: "https://irvanma.eu.org/blog",
+          item: "https://isaiahthings.eu.org/blog",
         },
       ],
     },
@@ -66,7 +66,7 @@ export default function About() {
   const infoWidgets = [
     {
       title: "Typing Speed",
-      value: "75",
+      value: "70",
       unit: "WPM",
     },
     {
@@ -80,23 +80,23 @@ export default function About() {
       unit: "JLPT",
     },
     {
-      title: "CSE CGPA",
-      value: "3.9",
+      title: "BSIT CGPA",
+      value: "N/A",
       unit: "OUT OF 4.0",
     },
     {
       title: "Timezone",
-      value: "+7",
+      value: "+8",
       unit: "GMT/UTC",
     },
     {
       title: "Nationality",
-      value: "IDN",
-      unit: "(Indonesian)",
+      value: "FIL",
+      unit: "(Filipino)",
     },
     {
       title: "Caffeine Intake",
-      value: "500",
+      value: "40",
       unit: "mg/d",
     },
     {
