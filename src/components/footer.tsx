@@ -5,9 +5,10 @@ export function Footer() {
     <footer className="w-full max-w-3xl mb-30 md:mb-0 mx-auto p-5 gap-8 flex flex-col justify-center items-center">
       <RealmMoe className="md:h-64 hover:scale-120 transition-all" />
       <p className="text-primary/75 text-sm text-center w-full">
-        &copy; 2025 Leonardo @thescapenetwork.
-        <br>
-        Originally made by Irvan Malik Azantha. Licensed in RCCL.
+        &copy; 2025 Leonardo @ The Scape Network.
+      </p>
+      <p className="text-primary/75 text-sm text-center w-full">
+        &copy; Originally made by Irvan Malik Azantha. Licensed in RCCL.
       </p>
     </footer>
   );
