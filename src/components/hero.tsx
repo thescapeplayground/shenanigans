@@ -55,29 +55,29 @@ export function Hero({ img, profile }: HeroProps) {
       </div>
       <div className="relative w-full py-3 md:-mt-18 justify-center flex-col md:flex-row md:justify-between flex gap-3 md:gap-5 items-center">
         <p className="w-full md:pl-46 truncate text-center md:text-start text-2xl text-foreground font-bold dark:font-semibold">
-          Irvan Malik Azantha
+          Leonardo
         </p>
         <div className="w-fit flex items-center justify-center gap-3">
           <Button variant="ghost" size="icon" asChild>
-            <a href="https://github.com/irvanmalik48">
+            <a href="https://github.com/isaiahscape">
               <GitHub className="size-6" />
               <span className="sr-only">GitHub Account</span>
             </a>
           </Button>
           <Button variant="ghost" size="icon" asChild>
-            <a href="https://linkedin.com/in/irvanmalik48">
+            <a href="https://linkedin.com/in/isaiahscape">
               <LinkedIn className="size-6" />
               <span className="sr-only">LinkedIn Account</span>
             </a>
           </Button>
           <Button variant="ghost" size="icon" asChild>
-            <a href="https://t.me/irvanmalik48">
+            <a href="https://t.me/isaiahscape">
               <Telegram className="size-6" />
               <span className="sr-only">Telegram Account</span>
             </a>
           </Button>
           <Button variant="ghost" size="icon" asChild>
-            <a href="mailto:irvanmalik48@gmail.com">
+            <a href="mailto:isaiahscape@duck.com">
               <Gmail className="size-6" />
               <span className="sr-only">Send a Mail</span>
             </a>
