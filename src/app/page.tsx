@@ -11,10 +11,10 @@ import { SelfHostedServices } from "@/components/selfhosted";
 import { TextScroll } from "@/components/ui/text-scroll";
 
 export const metadata: Metadata = {
-  title: "Landing | realm.",
+  title: "Landing | shenanigans.",
   description: "Where it all begins.",
   openGraph: {
-    title: "Landing | realm.",
+    title: "Landing | shenanigans.",
     description: "Where it all begins.",
   },
 };
@@ -23,11 +23,11 @@ export default function Home() {
   const jsonLd: WithContext<WebPage> = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "Irvan Malik Azantha",
-    alternateName: "realm.",
-    mainEntityOfPage: "https://irvanma.eu.org/",
+    name: "Leonardo",
+    alternateName: "shenanigans.",
+    mainEntityOfPage: "https://isaiahthings.eu.org/",
     description: "Where it all begins.",
-    url: "https://irvanma.eu.org/",
+    url: "https://isaiahthings.eu.org/",
     breadcrumb: {
       "@type": "BreadcrumbList",
       itemListElement: [
@@ -35,25 +35,25 @@ export default function Home() {
           "@type": "ListItem",
           position: 1,
           name: "Landing",
-          item: "https://irvanma.eu.org/",
+          item: "https://isaiahthings.eu.org/",
         },
         {
           "@type": "ListItem",
           position: 2,
           name: "About",
-          item: "https://irvanma.eu.org/about",
+          item: "https://isaiahthings.eu.org/about",
         },
         {
           "@type": "ListItem",
           position: 3,
           name: "Server Status",
-          item: "https://irvanma.eu.org/status",
+          item: "https://isaiahthings.eu.org/status",
         },
         {
           "@type": "ListItem",
           position: 4,
           name: "Blog",
-          item: "https://irvanma.eu.org/blog",
+          item: "https://isaiahthings.eu.org/blog",
         },
       ],
     },
@@ -76,16 +76,6 @@ export default function Home() {
             
             Note: Placeholder, still using Lapp&apos;s description.
           </p>
-        </div>
-        <div className="w-full bg-background rounded-lg border border-border">
-          <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
-            <Pickaxe className="size-4" />
-            <span className="text-sm font-mono">MINECRAFT_SERVER.md</span>
-          </h2>
-          <p className="px-5 py-3 border-b border-border">
-            Oh yeah, I run a Minecraft Server. Here&apos;s the details:
-          </p>
-          <MinecraftServer />
         </div>
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
@@ -151,7 +141,7 @@ export default function Home() {
             </a>
             . The source code is available on{" "}
             <a
-              href="https://github.com/irvanmalik48/realm"
+              href="https://github.com/isaiahscape/shenanigans"
               target="_blank"
               rel="noopener noreferrer"
               className="underline underline-offset-2"
