@@ -10,6 +10,7 @@ import { Button } from "./ui/button";
 import { GitHub } from "./logos/github";
 import { LinkedIn } from "./logos/linkedin";
 import { Telegram } from "./logos/telegram";
+import { Instagram } from "./logos/instagram";
 import { Gmail } from "./logos/gmail";
 
 export interface HeroProps {
