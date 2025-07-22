@@ -77,6 +77,12 @@ export function Hero({ img, profile }: HeroProps) {
             </a>
           </Button>
           <Button variant="ghost" size="icon" asChild>
+            <a href="https://instagram.com/isaiahscape">
+              <Instagram className="size-6" />
+              <span className="sr-only">Instagram Account</span>
+            </a>
+          </Button>
+          <Button variant="ghost" size="icon" asChild>
             <a href="mailto:isaiahscape@duck.com">
               <Gmail className="size-6" />
               <span className="sr-only">Send a Mail</span>
