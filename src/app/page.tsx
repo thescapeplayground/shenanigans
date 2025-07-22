@@ -5,8 +5,7 @@ import type { WebPage, WithContext } from "schema-dts";
 
 import HeroImage from "@/assets/img/hero.jpg";
 import HeroProfile from "@/assets/img/profpic-animated.webp";
-import { Book, Info, Pickaxe, Server } from "lucide-react";
-import { MinecraftServer } from "@/components/minecraft";
+import { Book, Info, Server } from "lucide-react";
 import { SelfHostedServices } from "@/components/selfhosted";
 import { TextScroll } from "@/components/ui/text-scroll";
 
