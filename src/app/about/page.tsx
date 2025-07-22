@@ -126,14 +126,11 @@ export default function About() {
             <span className="text-sm font-mono">SHITPOSTING.md</span>
           </h2>
           <p className="px-5 py-3">
-            A no-shame self-proclaimed ace of all trades, I learn things based
-            on my whim and needs. A fast learner, yet a slow practitioner. Brain
-            cell counts are pretty low to say the least but they&apos;re doing
-            their best lmao. I don&apos;t like bad design and aesthetics. Retro
-            is amazing and modern is minimal. Make things good, not just work.
-            Not picky about food and stuffs but I really love spiciness. Not
-            really into movies and shit but if you wanna talk about anime,
-            I&apos;m your man.
+            I&apos;m a graphic designer, you know, doing my thing. 
+            I also mess around with photos and videos, capturing whatever catches my eye. 
+            Basically, I just like taking ideas and making them look cool, 
+            whether it&apos;s for a brand, a website, or just some print stuff. 
+            I just try to make everything connect and look good, no biggie.
           </p>
         </div>
         <div className="w-full bg-background rounded-lg border border-border">
