@@ -70,9 +70,11 @@ export default function Home() {
           </h2>
           <p className="px-5 py-3">
             I ain&apos;t tryna be fancy here. I don&apos;t know what to put so I
-            will just say welcome to my personal site. I&apos;m Irvan Malik
-            Azantha. Domicile is Palembang, Indonesia. Age 22. For job
+            will just say welcome to my personal site. I&apos;m Isiaih Rafael
+            Pavia. Domicile is Davao, Philippines. Age 20. For job
             inquiries, please contact me through my work mail.
+            
+            Note: Placeholder, still using Lapp&apos;s description.
           </p>
         </div>
         <div className="w-full bg-background rounded-lg border border-border">
