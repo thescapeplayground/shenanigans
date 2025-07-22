@@ -4,7 +4,7 @@ import { Hero } from "@/components/hero";
 import type { WebPage, WithContext } from "schema-dts";
 
 import HeroImage from "@/assets/img/hero.jpg";
-import HeroProfile from "@/assets/img/profpic.webp";
+import HeroProfile from "@/assets/img/profpic.jpg";
 import { Book, Info, Server } from "lucide-react";
 import { SelfHostedServices } from "@/components/selfhosted";
 import { TextScroll } from "@/components/ui/text-scroll";
