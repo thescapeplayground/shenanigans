@@ -77,6 +77,7 @@ export default function Home() {
           <p className="px-5 py-3">
             Note: Placeholder, still using Lapp&apos;s description.
           </p>
+        </div>
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <GraduationCap className="size-4" />
