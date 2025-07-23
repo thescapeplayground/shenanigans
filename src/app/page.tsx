@@ -67,6 +67,7 @@ export default function Home() {
       </PageContainer>
       <PageContainer className="pt-4 lg:pt-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Left Column */}
         <div className="space-y-6">
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
@@ -90,7 +91,9 @@ export default function Home() {
           </h2>
           <EducationAndLinks />
         </div>
+        </div>
         {/* Right Column */}
+        <div className="space-y-6"></div>
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <Smartphone className="size-4" />
