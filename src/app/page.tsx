@@ -66,6 +66,7 @@ export default function Home() {
         <Hero img={HeroImage} profile={HeroProfile} />
       </PageContainer>
       <PageContainer className="pt-4 lg:pt-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <Book className="size-4" />
@@ -168,6 +169,7 @@ export default function Home() {
             </a>
             .
           </p>
+        </div>
         </div>
       </PageContainer>
       <TextScroll
