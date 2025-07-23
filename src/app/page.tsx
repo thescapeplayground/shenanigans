@@ -1,4 +1,3 @@
-import Container from "@/components/container";
 import { Metadata } from "next";
 import { Hero } from "@/components/hero";
 import type { WebPage, WithContext } from "schema-dts";
