@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { GitHub } from "./logos/github";
+import { Youtube } from "./logos/youtube";
 import { LinkedIn } from "./logos/linkedin";
 import { Telegram } from "./logos/telegram";
 import { Instagram } from "./logos/instagram";
@@ -59,6 +60,12 @@ export function Hero({ img, profile }: HeroProps) {
           Leonardo
         </p>
         <div className="w-fit flex items-center justify-center gap-3">
+          <Button variant="ghost" size="icon" asChild>
+            <a href="https://youtube.com/c/@isaiahscape">
+              <Youtube className="size-6" />
+              <span className="sr-only">Youtube</span>
+            </a>
+          </Button>
           <Button variant="ghost" size="icon" asChild>
             <a href="https://github.com/isaiahscape">
               <GitHub className="size-6" />

@@ -1,7 +1,7 @@
-## Realm
+## Shenanigans, LLC.
 
 Always a WIP. ;D
 
 ### Copyright
 
-Licensed in RCCL.
+Originally made by Irvan Malik Azantha. Licensed in RCCL.
