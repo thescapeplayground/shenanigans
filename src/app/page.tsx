@@ -111,7 +111,6 @@ export default function Home() {
             </p>
             <SelfHostedServices />
           </div>
-        </div>
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <Info className="size-4" />
@@ -176,18 +175,17 @@ export default function Home() {
           </p>
         </div>
       </div>
-    </div >
-    </PageContainer >
-      <TextScroll
-        className="text-5xl md:text-7xl text-muted-foreground/50 dark:font-semibold font-bold py-24 md:space-y-2"
-        textClassName="py-1 md:py-3 font-doto"
-        default_velocity={0.66}
-        text="I WILL NOT CRASH YOUR BROWSER.  "
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+    </PageContainer>
+    <TextScroll
+      className="text-5xl md:text-7xl text-muted-foreground/50 dark:font-semibold font-bold py-24 md:space-y-2"
+      textClassName="py-1 md:py-3 font-doto"
+      default_velocity={0.66}
+      text="I WILL NOT CRASH YOUR BROWSER.  "
+    />
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
     </>
   );
 }
