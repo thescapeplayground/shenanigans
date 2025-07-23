@@ -43,18 +43,18 @@ export const EducationAndLinks = () => {
           <AccordionTrigger className="px-4 py-4 hover:no-underline hover:bg-muted/50 rounded-lg border">
             <div className="flex items-center gap-2">
               <Smartphone className="size-4" aria-hidden="true" />
-              <span className="font-semibold">ROMs & Support</span>
+              <span className="font-semibold">Network Channel & Support</span>
             </div>
           </AccordionTrigger>
           <AccordionContent className="pt-2 space-y-2">
             <Button variant="outline" size="sm" className="gap-2 w-full justify-start" asChild>
-              <a href="https://t.me/ayan_builds" target="_blank" rel="noopener noreferrer">
+              <a href="https://t.me/thescapeofficial" target="_blank" rel="noopener noreferrer">
                 <BellRing className="size-4" aria-hidden="true" />
-                ROM Updates
+                Channel Updates
               </a>
             </Button>
             <Button variant="outline" size="sm" className="gap-2 w-full justify-start" asChild>
-              <a href="https://t.me/ayanot69" target="_blank" rel="noopener noreferrer">
+              <a href="https://t.me/thescapecommunity" target="_blank" rel="noopener noreferrer">
                 <Users className="size-4" aria-hidden="true" />
                 Support Chat
               </a>
@@ -64,14 +64,14 @@ export const EducationAndLinks = () => {
       </Accordion>
 
       <Button variant="outline" className="gap-2 w-full justify-start py-4" asChild>
-        <a href="https://t.me/ayandumps_music" target="_blank" rel="noopener noreferrer">
+        <a href="https://t.me/losslessbyisaiah" target="_blank" rel="noopener noreferrer">
           <Music className="size-4" aria-hidden="true" />
           <span>Music Collection</span>
         </a>
       </Button>
 
       <Button variant="outline" className="gap-2 w-full justify-start py-4" asChild>
-        <a href="https://t.me/wallwidgy" target="_blank" rel="noopener noreferrer">
+        <a href="https://t.me/isaiahwallpapers" target="_blank" rel="noopener noreferrer">
           <ImageIcon className="size-4" aria-hidden="true" />
           <span>Wallpaper Collection</span>
         </a>

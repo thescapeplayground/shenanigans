@@ -71,19 +71,19 @@ export const TechGear = () => {
               <ul className="space-y-2 text-sm">
                 <li className="flex justify-between">
                   <span className="text-muted-foreground">CPU</span>
-                  <span>AMD Ryzen 5 4500</span>
+                  <span>AMD Ryzen 7 5600 (8C + 16T)</span>
                 </li>
                 <li className="flex justify-between">
                   <span className="text-muted-foreground">GPU</span>
-                  <span>AMD Radeon RX 580 8GB</span>
+                  <span>NVIDIA RTX 3090 8GB GDDR5</span>
                 </li>
                 <li className="flex justify-between">
                   <span className="text-muted-foreground">RAM</span>
-                  <span>16GB DDR4 3200MHz</span>
+                  <span>32GB DDR5 XMP</span>
                 </li>
                 <li className="flex justify-between">
                   <span className="text-muted-foreground">Storage</span>
-                  <span>512GB NVMe SSD</span>
+                  <span>Kingston NVME3 1TB</span>
                 </li>
               </ul>
             </div>
@@ -98,8 +98,8 @@ export const TechGear = () => {
                 <Laptop className="size-4 text-muted-foreground" />
               </div>
               <div>
-                <p className="font-medium">HP 245 G7</p>
-                <p className="text-sm text-muted-foreground">Home Server</p>
+                <p className="font-medium">Lenovo V15 G4</p>
+                <p className="text-sm text-muted-foreground">Laptop</p>
               </div>
             </div>
             <ChevronDown className={`size-4 text-muted-foreground transition-transform ${expandedDevice === 'server' ? 'rotate-180' : ''}`} />
@@ -109,15 +109,15 @@ export const TechGear = () => {
               <ul className="space-y-2 text-sm">
                 <li className="flex justify-between">
                   <span className="text-muted-foreground">CPU</span>
-                  <span>AMD A6-6000</span>
+                  <span>AMD Ryzen 5 5500U</span>
                 </li>
                 <li className="flex justify-between">
                   <span className="text-muted-foreground">RAM</span>
-                  <span>4GB DDR4</span>
+                  <span>16GB DDR4</span>
                 </li>
                 <li className="flex justify-between">
                   <span className="text-muted-foreground">Storage</span>
-                  <span>1TB HDD</span>
+                  <span>Samsung NVME2 512GB</span>
                 </li>
                 <li className="flex justify-between">
                   <span className="text-muted-foreground">OS</span>
@@ -137,8 +137,8 @@ export const TechGear = () => {
               <Headphones className="size-4 text-muted-foreground" />
             </div>
             <div>
-              <p className="font-medium">7Hz x Crinacle Zero:2</p>
-              <p className="text-sm text-muted-foreground">Tripowin Grace IEM Cable</p>
+              <p className="font-medium">Tangzu Wan'er SG 2</p>
+              <p className="text-sm text-muted-foreground">K-BEAR 8-Core, Kinera Celest Ruyi Pro</p>
             </div>
           </div>
 
@@ -147,8 +147,8 @@ export const TechGear = () => {
               <Microchip className="size-4 text-muted-foreground" />
             </div>
             <div>
-              <p className="font-medium">Tiandirenhe ES Pro</p>
-              <p className="text-sm text-muted-foreground">ES9318C DAC</p>
+              <p className="font-medium">Venture Electronics Odo</p>
+              <p className="text-sm text-muted-foreground">KT02H20 DAC</p>
             </div>
           </div>
 
