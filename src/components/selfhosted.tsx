@@ -1,19 +1,8 @@
 import { cn } from "@/lib/utils";
 import {
-  Apple,
-  ChartNoAxesColumnIncreasing,
-  ClipboardPen,
-  GalleryHorizontal,
   GalleryThumbnailsIcon,
-  GalleryVertical,
   Link,
-  LucideGalleryThumbnails,
   LucideProps,
-  MailQuestionIcon,
-  Map,
-  MessageCircleQuestion,
-  ShoppingBag,
-  Wallpaper,
   ChevronRight,
 } from "lucide-react";
 import { ForwardRefExoticComponent, RefAttributes } from "react";
