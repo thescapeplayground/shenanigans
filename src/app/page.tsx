@@ -95,8 +95,6 @@ export default function Home() {
               </p>
               <SelfHostedServices />
             </div>
-          </div>
-
           {/* Right Column */}
           <div className="space-y-6">
             <div className="w-full bg-background rounded-lg border border-border">
