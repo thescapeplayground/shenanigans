@@ -24,7 +24,16 @@ export const TechGear = () => {
                 <Smartphone className="size-4 text-muted-foreground" />
               </div>
               <div>
-                <p className="font-medium">Samsung Galaxy A52s</p>
+               <p className="font-medium">
+                <a
+                  href="https://www.samsung.com/ph/business/smartphones/galaxy-a/galaxy-a52s-5g-awesome-mint-256gb-sm-a528blgiphl/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  Samsung Galaxy A52s 5G
+                </a>
+               </p>
               </div>
             </div>
             <ChevronDown className={`size-4 text-muted-foreground transition-transform ${expandedDevice === 'phone' ? 'rotate-180' : ''}`} />
@@ -98,7 +107,16 @@ export const TechGear = () => {
                 <Laptop className="size-4 text-muted-foreground" />
               </div>
               <div>
-                <p className="font-medium">Lenovo V15 G4</p>
+              <p className="font-medium">
+                <a
+                  href="https://www.lenovo.com/ph/en/p/laptops/lenovo/lenovo-v-series-laptops/lenovo-v15-gen-4-15-inch-amd/len101l0027"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  Lenovo V15 G4
+                </a>
+              </p>
               </div>
             </div>
             <ChevronDown className={`size-4 text-muted-foreground transition-transform ${expandedDevice === 'server' ? 'rotate-180' : ''}`} />
@@ -155,17 +173,34 @@ export const TechGear = () => {
               <Microchip className="size-4 text-muted-foreground" />
             </div>
             <div>
-              <p className="font-medium">Venture Electronics Odo</p>
+              <p className="font-medium">
+                <a
+                  href="https://www.veclan.com/engappliance_sel_one?eng_ApplianceVo.eac_id=96"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  Venture Electronics Odo
+                </a>
+              </p>
               <p className="text-sm text-muted-foreground">KT02H20 DAC</p>
             </div>
           </div>
-
           <div className="flex items-center gap-3 px-5 py-3 hover:bg-muted/50 transition-colors border-b border-border">
             <div className="p-2 rounded-md bg-muted/50">
               <Keyboard className="size-4 text-muted-foreground" />
             </div>
             <div>
-              <p className="font-medium">Aula F75</p>
+              <p className="font-medium">
+                <a
+                  href="https://www.aulastar.com/gaming-keyboard/176.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  Aula F75
+                </a>
+              </p>
               <p className="text-sm text-muted-foreground">75% Wireless Gasket Mounted Keyboard</p>
             </div>
           </div>
