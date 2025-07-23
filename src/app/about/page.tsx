@@ -168,7 +168,8 @@ export default function About() {
             I am open to contributions for this site. If you want to contribute,
             please consider opening an issue or a pull request. I will review it
             and merge it if I think it&apos;s good. Anyways, here&apos;s the
-            Code of Conduct for this site development, I call it Code of Virtue:
+            Code of Conduct for this site development, The owner of Realm
+            call it Code of Virtue:
           </p>
           <div className="px-5 pb-5">
             <Button
@@ -208,20 +209,13 @@ export default function About() {
             <span className="text-sm font-mono">ABOUT_MUSIC.md</span>
           </h2>
           <p className="px-5 py-3">
-            And here comes the fun part! I am an avid metalhead. Not the
-            gatekeeping one tho. I listen to all kinds of music, but metal is my
-            jam. I love the likes of many established and currently upcoming
-            bands, whether it&apos;s the classics like Metallica, Iron Maiden,
-            and Black Sabbath, or the moderns and indies like Spiritbox, Jinjer,
-            and Sleep Token.
+            And here comes the fun part! My genre is mixed, but mainly listening
+            to pop, rock, and chill-ish songs. It's kinda odd that I like a ton
+            of genres, but yeah, it&apos;s just my taste.
           </p>
           <p className="px-5 pb-3">
-            Hip-Hop is also one of my favorite genres. I have this innate
-            ability to formulate alot of lyrics and ideas in my head thanks to
-            my exposure to Hip-Hop and oftentimes, the sheer potential of it.
-          </p>
-          <p className="px-5 pb-3">
-            I like good Pop music. That&apos;s pretty much it on the Pop side.
+            Hip-hop is also one of my favorite genres, but not too much because
+            some of the songs in hip-hop are kinda mid to me. I like Kendrick though.
           </p>
         </div>
       </Container>
