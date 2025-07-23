@@ -1,8 +1,6 @@
 import { cn } from "@/lib/utils";
 import {
   ChartNoAxesColumnIncreasing,
-  ClipboardPen,
-  Compass,
   Link,
   LucideProps,
 } from "lucide-react";
