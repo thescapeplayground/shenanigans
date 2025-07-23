@@ -8,6 +8,7 @@ import HeroProfile from "@/assets/img/profpic.jpg";
 import { Book, Info, GraduationCap, Server, Smartphone } from "lucide-react";
 import { EducationAndLinks } from "@/components/education";
 import { SelfHostedServices } from "@/components/selfhosted";
+import { TechGear } from "@/components/tech-gear";
 import { TextScroll } from "@/components/ui/text-scroll";
 
 export const metadata: Metadata = {
