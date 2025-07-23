@@ -62,7 +62,7 @@ export function Hero({ img, profile }: HeroProps) {
         </p>
         <div className="w-fit flex items-center justify-center gap-3">
           <Button variant="ghost" size="icon" asChild>
-            <a href="https://youtube.com/c/@isaiahscape">
+            <a href="https://youtube.com/@isaiahscape">
               <Youtube className="size-6" />
               <span className="sr-only">Youtube</span>
             </a>
