@@ -5,7 +5,8 @@ import type { WebPage, WithContext } from "schema-dts";
 
 import HeroImage from "@/assets/img/hero.jpg";
 import HeroProfile from "@/assets/img/profpic.jpg";
-import { Book, Info, Server } from "lucide-react";
+import { Book, Info, GraduationCap, Server, Smartphone } from "lucide-react";
+import { EducationAndLinks } from "@/components/education";
 import { SelfHostedServices } from "@/components/selfhosted";
 import { TextScroll } from "@/components/ui/text-scroll";
 
@@ -77,17 +78,34 @@ export default function Home() {
             Note: Placeholder, still using Lapp&apos;s description.
           </p>
         </div>
-        <div className="w-full bg-background rounded-lg border border-border">
-          <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
-            <Server className="size-4" />
-            <span className="text-sm font-mono">SELFHOSTED.md</span>
-          </h2>
-          <p className="px-5 py-3 border-b border-border">
-            There are some services that I self-host. It would grow overtime but
-            here are the current services that I self-host:
-          </p>
-          <SelfHostedServices />
-        </div>
+            <div className="w-full bg-background rounded-lg border border-border">
+              <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
+                <GraduationCap className="size-4" />
+                <span className="text-sm font-mono">ABOUT.md</span>
+              </h2>
+              <EducationAndLinks />
+            </div>
+            <div className="w-full bg-background rounded-lg border border-border">
+              <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
+                <Server className="size-4" />
+                <span className="text-sm font-mono">PROJECTS.md</span>
+              </h2>
+              <p className="px-5 py-3 border-b border-border">
+                These are some projects that I have worked on:
+              </p>
+              <SelfHostedServices />
+            </div>
+          </div>
+
+          {/* Right Column */}
+          <div className="space-y-6">
+            <div className="w-full bg-background rounded-lg border border-border">
+              <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
+                <Smartphone className="size-4" />
+                <span className="text-sm font-mono">MYTECH.md</span>
+              </h2>
+              <TechGear />
+            </div>
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <Info className="size-4" />
