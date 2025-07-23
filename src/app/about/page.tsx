@@ -227,12 +227,12 @@ export default function About() {
             More stuffs about me?
           </p>
           <p className="px-5 pb-3">
-            &gt; Graphic designer, for myself /n
-            &gt; ROM maintainer, sometimes /n
-            &gt; Singing, doing tech stuffs /n
-            &gt; Streaming on Twitch / Tiktok, some random clips on YouTube /n
-            &gt; Web developer, still learning other languages and stuffs /n
-            &gt; Working student, maybe? /n
+            &gt; Graphic designer, for myself <br />
+            &gt; ROM maintainer, sometimes <br />
+            &gt; Singing, doing tech stuffs <br />
+            &gt; Streaming on Twitch / Tiktok, some random clips on YouTube <br />
+            &gt; Web developer, still learning other languages and stuffs <br />
+            &gt; Working student, maybe? <br />
             &gt; Gadget fixer, idk I fix those.
           </p>
         </div>
