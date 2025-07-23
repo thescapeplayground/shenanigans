@@ -91,100 +91,103 @@ export default function Home() {
               </h2>
               <EducationAndLinks />
             </div>
-          </div>          <div className="w-full bg-background rounded-lg border border-border">
-            <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
-              <Server className="size-4" />
-              <span className="text-sm font-mono">projects.md</span>
-            </h2>
-            <p className="px-5 py-3 border-b border-border">
-              These are some projects that I have worked on:
-            </p>
-            <SelfHostedServices />
+            <div className="w-full bg-background rounded-lg border border-border">
+              <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
+                <Server className="size-4" />
+                <span className="text-sm font-mono">projects.md</span>
+              </h2>
+              <p className="px-5 py-3 border-b border-border">
+                These are some projects that I have worked on:
+              </p>
+              <SelfHostedServices />
+            </div>
           </div>
+
           {/* Right Column */}
-          <div className="space-y-6"></div>
-          <div className="w-full bg-background rounded-lg border border-border">
-            <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
-              <Smartphone className="size-4" />
-              <span className="text-sm font-mono">gadgets.md</span>
-            </h2>
-            <TechGear />
+          <div className="space-y-6">
+            <div className="w-full bg-background rounded-lg border border-border">
+              <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
+                <Smartphone className="size-4" />
+                <span className="text-sm font-mono">gadgets.md</span>
+              </h2>
+              <TechGear />
+            </div>
+            <div className="w-full bg-background rounded-lg border border-border">
+              <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
+                <Info className="size-4" />
+                <span className="text-sm font-mono">source.md</span>
+              </h2>
+              <p className="px-5 py-3">
+                This site is built using{" "}
+                <a
+                  href="https://nextjs.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-2"
+                >
+                  Next.js
+                </a>
+                ,{" "}
+                <a
+                  href="https://tailwindcss.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-2"
+                >
+                  TailwindCSS
+                </a>
+                ,{" "}
+                <a
+                  href="https://ui.shadcn.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-2"
+                >
+                  shadcn/ui
+                </a>
+                , and{" "}
+                <a
+                  href="https://tanstack.com/query"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-2"
+                >
+                  Tanstack Query
+                </a>
+                . It is hosted on{" "}
+                <a
+                  href="https://vercel.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-2"
+                >
+                  Vercel
+                </a>
+                . The source code is available on{" "}
+                <a
+                  href="https://github.com/isaiahscape/shenanigans"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-2"
+                >
+                  GitHub
+                </a>
+                .
+              </p>
+            </div>
           </div>
-        <div className="w-full bg-background rounded-lg border border-border">
-          <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
-            <Info className="size-4" />
-            <span className="text-sm font-mono">source.md</span>
-          </h2>
-          <p className="px-5 py-3">
-            This site is built using{" "}
-            <a
-              href="https://nextjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-2"
-            >
-              Next.js
-            </a>
-            ,{" "}
-            <a
-              href="https://tailwindcss.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-2"
-            >
-              TailwindCSS
-            </a>
-            ,{" "}
-            <a
-              href="https://ui.shadcn.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-2"
-            >
-              shadcn/ui
-            </a>
-            , and{" "}
-            <a
-              href="https://tanstack.com/query"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-2"
-            >
-              Tanstack Query
-            </a>
-            . It is hosted on{" "}
-            <a
-              href="https://vercel.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-2"
-            >
-              Vercel
-            </a>
-            . The source code is available on{" "}
-            <a
-              href="https://github.com/isaiahscape/shenanigans"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-2"
-            >
-              GitHub
-            </a>
-            .
-          </p>
         </div>
-      </div>
-    </PageContainer>
-    <TextScroll
-      className="text-5xl md:text-7xl text-muted-foreground/50 dark:font-semibold font-bold py-24 md:space-y-2"
-      textClassName="py-1 md:py-3 font-doto"
-      default_velocity={0.66}
-      text="I WILL NOT CRASH YOUR BROWSER.  "
-    />
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-    />
+      </PageContainer >
+      <TextScroll
+        className="text-5xl md:text-7xl text-muted-foreground/50 dark:font-semibold font-bold py-24 md:space-y-2"
+        textClassName="py-1 md:py-3 font-doto"
+        default_velocity={0.66}
+        text="I WILL NOT CRASH YOUR BROWSER.  "
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </>
   );
 }
