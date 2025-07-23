@@ -210,7 +210,7 @@ export default function About() {
           </h2>
           <p className="px-5 py-3">
             And here comes the fun part! My genre is mixed, but mainly listening
-            to pop, rock, and chill-ish songs. It's kinda odd that I like a ton
+            to pop, rock, and chill-ish songs. It&apos;s kinda odd that I like a ton
             of genres, but yeah, it&apos;s just my taste.
           </p>
           <p className="px-5 pb-3">
