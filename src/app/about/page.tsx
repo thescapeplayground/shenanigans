@@ -11,7 +11,7 @@ import {
   Vote,
 } from "lucide-react";
 import { Metadata } from "next";
-import AwooImage from "@/assets/img/awoo.jpg";
+import AwooImage from "@/assets/img/nasa.jpg";
 import type { WebPage, WithContext } from "schema-dts";
 
 export const metadata: Metadata = {
