@@ -20,7 +20,7 @@ export default function About() {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "Blog",
-    alternateName: "realm. | Blog",
+    alternateName: "shenanigans | Blog",
     mainEntityOfPage: "https://isaiahthings.eu.org/blog",
     description: "Write stuff and things.",
     url: "https://isaiahthings.eu.org/blog",

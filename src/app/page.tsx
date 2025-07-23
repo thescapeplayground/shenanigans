@@ -72,7 +72,8 @@ export default function Home() {
             will just say welcome to my personal site. I&apos;m Isiaih Rafael
             Pavia. Domicile is Davao, Philippines. Age 20. For job
             inquiries, please contact me through my work mail.
-            
+          </p>
+          <p className="px-5 py-3">
             Note: Placeholder, still using Lapp&apos;s description.
           </p>
         </div>

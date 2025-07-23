@@ -28,8 +28,8 @@ const doto = Doto({
 
 export const metadata: Metadata = {
   title: {
-    default: "realm.",
-    template: "%s | realm.",
+    default: "shenanigans.",
+    template: "%s | shenanigans.",
   },
   description: "Stuffs I put.",
   metadataBase: new URL(
@@ -39,8 +39,8 @@ export const metadata: Metadata = {
   ),
   openGraph: {
     title: {
-      default: "realm.",
-      template: "%s | realm.",
+      default: "shenanigans.",
+      template: "%s | shenanigans.",
     },
     images: [
       {
