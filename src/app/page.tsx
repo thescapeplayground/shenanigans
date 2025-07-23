@@ -2,6 +2,7 @@ import Container from "@/components/container";
 import { Metadata } from "next";
 import { Hero } from "@/components/hero";
 import type { WebPage, WithContext } from "schema-dts";
+import { PageContainer } from "@/components/page-container";
 
 import HeroImage from "@/assets/img/hero.jpg";
 import HeroProfile from "@/assets/img/profpic.jpg";
@@ -62,8 +63,10 @@ export default function Home() {
 
   return (
     <>
-      <Container>
+      <PageContainer>
         <Hero img={HeroImage} profile={HeroProfile} />
+      </PageContainer>
+      <PageContainer className="pt-4 lg:pt-8">
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <Book className="size-4" />
@@ -167,7 +170,7 @@ export default function Home() {
             .
           </p>
         </div>
-      </Container>
+      </PageContainer>
       <TextScroll
         className="text-5xl md:text-7xl text-muted-foreground/50 dark:font-semibold font-bold py-24 md:space-y-2"
         textClassName="py-1 md:py-3 font-doto"
