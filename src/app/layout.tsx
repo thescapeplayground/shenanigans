@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   description: "Stuffs I put.",
   metadataBase: new URL(
     process.env.NODE_ENV === "production"
-      ? "https://irvanma.eu.org"
+      ? "https://isaiahthings.eu.org"
       : "http://localhost:3000",
   ),
   openGraph: {
@@ -55,8 +55,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@irvanmalik48",
-    creator: "@irvanmalik48",
+    site: "@isaiahscape",
+    creator: "@isaiahscape",
     images: [
       {
         url: OgImage.src,

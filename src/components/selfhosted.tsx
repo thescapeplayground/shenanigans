@@ -54,25 +54,9 @@ export function SelfHostedServices() {
           icon={ChartNoAxesColumnIncreasing}
           leftClassName="bg-muted/20 md:border-r border-b border-border"
           rightClassName="border-b border-border"
-          title="VPS Status Page"
-          url="https://stats.irvanma.eu.org"
+          title="VPS Status Page (unfinished)"
+          url="https://stats.isaiahthings.eu.org"
           sr="Visit VPS Status Page"
-        />
-        <SelfHostItem
-          icon={Compass}
-          leftClassName="bg-muted/20 md:border-r border-b border-border"
-          rightClassName="border-b border-border"
-          title="Minecraft Bluemap"
-          url="https://mcmap.irvanma.eu.org"
-          sr="Visit Bluemap Page"
-        />
-        <SelfHostItem
-          icon={ClipboardPen}
-          leftClassName="bg-muted/20 md:border-r border-b md:border-b-0 border-border"
-          rightClassName=""
-          title="Realmbin (Unfinished)"
-          url="https://bin.irvanma.eu.org"
-          sr="Visit Realmbin"
         />
       </div>
     </div>

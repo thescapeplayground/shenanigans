@@ -28,7 +28,7 @@ export default function About() {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "About",
-    alternateName: "realm. | About",
+    alternateName: "shenanigans. | About",
     mainEntityOfPage: "https://isaiahthings.eu.org/about",
     description: "Slice and dice!",
     url: "https://isaiahthings.eu.org/about",

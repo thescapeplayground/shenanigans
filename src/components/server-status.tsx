@@ -20,7 +20,7 @@ function uptimeCalc(uptime: number) {
 
 export function ServerStatus() {
   const getServerStatus = async () => {
-    const res = await fetch("https://stats.irvanma.eu.org/api/status");
+    const res = await fetch("https://stats.isaiahthings.eu.org/api/status");
     const data = await res.json();
     return data;
   };
