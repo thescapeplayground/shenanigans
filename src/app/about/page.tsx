@@ -117,13 +117,13 @@ export default function About() {
             height={720}
           />
           <p className="z-20 md:w-fit w-3/4 text-center font-bold absolute bottom-3 left-1/2 rounded-full -translate-x-1/2 px-7 py-3 font-doto bg-background/80 text-foreground md:text-xl backdrop-blur-lg">
-            ABOUT ME AND STUFFS
+            learn a lot about me
           </p>
         </div>
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <Book className="size-4" />
-            <span className="text-sm font-mono">SHITPOSTING.md</span>
+            <span className="text-sm font-mono">a little thing from me.md</span>
           </h2>
           <p className="px-5 py-3">
             I&apos;m a graphic designer, you know, doing my thing. 
@@ -136,7 +136,7 @@ export default function About() {
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <ThumbsUp className="size-4" />
-            <span className="text-sm font-mono">USEFUL_CARDS.md</span>
+            <span className="text-sm font-mono">cards.md</span>
           </h2>
           <div className="w-full p-5 grid grid-cols-2 md:grid-cols-4 gap-5">
             {infoWidgets.map((item, i) => (
@@ -162,7 +162,7 @@ export default function About() {
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <GitPullRequest className="size-4" />
-            <span className="text-sm font-mono">CONTRIBUTING.md</span>
+            <span className="text-sm font-mono">contributions.md</span>
           </h2>
           <p className="px-5 py-3">
             I am open to contributions for this site. If you want to contribute,
@@ -191,7 +191,7 @@ export default function About() {
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <Vote className="size-4" />
-            <span className="text-sm font-mono">ABOUT_POLITICS.md</span>
+            <span className="text-sm font-mono">#nopolitics.md</span>
           </h2>
           <p className="px-5 py-3">
             Here comes the annoying part. I am a moderate national populist but
@@ -206,16 +206,34 @@ export default function About() {
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <HandMetal className="size-4" />
-            <span className="text-sm font-mono">ABOUT_MUSIC.md</span>
+            <span className="text-sm font-mono">music.md</span>
           </h2>
           <p className="px-5 py-3">
             And here comes the fun part! My genre is mixed, but mainly listening
-            to pop, rock, and chill-ish songs. It&apos;s kinda odd that I like a ton
-            of genres, but yeah, it&apos;s just my taste.
+            to pop, rock, and chill-ish songs. It&apos;s kinda odd that I like a 
+            ton of genres, but yeah, it&apos;s just my taste.
           </p>
           <p className="px-5 pb-3">
             Hip-hop is also one of my favorite genres, but not too much because
             some of the songs in hip-hop are kinda mid to me. I like Kendrick though.
+          </p>
+        </div>
+        <div className="w-full bg-background rounded-lg border border-border">
+          <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
+            <HandMetal className="size-4" />
+            <span className="text-sm font-mono">stuffs.md</span>
+          </h2>
+          <p className="px-5 py-3">
+            More stuffs about me?
+          </p>
+          <p className="px-5 pb-3">
+            &gt; Graphic designer, for myself /n
+            &gt; ROM maintainer, sometimes /n
+            &gt; Singing, doing tech stuffs /n
+            &gt; Streaming on Twitch / Tiktok, some random clips on YouTube /n
+            &gt; Web developer, still learning other languages and stuffs /n
+            &gt; Working student, maybe? /n
+            &gt; Gadget fixer, idk I fix those.
           </p>
         </div>
       </Container>

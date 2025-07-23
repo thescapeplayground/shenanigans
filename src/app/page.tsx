@@ -82,7 +82,7 @@ export default function Home() {
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <GraduationCap className="size-4" />
-            <span className="text-sm font-mono">ABOUT.md</span>
+            <span className="text-sm font-mono">about.md</span>
           </h2>
           <EducationAndLinks />
         </div>
@@ -90,14 +90,14 @@ export default function Home() {
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <Smartphone className="size-4" />
-              <span className="text-sm font-mono">MYTECH.md</span>
+              <span className="text-sm font-mono">gadgets.md</span>
             </h2>
             <TechGear />
           </div>
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <Server className="size-4" />
-            <span className="text-sm font-mono">PROJECTS.md</span>
+            <span className="text-sm font-mono">projects.md</span>
           </h2>
           <p className="px-5 py-3 border-b border-border">
             These are some projects that I have worked on:
@@ -107,7 +107,7 @@ export default function Home() {
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <Info className="size-4" />
-            <span className="text-sm font-mono">ABOUT_SITE.md</span>
+            <span className="text-sm font-mono">source.md</span>
           </h2>
           <p className="px-5 py-3">
             This site is built using{" "}
