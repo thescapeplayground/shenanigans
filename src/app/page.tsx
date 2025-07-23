@@ -67,7 +67,7 @@ export default function Home() {
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <Book className="size-4" />
-            <span className="text-sm font-mono">DESCRIPTION.md</span>
+            <span className="text-sm font-mono">description.md</span>
           </h2>
           <p className="px-5 py-3">
             I ain&apos;t tryna be fancy here. I don&apos;t know what to put so I
