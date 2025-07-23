@@ -137,7 +137,7 @@ export const TechGear = () => {
               <Headphones className="size-4 text-muted-foreground" />
             </div>
             <div>
-              <p className="font-medium">Tangzu Wan'er SG 2</p>
+              <p className="font-medium">Tangzu Wan&apos;er SG 2</p>
               <p className="text-sm text-muted-foreground">K-BEAR 8-Core, Kinera Celest Ruyi Pro</p>
             </div>
           </div>
