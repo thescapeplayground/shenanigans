@@ -99,7 +99,7 @@ export const TechGear = () => {
               </div>
               <div>
                 <p className="font-medium">Lenovo V15 G4</p>
-                <p className="text-sm text-muted-foreground">Home Laptop</p>
+                <p className="text-sm text-muted-foreground">Home Server</p>
               </div>
             </div>
             <ChevronDown className={`size-4 text-muted-foreground transition-transform ${expandedDevice === 'server' ? 'rotate-180' : ''}`} />
