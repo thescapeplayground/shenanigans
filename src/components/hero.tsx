@@ -68,6 +68,12 @@ export function Hero({ img, profile }: HeroProps) {
             </a>
           </Button>
           <Button variant="ghost" size="icon" asChild>
+            <a href="https://instagram.com/isaiahscape">
+              <Instagram className="size-6" />
+              <span className="sr-only">Instagram Account</span>
+            </a>
+          </Button>
+          <Button variant="ghost" size="icon" asChild>
             <a href="https://twitch.tv/isaiahscape">
               <Twitch className="size-6" />
               <span className="sr-only">Twitch</span>
@@ -89,12 +95,6 @@ export function Hero({ img, profile }: HeroProps) {
             <a href="https://t.me/isaiahscape">
               <Telegram className="size-6" />
               <span className="sr-only">Telegram Account</span>
-            </a>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <a href="https://instagram.com/isaiahscape">
-              <Instagram className="size-6" />
-              <span className="sr-only">Instagram Account</span>
             </a>
           </Button>
           <Button variant="ghost" size="icon" asChild>
