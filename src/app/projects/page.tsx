@@ -24,10 +24,12 @@ if (typeof window !== 'undefined' && !document.getElementById('project-anim-styl
 import { ArrowLeft, ExternalLink, Github, Code, ChevronLeft, ChevronRight, Star, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "next-view-transitions";
+import { Metadata } from "next";
 import Image from "next/image";
 import { PageContainer } from "@/components/page-container";
 import { useState } from "react";
 import { projects } from "./projects";
+import type { WebPage, WithContext } from "schema-dts";
 
 export interface Project {
   id: string;
@@ -48,6 +50,51 @@ export interface Project {
 }
 
 export default function Projects() {
+  const jsonLd: WithContext<WebPage> = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Projects",
+    alternateName: "shenanigans | Projects",
+    mainEntityOfPage: "https://isaiahthings.eu.org/projects",
+    description: "The ones I made.",
+    url: "https://isaiahthings.eu.org/projects",
+    breadcrumb: {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Landing",
+          item: "https://isaiahthings.eu.org/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "About",
+          item: "https://isaiahthings.eu.org/about",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: "Server Status",
+          item: "https://isaiahthings.eu.org/status",
+        },
+        {
+          "@type": "ListItem",
+          position: 4,
+          name: "Blog",
+          item: "https://isaiahthings.eu.org/blog",
+        },
+        {
+          "@type": "ListItem",
+          position: 5,
+          name: "Projects",
+          item: "https://isaiahthings.eu.org/projects",
+        },
+      ],
+    },
+  };
+
   const [currentProject, setCurrentProject] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [currentScreenshot, setCurrentScreenshot] = useState(0);
@@ -179,8 +226,8 @@ export default function Projects() {
                             key={index}
                             onClick={() => setCurrentScreenshot(index)}
                             className={`w-2 h-2 rounded-full transition-all duration-200 ${index === currentScreenshot
-                                ? 'bg-primary scale-125'
-                                : 'bg-muted hover:bg-muted-foreground/50'
+                              ? 'bg-primary scale-125'
+                              : 'bg-muted hover:bg-muted-foreground/50'
                               }`}
                           />
                         ))}
@@ -308,8 +355,8 @@ export default function Projects() {
                               key={index}
                               onClick={() => setCurrentProject(index)}
                               className={`w-2 h-2 rounded-full transition-all duration-300 hover:scale-125 ${index === currentProject
-                                  ? 'bg-primary shadow-lg shadow-primary/50'
-                                  : 'bg-muted hover:bg-muted-foreground/50'
+                                ? 'bg-primary shadow-lg shadow-primary/50'
+                                : 'bg-muted hover:bg-muted-foreground/50'
                                 }`}
                               aria-label={`Go to project ${index + 1}`}
                             />
@@ -350,8 +397,8 @@ export default function Projects() {
                       size="sm"
                       onClick={() => setSelectedCategory(category)}
                       className={`text-xs h-9 px-4 rounded-xl transition-all duration-200 ${selectedCategory === category
-                          ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
-                          : 'border-border/50 hover:border-border bg-background/50 hover:bg-background backdrop-blur-sm hover:scale-105'
+                        ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
+                        : 'border-border/50 hover:border-border bg-background/50 hover:bg-background backdrop-blur-sm hover:scale-105'
                         }`}
                     >
                       {category}

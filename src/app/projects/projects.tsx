@@ -38,12 +38,12 @@ export const projects: Project[] = [
     description: "My own social media organization.",
     longDescription: "A social media organization that brings you some photos, videos, graphics, and projects. Some of them might be too minimalistic.",
     category: "Social Media Organization",
-    image: "/profpic.png",
+    image: "/network/portrait.png",
     screenshots: [
-      "/profpic.png",
-      "/lamp.jpg",
-      "/typography.svg",
-      "/design-kits.svg"
+      "/network/logo.png",
+      "/network/banner.png",
+      "/network/showcases.png",
+      "/network/run.png"
     ],
     technologies: ["Photoshop", "Premiere Pro", "Capcut", "Alight Motion", "Davinci Resolve", "Github", "Visual Studio Code"],
     features: [
@@ -66,12 +66,12 @@ export const projects: Project[] = [
     description: "A modular telegram Python bot running on python3 with an sqlalchemy database.",
     longDescription: "Originally a Marie and Kigyō fork - KairoKanged Bot has evolved further and was built to be more useful for some chats.",
     category: "Development Tools",
-    image: "/typography.svg",
+    image: "/tgbot/logo.jpeg",
     screenshots: [
-      "/typography.svg",
-      "/illustrations.svg",
-      "/design-kits.svg",
-      "/lamp.jpg"
+      "/tgbot/logo.jpeg",
+      "/tgbot/gh.png",
+      "/tgbot/start.png",
+      "/tgbot/flood.png"
     ],
     technologies: ["Python", "JavaScript", "HTML/CSS", "MongoDB", "PostgreSQL", "Telegram"],
     features: [

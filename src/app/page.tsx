@@ -56,6 +56,12 @@ export default function Home() {
           name: "Blog",
           item: "https://isaiahthings.eu.org/blog",
         },
+        {
+          "@type": "ListItem",
+          position: 5,
+          name: "Projects",
+          item: "https://isaiahthings.eu.org/projects",
+        },
       ],
     },
   };
