@@ -1,6 +1,6 @@
 ## Shenanigans, LLC.
 
-Always a WIP. ;D
+Always a WIP, also, f*cked up commit names as well. ;D
 
 ### Copyright
 
