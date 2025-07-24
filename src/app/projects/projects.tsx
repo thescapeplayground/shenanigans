@@ -10,12 +10,12 @@ export const projects: Project[] = [
     description: "The first portfolio that I've ever made.",
     longDescription: "This is the first portfolio website that I've made in my whole entire life, this includes all of my projects, blogs, and social media platforms that I've been. It's still work-in-progress, but here we are.",
     category: "Web Development",
-    image: "/assets/img/portfolio/pb.jpg",
+    image: "@/assets/img/portfolio/pb.jpg",
     screenshots: [
-      "/assets/img/portfolio/pb.jpg",
-      "/assets/img/portfolio/main.jpg",
-      "/assets/img/portfolio/cards.jpg",
-      "/assets/img/portfolio/server.jpg"
+      "@/assets/img/portfolio/pb.jpg",
+      "@/assets/img/portfolio/main.jpg",
+      "@/assets/img/portfolio/cards.jpg",
+      "@/assets/img/portfolio/server.jpg"
     ],
     technologies: ["Next.js", "TypeScript", "TailwindCSS", "ESLint", "Node.js", "Vercel"],
     features: [
