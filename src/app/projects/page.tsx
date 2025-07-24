@@ -21,15 +21,15 @@ if (typeof window !== 'undefined' && !document.getElementById('project-anim-styl
   document.head.appendChild(s);
 }
 
-
 import { ArrowLeft, ExternalLink, Github, Code, ChevronLeft, ChevronRight, Star, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
 import { PageContainer } from "@/components/page-container";
 import { useState } from "react";
+import { projects } from "./projects";
 
-interface Project {
+export interface Project {
   id: string;
   title: string;
   description: string;
@@ -47,104 +47,17 @@ interface Project {
   featured: boolean;
 }
 
-const projects: Project[] = [
-  {
-    id: "shenanigans",
-    title: "Shenanigans",
-    description: "The first portfolio that I've ever made.",
-    longDescription: "This is the first portfolio website that I've made in my whole entire life, this includes all of my projects, blogs, and social media platforms that I've been. It's still work-in-progress, but here we are.",
-    category: "Web Development",
-    image: "/projects/wallwidgy/hero.png",
-    screenshots: [
-      "/projects/wallwidgy/hero.png",
-      "/projects/wallwidgy/main.png",
-      "/projects/wallwidgy/search.png",
-      "/projects/wallwidgy/similar.png"
-    ],
-    technologies: ["Next.js", "TypeScript", "TailwindCSS", "ESLint", "Node.js", "Vercel"],
-    features: [
-      "The home page, of course",
-      "Projects, which is this one",
-      "Smooth page transitions",
-      "Responsive design for all devices",
-      "Server status, for checking server",
-      "Nothing else, I guess?"
-    ],
-    links: {
-      live: "https://isaiahthings.vercel.app/",
-      github: "https://github.com/isaiahscape/shenanigans"
-    },
-    featured: true
-  },
-  {
-    id: "thescapenetwork",
-    title: "The Scape Network",
-    description: "My own social media organization.",
-    longDescription: "A social media organization that brings you some photos, videos, graphics, and projects. Some of them might be too minimalistic.",
-    category: "Social Media Organization",
-    image: "/profpic.png",
-    screenshots: [
-      "/profpic.png",
-      "/lamp.jpg",
-      "/typography.svg",
-      "/design-kits.svg"
-    ],
-    technologies: ["Photoshop", "Premiere Pro", "Capcut", "Alight Motion", "Davinci Resolve", "Github", "Visual Studio Code"],
-    features: [
-      "Banners for ROMs, Projects, etc.",
-      "Photography and Videography",
-      "Tech-related tips and tricks",
-      "Building Custom ROMs, Recoveries, etc.",
-      "Android-related communities",
-      "Modern UI/UX design"
-    ],
-    links: {
-      live: "https://telegram.me/thescapenetwork/",
-      github: "https://github.com/tsn-playground"
-    },
-    featured: true
-  },
-  {
-    id: "telegram-bot",
-    title: "KairoKanged Bot (unmaintained)",
-    description: "A modular telegram Python bot running on python3 with an sqlalchemy database.",
-    longDescription: "Originally a Marie and Kigyō fork - KairoKanged Bot has evolved further and was built to be more useful for some chats.",
-    category: "Development Tools",
-    image: "/typography.svg",
-    screenshots: [
-      "/typography.svg",
-      "/illustrations.svg",
-      "/design-kits.svg",
-      "/lamp.jpg"
-    ],
-    technologies: ["Python", "JavaScript", "HTML/CSS", "MongoDB", "PostgreSQL", "Telegram"],
-    features: [
-      "Powerful group manager bot",
-      "Fast and responsive technicalities",
-      "Federation for your own organization",
-      "Basic functions for Telegram groups",
-      "Some funny features included",
-      "Auto-banning insensitive spambots"
-    ],
-    links: {
-      github: "https://github.com/isaiahscape/KairoKangedBot",
-      download: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-    },
-    featured: true
-  }
-];
-
 export default function Projects() {
   const [currentProject, setCurrentProject] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [currentScreenshot, setCurrentScreenshot] = useState(0);
   const [projectAnim, setProjectAnim] = useState("");
-  
+
   const categories = ["All", ...Array.from(new Set(projects.map(p => p.category)))];
-  const filteredProjects = selectedCategory === "All" 
-    ? projects 
+  const filteredProjects = selectedCategory === "All"
+    ? projects
     : projects.filter(p => p.category === selectedCategory);
-  
+
   const featuredProjects = filteredProjects.filter(p => p.featured);
   const currentFeatured = featuredProjects[currentProject] || featuredProjects[0];
 
@@ -184,9 +97,9 @@ export default function Projects() {
         <div className="space-y-6 md:space-y-8">
           {/* Header Section */}
           <div className="flex items-center justify-between">
-            <Button 
-              variant="outline" 
-              className="gap-2 bg-background/80 hover:bg-background border-border/50 hover:border-border backdrop-blur-sm transition-all duration-200" 
+            <Button
+              variant="outline"
+              className="gap-2 bg-background/80 hover:bg-background border-border/50 hover:border-border backdrop-blur-sm transition-all duration-200"
               asChild
             >
               <Link href="/">
@@ -194,7 +107,7 @@ export default function Projects() {
                 Back
               </Link>
             </Button>
-            
+
             <div className="hidden md:flex items-center gap-2 text-muted-foreground">
               <div className="flex gap-1">
                 <div className="w-2 h-2 rounded-full bg-red-500"></div>
@@ -218,9 +131,8 @@ export default function Projects() {
 
               {/* Featured Project Display */}
               {currentFeatured && (
-                <div className={`flex flex-col xl:flex-row gap-8 md:gap-12 mb-8 md:mb-12 min-h-[340px] xl:min-h-[420px] transition-all duration-300 ${
-                  projectAnim ? "animate-fade-project" : ""
-                }`}>
+                <div className={`flex flex-col xl:flex-row gap-8 md:gap-12 mb-8 md:mb-12 min-h-[340px] xl:min-h-[420px] transition-all duration-300 ${projectAnim ? "animate-fade-project" : ""
+                  }`}>
                   {/* Project Preview with Screenshots */}
                   <div className="relative flex-1 min-w-0 flex items-stretch rounded-2xl overflow-hidden order-2 xl:order-1">
                     {/* Gradient background for fallback/overlay */}
@@ -266,11 +178,10 @@ export default function Projects() {
                           <button
                             key={index}
                             onClick={() => setCurrentScreenshot(index)}
-                            className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                              index === currentScreenshot 
-                                ? 'bg-primary scale-125' 
+                            className={`w-2 h-2 rounded-full transition-all duration-200 ${index === currentScreenshot
+                                ? 'bg-primary scale-125'
                                 : 'bg-muted hover:bg-muted-foreground/50'
-                            }`}
+                              }`}
                           />
                         ))}
                       </div>
@@ -288,7 +199,7 @@ export default function Projects() {
                           {currentFeatured.longDescription}
                         </p>
                       </div>
-                      
+
                       {/* Features */}
                       <div>
                         <h4 className="text-sm font-semibold mb-3 text-muted-foreground uppercase tracking-wide flex items-center gap-2">
@@ -313,7 +224,7 @@ export default function Projects() {
                           )}
                         </div>
                       </div>
-                      
+
                       {/* Technologies */}
                       <div>
                         <h4 className="text-sm font-semibold mb-3 text-muted-foreground uppercase tracking-wide flex items-center gap-2">
@@ -337,9 +248,9 @@ export default function Projects() {
                     {/* Project Links */}
                     <div className="flex flex-wrap gap-3">
                       {currentFeatured.links.live && (
-                        <Button 
-                          variant="default" 
-                          className="gap-2 text-sm md:text-base h-10 md:h-11 px-6 rounded-xl bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200" 
+                        <Button
+                          variant="default"
+                          className="gap-2 text-sm md:text-base h-10 md:h-11 px-6 rounded-xl bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
                           asChild
                         >
                           <a href={currentFeatured.links.live} target="_blank" rel="noopener noreferrer">
@@ -349,9 +260,9 @@ export default function Projects() {
                         </Button>
                       )}
                       {currentFeatured.links.github && (
-                        <Button 
-                          variant="outline" 
-                          className="gap-2 text-sm md:text-base h-10 md:h-11 px-6 rounded-xl border-border/50 hover:border-border bg-background/50 hover:bg-background backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200" 
+                        <Button
+                          variant="outline"
+                          className="gap-2 text-sm md:text-base h-10 md:h-11 px-6 rounded-xl border-border/50 hover:border-border bg-background/50 hover:bg-background backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
                           asChild
                         >
                           <a href={currentFeatured.links.github} target="_blank" rel="noopener noreferrer">
@@ -362,9 +273,9 @@ export default function Projects() {
                         </Button>
                       )}
                       {currentFeatured.links.download && (
-                        <Button 
-                          variant="outline" 
-                          className="gap-2 text-sm md:text-base h-10 md:h-11 px-6 rounded-xl border-border/50 hover:border-border bg-background/50 hover:bg-background backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200" 
+                        <Button
+                          variant="outline"
+                          className="gap-2 text-sm md:text-base h-10 md:h-11 px-6 rounded-xl border-border/50 hover:border-border bg-background/50 hover:bg-background backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
                           asChild
                         >
                           <Link href={currentFeatured.links.download}>
@@ -396,11 +307,10 @@ export default function Projects() {
                             <button
                               key={index}
                               onClick={() => setCurrentProject(index)}
-                              className={`w-2 h-2 rounded-full transition-all duration-300 hover:scale-125 ${
-                                index === currentProject 
-                                  ? 'bg-primary shadow-lg shadow-primary/50' 
+                              className={`w-2 h-2 rounded-full transition-all duration-300 hover:scale-125 ${index === currentProject
+                                  ? 'bg-primary shadow-lg shadow-primary/50'
                                   : 'bg-muted hover:bg-muted-foreground/50'
-                              }`}
+                                }`}
                               aria-label={`Go to project ${index + 1}`}
                             />
                           ))}
@@ -430,7 +340,7 @@ export default function Projects() {
                   <h3 className="text-xl md:text-2xl font-bold">All Projects</h3>
                   <p className="text-sm text-muted-foreground">Explore my complete portfolio</p>
                 </div>
-                
+
                 {/* Category Filter */}
                 <div className="flex flex-wrap gap-2">
                   {categories.map((category) => (
@@ -439,11 +349,10 @@ export default function Projects() {
                       variant={selectedCategory === category ? "default" : "outline"}
                       size="sm"
                       onClick={() => setSelectedCategory(category)}
-                      className={`text-xs h-9 px-4 rounded-xl transition-all duration-200 ${
-                        selectedCategory === category 
-                          ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25' 
+                      className={`text-xs h-9 px-4 rounded-xl transition-all duration-200 ${selectedCategory === category
+                          ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
                           : 'border-border/50 hover:border-border bg-background/50 hover:bg-background backdrop-blur-sm hover:scale-105'
-                      }`}
+                        }`}
                     >
                       {category}
                     </Button>
@@ -461,7 +370,7 @@ export default function Projects() {
                   >
                     {/* Card Glow Effect */}
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                    
+
                     <div className="relative bg-background/80 backdrop-blur-xl hover:bg-background/90 rounded-2xl border border-border/50 hover:border-border/80 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-black/10 hover:-translate-y-1 h-full flex flex-col">
                       {/* Project Screenshot */}
                       <div className="relative w-full aspect-[4/3] overflow-hidden flex-shrink-0">
@@ -474,7 +383,7 @@ export default function Projects() {
                         />
                         {/* Overlay gradient */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        
+
                         {/* Category Badge */}
                         <div className="absolute top-3 left-3">
                           <span className="text-xs font-medium text-white bg-black/50 backdrop-blur-sm px-2 py-1 rounded-full">
@@ -485,10 +394,10 @@ export default function Projects() {
                         {/* Quick Action Buttons */}
                         <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                           {project.links.live && (
-                            <Button 
-                              variant="ghost" 
-                              size="icon" 
-                              className="size-8 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-white/20" 
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="size-8 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-white/20"
                               asChild
                             >
                               <a href={project.links.live} target="_blank" rel="noopener noreferrer">
@@ -497,10 +406,10 @@ export default function Projects() {
                             </Button>
                           )}
                           {project.links.github && (
-                            <Button 
-                              variant="ghost" 
-                              size="icon" 
-                              className="size-8 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-white/20" 
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="size-8 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-white/20"
                               asChild
                             >
                               <a href={project.links.github} target="_blank" rel="noopener noreferrer">
@@ -563,7 +472,7 @@ export default function Projects() {
                         {/* Action Buttons */}
                         <div className="flex gap-2 pt-2 flex-shrink-0">
                           {project.links.live && (
-                            <Button 
+                            <Button
                               variant="default"
                               size="sm"
                               className="flex-1 h-8 text-xs"
@@ -576,7 +485,7 @@ export default function Projects() {
                             </Button>
                           )}
                           {project.links.github && (
-                            <Button 
+                            <Button
                               variant="outline"
                               size="sm"
                               className="flex-1 h-8 text-xs"
@@ -589,7 +498,7 @@ export default function Projects() {
                             </Button>
                           )}
                           {project.links.download && (
-                            <Button 
+                            <Button
                               variant="outline"
                               size="sm"
                               className="flex-1 h-8 text-xs"
