@@ -24,7 +24,6 @@ if (typeof window !== 'undefined' && !document.getElementById('project-anim-styl
 import { ArrowLeft, ExternalLink, Github, Code, ChevronLeft, ChevronRight, Star, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "next-view-transitions";
-import { Metadata } from "next";
 import Image from "next/image";
 import { PageContainer } from "@/components/page-container";
 import { useState } from "react";
@@ -50,51 +49,6 @@ export interface Project {
 }
 
 export default function Projects() {
-  const jsonLd: WithContext<WebPage> = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: "Projects",
-    alternateName: "shenanigans | Projects",
-    mainEntityOfPage: "https://isaiahthings.eu.org/projects",
-    description: "The ones I made.",
-    url: "https://isaiahthings.eu.org/projects",
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Landing",
-          item: "https://isaiahthings.eu.org/",
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "About",
-          item: "https://isaiahthings.eu.org/about",
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: "Server Status",
-          item: "https://isaiahthings.eu.org/status",
-        },
-        {
-          "@type": "ListItem",
-          position: 4,
-          name: "Blog",
-          item: "https://isaiahthings.eu.org/blog",
-        },
-        {
-          "@type": "ListItem",
-          position: 5,
-          name: "Projects",
-          item: "https://isaiahthings.eu.org/projects",
-        },
-      ],
-    },
-  };
-
   const [currentProject, setCurrentProject] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [currentScreenshot, setCurrentScreenshot] = useState(0);
