@@ -3,7 +3,7 @@ import { Hero } from "@/components/hero";
 import type { WebPage, WithContext } from "schema-dts";
 import { PageContainer } from "@/components/page-container";
 
-import HeroImage from "@/assets/img/hero.jpg";
+import HeroImage from "@/assets/img/hero.png";
 import HeroProfile from "@/assets/img/profpic.jpg";
 import { Book, Info, GraduationCap, Server, Smartphone } from "lucide-react";
 import { EducationAndLinks } from "@/components/education";

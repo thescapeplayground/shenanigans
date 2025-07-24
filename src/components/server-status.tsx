@@ -36,7 +36,7 @@ export function ServerStatus() {
       <div className="w-full md:col-span-3 bg-background rounded-lg border border-border">
         <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
           <Cloud className="size-4" />
-          <span className="text-sm font-mono">HOST.md</span>
+          <span className="text-sm font-mono">host.md</span>
         </h2>
         <div className="flex flex-col px-5 py-3">
           <div className="flex items-center justify-between gap-3">
@@ -68,7 +68,7 @@ export function ServerStatus() {
       <div className="w-full md:col-span-2 bg-background rounded-lg border border-border">
         <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
           <Cpu className="size-4" />
-          <span className="text-sm font-mono">CPU.md</span>
+          <span className="text-sm font-mono">processor.md</span>
         </h2>
         <div className="flex flex-col px-5 py-3 border-b border-border">
           <div className="flex items-center justify-between gap-3">
@@ -106,7 +106,7 @@ export function ServerStatus() {
       <div className="w-full bg-background rounded-lg border border-border">
         <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
           <HardDrive className="size-4" />
-          <span className="text-sm font-mono">STORAGE.md</span>
+          <span className="text-sm font-mono">storage.md</span>
         </h2>
         <div className="flex flex-col px-5 py-3 border-b border-border">
           <div className="flex items-center justify-between gap-3">
@@ -160,7 +160,7 @@ export function ServerStatus() {
       <div className="w-full bg-background rounded-lg border border-border">
         <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
           <MemoryStick className="size-4" />
-          <span className="text-sm font-mono">MEMORY.md</span>
+          <span className="text-sm font-mono">memory.md</span>
         </h2>
         <div className="flex flex-col px-5 py-3 border-b border-border">
           <div className="flex items-center justify-between gap-3">
@@ -209,7 +209,7 @@ export function ServerStatus() {
       <div className="w-full md:col-span-2 bg-background rounded-lg border border-border">
         <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
           <Network className="size-4" />
-          <span className="text-sm font-mono">NETWORK.md</span>
+          <span className="text-sm font-mono">network.md</span>
         </h2>
         <div className="flex flex-col px-5 py-3 border-b border-border">
           <div className="flex items-center justify-between gap-3">

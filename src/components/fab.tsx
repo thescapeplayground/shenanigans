@@ -118,7 +118,7 @@ export function FAB() {
             <span className="size-fit px-2 py-1 rounded-3xl bg-secondary text-secondary-foreground">
               <GitGraph className="size-4" />
             </span>
-            <span>realm. (v8.0.0-rev3)</span>
+            <span>shenanigans. (v1.0.0)</span>
           </h3>
           <Link
             className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"

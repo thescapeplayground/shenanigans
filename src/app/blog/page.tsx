@@ -3,7 +3,7 @@ import { ImageComponent } from "@/components/image";
 import { TextScroll } from "@/components/ui/text-scroll";
 import { Book, Info } from "lucide-react";
 import { Metadata } from "next";
-import CuteImage from "@/assets/img/cute.jpg";
+import CuteImage from "@/assets/img/banner.png";
 import type { WebPage, WithContext } from "schema-dts";
 
 export const metadata: Metadata = {
@@ -79,7 +79,7 @@ export default function About() {
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <Book className="size-4" />
-            <span className="text-sm font-mono">DETAILS.md</span>
+            <span className="text-sm font-mono">details.md</span>
           </h2>
           <p className="px-5 py-3">
             In case you are wondering, yes, I write things. Mainly for some
@@ -92,7 +92,7 @@ export default function About() {
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <Info className="size-4" />
-            <span className="text-sm font-mono">NOTICE.md</span>
+            <span className="text-sm font-mono">notice.md</span>
           </h2>
           <p className="px-5 py-3">
             This page is currently under heavy development. Please check again
