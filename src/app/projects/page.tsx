@@ -80,7 +80,7 @@ const projects: Project[] = [
     id: "thescapenetwork",
     title: "The Scape Network",
     description: "My own social media organization.",
-    longDescription: "A social media organization that brings you some photos, videos, graphics, and projects. Some of them might be too minimalistic."
+    longDescription: "A social media organization that brings you some photos, videos, graphics, and projects. Some of them might be too minimalistic.",
     category: "Social Media Organization",
     image: "/profpic.png",
     screenshots: [
