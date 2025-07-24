@@ -49,10 +49,10 @@ interface Project {
 
 const projects: Project[] = [
   {
-    id: "wallwidgy",
-    title: "Wallwidgy",
-    description: "Modern wallpaper and widget platform with customization tools",
-    longDescription: "Wallwidgy is a comprehensive platform for creating, customizing, and sharing beautiful wallpapers and widgets. Features an intuitive interface, extensive customization options, and a vibrant community of creators sharing their work.",
+    id: "shenanigans",
+    title: "Shenanigans",
+    description: "The first portfolio that I've ever made.",
+    longDescription: "This is the first portfolio website that I've made in my whole entire life, this includes all of my projects, blogs, and social media platforms that I've been. It's still work-in-progress, but here we are.",
     category: "Web Development",
     image: "/projects/wallwidgy/hero.png",
     screenshots: [
@@ -61,27 +61,27 @@ const projects: Project[] = [
       "/projects/wallwidgy/search.png",
       "/projects/wallwidgy/similar.png"
     ],
-    technologies: ["Next.js", "TypeScript", "TailwindCSS", "Node.js", "MongoDB", "Cloudinary"],
+    technologies: ["Next.js", "TypeScript", "TailwindCSS", "ESLint", "Node.js", "Vercel"],
     features: [
-      "Custom wallpaper creation tools",
-      "Widget customization system",
-      "Community gallery and sharing",
+      "The home page, of course",
+      "Projects, which is this one",
+      "Smooth page transitions",
       "Responsive design for all devices",
-      "Cloud storage integration",
-      "Advanced filter and search options"
+      "Server status, for checking server",
+      "Nothing else, I guess?"
     ],
     links: {
-      live: "https://www.wallwidgy.me/",
-      github: "https://github.com/not-ayan/wallwidgy"
+      live: "https://isaiahthings.vercel.app/",
+      github: "https://github.com/isaiahscape/shenanigans"
     },
     featured: true
   },
   {
-    id: "aleem-tech",
-    title: "Aleem.tech",
-    description: "Gallery-style portfolio website showcasing creative work",
-    longDescription: "A beautifully designed gallery-style portfolio website that showcases creative work with an emphasis on visual storytelling. Features smooth animations, responsive layouts, and an intuitive browsing experience.",
-    category: "Web Development",
+    id: "thescapenetwork",
+    title: "The Scape Network",
+    description: "My own social media organization.",
+    longDescription: "A social media organization that brings you some photos, videos, graphics, and projects. Some of them might be too minimalistic."
+    category: "Social Media Organization",
     image: "/profpic.png",
     screenshots: [
       "/profpic.png",
@@ -89,26 +89,26 @@ const projects: Project[] = [
       "/typography.svg",
       "/design-kits.svg"
     ],
-    technologies: ["React", "Next.js", "Framer Motion", "TailwindCSS", "TypeScript", "Vercel"],
+    technologies: ["Photoshop", "Premiere Pro", "Capcut", "Alight Motion", "Davinci Resolve", "Github", "Visual Studio Code"],
     features: [
-      "Interactive gallery showcase",
-      "Smooth page transitions",
-      "Project detail modals",
-      "Responsive grid layouts",
-      "Optimized image loading",
+      "Banners for ROMs, Projects, etc.",
+      "Photography and Videography",
+      "Tech-related tips and tricks",
+      "Building Custom ROMs, Recoveries, etc.",
+      "Android-related communities",
       "Modern UI/UX design"
     ],
     links: {
-      live: "https://aleem.tech/",
-      github: "https://github.com/not-ayan/aleem-portfolio"
+      live: "https://telegram.me/thescapenetwork/",
+      github: "https://github.com/tsn-playground"
     },
     featured: true
   },
   {
-    id: "rom-post-maker",
-    title: "ROM Post Maker Index",
-    description: "Automated ROM post formatter and indexer for development communities",
-    longDescription: "A powerful tool designed for ROM developers and Android enthusiasts to automatically format and index ROM release posts. Streamlines the process of creating consistent, well-structured posts with proper formatting, changelogs, and download links.",
+    id: "telegram-bot",
+    title: "KairoKanged Bot (unmaintained)",
+    description: "A modular telegram Python bot running on python3 with an sqlalchemy database.",
+    longDescription: "Originally a Marie and Kigyō fork - KairoKanged Bot has evolved further and was built to be more useful for some chats.",
     category: "Development Tools",
     image: "/typography.svg",
     screenshots: [
@@ -117,18 +117,18 @@ const projects: Project[] = [
       "/design-kits.svg",
       "/lamp.jpg"
     ],
-    technologies: ["Python", "Flask", "JavaScript", "HTML/CSS", "SQLite", "Markdown"],
+    technologies: ["Python", "JavaScript", "HTML/CSS", "MongoDB", "PostgreSQL", "Telegram"],
     features: [
-      "Automated post formatting",
-      "Template system for consistency",
-      "Changelog integration",
-      "Download link management",
-      "Preview before publishing",
-      "Export to multiple formats"
+      "Powerful group manager bot",
+      "Fast and responsive technicalities",
+      "Federation for your own organization",
+      "Basic functions for Telegram groups",
+      "Some funny features included",
+      "Auto-banning insensitive spambots"
     ],
     links: {
-      github: "https://github.com/not-ayan/rom-post-maker",
-      download: "/tools/rom-post-maker"
+      github: "https://github.com/isaiahscape/KairoKangedBot",
+      download: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     },
     featured: true
   }
@@ -212,7 +212,7 @@ export default function Projects() {
                 <div className="p-2 rounded-lg bg-primary/10">
                   <Code className="size-4 text-primary" />
                 </div>
-                <span className="text-sm font-mono font-medium">PROJECTS[wip].md</span>
+                <span className="text-sm font-mono font-medium">projects.md</span>
                 <div className="flex-1 h-px bg-gradient-to-r from-border to-transparent"></div>
               </div>
 
