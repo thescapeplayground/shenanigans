@@ -1,4 +1,4 @@
-import Container from "@/components/container";
+import { PageContainer } from "@/components/page-container";
 import { ImageComponent } from "@/components/image";
 import { Button } from "@/components/ui/button";
 import { TextScroll } from "@/components/ui/text-scroll";
@@ -109,7 +109,7 @@ export default function About() {
 
   return (
     <>
-      <Container>
+      <PageContainer className="pt-4 lg:pt-8">
         <div className="relative rounded-lg overflow-clip">
           <ImageComponent
             img={AwooImage}
@@ -237,7 +237,7 @@ export default function About() {
             &gt; Gadget fixer, idk I fix those.
           </p>
         </div>
-      </Container>
+      </PageContainer>
       <TextScroll
         className="text-5xl md:text-7xl text-muted-foreground/50 dark:font-semibold font-bold py-24 md:space-y-2"
         textClassName="py-1 md:py-3 font-doto"
