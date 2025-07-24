@@ -1,6 +1,7 @@
 import { PageContainer } from "./page-container";
 import ThemeToggleButton from "./ui/theme-toggle-button";
 import { Link } from "next-view-transitions";
+import { Button } from "./ui/button";
 
 export interface FlatNavLinkProps {
   href: string;
@@ -31,7 +32,7 @@ export function Navbar() {
       <PageContainer>
         <div className="flex h-14 items-center">
           <Link href="/" className="font-bold">
-            notayan.
+            shenanigans.
           </Link>
           <div className="flex flex-1 items-center justify-end">
             <nav className="flex items-center gap-2">
