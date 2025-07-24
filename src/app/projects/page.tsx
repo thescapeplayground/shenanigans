@@ -28,7 +28,6 @@ import Image from "next/image";
 import { PageContainer } from "@/components/page-container";
 import { useState } from "react";
 import { projects } from "./projects";
-import type { WebPage, WithContext } from "schema-dts";
 
 export interface Project {
   id: string;
