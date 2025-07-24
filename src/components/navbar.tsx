@@ -27,25 +27,23 @@ export function Navbar() {
   const links: FlatNavLinkData[] = [];
 
   return (
-    <header className="sticky top-0 z-50 bg-background/50 backdrop-blur-lg w-full">
+    <header className="sticky top-0 z-40 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <PageContainer>
-        <nav className="w-full max-w-3xl mx-auto px-5 py-3 flex justify-between items-center">
-          <Link
-            href="/"
-            className="text-xl font-bold dark:font-medium text-primary"
-          >
-            shenanigans.
+        <div className="flex h-14 items-center">
+          <Link href="/" className="font-bold">
+            notayan.
           </Link>
-          <div className="flex gap-5 items-center">
-            {links.length > 0 &&
-              links.map((link) => (
-                <FlatNavLink key={link.href} href={link.href}>
-                  {link.text}
-                </FlatNavLink>
+          <div className="flex flex-1 items-center justify-end">
+            <nav className="flex items-center gap-2">
+              {links.map((link, index) => (
+                <Button key={index} variant="ghost" asChild>
+                  <Link href={link.href}>{link.text}</Link>
+                </Button>
               ))}
-            <ThemeToggleButton variant="circle-blur" start="top-right" />
+              <ThemeToggleButton variant="circle-blur" start="top-right" />
+            </nav>
           </div>
-        </nav>
+        </div>
       </PageContainer>
     </header>
   );
