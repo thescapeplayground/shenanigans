@@ -1,6 +1,6 @@
 "use client";
 
-import { Smartphone, Laptop, Headphones, Keyboard, Cpu, Microchip, ChevronDown } from "lucide-react";
+import { Smartphone, Laptop, Headphones, Keyboard, Cpu, Microchip, ChevronDown, Mouse } from "lucide-react";
 import { useState } from "react";
 
 export const TechGear = () => {
@@ -70,7 +70,7 @@ export const TechGear = () => {
                 <Cpu className="size-4 text-muted-foreground" />
               </div>
               <div>
-                <p className="font-medium">Custom Rig</p>
+                <p className="font-medium">Gaming Specifications</p>
               </div>
             </div>
             <ChevronDown className={`size-4 text-muted-foreground transition-transform ${expandedDevice === 'pc' ? 'rotate-180' : ''}`} />
@@ -109,12 +109,12 @@ export const TechGear = () => {
               <div>
               <p className="font-medium">
                 <a
-                  href="https://www.lenovo.com/ph/en/p/laptops/lenovo/lenovo-v-series-laptops/lenovo-v15-gen-4-15-inch-amd/len101l0027"
+                  href="https://www.lenovo.com/ph/en/p/laptops/ideapad/ideapad-3/ideapad-slim-3-gen-8-15-inch-amd/len101i0073"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:underline"
                 >
-                  Lenovo V15 G4
+                  Lenovo Ideapad Slim 3 (8th)
                 </a>
               </p>
               </div>
@@ -126,11 +126,11 @@ export const TechGear = () => {
               <ul className="space-y-2 text-sm">
                 <li className="flex justify-between">
                   <span className="text-muted-foreground">CPU</span>
-                  <span>AMD Ryzen 5 5500U</span>
+                  <span>AMD Ryzen™ 5 7520U</span>
                 </li>
                 <li className="flex justify-between">
                   <span className="text-muted-foreground">RAM</span>
-                  <span>16GB DDR4</span>
+                  <span>16 GB LPDDR5-5500MHz</span>
                 </li>
                 <li className="flex justify-between">
                   <span className="text-muted-foreground">Storage</span>
@@ -156,12 +156,12 @@ export const TechGear = () => {
             <div>
               <p className="font-medium">
                 <a
-                  href="https://tangzu.net/products/pre-ordertangzu-waner-sg-2"
+                  href="https://truthear.com/products/zero-red"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:underline"
                 >
-                  Tangzu Wan&apos;er SG 2
+                  Truthear x Crincale Zero: RED
                 </a>
               </p>
               <p className="text-sm text-muted-foreground">K-BEAR 8-Core, Kinera Celest Ruyi Pro</p>
@@ -186,6 +186,24 @@ export const TechGear = () => {
               <p className="text-sm text-muted-foreground">KT02H20 DAC</p>
             </div>
           </div>
+          <div className="flex items-center gap-3 px-5 py-3 hover:bg-muted/50 transition-colors border-b border-border">
+            <div className="p-2 rounded-md bg-muted/50">
+              <Mouse className="size-4 text-muted-foreground" />
+            </div>
+            <div>
+              <p className="font-medium">
+                <a
+                  href="https://www.pulsar.gg/products/tenz-signature-edition"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  Pulsar&apos;s TenZ Signature Edition
+                </a>
+              </p>
+              <p className="text-sm text-muted-foreground">XS-1 Sensor, 32,000 DPI, 8K PR</p>
+            </div>
+          </div>          
           <div className="flex items-center gap-3 px-5 py-3 hover:bg-muted/50 transition-colors border-b border-border">
             <div className="p-2 rounded-md bg-muted/50">
               <Keyboard className="size-4 text-muted-foreground" />

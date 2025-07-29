@@ -1,6 +1,26 @@
 // Add animation styles for project transitions
 // You can move these to your global CSS if preferred
 "use client";
+
+// Subtle fade animation for project transitions (optimized)
+const style = `
+@layer utilities {
+  .animate-fade-project {
+    animation: fadeProject 0.18s cubic-bezier(0.4,0,0.2,1);
+  }
+  @keyframes fadeProject {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+}
+`;
+if (typeof window !== 'undefined' && !document.getElementById('project-anim-style')) {
+  const s = document.createElement('style');
+  s.id = 'project-anim-style';
+  s.innerHTML = style;
+  document.head.appendChild(s);
+}
+
 import { Project } from "./page";
 
 export const projects: Project[] = [

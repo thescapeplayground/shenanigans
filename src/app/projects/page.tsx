@@ -21,6 +21,8 @@ if (typeof window !== 'undefined' && !document.getElementById('project-anim-styl
   document.head.appendChild(s);
 }
 
+import type { WebPage, WithContext } from "schema-dts";
+
 import { ArrowLeft, ExternalLink, Github, Code, ChevronLeft, ChevronRight, Star, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "next-view-transitions";
@@ -28,6 +30,7 @@ import Image from "next/image";
 import { PageContainer } from "@/components/page-container";
 import { useState } from "react";
 import { projects } from "./projects";
+import { TextScroll } from "@/components/ui/text-scroll";
 
 export interface Project {
   id: string;
@@ -48,6 +51,51 @@ export interface Project {
 }
 
 export default function Projects() {
+  const jsonLd: WithContext<WebPage> = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Projects",
+    alternateName: "shenanigans.",
+    mainEntityOfPage: "https://isaiahthings.eu.org/",
+    description: "Where it all begins.",
+    url: "https://isaiahthings.eu.org/",
+    breadcrumb: {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Landing",
+          item: "https://isaiahthings.eu.org/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "About",
+          item: "https://isaiahthings.eu.org/about",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: "Server Status",
+          item: "https://isaiahthings.eu.org/status",
+        },
+        {
+          "@type": "ListItem",
+          position: 4,
+          name: "Blog",
+          item: "https://isaiahthings.eu.org/blog",
+        },
+        {
+          "@type": "ListItem",
+          position: 5,
+          name: "Projects",
+          item: "https://isaiahthings.eu.org/projects",
+        },
+      ],
+    },
+  };
+
   const [currentProject, setCurrentProject] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [currentScreenshot, setCurrentScreenshot] = useState(0);
@@ -520,6 +568,16 @@ export default function Projects() {
           </div>
         </div>
       </PageContainer>
+            <TextScroll
+              className="text-5xl md:text-7xl text-muted-foreground/50 dark:font-semibold font-bold py-24 md:space-y-2"
+              textClassName="py-1 md:py-3 font-doto"
+              default_velocity={0.66}
+              text="THIS IS THE END OF MY PROJECTS, BRUV.  "
+            />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
     </div>
   );
 } 
