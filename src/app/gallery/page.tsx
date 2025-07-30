@@ -67,8 +67,8 @@ export default function Gallery() {
               </div>
 
               <div className="mb-8">
-                <h1 className="text-3xl font-bold mb-4">Collections</h1>
-                <p className="text-lg text-muted-foreground">
+                <h1 className="text-xl md:text-2xl font-bold mb-4">Collections</h1>
+                <p className="text-sm text-muted-foreground">
                   A curated collection of photography and visual content showcasing various moments,
                   places, and perspectives through my lens. You can download the full resolution images
                   by clicking the download icon on each card if you want them to set as your wallpaper.
