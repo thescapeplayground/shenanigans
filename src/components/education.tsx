@@ -66,14 +66,14 @@ export const EducationAndLinks = () => {
       <Button variant="outline" className="gap-2 w-full justify-start py-4" asChild>
         <a href="https://t.me/losslessbyisaiah" target="_blank" rel="noopener noreferrer">
           <Music className="size-4" aria-hidden="true" />
-          <span>Music Collection</span>
+          <span>Music Collections</span>
         </a>
       </Button>
 
       <Button variant="outline" className="gap-2 w-full justify-start py-4" asChild>
-        <a href="https://t.me/isaiahwallpapers" target="_blank" rel="noopener noreferrer">
+        <a href="/gallery">
           <ImageIcon className="size-4" aria-hidden="true" />
-          <span>Wallpaper Collection</span>
+          <span>Gallery Collections</span>
         </a>
       </Button>
     </div>
