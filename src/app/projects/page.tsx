@@ -1,25 +1,4 @@
-// Add animation styles for project transitions
-// You can move these to your global CSS if preferred
 "use client";
-
-// Subtle fade animation for project transitions (optimized)
-const style = `
-@layer utilities {
-  .animate-fade-project {
-    animation: fadeProject 0.18s cubic-bezier(0.4,0,0.2,1);
-  }
-  @keyframes fadeProject {
-    0% { opacity: 0.5; }
-    100% { opacity: 1; }
-  }
-}
-`;
-if (typeof window !== 'undefined' && !document.getElementById('project-anim-style')) {
-  const s = document.createElement('style');
-  s.id = 'project-anim-style';
-  s.innerHTML = style;
-  document.head.appendChild(s);
-}
 
 import type { WebPage, WithContext } from "schema-dts";
 
@@ -29,26 +8,8 @@ import { Link } from "next-view-transitions";
 import Image from "next/image";
 import { PageContainer } from "@/components/page-container";
 import { useState } from "react";
-import { projects } from "./projects";
+import { projects } from "@/components/projects";
 import { TextScroll } from "@/components/ui/text-scroll";
-
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  longDescription: string;
-  category: string;
-  image: string;
-  screenshots: string[];
-  technologies: string[];
-  features: string[];
-  links: {
-    github?: string;
-    live?: string;
-    download?: string;
-  };
-  featured: boolean;
-}
 
 export default function Projects() {
   const jsonLd: WithContext<WebPage> = {
@@ -568,16 +529,16 @@ export default function Projects() {
           </div>
         </div>
       </PageContainer>
-            <TextScroll
-              className="text-5xl md:text-7xl text-muted-foreground/50 dark:font-semibold font-bold py-24 md:space-y-2"
-              textClassName="py-1 md:py-3 font-doto"
-              default_velocity={0.66}
-              text="THIS IS THE END OF MY PROJECTS, BRUV.  "
-            />
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
+      <TextScroll
+        className="text-5xl md:text-7xl text-muted-foreground/50 dark:font-semibold font-bold py-24 md:space-y-2"
+        textClassName="py-1 md:py-3 font-doto"
+        default_velocity={0.66}
+        text="THIS IS THE END OF MY PROJECTS, BRUV.  "
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </div>
   );
 } 

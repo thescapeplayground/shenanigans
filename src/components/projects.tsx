@@ -21,7 +21,23 @@ if (typeof window !== 'undefined' && !document.getElementById('project-anim-styl
   document.head.appendChild(s);
 }
 
-import { Project } from "./page";
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  longDescription: string;
+  category: string;
+  image: string;
+  screenshots: string[];
+  technologies: string[];
+  features: string[];
+  links: {
+    live?: string;
+    github?: string;
+    download?: string;
+  };
+  featured: boolean;
+}
 
 export const projects: Project[] = [
   {

@@ -10,6 +10,7 @@ import {
   Globe,
   Home,
   Info,
+  InstagramIcon,
   Link2,
   Linkedin,
   MessageSquareMore,
@@ -17,8 +18,10 @@ import {
   Send,
   Server,
   Twitter,
+  TwitchIcon,
   User,
   X,
+  YoutubeIcon
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
@@ -118,7 +121,7 @@ export function FAB() {
             <span className="size-fit px-2 py-1 rounded-3xl bg-secondary text-secondary-foreground">
               <GitGraph className="size-4" />
             </span>
-            <span>shenanigans. (v1.0.0)</span>
+            <span>shenanigans. (v2.0)</span>
           </h3>
           <Link
             className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
@@ -176,6 +179,42 @@ export function FAB() {
             </span>
             <span>Social</span>
           </h3>
+          <a
+            className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
+            href="https://youtube.com/@isaiahscape"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <YoutubeIcon className="size-4" />
+            <span>YouTube</span>
+            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
+              <ArrowRight className="size-4" />
+            </div>
+          </a>
+          <a
+            className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
+            href="https://instagram.com/isaiahscape"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <InstagramIcon className="size-4" />
+            <span>Instagram</span>
+            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
+              <ArrowRight className="size-4" />
+            </div>
+          </a>
+          <a
+            className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
+            href="https://twitch.tv/isaiahscape"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <TwitchIcon className="size-4" />
+            <span>Twitch</span>
+            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
+              <ArrowRight className="size-4" />
+            </div>
+          </a>
           <a
             className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
             href="https://github.com/isaiahscape"
