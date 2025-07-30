@@ -10,6 +10,7 @@ import { EducationAndLinks } from "@/components/education";
 import { SelfHostedServices } from "@/components/selfhosted";
 import { TechGear } from "@/components/tech-gear";
 import { Experience } from "@/components/experience";
+import { Source } from "@/components/source";
 import { TextScroll } from "@/components/ui/text-scroll";
 
 export const metadata: Metadata = {
@@ -82,9 +83,9 @@ export default function Home() {
                 <span className="text-sm font-mono">description.md</span>
               </h2>
               <p className="px-5 py-3">
-              Not here to impress — just keeping it real. Welcome to my personal corner of the web.
-              I&apos;m Isiaih Rafael Pavia, living in Davao, Philippines. Age 20. If you&apos;re
-              interested in working together, feel free to reach out via my work email.
+                Not here to impress — just keeping it real. Welcome to my personal corner of the web.
+                I&apos;m Isiaih Rafael Pavia, living in Davao, Philippines. Age 20. If you&apos;re
+                interested in working together, feel free to reach out via my work email.
               </p>
             </div>
             <div className="w-full bg-background rounded-lg border border-border">
@@ -122,69 +123,17 @@ export default function Home() {
               </h2>
               <Experience />
             </div>
-            <div className="w-full bg-background rounded-lg border border-border">
-              <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
-                <Info className="size-4" />
-                <span className="text-sm font-mono">source.md</span>
-              </h2>
-              <p className="px-5 py-3">
-                This site is built using{" "}
-                <a
-                  href="https://nextjs.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline underline-offset-2"
-                >
-                  Next.js
-                </a>
-                ,{" "}
-                <a
-                  href="https://tailwindcss.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline underline-offset-2"
-                >
-                  TailwindCSS
-                </a>
-                ,{" "}
-                <a
-                  href="https://ui.shadcn.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline underline-offset-2"
-                >
-                  shadcn/ui
-                </a>
-                , and{" "}
-                <a
-                  href="https://tanstack.com/query"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline underline-offset-2"
-                >
-                  Tanstack Query
-                </a>
-                . It is hosted on{" "}
-                <a
-                  href="https://vercel.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline underline-offset-2"
-                >
-                  Vercel
-                </a>
-                . The source code is available on{" "}
-                <a
-                  href="https://github.com/isaiahscape/shenanigans"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline underline-offset-2"
-                >
-                  GitHub
-                </a>
-                .
-              </p>
-            </div>
+          </div>
+        </div>
+
+        {/* Bottom Center Section */}
+        <div className="mt-6 flex justify-center">
+          <div className="w-full max-w-2xl bg-background rounded-lg border border-border">
+            <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
+              <Info className="size-4" />
+              <span className="text-sm font-mono">source.md</span>
+            </h2>
+            <Source />
           </div>
         </div>
       </PageContainer >
