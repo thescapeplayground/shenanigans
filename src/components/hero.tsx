@@ -79,7 +79,12 @@ export function Hero({ img, profile }: HeroProps) {
           </Button>
           <Button variant="ghost" size="icon" asChild>
             <a href="https://github.com/isaiahscape">
-              <GitHub className="size-6" color="#FFFFFF" />
+              <span className="dark:hidden">
+                <GitHub className="size-6" color="#181717" stroke="#181717" strokeWidth={1} />
+              </span>
+              <span className="hidden dark:inline">
+                <GitHub className="size-6" color="#FFFFFF" stroke="#181717" strokeWidth={1} />
+              </span>
               <span className="sr-only">GitHub Account</span>
             </a>
           </Button>
