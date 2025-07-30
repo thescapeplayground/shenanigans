@@ -81,19 +81,15 @@ export default function Home() {
                 <span className="text-sm font-mono">description.md</span>
               </h2>
               <p className="px-5 py-3">
-                I ain&apos;t tryna be fancy here. I don&apos;t know what to put so I
-                will just say welcome to my personal site. I&apos;m Isiaih Rafael
-                Pavia. Domicile is Davao, Philippines. Age 20. For job
-                inquiries, please contact me through my work mail.
-              </p>
-              <p className="px-5 py-3">
-                Note: Placeholder, still using Lapp&apos;s description.
+              Not here to impress — just keeping it real. Welcome to my personal corner of the web. 
+              I&apos;m Isiaih Rafael Pavia, living in Davao, Philippines. Age 20. If you&apos;re 
+              interested in working together, feel free to reach out via my work email.
               </p>
             </div>
             <div className="w-full bg-background rounded-lg border border-border">
               <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
                 <GraduationCap className="size-4" />
-                <span className="text-sm font-mono">about.md</span>
+                <span className="text-sm font-mono">stuffs.md</span>
               </h2>
               <EducationAndLinks />
             </div>

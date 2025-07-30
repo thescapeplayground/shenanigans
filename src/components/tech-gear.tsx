@@ -13,7 +13,7 @@ export const TechGear = () => {
   return (
     <div className="p-0">
       <div className="space-y-2">
-        <h3 className="px-5 py-3 text-sm font-medium text-muted-foreground">Current Devices</h3>
+        <h3 className="px-5 py-3 text-sm font-medium text-muted-foreground">Devices</h3>
         <div className="grid">
           <button 
             onClick={() => toggleDevice('phone')}
@@ -147,7 +147,7 @@ export const TechGear = () => {
       </div>
 
       <div className="mt-2">
-        <h3 className="px-5 py-3 text-sm font-medium text-muted-foreground">Current Gear</h3>
+        <h3 className="px-5 py-3 text-sm font-medium text-muted-foreground">Kits</h3>
         <div className="grid">
           <div className="flex items-center gap-3 px-5 py-3 hover:bg-muted/50 transition-colors border-b border-border">
             <div className="p-2 rounded-md bg-muted/50">
