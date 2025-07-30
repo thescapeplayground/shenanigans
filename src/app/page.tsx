@@ -5,10 +5,11 @@ import { PageContainer } from "@/components/page-container";
 
 import HeroImage from "@/assets/img/hero.png";
 import HeroProfile from "@/assets/img/profpic.jpg";
-import { Book, Info, GraduationCap, Server, Smartphone } from "lucide-react";
+import { Book, Info, GraduationCap, Server, Smartphone, Briefcase } from "lucide-react";
 import { EducationAndLinks } from "@/components/education";
 import { SelfHostedServices } from "@/components/selfhosted";
 import { TechGear } from "@/components/tech-gear";
+import { Experience } from "@/components/experience";
 import { TextScroll } from "@/components/ui/text-scroll";
 
 export const metadata: Metadata = {
@@ -81,8 +82,8 @@ export default function Home() {
                 <span className="text-sm font-mono">description.md</span>
               </h2>
               <p className="px-5 py-3">
-              Not here to impress — just keeping it real. Welcome to my personal corner of the web. 
-              I&apos;m Isiaih Rafael Pavia, living in Davao, Philippines. Age 20. If you&apos;re 
+              Not here to impress — just keeping it real. Welcome to my personal corner of the web.
+              I&apos;m Isiaih Rafael Pavia, living in Davao, Philippines. Age 20. If you&apos;re
               interested in working together, feel free to reach out via my work email.
               </p>
             </div>
@@ -113,6 +114,13 @@ export default function Home() {
                 <span className="text-sm font-mono">gadgets.md</span>
               </h2>
               <TechGear />
+            </div>
+            <div className="w-full bg-background rounded-lg border border-border">
+              <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
+                <Briefcase className="size-4" />
+                <span className="text-sm font-mono">experience.md</span>
+              </h2>
+              <Experience />
             </div>
             <div className="w-full bg-background rounded-lg border border-border">
               <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">

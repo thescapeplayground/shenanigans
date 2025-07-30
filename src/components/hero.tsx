@@ -55,7 +55,7 @@ export function Hero({ img, profile }: HeroProps) {
         />
       </div>
       <div className="relative w-full py-3 md:-mt-18 justify-center flex-col md:flex-row md:justify-between flex gap-3 md:gap-5 items-center">
-        <p className="w-full md:pl-46 truncate text-center md:text-start text-2xl font-bold dark:font-semibold" style={{ color: "#ffffffff" }}>
+        <p className="w-full md:pl-46 truncate text-center md:text-start text-2xl font-bold dark:font-semibold">
           Leonardo @isaiahscape
         </p>
         <div className="w-fit flex items-center justify-center gap-3">

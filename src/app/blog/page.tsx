@@ -3,7 +3,7 @@ import { ImageComponent } from "@/components/image";
 import { TextScroll } from "@/components/ui/text-scroll";
 import { Book, Info } from "lucide-react";
 import { Metadata } from "next";
-import CuteImage from "@/assets/img/banner.png";
+import CuteImage from "@/assets/img/banner.jpg";
 import type { WebPage, WithContext } from "schema-dts";
 
 export const metadata: Metadata = {
@@ -73,7 +73,7 @@ export default function About() {
             height={720}
           />
           <p className="z-20 md:w-fit w-3/4 text-center font-bold absolute bottom-3 left-1/2 rounded-full -translate-x-1/2 px-7 py-3 font-doto bg-background/80 text-foreground md:text-xl backdrop-blur-lg">
-            ALL POSTS
+            all posts
           </p>
         </div>
         <div className="w-full bg-background rounded-lg border border-border">

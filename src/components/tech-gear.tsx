@@ -100,7 +100,7 @@ export const TechGear = () => {
 
           <button 
             onClick={() => toggleDevice('server')}
-            className="flex items-center justify-between w-full px-5 py-3 hover:bg-muted/50 transition-colors border-b border-border"
+            className="flex items-center justify-between w-full px-5 py-3 hover:bg-muted/50 transition-colors border-border"
           >
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-md bg-muted/50">
@@ -161,7 +161,7 @@ export const TechGear = () => {
                   rel="noopener noreferrer"
                   className="hover:underline"
                 >
-                  Truthear x Crincale Zero: RED
+                  Truthear x Crincale ZERO: RED
                 </a>
               </p>
               <p className="text-sm text-muted-foreground">K-BEAR 8-Core, Kinera Celest Ruyi Pro</p>
@@ -204,7 +204,7 @@ export const TechGear = () => {
               <p className="text-sm text-muted-foreground">XS-1 Sensor, 32,000 DPI, 8K PR</p>
             </div>
           </div>          
-          <div className="flex items-center gap-3 px-5 py-3 hover:bg-muted/50 transition-colors border-b border-border">
+          <div className="flex items-center gap-3 px-5 py-3 hover:bg-muted/50 transition-colors border-border">
             <div className="p-2 rounded-md bg-muted/50">
               <Keyboard className="size-4 text-muted-foreground" />
             </div>
