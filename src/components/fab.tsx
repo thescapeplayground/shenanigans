@@ -148,7 +148,7 @@ export function FAB() {
             <span className="size-fit px-2 py-1 rounded-3xl bg-secondary text-secondary-foreground">
               <GitGraph className="size-4" />
             </span>
-            <span>shenanigans. (v2.1)</span>
+            <span>shenanigans. (v2.2)</span>
           </h3>
           {/* Analytics Section */}
           <div className="w-full bg-muted/10 px-4 py-3 border-b border-border">
@@ -280,48 +280,12 @@ export function FAB() {
           </a>
           <a
             className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
-            href="https://twitch.tv/isaiahscape"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <TwitchIcon className="size-4" />
-            <span>Twitch</span>
-            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-              <ArrowRight className="size-4" />
-            </div>
-          </a>
-          <a
-            className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
             href="https://github.com/isaiahscape"
             target="_blank"
             rel="noopener noreferrer"
           >
             <Github className="size-4" />
             <span>GitHub</span>
-            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-              <ArrowRight className="size-4" />
-            </div>
-          </a>
-          <a
-            className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
-            href="https://linkedin.com/in/isaiahscape"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Linkedin className="size-4" />
-            <span>LinkedIn</span>
-            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-              <ArrowRight className="size-4" />
-            </div>
-          </a>
-          <a
-            className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
-            href="https://t.me/isaiahscape"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Send className="size-4" />
-            <span>Telegram</span>
             <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
               <ArrowRight className="size-4" />
             </div>
