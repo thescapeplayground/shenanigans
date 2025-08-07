@@ -1,7 +1,6 @@
-import { PageContainer } from "./page-container";
+import ProgressiveBlur from "./ui/progressive-blur";
 import ThemeToggleButton from "./ui/theme-toggle-button";
 import { Link } from "next-view-transitions";
-import { Button } from "./ui/button";
 
 export interface FlatNavLinkProps {
   href: string;
@@ -28,24 +27,26 @@ export function Navbar() {
   const links: FlatNavLinkData[] = [];
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <PageContainer>
-        <div className="flex h-14 items-center">
-          <Link href="/" className="font-bold">
-            shenanigans.
-          </Link>
-          <div className="flex flex-1 items-center justify-end">
-            <nav className="flex items-center gap-2">
-              {links.map((link, index) => (
-                <Button key={index} variant="ghost" asChild>
-                  <Link href={link.href}>{link.text}</Link>
-                </Button>
-              ))}
-              <ThemeToggleButton variant="circle-blur" start="top-right" />
-            </nav>
-          </div>
+    <header className="sticky top-0 z-50 w-full">
+      <div className="absolute z-20 top-0 inset-x-0 h-20 bg-gradient-to-b from-background/80 to-transparent" />
+      <ProgressiveBlur className="z-50" height="170%" position="top" />
+      <nav className="relative z-50 w-full max-w-286 mx-auto py-3 flex justify-between items-center">
+        <Link
+          href="/"
+          className="text-xl font-bold dark:font-medium text-primary"
+        >
+          realm.
+        </Link>
+        <div className="flex gap-5 items-center">
+          {links.length > 0 &&
+            links.map((link) => (
+              <FlatNavLink key={link.href} href={link.href}>
+                {link.text}
+              </FlatNavLink>
+            ))}
+          <ThemeToggleButton variant="circle-blur" start="top-right" />
         </div>
-      </PageContainer>
+      </nav>
     </header>
   );
 }
