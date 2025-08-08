@@ -35,7 +35,7 @@ export function Navbar() {
           href="/"
           className="text-xl font-bold dark:font-medium text-primary"
         >
-          realm.
+          shenanigans.
         </Link>
         <div className="flex gap-5 items-center">
           {links.length > 0 &&
