@@ -17,7 +17,8 @@ import {
   X,
   YoutubeIcon,
   Eye,
-  Users
+  Users,
+  Music
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
@@ -211,6 +212,16 @@ export function FAB() {
           >
             <Code2 className="size-4" />
             <span>Projects</span>
+            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
+              <ArrowRight className="size-4" />
+            </div>
+          </Link>
+          <Link
+            className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
+            href="/playlists"
+          >
+            <Music className="size-4" />
+            <span>Playlists</span>
             <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
               <ArrowRight className="size-4" />
             </div>

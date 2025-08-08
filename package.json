@@ -19,6 +19,7 @@
     "babel-plugin-react-compiler": "19.0.0-beta-ebf51a3-20250411",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dev": "^0.1.3",
     "express": "^5.1.0",
     "framer-motion": "^12.23.11",
     "lucide-react": "^0.479.0",
