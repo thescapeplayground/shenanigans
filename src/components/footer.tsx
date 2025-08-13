@@ -11,12 +11,10 @@ export function Footer() {
   ];
 
   const socials = [
-    { href: "https://linkedin.com/in/irvanmalik48", text: "LinkedIn" },
-    { href: "https://x.com/irvanmalik48", text: "X (formerly Twitter)" },
-    { href: "https://social.gnuweeb.org/@lappland", text: "Mastodon" },
-    { href: "https://discord.com/users/652539226990051338", text: "Discord" },
-    { href: "https://t.me/lappv", text: "Telegram" },
-    { href: "https://t.me/lappvi", text: "Telegram (2nd)" },
+    { href: "https://linkedin.com/in/isaiahscape", text: "LinkedIn" },
+    { href: "https://x.com/isaiahscape", text: "X (formerly Twitter)" },
+    { href: "https://social.gnuweeb.org/@isaiahscape", text: "Mastodon" },
+    { href: "https://t.me/isaiahscape", text: "Telegram" },
   ];
 
   return (
@@ -72,7 +70,7 @@ export function Footer() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-primary/75 md:text-2xl lg:text-4xl hover:text-primary transition-colors"
+                  className="text-primary/75 hover:text-primary transition-colors"
                 >
                   {link.text}
                 </a>
