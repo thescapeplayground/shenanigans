@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "./ui/button";
-import { Paintbrush, Smartphone, Users, BellRing, Music, Image as ImageIcon, } from "lucide-react";
+import { Paintbrush, Smartphone, Users, BellRing, Music, Image as ImageIcon, ArrowRight } from "lucide-react";
 import { Timeline } from "./Timeline";
 import {
   Accordion,
@@ -9,6 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Link } from "next-view-transitions";
 
 export const EducationAndLinks = () => {
   return (
@@ -63,19 +64,28 @@ export const EducationAndLinks = () => {
         </AccordionItem>
       </Accordion>
 
-      <Button variant="outline" className="gap-2 w-full justify-start py-4" asChild>
-        <a href="https://t.me/losslessbyisaiah" target="_blank" rel="noopener noreferrer">
-          <Music className="size-4" aria-hidden="true" />
-          <span>Music Collections</span>
-        </a>
-      </Button>
+      {/* Row-style links (match project list style) */}
+      <Link
+        href="/playlists"
+        className="group relative border border-border rounded-lg text-sm cursor-pointer flex items-center gap-3 px-4 py-4 hover:bg-secondary hover:bg-muted/50"
+      >
+        <Music className="size-4" aria-hidden="true" />
+        <span className="font-semibold">The Playlists</span>
+        <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
+          <ArrowRight className="size-4" />
+        </div>
+      </Link>
 
-      <Button variant="outline" className="gap-2 w-full justify-start py-4" asChild>
-        <a href="/gallery">
-          <ImageIcon className="size-4" aria-hidden="true" />
-          <span>Gallery Collections</span>
-        </a>
-      </Button>
+      <Link
+        href="/gallery"
+        className="group relative border border-border rounded-lg text-sm cursor-pointer flex items-center gap-3 px-4 py-4 hover:bg-secondary hover:bg-muted/50"
+      >
+        <ImageIcon className="size-4" aria-hidden="true" />
+        <span className="font-semibold">Gallery Collection</span>
+        <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
+          <ArrowRight className="size-4" />
+        </div>
+      </Link>
     </div>
   );
-}; 
+};
