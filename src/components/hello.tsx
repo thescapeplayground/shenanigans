@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import type { CSSProperties } from "react"; // added
 
 export function Hello({ show = true }: { show?: boolean }) {
   const [gradient, setGradient] = useState<string>();
@@ -23,7 +24,8 @@ export function Hello({ show = true }: { show?: boolean }) {
     const rgbToHsl = ({ r, g, b }: { r: number; g: number; b: number }) => {
       r /= 255; g /= 255; b /= 255;
       const max = Math.max(r, g, b), min = Math.min(r, g, b);
-      let h = 0, s = 0, l = (max + min) / 2;
+      let h = 0, s = 0;
+      const l = (max + min) / 2; // prefer-const
       if (max !== min) {
         const d = max - min;
         s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
@@ -132,11 +134,17 @@ export function Hello({ show = true }: { show?: boolean }) {
   }, []);
 
   if (!show) return null;
+
+  // type-safe CSS custom property (fixes no-explicit-any)
+  const overlayStyle: CSSProperties & { ["--hello-gradient"]?: string } = {
+    ["--hello-gradient"]: gradient,
+  };
+
   return (
     <>
       <div
         className="hello-overlay pointer-events-none fixed inset-0 z-[70] flex items-center justify-center"
-        style={{ ["--hello-gradient" as any]: gradient }}
+        style={overlayStyle}
       >
         {/* replaced text with logo */}
         <Image
