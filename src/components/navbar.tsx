@@ -1,6 +1,7 @@
 import ProgressiveBlur from "./ui/progressive-blur";
 import ThemeToggleButton from "./ui/theme-toggle-button";
 import { Link } from "next-view-transitions";
+import Image from "next/image";
 
 export interface FlatNavLinkProps {
   href: string;
@@ -35,7 +36,14 @@ export function Navbar() {
           href="/"
           className="text-xl font-bold dark:font-medium text-primary"
         >
-          shenanigans.
+          <Image
+            src="/favicon.svg"
+            alt="Home"
+            width={28}
+            height={28}
+            priority
+            className="h-7 w-7"
+          />
         </Link>
         <div className="flex gap-5 items-center">
           {links.length > 0 &&
