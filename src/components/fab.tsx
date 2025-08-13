@@ -16,8 +16,6 @@ import {
   User,
   X,
   YoutubeIcon,
-  Eye,
-  Users,
   Music
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -31,41 +29,13 @@ export function FAB() {
   const [open, setOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [isImageLoading, setIsImageLoading] = useState(true);
-  const [analytics, setAnalytics] = useState<{
-    pageViews: number;
-    uniqueVisitors: number;
-    lastUpdated: string;
-  } | null>(null);
-  const [analyticsLoading, setAnalyticsLoading] = useState(false);
 
   const handleInteractOutside = (e: Event) => {
     e.preventDefault();
   };
 
-  const handleOpen = () => {
-    setOpen((prev) => {
-      const newState = !prev;
-      // Fetch analytics when opening the FAB
-      if (newState && !analytics && !analyticsLoading) {
-        fetchAnalytics();
-      }
-      return newState;
-    });
-  };
-
-  const fetchAnalytics = async () => {
-    setAnalyticsLoading(true);
-    try {
-      const response = await fetch('/api/analytics');
-      if (response.ok) {
-        const data = await response.json();
-        setAnalytics(data);
-      }
-    } catch (error) {
-      console.error('Failed to fetch analytics:', error);
-    } finally {
-      setAnalyticsLoading(false);
-    }
+  const handleOpen = (nextOpen: boolean) => {
+    setOpen(nextOpen);
   };
 
   const handleScrollToTop = () => {
@@ -148,44 +118,6 @@ export function FAB() {
             </span>
             <span>shenanigans. (v2.2)</span>
           </h3>
-          {/* Analytics Section */}
-          <div className="w-full bg-muted/10 px-4 py-3 border-b border-border">
-            <div className="space-y-2">
-              <div className="flex items-center gap-3 text-sm">
-                <span className="size-fit px-2 py-1 rounded-3xl bg-primary/10 text-primary">
-                  <Eye className="size-4" />
-                </span>
-                <span className="text-muted-foreground">
-                  Page Views: {analyticsLoading ? (
-                    <span className="inline-block w-12 h-4 bg-muted animate-pulse rounded"></span>
-                  ) : (
-                    <span className="font-mono font-semibold text-foreground">
-                      {analytics?.pageViews.toLocaleString() || '--'}
-                    </span>
-                  )}
-                </span>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <span className="size-fit px-2 py-1 rounded-3xl bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
-                  <Users className="size-4" />
-                </span>
-                <span className="text-muted-foreground">
-                  Unique Visitors: {analyticsLoading ? (
-                    <span className="inline-block w-12 h-4 bg-muted animate-pulse rounded"></span>
-                  ) : (
-                    <span className="font-mono font-semibold text-foreground">
-                      {analytics?.uniqueVisitors.toLocaleString() || '--'}
-                    </span>
-                  )}
-                </span>
-              </div>
-              {analytics && !analyticsLoading && (
-                <div className="text-xs text-muted-foreground/70 mt-1">
-                  Updated: {new Date(analytics.lastUpdated).toLocaleTimeString()}
-                </div>
-              )}
-            </div>
-          </div>
           <Link
             className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
             href="/"
