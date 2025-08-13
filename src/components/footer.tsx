@@ -8,12 +8,6 @@ export function Footer() {
     { href: "https://gnuweeb.org", text: "GNU/Weeb" },
     { href: "https://webri.ng/webring/chads", text: "Webring" },
     { href: "https://helluvaos.com/", text: "HelluvaOS" },
-    {
-      href: "https://rwhu.helluvaos.com/",
-      text: "RWHU",
-    },
-    { href: "#", text: "Lycoris" },
-    { href: "https://mcmap.irvanma.eu.org", text: "Realm's BlueMap" },
   ];
 
   const socials = [
@@ -102,10 +96,7 @@ export function Footer() {
         </div>
       </div>
       <p className="text-primary/75 text-center md:text-start text-sm w-full md:pb-40 lg:pb-55 xl:pb-70">
-        &copy; 2025 Leonardo @ The Scape Network.
-      </p>
-      <p className="text-primary/75 text-center md:text-start text-sm w-full md:pb-40 lg:pb-55 xl:pb-70">
-        &copy; Originally made by Irvan Malik Azantha. Licensed in RCCL.
+        &copy; 2025 Leonardo @ The Scape Network. Originally made by Irvan Malik Azantha, Licensed in RCCL.
       </p>
       <RealmStylized className="hidden md:block w-full absolute inset-x-0 bottom-0" />
     </footer>
