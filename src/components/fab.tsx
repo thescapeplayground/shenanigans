@@ -24,25 +24,36 @@ import { Link } from "next-view-transitions";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import Image from "next/image";
 import Hero from "@/assets/img/fab-hero.png";
+import { usePathname } from "next/navigation";
 
 export function FAB() {
   const [open, setOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [isImageLoading, setIsImageLoading] = useState(true);
-
-  const handleInteractOutside = (e: Event) => {
-    e.preventDefault();
-  };
+  const pathname = usePathname();
 
   const handleOpen = (nextOpen: boolean) => {
     setOpen(nextOpen);
   };
+
+  // close on route change (navigating to another page)
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   const handleScrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
+  };
+
+  // close when any anchor/link inside the popover is clicked
+  const handleAnyLinkClick = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement | null;
+    if (target && target.closest("a")) {
+      setOpen(false);
+    }
   };
 
   useEffect(() => {
@@ -75,7 +86,7 @@ export function FAB() {
         <ArrowUp className="size-6" />
         <span className="sr-only">Scroll to top</span>
       </button>
-      <Popover onOpenChange={handleOpen}>
+      <Popover open={open} onOpenChange={handleOpen}>
         <PopoverTrigger asChild>
           <button
             className={cn(
@@ -95,7 +106,8 @@ export function FAB() {
           </button>
         </PopoverTrigger>
         <PopoverContent
-          onInteractOutside={handleInteractOutside}
+          onEscapeKeyDown={() => setOpen(false)}
+          onClick={handleAnyLinkClick}
           className="max-w-3xs sm:max-w-xs md:max-w-sm w-full p-0 overflow-clip"
           align="end"
           sideOffset={10}
