@@ -2,6 +2,7 @@ import ProgressiveBlur from "./ui/progressive-blur";
 import ThemeToggleButton from "./ui/theme-toggle-button";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
+import { HelloOnNavigate } from "@/components/hello";
 
 export interface FlatNavLinkProps {
   href: string;
@@ -29,6 +30,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full">
+      <HelloOnNavigate />
       <div className="lg:hidden absolute z-20 top-0 inset-x-0 h-20 bg-gradient-to-b from-background/80 to-transparent" />
       <ProgressiveBlur className="z-50" height="170%" position="top" />
       <nav className="relative z-50 w-full max-w-full mx-auto px-5 py-3 flex justify-between items-center">

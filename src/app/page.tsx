@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { Hero } from "@/components/hero";
 import type { WebPage, WithContext } from "schema-dts";
 import { PageContainer } from "@/components/page-container";
+import { Hello } from "@/components/hello";
 
 import HeroImage from "@/assets/img/hero.png";
 import HeroProfile from "@/assets/img/profpic.jpg";
@@ -70,6 +71,7 @@ export default function Home() {
 
   return (
     <>
+      <Hello />
       <PageContainer>
         <Hero img={HeroImage} profile={HeroProfile} />
       </PageContainer>
