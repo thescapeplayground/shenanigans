@@ -47,7 +47,7 @@ export function Footer() {
             </p>
             <Button variant={"secondary"} asChild>
               <a
-                href="https://forms.gle/FjepjDkk3kM5DiFt9"
+                href="https://forms.gle/qdR6nXpGT42dTmpH7"
                 target="_blank"
                 rel="noopener noreferrer"
               >
