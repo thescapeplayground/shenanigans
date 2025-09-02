@@ -142,6 +142,40 @@
   filter: blur(0px);
 }
 
+/* Custom scrollbar styles for light/dark theme blending */
+:root {
+  --scrollbar-bg: #f3f3f3;
+  --scrollbar-thumb: #c1c1c1;
+  --scrollbar-thumb-hover: #a1a1a1;
+}
+
+html.dark {
+  --scrollbar-bg: #000000;
+  --scrollbar-thumb: #171718;
+  --scrollbar-thumb-hover: #3f3f46;
+}
+
+body, html {
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
+  scrollbar-width: thin;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 8px;
+  background: var(--scrollbar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
 /* All Black Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
