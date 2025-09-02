@@ -124,8 +124,9 @@ export function FAB() {
               alt="FAB Hero Image"
               blurDataURL={Hero.blurDataURL}
               onLoad={() => setIsImageLoading(false)}
-              className={`${isImageLoading && !performanceMode ? "blur" : "remove-blur"
-                } transition-all ease-[cubic-bezier(0.22,_1,_0.36,_1)] duration-500`}
+              className={`${
+                isImageLoading && !performanceMode ? "blur" : "remove-blur"
+              } transition-all ease-[cubic-bezier(0.22,_1,_0.36,_1)] duration-500`}
             />
           </div>
           <h3 className="w-full flex items-center gap-3 bg-muted/20 px-4 py-2 border-b border-border font-bold">
