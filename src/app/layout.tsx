@@ -10,6 +10,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import "./globals.css";
 import { Footer } from "@/components/footer";
 import { FAB } from "@/components/fab";
+import { BackgroundBeams } from "@/components/background-beams";
 
 import OgImage from "./opengraph-image.png";
 
@@ -91,6 +92,22 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} ${doto.variable} antialiased scroll-smooth`}
         >
+          {/* Add fixed background beams, locked while scrolling */}
+          <div
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 0,
+              pointerEvents: "none",
+              width: "100vw",
+              height: "100vh",
+              overflow: "hidden",
+            }}
+            aria-hidden="true"
+          >
+            <BackgroundBeams />
+          </div>
+          {/* Main content above beams */}
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Providers>
               <FAB />
