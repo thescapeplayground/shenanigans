@@ -41,6 +41,9 @@ export function FAB() {
     { href: "/projects", label: "Projects", icon: <Code2 className={iconSizeClass} /> },
     { href: "/playlists", label: "Playlists", icon: <Music className={iconSizeClass} /> },
     { href: "/gallery", label: "Gallery", icon: <Camera className={iconSizeClass} /> },
+  ];
+
+  const optionLinks: NavItem[] = [
     { href: "/status", label: "Server Status", icon: <Server className={iconSizeClass} /> },
     { href: "/settings", label: "Settings", icon: <Settings className={iconSizeClass} /> },
     { href: "/about", label: "About", icon: <Info className={iconSizeClass} /> },
@@ -101,6 +104,64 @@ export function FAB() {
             </li>
           );
         })}
+
+        {/* Options pop-up for mobile, separate icons for desktop */}
+        <li key="options">
+          <div className="block sm:hidden">
+            <Popover>
+              <PopoverTrigger asChild>
+                <button
+                  type="button"
+                  className={`${itemBase} ${itemIdle}`}
+                  aria-haspopup="menu"
+                  aria-label="Options"
+                  title="Options"
+                >
+                  <Settings className={iconSizeClass} />
+                </button>
+              </PopoverTrigger>
+              <PopoverContent
+                side="top"
+                align="center"
+                sideOffset={10}
+                className={popoverClasses}
+              >
+                <ul className="flex flex-col gap-2">
+                  {optionLinks.map(({ href, label, icon }) => (
+                    <li key={href}>
+                      <Link
+                        href={href}
+                        className="flex items-center gap-2 px-3 py-2 rounded-md text-sm hover:bg-secondary hover:text-secondary-foreground transition-colors"
+                        aria-label={label}
+                        title={label}
+                      >
+                        {icon}
+                        <span>{label}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </PopoverContent>
+            </Popover>
+          </div>
+          <div className="hidden sm:flex items-center gap-2">
+            {optionLinks.map(({ href, label, icon }) => {
+              const isActive = pathname === href;
+              const className = `${itemBase} ${isActive ? itemActive : itemIdle}`;
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  className={className}
+                  aria-label={label}
+                  title={label}
+                >
+                  {icon}
+                </Link>
+              );
+            })}
+          </div>
+        </li>
 
         {/* socials pop-up */}
         <li key="socials">
