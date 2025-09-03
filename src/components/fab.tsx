@@ -13,7 +13,8 @@ import {
   Settings,
   YoutubeIcon,
   Music,
-  User
+  User,
+  Menu // add Menu icon
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Link } from "next-view-transitions";
@@ -117,7 +118,7 @@ export function FAB() {
                   aria-label="Options"
                   title="Options"
                 >
-                  <Settings className={iconSizeClass} />
+                  <Menu className={iconSizeClass} />
                 </button>
               </PopoverTrigger>
               <PopoverContent
