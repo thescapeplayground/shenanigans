@@ -57,11 +57,11 @@ export const FloatingNav = ({
         }}
         className={cn(
           "flex fixed top-10 inset-x-0 mx-auto items-center justify-center z-[5000]",
-          "max-w-xs sm:max-w-fit",
+          "max-w-[90vw] sm:max-w-fit", // limit width to 90vw on mobile
           "border border-transparent dark:border-white/[0.2] rounded-full dark:bg-black bg-white",
           "shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]",
-          "pr-2 pl-4 sm:pl-8 py-2",
-          "space-x-4",
+          "pr-1 pl-2 sm:pl-8 py-2", // less padding on mobile
+          "space-x-3 sm:space-x-4", // less gap on mobile
           className
         )}
       >
