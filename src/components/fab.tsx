@@ -1,11 +1,8 @@
 "use client";
 
 import {
-  ArrowRight,
-  ArrowUp,
   Camera,
   Code2,
-  GitGraph,
   Github,
   Home,
   Info,
@@ -13,264 +10,139 @@ import {
   Newspaper,
   Server,
   Twitter,
-  User,
   Settings,
-  X,
   YoutubeIcon,
-  Music
+  Music,
+  User
 } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
-import { Link } from "next-view-transitions";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import Image from "next/image";
-import Hero from "@/assets/img/fab-hero.png";
 import { usePathname } from "next/navigation";
+import { Link } from "next-view-transitions";
 import performanceModeAtom from "@/lib/atoms/performance-mode";
 import { useAtom } from "jotai/react";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+
+type NavItem = {
+  href: string;
+  label: string;
+  icon: React.ReactNode;
+  external?: boolean;
+};
 
 export function FAB() {
-  const [open, setOpen] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-  const [isImageLoading, setIsImageLoading] = useState(true);
   const pathname = usePathname();
   const [performanceMode] = useAtom(performanceModeAtom);
 
-  const handleOpen = (nextOpen: boolean) => {
-    setOpen(nextOpen);
-  };
+  // Reduce icon size
+  const iconSizeClass = "size-4 md:size-5";
 
-  // close on route change (navigating to another page)
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  const baseItems: NavItem[] = [
+    { href: "/", label: "Home", icon: <Home className={iconSizeClass} /> },
+    { href: "/blog", label: "Blog", icon: <Newspaper className={iconSizeClass} /> },
+    { href: "/projects", label: "Projects", icon: <Code2 className={iconSizeClass} /> },
+    { href: "/playlists", label: "Playlists", icon: <Music className={iconSizeClass} /> },
+    { href: "/gallery", label: "Gallery", icon: <Camera className={iconSizeClass} /> },
+    { href: "/status", label: "Server Status", icon: <Server className={iconSizeClass} /> },
+    { href: "/settings", label: "Settings", icon: <Settings className={iconSizeClass} /> },
+    { href: "/about", label: "About", icon: <Info className={iconSizeClass} /> },
+  ];
 
-  const handleScrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  const socialLinks: NavItem[] = [
+    { href: "https://youtube.com/@isaiahscape", label: "YouTube", icon: <YoutubeIcon className={iconSizeClass} />, external: true },
+    { href: "https://instagram.com/isaiahscape", label: "Instagram", icon: <InstagramIcon className={iconSizeClass} />, external: true },
+    { href: "https://github.com/isaiahscape", label: "GitHub", icon: <Github className={iconSizeClass} />, external: true },
+    { href: "https://x.com/isaiahscape", label: "X/Twitter", icon: <Twitter className={iconSizeClass} />, external: true },
+  ];
 
-  // close when any anchor/link inside the popover is clicked
-  const handleAnyLinkClick = (e: React.MouseEvent) => {
-    const target = e.target as HTMLElement | null;
-    if (target && target.closest("a")) {
-      setOpen(false);
-    }
-  };
+  const shellClasses = [
+    "fixed bottom-5 left-1/2 -translate-x-1/2 z-50",
+  ].join(" ");
 
-  useEffect(() => {
-    const trackScroll = () => {
-      setScrollY(window.scrollY);
-    };
+  const barClasses = [
+    // Reduced gap, padding, and shadow
+    "flex items-center gap-3 rounded-full border border-border shadow-lg",
+    "px-4 py-2 whitespace-nowrap overflow-x-auto",
+    "[&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']",
+    performanceMode ? "bg-background"
+      : "bg-background/70 backdrop-blur-md supports-[backdrop-filter]:bg-background/50"
+  ].join(" ");
 
-    window.addEventListener("scroll", trackScroll);
+  // Reduce item hit area
+  const itemBase =
+    "flex items-center gap-2 px-2 py-1 rounded-md transition-colors";
+  const itemIdle = "text-muted-foreground hover:text-foreground";
+  const itemActive = "text-primary";
 
-    return () => {
-      window.removeEventListener("scroll", trackScroll);
-    };
-  }, []);
+  const popoverClasses = [
+    "p-2 border border-border rounded-xl shadow-lg",
+    performanceMode
+      ? "bg-background"
+      : "bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/80",
+    "data-[state=open]:animate-in data-[state=closed]:animate-out",
+    "data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95",
+    "data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0",
+  ].join(" ");
 
   return (
-    <>
-      <button
-        className={cn(
-          "fixed bottom-20 md:bottom-25 flex items-center justify-center",
-          "right-5 md:right-10 z-50 p-3 bg-background hover:bg-secondary rounded-lg",
-          "text-foreground hover:text-secondary-foreground cursor-pointer",
-          "border border-border transition-all outline-0",
-          scrollY > 10 ? "opacity-100" : "opacity-0",
-          open
-            ? "translate-y-15 -translate-x-15"
-            : "translate-y-0 -translate-x-0"
-        )}
-        onClick={handleScrollToTop}
-      >
-        <ArrowUp className="size-6" />
-        <span className="sr-only">Scroll to top</span>
-      </button>
-      <Popover open={open} onOpenChange={handleOpen}>
-        <PopoverTrigger asChild>
-          <button
-            className={cn(
-              "fixed bottom-5 md:bottom-10 flex items-center justify-center",
-              "right-5 z-50 md:right-10 p-3 bg-background hover:bg-secondary rounded-lg",
-              "text-foreground hover:text-secondary-foreground cursor-pointer",
-              "border border-border transition-colors outline-0"
-            )}
-          >
-            <X
-              className={cn(
-                "size-6 transition-transform",
-                open ? "rotate-0" : "rotate-45"
-              )}
-            />
-            <span className="sr-only">Open FAB menu</span>
-          </button>
-        </PopoverTrigger>
-        <PopoverContent
-          onEscapeKeyDown={() => setOpen(false)}
-          onClick={handleAnyLinkClick}
-          className="max-w-3xs sm:max-w-xs md:max-w-sm w-full p-0 overflow-clip"
-          align="end"
-          sideOffset={10}
-        >
-          <div className="h-auto overflow-clip w-full border-b border-border">
-            <Image
-              src={Hero}
-              height={120}
-              placeholder="blur"
-              alt="FAB Hero Image"
-              blurDataURL={Hero.blurDataURL}
-              onLoad={() => setIsImageLoading(false)}
-              className={`${
-                isImageLoading && !performanceMode ? "blur" : "remove-blur"
-              } transition-all ease-[cubic-bezier(0.22,_1,_0.36,_1)] duration-500`}
-            />
-          </div>
-          <h3 className="w-full flex items-center gap-3 bg-muted/20 px-4 py-2 border-b border-border font-bold">
-            <span className="size-fit px-2 py-1 rounded-3xl bg-secondary text-secondary-foreground">
-              <GitGraph className="size-4" />
-            </span>
-            <span>shenanigans. (v2.2)</span>
-          </h3>
-          <Link
-            className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
-            href="/"
-          >
-            <Home className="size-4" />
-            <span>Home</span>
-            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-              <ArrowRight className="size-4" />
-            </div>
-          </Link>
-          <Link
-            className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
-            href="/blog"
-          >
-            <Newspaper className="size-4" />
-            <span>Blog</span>
-            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-              <ArrowRight className="size-4" />
-            </div>
-          </Link>
-          <Link
-            className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
-            href="/projects"
-          >
-            <Code2 className="size-4" />
-            <span>Projects</span>
-            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-              <ArrowRight className="size-4" />
-            </div>
-          </Link>
-          <Link
-            className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
-            href="/playlists"
-          >
-            <Music className="size-4" />
-            <span>Playlists</span>
-            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-              <ArrowRight className="size-4" />
-            </div>
-          </Link>
-          <Link
-            className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
-            href="/gallery"
-          >
-            <Camera className="size-4" />
-            <span>Gallery</span>
-            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-              <ArrowRight className="size-4" />
-            </div>
-          </Link>
-          <Link
-            className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
-            href="/status"
-          >
-            <Server className="size-4" />
-            <span>Server Status</span>
-            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-              <ArrowRight className="size-4" />
-            </div>
-          </Link>
-          <Link
-            className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
-            href="/settings"
-          >
-            <Settings className="size-4" />
-            <span>Settings</span>
-            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-              <ArrowRight className="size-4" />
-            </div>
-          </Link>
-          <Link
-            className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
-            href="/about"
-          >
-            <Info className="size-4" />
-            <span>About</span>
-            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-              <ArrowRight className="size-4" />
-            </div>
-          </Link>
-          <h3 className="w-full flex items-center gap-3 bg-muted/20 px-4 py-2 border-b border-border font-semibold">
-            <span className="size-fit px-2 py-1 rounded-3xl bg-secondary text-secondary-foreground">
-              <User className="size-4" />
-            </span>
-            <span>Social</span>
-          </h3>
-          <a
-            className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
-            href="https://youtube.com/@isaiahscape"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <YoutubeIcon className="size-4" />
-            <span>YouTube</span>
-            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-              <ArrowRight className="size-4" />
-            </div>
-          </a>
-          <a
-            className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
-            href="https://instagram.com/isaiahscape"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <InstagramIcon className="size-4" />
-            <span>Instagram</span>
-            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-              <ArrowRight className="size-4" />
-            </div>
-          </a>
-          <a
-            className="group relative border-b border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
-            href="https://github.com/isaiahscape"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Github className="size-4" />
-            <span>GitHub</span>
-            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-              <ArrowRight className="size-4" />
-            </div>
-          </a>
-          <a
-            className="group relative border-border text-sm cursor-pointer flex items-center gap-3 px-4 py-2 hover:bg-secondary hover:text-secondary-foreground transition-colors"
-            href="https://x.com/isaiahscape"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Twitter className="size-4" />
-            <span>X/Twitter</span>
-            <div className="absolute opacity-0 translate-x-1/2 right-4 top-1/2 -translate-y-1/2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-              <ArrowRight className="size-4" />
-            </div>
-          </a>
-        </PopoverContent>
-      </Popover>
-    </>
+    <nav className={shellClasses} aria-label="Floating navigation">
+      <ul className={barClasses}>
+        {baseItems.map(({ href, label, icon }) => {
+          const isActive = pathname === href;
+          const className = `${itemBase} ${isActive ? itemActive : itemIdle}`;
+          return (
+            <li key={href}>
+              <Link
+                href={href}
+                className={className}
+                aria-label={label}
+                title={label}
+              >
+                {icon}
+              </Link>
+            </li>
+          );
+        })}
+
+        {/* socials pop-up */}
+        <li key="socials">
+          <Popover>
+            <PopoverTrigger asChild>
+              <button
+                type="button"
+                className={`${itemBase} ${itemIdle}`}
+                aria-haspopup="menu"
+                aria-label="Socials"
+                title="Socials"
+              >
+                <User className={iconSizeClass} />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent
+              side="top"
+              align="center"
+              sideOffset={10}
+              className={popoverClasses}
+            >
+              <ul className="grid grid-cols-2 gap-2">
+                {socialLinks.map(({ href, label, icon }) => (
+                  <li key={href}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 justify-start p-2 rounded-md hover:bg-secondary hover:text-secondary-foreground transition-colors"
+                      aria-label={label}
+                      title={label}
+                    >
+                      {icon}
+                      <span>{label}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </PopoverContent>
+          </Popover>
+        </li>
+      </ul>
+    </nav>
   );
 }

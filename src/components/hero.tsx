@@ -40,9 +40,8 @@ export function Hero({ img, profile }: HeroProps) {
           placeholder="blur"
           blurDataURL={image.blurDataURL}
           onLoad={() => setIsImageLoading(false)}
-          className={`${
-            isImageLoading && !performanceMode ? "blur" : "remove-blur"
-          } transition-all ease-[cubic-bezier(0.22,_1,_0.36,_1)] duration-500`}
+          className={`${isImageLoading && !performanceMode ? "blur" : "remove-blur"
+            } transition-all ease-[cubic-bezier(0.22,_1,_0.36,_1)] duration-500`}
         />
       </div>
       <div className="relative rounded-full aspect-square size-28 md:size-36 mx-auto md:mx-0 md:ml-5 -mt-18 border-6 border-background overflow-clip">
@@ -54,9 +53,8 @@ export function Hero({ img, profile }: HeroProps) {
           placeholder="blur"
           blurDataURL={profileImg.blurDataURL}
           onLoad={() => setIsProfileLoading(false)}
-          className={`${
-            isProfileLoading && !performanceMode ? "blur" : "remove-blur"
-          } transition-all ease-[cubic-bezier(0.22,_1,_0.36,_1)] duration-500`}
+          className={`${isProfileLoading && !performanceMode ? "blur" : "remove-blur"
+            } transition-all ease-[cubic-bezier(0.22,_1,_0.36,_1)] duration-500`}
         />
       </div>
       <div className="relative w-full py-3 md:-mt-18 justify-center flex-col md:flex-row md:justify-between flex gap-3 md:gap-5 items-center">
@@ -66,48 +64,48 @@ export function Hero({ img, profile }: HeroProps) {
         <div className="w-fit flex items-center justify-center gap-3">
           <Button variant="ghost" size="icon" asChild>
             <a href="https://youtube.com/@isaiahscape">
-              <Youtube className="size-6" color="#FF0000" />
+              <Youtube className="size-6" />
               <span className="sr-only">Youtube</span>
             </a>
           </Button>
           <Button variant="ghost" size="icon" asChild>
             <a href="https://instagram.com/isaiahscape">
-              <Instagram className="size-6" color="#E4405F" />
+              <Instagram className="size-6" />
               <span className="sr-only">Instagram Account</span>
             </a>
           </Button>
           <Button variant="ghost" size="icon" asChild>
             <a href="https://twitch.tv/isaiahscape">
-              <Twitch className="size-6" color="#9146FF" />
+              <Twitch className="size-6" />
               <span className="sr-only">Twitch</span>
             </a>
           </Button>
           <Button variant="ghost" size="icon" asChild>
             <a href="https://github.com/isaiahscape">
               <span className="dark:hidden">
-                <GitHub className="size-6" color="#181717" stroke="#181717" strokeWidth={1} />
+                <GitHub className="size-6" stroke="#181717" strokeWidth={1} />
               </span>
               <span className="hidden dark:inline">
-                <GitHub className="size-6" color="#FFFFFF" stroke="#181717" strokeWidth={1} />
+                <GitHub className="size-6" stroke="#181717" strokeWidth={1} />
               </span>
               <span className="sr-only">GitHub Account</span>
             </a>
           </Button>
           <Button variant="ghost" size="icon" asChild>
             <a href="https://linkedin.com/in/isaiahscape">
-              <LinkedIn className="size-6" color="#0077B5" />
+              <LinkedIn className="size-6" />
               <span className="sr-only">LinkedIn Account</span>
             </a>
           </Button>
           <Button variant="ghost" size="icon" asChild>
             <a href="https://t.me/isaiahscape">
-              <Telegram className="size-6" color="#229ED9" />
+              <Telegram className="size-6" />
               <span className="sr-only">Telegram Account</span>
             </a>
           </Button>
           <Button variant="ghost" size="icon" asChild>
             <a href="mailto:isaiahscape@duck.com">
-              <Gmail className="size-6" color="#EA4335" />
+              <Gmail className="size-6" />
               <span className="sr-only">Send a Mail</span>
             </a>
           </Button>

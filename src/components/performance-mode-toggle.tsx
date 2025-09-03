@@ -3,13 +3,15 @@
 import performanceModeAtom from "@/lib/atoms/performance-mode";
 import { useAtom } from "jotai/react";
 import { Switch } from "./ui/switch";
+import { BackgroundBeams } from "./background-beams";
 
 export function PerformanceModeToggle() {
   const [performanceMode, setPerformanceMode] = useAtom(performanceModeAtom);
 
   return (
-    <div className="w-full text-sm text-muted-foreground px-5 py-3">
-      <div className="flex gap-5 md:items-center items-start justify-between">
+    <div className="w-full text-sm text-muted-foreground px-5 py-3 relative">
+      {!performanceMode && <BackgroundBeams />}
+      <div className="flex gap-5 md:items-center items-start justify-between relative z-10">
         <div className="flex flex-col gap-1">
           <p className="text-foreground text-base font-semibold flex items-center gap-2">
             Performance Mode
