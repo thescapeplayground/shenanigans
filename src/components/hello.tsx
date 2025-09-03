@@ -97,7 +97,7 @@ export function Hello({ show = true }: { show?: boolean }) {
       const stops = [...palette];
       if (stops.length === 0) {
         // safe fallback
-        return "radial-gradient(160% 160% at 50% 50%, #fc5555ff 0%, #ec3333ff 40%, #f55858ff 75%, #f05f5fff 100%)";
+        return "radial-gradient(160% 160% at 50% 50%, #000000ff 0%, #000000ff 40%, #000000ff 75%, #000000ff 100%)";
       }
       if (stops.length === 1) {
         const base = stops[0];
@@ -122,7 +122,7 @@ export function Hello({ show = true }: { show?: boolean }) {
       } catch {
         if (!cancelled) {
           setGradient(
-            "radial-gradient(160% 160% at 50% 50%, #f0473aff 0%, #eb4f4fff 40%, #d65f5fff 75%, #c55959ff 100%)"
+            "radial-gradient(160% 160% at 50% 50%, #000000ff 0%, #000000ff 40%, #000000ff 75%, #000000ff 100%)"
           );
         }
       }
