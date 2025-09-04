@@ -26,7 +26,7 @@ export const TechGear = () => {
               <div>
                <p className="font-medium">
                 <a
-                  href="https://www.samsung.com/ph/business/smartphones/galaxy-a/galaxy-a52s-5g-awesome-mint-256gb-sm-a528blgiphl/"
+                  href="https://www.samsung.com/ph/smartphones/galaxy-s24/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:underline"
@@ -164,7 +164,7 @@ export const TechGear = () => {
                   Truthear x Crincale ZERO: RED
                 </a>
               </p>
-              <p className="text-sm text-muted-foreground">K-BEAR 8-Core, Kinera Celest Ruyi Pro</p>
+              <p className="text-sm text-muted-foreground">TRN T2 16 Core, Kinera Celest Ruyi Pro</p>
             </div>
           </div>
 
@@ -175,15 +175,15 @@ export const TechGear = () => {
             <div>
               <p className="font-medium">
                 <a
-                  href="https://www.veclan.com/engappliance_sel_one?eng_ApplianceVo.eac_id=96"
+                  href="https://kineraaudio.com/products/celest-cd-2-portable-type-c-to-3-5mm-4-4mm-dac-audio-hifi-earphone-decoder-headphone"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:underline"
                 >
-                  Venture Electronics Odo
+                  Kinera Celest CD-2
                 </a>
               </p>
-              <p className="text-sm text-muted-foreground">KT02H20 DAC</p>
+              <p className="text-sm text-muted-foreground">CX31993 DAC, MAX97220 Amplifier</p>
             </div>
           </div>
           <div className="flex items-center gap-3 px-5 py-3 hover:bg-muted/50 transition-colors border-b border-border">
