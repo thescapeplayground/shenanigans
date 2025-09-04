@@ -31,7 +31,7 @@ export const TechGear = () => {
                   rel="noopener noreferrer"
                   className="hover:underline"
                 >
-                  Samsung Galaxy A52s 5G
+                  Samsung Galaxy S24 5G
                 </a>
                </p>
               </div>
@@ -43,19 +43,19 @@ export const TechGear = () => {
               <ul className="space-y-2 text-sm">
                 <li className="flex justify-between">
                   <span className="text-muted-foreground">Processor</span>
-                  <span>Qualcomm Snapdragon 778G</span>
+                  <span>Samsung Exynos 2400</span>
                 </li>
                 <li className="flex justify-between">
                   <span className="text-muted-foreground">RAM</span>
-                  <span>8GB LPDDR4X</span>
+                  <span>8GB LPDDR5X</span>
                 </li>
                 <li className="flex justify-between">
                   <span className="text-muted-foreground">Storage</span>
-                  <span>128GB UFS 2.2</span>
+                  <span>256GB UFS 4.0</span>
                 </li>
                 <li className="flex justify-between">
                   <span className="text-muted-foreground">Display</span>
-                  <span>6.5&quot; FHD+ 120Hz</span>
+                  <span>6.2&quot; LTPO FHD+ 120Hz</span>
                 </li>
               </ul>
             </div>
