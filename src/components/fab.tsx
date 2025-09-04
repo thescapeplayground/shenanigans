@@ -50,13 +50,6 @@ export function FAB() {
     { href: "/about", label: "About", icon: <Info className={iconSizeClass} /> },
   ];
 
-  const socialLinks: NavItem[] = [
-    { href: "https://youtube.com/@isaiahscape", label: "YouTube", icon: <YoutubeIcon className={iconSizeClass} />, external: true },
-    { href: "https://instagram.com/isaiahscape", label: "Instagram", icon: <InstagramIcon className={iconSizeClass} />, external: true },
-    { href: "https://github.com/isaiahscape", label: "GitHub", icon: <Github className={iconSizeClass} />, external: true },
-    { href: "https://x.com/isaiahscape", label: "X/Twitter", icon: <Twitter className={iconSizeClass} />, external: true },
-  ];
-
   const shellClasses = [
     "fixed bottom-5 left-1/2 -translate-x-1/2 z-50",
   ].join(" ");
@@ -97,9 +90,9 @@ export function FAB() {
   return (
     <nav className={shellClasses} aria-label="Floating navigation">
       <ul className={barClasses}>
-        {baseItems.map(({ href, label, icon }) => {
+        {/* Render all base items except Gallery */}
+        {baseItems.slice(0, -1).map(({ href, label, icon }) => {
           const isActive = pathname === href;
-          // Add group for hover animation
           const className = `${itemBase} relative overflow-hidden group ${isActive ? itemActive : itemIdle}`;
           return (
             <li key={href}>
@@ -109,7 +102,6 @@ export function FAB() {
                 aria-label={label}
                 title={label}
               >
-                {/* Animated background: active or hover */}
                 <span
                   className={
                     isActive
@@ -123,7 +115,53 @@ export function FAB() {
             </li>
           );
         })}
-
+        {/* Socials button before Gallery */}
+        <li key="socials">
+          <Link
+            href="/socials"
+            className={`${itemBase} relative overflow-hidden group ${pathname === "/socials" ? itemActive : itemIdle}`}
+            aria-label="Socials"
+            title="Socials"
+          >
+            <span
+              className={
+                pathname === "/socials"
+                  ? `${iconBgBase} ${iconBgActive}`
+                  : iconBgHoverable
+              }
+              aria-hidden="true"
+            />
+            <span className="relative z-10">
+              <User className={iconSizeClass} />
+            </span>
+          </Link>
+        </li>
+        {/* Gallery button */}
+        {(() => {
+          const { href, label, icon } = baseItems[baseItems.length - 1];
+          const isActive = pathname === href;
+          const className = `${itemBase} relative overflow-hidden group ${isActive ? itemActive : itemIdle}`;
+          return (
+            <li key={href}>
+              <Link
+                href={href}
+                className={className}
+                aria-label={label}
+                title={label}
+              >
+                <span
+                  className={
+                    isActive
+                      ? `${iconBgBase} ${iconBgActive}`
+                      : iconBgHoverable
+                  }
+                  aria-hidden="true"
+                />
+                <span className="relative z-10">{icon}</span>
+              </Link>
+            </li>
+          );
+        })()}
         {/* Options pop-up for mobile, separate icons for desktop */}
         <li key="options">
           <div className="block sm:hidden">
@@ -191,50 +229,6 @@ export function FAB() {
               );
             })}
           </div>
-        </li>
-
-        {/* socials pop-up */}
-        <li key="socials">
-          <Popover>
-            <PopoverTrigger asChild>
-              <button
-                type="button"
-                className={`${itemBase} relative overflow-hidden group ${itemIdle}`}
-                aria-haspopup="menu"
-                aria-label="Socials"
-                title="Socials"
-              >
-                <span className={iconBgHoverable} aria-hidden="true" />
-                <span className="relative z-10">
-                  <User className={iconSizeClass} />
-                </span>
-              </button>
-            </PopoverTrigger>
-            <PopoverContent
-              side="top"
-              align="center"
-              sideOffset={10}
-              className={popoverClasses}
-            >
-              <ul className="grid grid-cols-2 gap-2">
-                {socialLinks.map(({ href, label, icon }) => (
-                  <li key={href}>
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 justify-start p-2 rounded-md hover:bg-secondary hover:text-secondary-foreground transition-colors"
-                      aria-label={label}
-                      title={label}
-                    >
-                      {icon}
-                      <span>{label}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </PopoverContent>
-          </Popover>
         </li>
       </ul>
     </nav>
