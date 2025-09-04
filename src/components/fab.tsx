@@ -86,12 +86,27 @@ export function FAB() {
     "data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0",
   ].join(" ");
 
+  // Add animation classes for active and hover icon backgrounds
+  const iconBgBase =
+    "absolute inset-0 rounded-md z-0 transition-all duration-300";
+  const iconBgActive =
+    "bg-primary/10 scale-100 translate-x-0";
+  const iconBgInactive =
+    "bg-transparent scale-95 translate-y-1";
+  const iconBgHover =
+    "group-hover:bg-primary/20 group-hover:translate-x-0 group-hover:scale-100";
+
+  // For hover animation, background starts from left (-translate-x-full) and slides in
+  const iconBgHoverable =
+    `${iconBgBase} -translate-x-full group-hover:translate-x-0 group-hover:bg-primary/20 group-hover:scale-100`;
+
   return (
     <nav className={shellClasses} aria-label="Floating navigation">
       <ul className={barClasses}>
         {baseItems.map(({ href, label, icon }) => {
           const isActive = pathname === href;
-          const className = `${itemBase} ${isActive ? itemActive : itemIdle}`;
+          // Add group for hover animation
+          const className = `${itemBase} relative overflow-hidden group ${isActive ? itemActive : itemIdle}`;
           return (
             <li key={href}>
               <Link
@@ -100,7 +115,16 @@ export function FAB() {
                 aria-label={label}
                 title={label}
               >
-                {icon}
+                {/* Animated background: active or hover */}
+                <span
+                  className={
+                    isActive
+                      ? `${iconBgBase} ${iconBgActive}`
+                      : iconBgHoverable
+                  }
+                  aria-hidden="true"
+                />
+                <span className="relative z-10">{icon}</span>
               </Link>
             </li>
           );
@@ -113,12 +137,15 @@ export function FAB() {
               <PopoverTrigger asChild>
                 <button
                   type="button"
-                  className={`${itemBase} ${itemIdle}`}
+                  className={`${itemBase} relative overflow-hidden group ${itemIdle}`}
                   aria-haspopup="menu"
                   aria-label="Options"
                   title="Options"
                 >
-                  <Menu className={iconSizeClass} />
+                  <span className={iconBgHoverable} aria-hidden="true" />
+                  <span className="relative z-10">
+                    <Menu className={iconSizeClass} />
+                  </span>
                 </button>
               </PopoverTrigger>
               <PopoverContent
@@ -148,7 +175,7 @@ export function FAB() {
           <div className="hidden sm:flex items-center gap-2">
             {optionLinks.map(({ href, label, icon }) => {
               const isActive = pathname === href;
-              const className = `${itemBase} ${isActive ? itemActive : itemIdle}`;
+              const className = `${itemBase} relative overflow-hidden group ${isActive ? itemActive : itemIdle}`;
               return (
                 <Link
                   key={href}
@@ -157,7 +184,15 @@ export function FAB() {
                   aria-label={label}
                   title={label}
                 >
-                  {icon}
+                  <span
+                    className={
+                      isActive
+                        ? `${iconBgBase} ${iconBgActive}`
+                        : iconBgHoverable
+                    }
+                    aria-hidden="true"
+                  />
+                  <span className="relative z-10">{icon}</span>
                 </Link>
               );
             })}
@@ -170,12 +205,15 @@ export function FAB() {
             <PopoverTrigger asChild>
               <button
                 type="button"
-                className={`${itemBase} ${itemIdle}`}
+                className={`${itemBase} relative overflow-hidden group ${itemIdle}`}
                 aria-haspopup="menu"
                 aria-label="Socials"
                 title="Socials"
               >
-                <User className={iconSizeClass} />
+                <span className={iconBgHoverable} aria-hidden="true" />
+                <span className="relative z-10">
+                  <User className={iconSizeClass} />
+                </span>
               </button>
             </PopoverTrigger>
             <PopoverContent

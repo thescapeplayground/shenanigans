@@ -7,6 +7,7 @@ export interface GalleryItem {
   date: string;
   location?: string;
   downloadUrl: string;
+  quality: string;
 }
 
 export const galleryItems: GalleryItem[] = [
@@ -18,7 +19,8 @@ export const galleryItems: GalleryItem[] = [
     category: "Lights",
     date: "2025-07-19",
     location: "Seattle's Best Coffee",
-    downloadUrl: "/gallery/light.jpg"
+    downloadUrl: "/gallery/light.jpg",
+    quality: "80%"
   },
   {
     id: "ghost",
@@ -28,7 +30,8 @@ export const galleryItems: GalleryItem[] = [
     category: "City",
     date: "2023-10-12",
     location: "HCDC Gymnasium",
-    downloadUrl: "/gallery/ghost.jpg"
+    downloadUrl: "/gallery/ghost.jpg",
+    quality: "80%"
   },
   {
     id: "tower",
@@ -38,7 +41,8 @@ export const galleryItems: GalleryItem[] = [
     category: "Buildings",
     date: "2024-09-22",
     location: "Acacia",
-    downloadUrl: "/gallery/tower.jpg"
+    downloadUrl: "/gallery/tower.jpg",
+    quality: "80%"
   },
   {
     id: "cafe",
@@ -48,7 +52,8 @@ export const galleryItems: GalleryItem[] = [
     category: "Modern",
     date: "2024-01-15",
     location: "Green Coffee",
-    downloadUrl: "/gallery/cafe.jpg"
+    downloadUrl: "/gallery/cafe.jpg",
+    quality: "80%"
   },
   {
     id: "bus",
@@ -58,7 +63,8 @@ export const galleryItems: GalleryItem[] = [
     category: "Transportation",
     date: "2024-02-14",
     location: "Downtown Davao",
-    downloadUrl: "/gallery/bus.jpg"
+    downloadUrl: "/gallery/bus.jpg",
+    quality: "80%"
   },
   {
     id: "birds",
@@ -68,6 +74,7 @@ export const galleryItems: GalleryItem[] = [
     category: "Nature",
     date: "2024-03-22",
     location: "Roxas Avenue",
-    downloadUrl: "/gallery/bird.jpg"
+    downloadUrl: "/gallery/bird.jpg",
+    quality: "80%"
   }
 ];

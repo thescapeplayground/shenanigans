@@ -5,7 +5,8 @@ import { cn } from "@/lib/utils";
 
 export const BackgroundBeams = React.memo(
   ({ className }: { className?: string }) => {
-    const paths = [
+    // Render fewer paths for performance (every 4th path)
+    const allPaths = [
       "M-380 -189C-380 -189 -312 216 152 343C616 470 684 875 684 875",
       "M-373 -197C-373 -197 -305 208 159 335C623 462 691 867 691 867",
       "M-366 -205C-366 -205 -298 200 166 327C630 454 698 859 698 859",
@@ -56,7 +57,17 @@ export const BackgroundBeams = React.memo(
       "M-51 -565C-51 -565 17 -160 481 -33C945 94 1013 499 1013 499",
       "M-44 -573C-44 -573 24 -168 488 -41C952 86 1020 491 1020 491",
       "M-37 -581C-37 -581 31 -176 495 -49C959 78 1027 483 1027 483",
+      "M-30 -589C-30 -589 38 -184 502 -57C966 70 1034 475 1034 475",
+      "M-23 -597C-23 -597 45 -192 509 -65C973 62 1041 467 1041 467",
+      "M-16 -605C-16 -605 52 -200 516 -73C980 54 1048 459 1048 459",
+      "M-9 -613C-9 -613 59 -208 523 -81C987 46 1055 451 1055 451",
+      "M-2 -621C-2 -621 66 -216 530 -89C994 38 1062 443 1062 443",
+      "M5 -629C5 -629 73 -224 537 -97C1001 30 1069 435 1069 435",
+      "M12 -637C12 -637 80 -232 544 -105C1008 22 1076 427 1076 427",
+      "M19 -645C19 -645 87 -240 551 -113C1015 14 1083 419 1083 419",
     ];
+    const paths = allPaths.filter((_, i) => i % 4 === 0);
+
     return (
       <div
         className={cn(
@@ -68,7 +79,7 @@ export const BackgroundBeams = React.memo(
           className="pointer-events-none absolute z-0 h-full w-full"
           width="100%"
           height="100%"
-          viewBox="0 0 696 316"
+          viewBox="0 0 348 158" // Lower SVG resolution (half original)
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >

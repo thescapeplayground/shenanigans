@@ -80,22 +80,23 @@ export default function Gallery() {
                   <div
                     key={item.id}
                     className="group relative h-full"
-                    style={{ animationDelay: `${index * 100}ms` }}
                   >
                     {/* Card Glow Effect */}
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    {/* Reduced transition duration above */}
 
-                    <Card className="relative bg-background/80 backdrop-blur-xl hover:bg-background/90 rounded-2xl border border-border/50 hover:border-border/80 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-black/10 hover:-translate-y-1 h-full">
+                    <Card className="relative bg-background/80 backdrop-blur-xl hover:bg-background/90 rounded-2xl border border-border/50 hover:border-border/80 overflow-hidden transition-colors duration-200 hover:shadow-xl hover:shadow-black/10 hover:-translate-y-0.5 h-full">
                       <div className="relative aspect-[3/4] overflow-hidden">
                         <Image
                           src={item.image}
                           alt={item.title}
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="object-cover group-hover:scale-102 transition-transform duration-300"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                         {/* Overlay gradient for desktop hover */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-200 hidden md:block"></div>
+                        {/* Reduced transition duration above */}
 
                         <div className="absolute top-3 left-3">
                           <span className="px-2 py-1 text-xs font-medium text-white bg-black/50 backdrop-blur-sm rounded-full">
@@ -104,7 +105,7 @@ export default function Gallery() {
                         </div>
 
                         {/* Desktop Hoverable Content Overlay */}
-                        <div className="hidden md:flex absolute inset-0 p-4 flex-col justify-end opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+                        <div className="hidden md:flex absolute inset-0 p-4 flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-200 translate-y-2 group-hover:translate-y-0">
                           <div className="text-white space-y-2">
                             <h3 className="text-lg font-bold group-hover:text-primary transition-colors">{item.title}</h3>
                             <p className="text-sm text-white/90 line-clamp-3">
