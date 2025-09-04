@@ -3,15 +3,11 @@
 import {
   Camera,
   Code2,
-  Github,
   Home,
   Info,
-  InstagramIcon,
   Newspaper,
   Server,
-  Twitter,
   Settings,
-  YoutubeIcon,
   Music,
   User,
   Menu // add Menu icon
