@@ -91,12 +91,6 @@ export function FAB() {
     "absolute inset-0 rounded-md z-0 transition-all duration-300";
   const iconBgActive =
     "bg-primary/10 scale-100 translate-x-0";
-  const iconBgInactive =
-    "bg-transparent scale-95 translate-y-1";
-  const iconBgHover =
-    "group-hover:bg-primary/20 group-hover:translate-x-0 group-hover:scale-100";
-
-  // For hover animation, background starts from left (-translate-x-full) and slides in
   const iconBgHoverable =
     `${iconBgBase} -translate-x-full group-hover:translate-x-0 group-hover:bg-primary/20 group-hover:scale-100`;
 
