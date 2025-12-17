@@ -27,9 +27,7 @@ export function Experience() {
             <p className="text-xs text-muted-foreground mt-1">
               Alorica is a global company providing customer experience (CX) management and <br />
               Business Process Outsourcing (BPO) services, offering contact center solutions, <br />
-              tech support, and digital services for various industries, known for its large <br />
-              workforce in places like the Philippines, focused on connecting brands with customers <br />
-              through innovation and people-centric approaches
+              tech support, and digital services for various industries.
             </p>
           </div>
         </div>
