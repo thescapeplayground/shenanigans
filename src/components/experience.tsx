@@ -1,18 +1,35 @@
-import { Users, GraduationCap, Calendar } from "lucide-react";
+import { Users, GraduationCap, Calendar, PhoneCall } from "lucide-react";
 
 export function Experience() {
   return (
     <div className="p-0">
-      <div className="grid">
+      <div className="grid">        
         <div className="flex items-center gap-3 px-5 py-3 hover:bg-muted/50 transition-colors border-b border-border">
           <div className="p-2 rounded-md bg-muted/50">
-            <Users className="size-4 text-muted-foreground" />
+            <PhoneCall className="size-4 text-muted-foreground" />
           </div>
           <div>
             <p className="font-medium">Founder, Social Media Organizer / Editor</p>
             <p className="text-sm text-muted-foreground">The Scape Network • 2023 - Present</p>
             <p className="text-xs text-muted-foreground mt-1">
               A social media organization that brings you some photos, videos, graphics, and <br /> projects on various platforms. Some of them might be too minimalistic.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3 px-5 py-3 hover:bg-muted/50 transition-colors border-b border-border">
+          <div className="p-2 rounded-md bg-muted/50">
+            <Users className="size-4 text-muted-foreground" />
+          </div>
+          <div>
+            <p className="font-medium">Technical Support - Hybrid</p>
+            <p className="text-sm text-muted-foreground">Alorica Philippines • 2025 - Present</p>
+            <p className="text-xs text-muted-foreground mt-1">
+              Alorica is a global company providing customer experience (CX) management and <br />
+              Business Process Outsourcing (BPO) services, offering contact center solutions, <br />
+              tech support, and digital services for various industries, known for its large <br />
+              workforce in places like the Philippines, focused on connecting brands with customers <br />
+              through innovation and people-centric approaches
             </p>
           </div>
         </div>
