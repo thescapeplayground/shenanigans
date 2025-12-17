@@ -175,15 +175,15 @@ export const TechGear = () => {
             <div>
               <p className="font-medium">
                 <a
-                  href="https://kineraaudio.com/products/celest-cd-2-portable-type-c-to-3-5mm-4-4mm-dac-audio-hifi-earphone-decoder-headphone"
+                  href="https://trn-audio.com/trn-black-pearl.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:underline"
                 >
-                  Kinera Celest CD-2
+                  TRN Black Pearl
                 </a>
               </p>
-              <p className="text-sm text-muted-foreground">CX31993 DAC, MAX97220 Amplifier</p>
+              <p className="text-sm text-muted-foreground">C43131 DAC, CB5100 Amplifier + 8-Band EQ</p>
             </div>
           </div>
           <div className="flex items-center gap-3 px-5 py-3 hover:bg-muted/50 transition-colors border-b border-border">
