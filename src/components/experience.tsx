@@ -6,7 +6,7 @@ export function Experience() {
       <div className="grid">        
         <div className="flex items-center gap-3 px-5 py-3 hover:bg-muted/50 transition-colors border-b border-border">
           <div className="p-2 rounded-md bg-muted/50">
-            <PhoneCall className="size-4 text-muted-foreground" />
+            <Users className="size-4 text-muted-foreground" />
           </div>
           <div>
             <p className="font-medium">Founder, Social Media Organizer / Editor</p>
@@ -19,7 +19,7 @@ export function Experience() {
 
         <div className="flex items-center gap-3 px-5 py-3 hover:bg-muted/50 transition-colors border-b border-border">
           <div className="p-2 rounded-md bg-muted/50">
-            <Users className="size-4 text-muted-foreground" />
+            <PhoneCall className="size-4 text-muted-foreground" />
           </div>
           <div>
             <p className="font-medium">Technical Support - Hybrid</p>
