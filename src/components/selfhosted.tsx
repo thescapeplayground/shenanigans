@@ -3,7 +3,6 @@ import {
   ChartNoAxesColumnIncreasing,
   ClipboardPen,
   Compass,
-  Link,
   LucideProps,
 } from "lucide-react";
 import { ForwardRefExoticComponent, RefAttributes } from "react";
