@@ -98,8 +98,36 @@ export const projects: Project[] = [
       "Nothing else, I guess?"
     ],
     links: {
-      live: "https://isaiahthings.vercel.app/",
-      github: "https://github.com/isaiahscape/shenanigans"
+      live: "https://isaiahthings.me/",
+      github: "https://github.com/thescapeplayground/shenanigans"
+    },
+    featured: true
+  },
+  {
+    id: "clover",
+    title: "Thysvl's Clover (WIP)",
+    description: "My girlfriend's portfolio website.",
+    longDescription: "A portfolio website made for my girlfriend, Thysvl. It showcases her skills, projects, and contact information in a clean and modern design.",
+    category: "Web Development",
+    image: "/portfolio/pb.jpg",
+    screenshots: [
+      "/portfolio/pb.jpg",
+      "/portfolio/main.jpg",
+      "/portfolio/cards.jpg",
+      "/portfolio/server.jpg"
+    ],
+    technologies: ["Next.js", "TypeScript", "TailwindCSS", "ESLint", "Node.js", "Vercel"],
+    features: [
+      "The home page, of course",
+      "Projects, which is this one",
+      "Smooth page transitions",
+      "Responsive design for all devices",
+      "Server status, for checking server",
+      "Nothing else, I guess?"
+    ],
+    links: {
+      live: "https://thysvl.vercel.app/",
+      github: "https://github.com/isaiahscape/clover"
     },
     featured: true
   },

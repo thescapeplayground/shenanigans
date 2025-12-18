@@ -49,6 +49,14 @@ export function SelfHostedServices() {
           sr="You're just looping."
         />
         <SelfHostItem
+          icon={ChartNoAxesColumnIncreasing}
+          leftClassName="bg-muted/20 md:border-r border-b border-border"
+          rightClassName="border-b border-border"
+          title="Thysvl's Clover (WIP)"
+          url="https://thysvl.vercel.app"
+          sr="My girlfriend's portfolio."
+        />
+        <SelfHostItem
           icon={Compass}
           leftClassName="bg-muted/20 md:border-r border-b border-border"
           rightClassName="border-b border-border"
