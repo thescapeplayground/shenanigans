@@ -71,6 +71,13 @@ export default function Home() {
 
   return (
     <>
+      <div className="fixed inset-0 -z-10 pointer-events-none">
+        <img
+          src="/background.gif"
+          alt=""
+          className="w-full h-full object-cover opacity-40 dark:opacity-60"
+        />
+      </div>
       <Hello />
       <PageContainer>
         <Hero img={HeroImage} profile={HeroProfile} />
@@ -79,7 +86,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Left Column */}
           <div className="space-y-6">
-            <div className="w-full bg-background rounded-lg border border-border">
+            <div className="w-full bg-background/60 dark:bg-background/40 backdrop-blur-sm rounded-lg border border-border">
               <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
                 <Book className="size-4" />
                 <span className="text-sm font-mono">description.md</span>
@@ -90,14 +97,14 @@ export default function Home() {
                 interested in working together, feel free to reach out via my work email.
               </p>
             </div>
-            <div className="w-full bg-background rounded-lg border border-border">
+            <div className="w-full bg-background/60 dark:bg-background/40 backdrop-blur-sm rounded-lg border border-border">
               <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
                 <GraduationCap className="size-4" />
                 <span className="text-sm font-mono">stuffs.md</span>
               </h2>
               <EducationAndLinks />
             </div>
-            <div className="w-full bg-background rounded-lg border border-border">
+            <div className="w-full bg-background/60 dark:bg-background/40 backdrop-blur-sm rounded-lg border border-border">
               <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
                 <Server className="size-4" />
                 <span className="text-sm font-mono">projects.md</span>
@@ -111,14 +118,14 @@ export default function Home() {
 
           {/* Right Column */}
           <div className="space-y-6">
-            <div className="w-full bg-background rounded-lg border border-border">
+            <div className="w-full bg-background/60 dark:bg-background/40 backdrop-blur-sm rounded-lg border border-border">
               <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
                 <Smartphone className="size-4" />
                 <span className="text-sm font-mono">gadgets.md</span>
               </h2>
               <TechGear />
             </div>
-            <div className="w-full bg-background rounded-lg border border-border">
+            <div className="w-full bg-background/60 dark:bg-background/40 backdrop-blur-sm rounded-lg border border-border">
               <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
                 <Briefcase className="size-4" />
                 <span className="text-sm font-mono">experience.md</span>
@@ -130,7 +137,7 @@ export default function Home() {
 
         {/* Bottom Center Section */}
         <div className="mt-6 flex justify-center">
-          <div className="w-full max-w-2xl bg-background rounded-lg border border-border">
+          <div className="w-full max-w-2xl bg-background/60 dark:bg-background/40 backdrop-blur-sm rounded-lg border border-border">
             <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
               <Info className="size-4" />
               <span className="text-sm font-mono">source.md</span>

@@ -12,6 +12,42 @@ const style = `
     0% { opacity: 0.5; }
     100% { opacity: 1; }
   }
+
+  /* Visit site button: increased transparency + backdrop blur, with transitions */
+  .visit-site-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.6rem;
+    border-radius: 0.375rem;
+    background-color: rgba(255, 255, 255, 0.32); /* more transparent */
+    color: inherit;
+    border: 1px solid rgba(0,0,0,0.06);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: background-color 150ms ease, transform 120ms ease, border-color 150ms ease, box-shadow 150ms ease, opacity 150ms ease;
+    opacity: 0.98;
+  }
+  .visit-site-btn:hover {
+    background-color: rgba(255,255,255,0.52);
+    transform: translateY(-1px);
+  }
+  .visit-site-btn:active {
+    transform: translateY(0);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .visit-site-btn {
+      background-color: rgba(17, 24, 39, 0.02); /* more transparent in dark */
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .visit-site-btn:hover {
+      background-color: rgba(17,24,39,0.36);
+    }
+  }
 }
 `;
 if (typeof window !== 'undefined' && !document.getElementById('project-anim-style')) {

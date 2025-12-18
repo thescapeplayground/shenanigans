@@ -2,7 +2,7 @@
 
 export const Timeline = () => {
   return (
-    <div className="rounded-lg border bg-background text-foreground">
+    <div className="rounded-lg border bg-background/60 backdrop-blur-sm">
       <div className="relative px-4">
         {/* Text container */}
         <div className="relative pt-8">
@@ -44,4 +44,4 @@ export const Timeline = () => {
       </div>
     </div>
   );
-}; 
+};
