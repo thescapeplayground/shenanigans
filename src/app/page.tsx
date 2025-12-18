@@ -4,7 +4,7 @@ import type { WebPage, WithContext } from "schema-dts";
 import { PageContainer } from "@/components/page-container";
 import { Hello } from "@/components/hello";
 
-import HeroImage from "@/assets/img/hero.png";
+import HeroImage from "@/assets/img/hero.jpg";
 import HeroProfile from "@/assets/img/profpic.jpg";
 import { Book, Info, GraduationCap, Server, Smartphone, Briefcase } from "lucide-react";
 import { EducationAndLinks } from "@/components/education";

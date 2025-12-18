@@ -20,28 +20,19 @@ export function SelfHostItem(props: {
 }) {
   return (
     <>
-      <div
-        className={cn(
-          "w-full px-5 py-3 gap-3 flex md:justify-start justify-center items-center",
-          props.leftClassName,
-        )}
-      >
-        <props.icon className="size-5" />
-        <p>{props.title}</p>
-      </div>
       <a
         className={cn(
-          "w-full px-5 py-3 bg-background text-foreground hover:bg-primary hover:text-primary-foreground transition-colors flex gap-3 items-center justify-center",
-          props.rightClassName,
+          "w-full px-5 py-3 gap-3 flex justify-center items-center text-center no-underline",
+          props.leftClassName,
         )}
         href={props.url}
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Link className="size-5" />
-        <span>Visit Site</span>
-        <span className="sr-only">{props.sr}</span>
+        <props.icon className="size-5" />
+        <span className="font-medium">{props.title}</span>
       </a>
+      {/* right column removed (no use case) */}
     </>
   );
 }
@@ -49,7 +40,7 @@ export function SelfHostItem(props: {
 export function SelfHostedServices() {
   return (
     <div className="p-5">
-      <div className="grid grid-cols-1 md:grid-cols-2 rounded-md border border-border overflow-clip">
+      <div className="grid grid-cols-1 rounded-md border border-border overflow-clip">
         <SelfHostItem
           icon={ChartNoAxesColumnIncreasing}
           leftClassName="bg-muted/20 md:border-r border-b border-border"
