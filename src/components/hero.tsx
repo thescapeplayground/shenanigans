@@ -7,7 +7,7 @@ import {
 import Image from "next/image";
 import performanceModeAtom from "@/lib/atoms/performance-mode";
 import { useAtom } from "jotai/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { GitHub } from "./logos/github";
 import { Youtube } from "./logos/youtube";
@@ -27,6 +27,20 @@ export function Hero({ img, profile }: HeroProps) {
   const [isProfileLoading, setIsProfileLoading] = useState(true);
   const [performanceMode] = useAtom(performanceModeAtom);
 
+  const [time, setTime] = useState('');
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const ampm = now.getHours() < 12 ? 'AM' : 'PM';
+      setTime(`${hours}:${minutes} ${ampm}`);
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 60000); // Update every minute
+    return () => clearInterval(interval);
+  }, []);
+
   const image = img as StaticImageData;
   const profileImg = profile as StaticImageData;
 
@@ -43,6 +57,9 @@ export function Hero({ img, profile }: HeroProps) {
           className={`${isImageLoading && !performanceMode ? "blur" : "remove-blur"
             } transition-all ease-[cubic-bezier(0.22,_1,_0.36,_1)] duration-500`}
         />
+        <div className="absolute bottom-2 right-2 text-white px-2 py-1 rounded text-lg" style={{ fontFamily: 'Roboto, sans-serif' }}>
+          {time}
+        </div>
       </div>
       <div className="relative rounded-full aspect-square size-28 md:size-36 mx-auto md:mx-0 md:ml-5 -mt-18 border-6 border-background overflow-clip">
         <Image

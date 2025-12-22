@@ -99,10 +99,10 @@ export default function Home() {
             </div>
             <div className="w-full bg-background/60 dark:bg-background/40 backdrop-blur-sm rounded-lg border border-border">
               <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
-                <GraduationCap className="size-4" />
-                <span className="text-sm font-mono">stuffs.md</span>
+                <Briefcase className="size-4" />
+                <span className="text-sm font-mono">experience.md</span>
               </h2>
-              <EducationAndLinks />
+              <Experience />
             </div>
             <div className="w-full bg-background/60 dark:bg-background/40 backdrop-blur-sm rounded-lg border border-border">
               <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
@@ -127,10 +127,10 @@ export default function Home() {
             </div>
             <div className="w-full bg-background/60 dark:bg-background/40 backdrop-blur-sm rounded-lg border border-border">
               <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
-                <Briefcase className="size-4" />
-                <span className="text-sm font-mono">experience.md</span>
+                <GraduationCap className="size-4" />
+                <span className="text-sm font-mono">stuffs.md</span>
               </h2>
-              <Experience />
+              <EducationAndLinks />
             </div>
           </div>
         </div>

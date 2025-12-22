@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Doto, Geist, Geist_Mono } from "next/font/google";
+import { Doto, Geist, Geist_Mono, Roboto } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Navbar } from "@/components/navbar";
@@ -26,6 +26,11 @@ const geistMono = Geist_Mono({
 
 const doto = Doto({
   variable: "--font-doto",
+  subsets: ["latin"],
+});
+
+const roboto = Roboto({
+  variable: "--font-roboto",
   subsets: ["latin"],
 });
 
@@ -106,7 +111,7 @@ export default function RootLayout({
           />
         </head>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} ${doto.variable} antialiased scroll-smooth`}
+          className={`${geistSans.variable} ${geistMono.variable} ${doto.variable} ${roboto.variable} antialiased scroll-smooth`}
         >
           {/* Use client component for conditional beams */}
           <BackgroundBeamsConditional />
