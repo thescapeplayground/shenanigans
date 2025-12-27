@@ -28,6 +28,7 @@ export function Hero({ img, profile }: HeroProps) {
   const [performanceMode] = useAtom(performanceModeAtom);
 
   const [time, setTime] = useState('');
+  const [greeting, setGreeting] = useState('');
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -35,6 +36,30 @@ export function Hero({ img, profile }: HeroProps) {
       const minutes = now.getMinutes().toString().padStart(2, '0');
       const ampm = now.getHours() < 12 ? 'AM' : 'PM';
       setTime(`${hours}:${minutes} ${ampm}`);
+      const h = now.getHours();
+      const m = now.getMinutes();
+
+      const getPeriod = (hours: number, minutes: number) => {
+        if (hours === 0 && minutes === 0) return 'Midnight';
+        if (hours >= 5 && hours < 6) return 'Dawn/Sunrise';
+        if (hours >= 6 && hours < 12) return 'Morning';
+        if (hours === 12 && minutes === 0) return 'Noon/Midday';
+        if ((hours === 12 && minutes > 0) || (hours > 12 && hours < 17)) return 'Afternoon';
+        if (hours >= 17 && hours < 21) return 'Evening';
+        if (hours >= 21 || hours < 5) return 'Night';
+        return 'Day';
+      };
+
+      const period = getPeriod(h, m);
+      const mapToGreeting = (p: string) => {
+        if (p === 'Dawn/Sunrise' || p === 'Morning') return 'Morning';
+        if (p === 'Noon/Midday' || p === 'Afternoon') return 'Afternoon';
+        if (p === 'Evening' || p === 'Dusk/Twilight') return 'Evening';
+        if (p === 'Night' || p === 'Midnight') return 'Night';
+        return 'Hello';
+      };
+
+      setGreeting(mapToGreeting(period));
     };
     updateTime();
     const interval = setInterval(updateTime, 60000); // Update every minute
@@ -57,8 +82,11 @@ export function Hero({ img, profile }: HeroProps) {
           className={`${isImageLoading && !performanceMode ? "blur" : "remove-blur"
             } transition-all ease-[cubic-bezier(0.22,_1,_0.36,_1)] duration-500`}
         />
-        <div className="absolute bottom-2 right-2 text-white px-2 py-1 rounded text-lg" style={{ fontFamily: 'Roboto, sans-serif' }}>
-          {time}
+        <div className="absolute bottom-2 right-2 text-white px-3 py-2 rounded text-lg text-right" style={{ fontFamily: '"Google Sans"' }}>
+          <div className="text-sm opacity-90">
+            <span className="font-medium">{`Good ${greeting.toLowerCase()},`}</span>{' '}
+            <span>{`it's ${time}.`}</span>
+          </div>
         </div>
       </div>
       <div className="relative rounded-full aspect-square size-28 md:size-36 mx-auto md:mx-0 md:ml-5 -mt-18 border-6 border-background overflow-clip">
@@ -75,7 +103,7 @@ export function Hero({ img, profile }: HeroProps) {
         />
       </div>
       <div className="relative w-full py-3 md:-mt-18 justify-center flex-col md:flex-row md:justify-between flex gap-3 md:gap-5 items-center">
-        <p className="w-full md:pl-46 truncate text-center md:text-start text-2xl font-bold dark:font-semibold">
+        <p className="w-full md:pl-46 truncate text-center md:text-start text-2xl font-bold dark:font-semibold" style={{ fontFamily: '"Google Sans"' }}>
           Leonardo @isaiahscape
         </p>
         <div className="w-fit flex items-center justify-center gap-3">
