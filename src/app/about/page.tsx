@@ -162,35 +162,6 @@ export default function About() {
         </div>
         <div className="w-full bg-background rounded-lg border border-border">
           <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
-            <GitPullRequest className="size-4" />
-            <span className="text-sm font-mono">contributions.md</span>
-          </h2>
-          <p className="px-5 py-3">
-            I am open to contributions for this site. If you want to contribute,
-            please consider opening an issue or a pull request. I will review it
-            and merge it if I think it&apos;s good. Anyways, here&apos;s the
-            Code of Conduct for this site development, The owner of Realm
-            call it Code of Virtue:
-          </p>
-          <div className="px-5 pb-5">
-            <Button
-              className="w-full flex gap-3 items-center"
-              variant="outline"
-              asChild
-            >
-              <a
-                href="https://raw.githubusercontent.com/irvanmalik48/realm/refs/heads/main/CODE_OF_CONDUCT.md"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Eye className="size-4" />
-                <span>View Code of Virtue</span>
-              </a>
-            </Button>
-          </div>
-        </div>
-        <div className="w-full bg-background rounded-lg border border-border">
-          <h2 className="w-full flex items-center gap-3 text-muted-foreground px-5 py-3 border-b border-border">
             <Vote className="size-4" />
             <span className="text-sm font-mono">#nopolitics.md</span>
           </h2>
