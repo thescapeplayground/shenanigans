@@ -13,7 +13,6 @@ const nextConfig: NextConfig = {
     ],
   },
   experimental: {
-    reactCompiler: true,
     webpackMemoryOptimizations: true,
     serverSourceMaps: false,
   },
