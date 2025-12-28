@@ -1,11 +1,8 @@
 import Container from "@/components/container";
 import { ImageComponent } from "@/components/image";
-import { Button } from "@/components/ui/button";
 import { TextScroll } from "@/components/ui/text-scroll";
 import {
   Book,
-  Eye,
-  GitPullRequest,
   HandMetal,
   ThumbsUp,
   Vote,
