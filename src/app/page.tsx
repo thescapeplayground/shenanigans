@@ -71,13 +71,6 @@ export default function Home() {
 
   return (
     <>
-      <div className="fixed inset-0 -z-10 pointer-events-none">
-        <img
-          src="/background.gif"
-          alt=""
-          className="w-full h-full object-cover opacity-40 dark:opacity-60"
-        />
-      </div>
       <Hello />
       <PageContainer>
         <Hero img={HeroImage} profile={HeroProfile} />
