@@ -193,10 +193,10 @@ export const projects: Project[] = [
     description: "A fast, offline-based editing site.",
     longDescription: "A lightweight web project built with Vite, React and Tailwind CSS, designed to provide a seamless photo editing experience directly in the browser. It offers a range of editing tools and filters, allowing users to enhance their photos without the need for any downloads or installations. The project is optimized for performance and is perfect for quick edits on the go.",
     category: "Web Development",
-    image: "/snapweb/one.jpg",
+    image: "/snapweb/one.png",
     screenshots: [
-      "/snapweb/one.jpg",
-      "/snapweb/two.jpg"
+      "/snapweb/one.png",
+      "/snapweb/two.png"
     ],
     technologies: ["Next.js", "Vite", "React", "TypeScript", "TailwindCSS", "Vercel"],
     features: [
