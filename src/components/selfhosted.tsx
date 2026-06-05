@@ -45,7 +45,7 @@ export function SelfHostedServices() {
           leftClassName="bg-muted/20 md:border-r border-b border-border"
           rightClassName="border-b border-border"
           title="Shenanigans"
-          url="https://isaiahthings.vercel.app"
+          url="https://isaiahthings.me"
           sr="You're just looping."
         />
         <SelfHostItem
@@ -55,6 +55,14 @@ export function SelfHostedServices() {
           title="Thysvl's Clover (WIP)"
           url="https://thysvl.vercel.app"
           sr="My girlfriend's portfolio."
+        />
+        <SelfHostItem
+          icon={ChartNoAxesColumnIncreasing}
+          leftClassName="bg-muted/20 md:border-r border-b border-border"
+          rightClassName="border-b border-border"
+          title="Snapseed for Web"
+          url="https://snapweb.isaiahthings.me"
+          sr="A professional photo editor for the web, built with Vite, React and Tailwind CSS."
         />
         <SelfHostItem
           icon={Compass}
