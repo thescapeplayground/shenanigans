@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import {
+  Camera,
   ChartNoAxesColumnIncreasing,
   ClipboardPen,
   Compass,
@@ -57,7 +58,7 @@ export function SelfHostedServices() {
           sr="My girlfriend's portfolio."
         />
         <SelfHostItem
-          icon={ChartNoAxesColumnIncreasing}
+          icon={Camera}
           leftClassName="bg-muted/20 md:border-r border-b border-border"
           rightClassName="border-b border-border"
           title="Snapseed for Web"
