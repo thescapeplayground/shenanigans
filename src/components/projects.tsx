@@ -186,5 +186,27 @@ export const projects: Project[] = [
       download: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     },
     featured: true
+  },
+  {
+    id: "snapweb",
+    title: "Snapseed for Web",
+    description: "A fast, offline-based editing site.",
+    longDescription: "A lightweight web project built with Vite, React and Tailwind CSS, designed to provide a seamless photo editing experience directly in the browser. It offers a range of editing tools and filters, allowing users to enhance their photos without the need for any downloads or installations. The project is optimized for performance and is perfect for quick edits on the go.",
+    category: "Web Development",
+    image: "/snapweb/one.jpg",
+    screenshots: [
+      "/snapweb/one.jpg",
+      "/snapweb/two.jpg"
+    ],
+    technologies: ["Next.js", "Vite", "React", "TypeScript", "TailwindCSS", "Vercel"],
+    features: [
+      "Modern responsive layout",
+      "Fast loading pages",
+      "Designed professional RAW editors"
+    ],
+    links: {
+      live: "https://snapweb.isaiahthings.me/"
+    },
+    featured: true
   }
 ];
