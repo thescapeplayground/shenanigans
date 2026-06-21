@@ -74,7 +74,7 @@ export function PresenceClock({ location, statusText }: PresenceClockProps) {
         </div>
         <div className="text-left">
           <p className="text-xs text-zinc-400 dark:text-zinc-500 font-mono flex items-center gap-1">
-            <MapPin className="w-3 h-3 text-zinc-500" /> {location}
+            {location}
           </p>
           <h4 className="text-base font-semibold text-zinc-800 dark:text-zinc-200 font-mono tracking-tight mt-0.5">
             {time || "12:00 AM"} <span className="text-xs text-zinc-400 dark:text-zinc-500 font-normal">({seconds}s)</span>
@@ -92,7 +92,7 @@ export function PresenceClock({ location, statusText }: PresenceClockProps) {
         </div>
         <div className="text-left overflow-hidden w-full">
           <p className="text-xs text-zinc-400 dark:text-zinc-500 font-mono flex items-center gap-1 pr-2">
-            <Radio className="w-3 h-3 text-emerald-500" /> Status indicator
+            Status indicator
           </p>
           <div className="text-xs font-medium text-zinc-700 dark:text-zinc-300 truncate mt-0.5" title={statusText}>
             {statusText}

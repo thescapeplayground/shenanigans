@@ -6,7 +6,7 @@ export const DEFAULT_PROFILE: Profile = {
   role: "Photographer, Graphic Designer",
   bio: "Not here to impress — just keeping it real. Welcome to my personal corner of the web.",
   secondaryBio: "I'm Isiaih Rafael Pavia, living in Davao, Philippines. Age 20. If you're interested in working together, feel free to reach out via my work email.",
-  location: "Manila, PH",
+  location: "Manila, Philippines",
   avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=faces",
   availability: "available",
   statusHeading: "Currently building",

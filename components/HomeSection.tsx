@@ -40,7 +40,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
         <div className="flex items-center gap-3">
           <BadgeAvailability />
           <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest flex items-center gap-1">
-            <Sparkles className="w-3 h-3 text-amber-500" />  Photographer, Graphic Designer
+            Photographer, Graphic Designer
           </span>
         </div>
 

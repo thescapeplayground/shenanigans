@@ -89,7 +89,6 @@ export default function Page() {
             onClick={() => setActiveTab("home")}
             id="brand-logo"
           >
-            <div className="h-2 w-2 rounded-full bg-indigo-600 dark:bg-indigo-400 group-hover:scale-125 transition-transform duration-200" />
             <span className="font-mono text-sm tracking-tight font-bold text-zinc-900 dark:text-zinc-100">
               Leonardo's Terrace
             </span>
