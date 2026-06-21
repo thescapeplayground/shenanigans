@@ -70,10 +70,10 @@ export function ContactSection() {
             Let's Collaborate
           </span>
           <h2 className="text-3xl font-bold tracking-tight text-neutral-950 dark:text-neutral-50 font-sans">
-            Have a project in mind or just looking to chat?
+            Have a project in mind or just looking to chat for help?
           </h2>
           <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-md">
-            I specialize in designing and prototyping frontends from the ground up. Drop me a note, or click the copy shortcut to send a direct message.
+            Drop me a note, or click the copy shortcut to send a direct message.
           </p>
         </div>
 
