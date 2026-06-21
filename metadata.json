@@ -1,0 +1,6 @@
+{
+  "name": "Minimalist Personal Portfolio",
+  "description": "A clean, minimalist personal homepage and projects grid inspired by isaiahthings.me, styled with shadcn/ui and powered by Framer Motion.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
