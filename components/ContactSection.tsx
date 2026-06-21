@@ -17,7 +17,7 @@ export function ContactSection() {
   const [copied, setCopied] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const contactEmail = "lqlp0011@gmail.com";
+  const contactEmail = "isaiahscape@duck.com";
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(contactEmail);
