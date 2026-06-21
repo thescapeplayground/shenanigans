@@ -11,10 +11,11 @@ export function ContactSection() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  
+
   const [sending, setSending] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const contactEmail = "lqlp0011@gmail.com";
 
@@ -24,19 +25,40 @@ export function ContactSection() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleSendMessage = (e: React.FormEvent) => {
+  const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email || !message) return;
 
     setSending(true);
-    // Simulate API delivery network delay
-    setTimeout(() => {
-      setSending(false);
+    setErrorMessage(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        const message =
+          (data && typeof data === "object" && "error" in data && typeof data.error === "string" && data.error) ||
+          "Failed to deliver your message. Please try again later.";
+        throw new Error(message);
+      }
+
       setFormSubmitted(true);
       setName("");
       setEmail("");
       setMessage("");
-    }, 1500);
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error ? error.message : "Failed to deliver your message. Please try again later."
+      );
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -63,7 +85,7 @@ export function ContactSection() {
 
           <div className="space-y-2">
             {/* Email copying widget */}
-            <div 
+            <div
               className="flex items-center justify-between p-3.5 rounded-xl border border-zinc-200/50 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 hover:bg-zinc-50 dark:hover:bg-zinc-900/30 transition-all cursor-pointer group"
               onClick={handleCopyEmail}
             >
@@ -84,7 +106,7 @@ export function ContactSection() {
             </div>
 
             {/* GitHub handle */}
-            <a 
+            <a
               href="https://github.com/thescapeplayground/shenanigans"
               target="_blank"
               rel="noreferrer"
@@ -109,7 +131,7 @@ export function ContactSection() {
       </div>
 
       {/* Right Column: Contact form with AnimatePresence toast */}
-      <div 
+      <div
         className="p-6 sm:p-8 rounded-2xl border border-zinc-200/60 dark:border-zinc-800 bg-white/50 dark:bg-zinc-950/30 backdrop-blur-sm shadow-sm relative overflow-hidden"
         id="contact-form-pane"
       >
@@ -164,6 +186,12 @@ export function ContactSection() {
                   className="rounded-lg bg-zinc-50/50 dark:bg-zinc-900/30 text-sm font-sans h-28 resize-none"
                 />
               </div>
+
+              {errorMessage && (
+                <p className="text-xs font-mono text-red-600 dark:text-red-400 leading-relaxed" role="alert">
+                  {errorMessage}
+                </p>
+              )}
 
               <Button
                 type="submit"

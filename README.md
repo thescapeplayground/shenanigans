@@ -54,6 +54,21 @@ Run the built application:
 npm run start
 ```
 
+### 4. Contact Form (Resend Email)
+
+The contact form posts to an API route at `src/app/api/contact/route.ts`, which uses [Resend](https://resend.com) to deliver messages to your inbox.
+
+1. Copy the example env file and fill in your values:
+   ```bash
+   cp .env.example .env
+   ```
+2. Set the required variables (see `.env.example`):
+   - `RESEND_API_KEY` — your Resend API key.
+   - `RESEND_FROM_ADDRESS` — verified sender address (use `onboarding@resend.dev` for testing).
+   - `CONTACT_TO_ADDRESS` — inbox that receives form submissions.
+
+> **Note on static export:** `next.config.js` currently sets `output: "export"`, which produces a fully static site and does **not** run API route handlers in production. The contact route works during `npm run dev`. To enable email sending in a deployed production build, remove `output: "export"` (and the `mv out dist` step in the `build` script) so Next.js runs as a server, or deploy the route as a serverless function.
+
 ---
 
 ## 📁 File Structure
