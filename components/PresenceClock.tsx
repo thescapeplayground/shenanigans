@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Clock, MapPin, Radio, Activity } from "lucide-react";
+import { Clock, MapPin, Radio, Activity, Github, Instagram, Youtube, MessageCircle, Linkedin, Twitch, Music2 } from "lucide-react";
 import { motion } from "motion/react";
 
 interface PresenceClockProps {
@@ -31,8 +31,19 @@ export function PresenceClock({ location, statusText }: PresenceClockProps) {
     return () => clearInterval(interval);
   }, []);
 
+  const socialLinks = [
+    { href: "https://instagram.com/isaiahscape", icon: Instagram, label: "Instagram", color: "text-pink-500" },
+    { href: "https://youtube.com/@isaiahscape", icon: Youtube, label: "YouTube", color: "text-red-500" },
+    { href: "https://t.me/isaiahscape", icon: MessageCircle, label: "Telegram", color: "text-sky-500" },
+    { href: "https://linkedin.com/in/isaiahscape", icon: Linkedin, label: "LinkedIn", color: "text-blue-600" },
+    { href: "https://twitch.tv/isaiahscape", icon: Twitch, label: "Twitch", color: "text-purple-500" },
+    { href: "https://tiktok.com/@isaiahscape", icon: Music2, label: "TikTok", color: "text-zinc-900 dark:text-zinc-100" },
+    { href: "https://github.com/thescapeplayground/shenanigans", icon: Github, label: "GitHub", color: "text-zinc-800 dark:text-zinc-200" },
+  ];
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-8" id="presence-clock-grid">
+    <div className="my-8" id="presence-clock-section">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" id="presence-clock-grid">
       {/* Timezone / Location Indicator */}
       <div 
         className="flex items-center gap-4 p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 backdrop-blur-sm shadow-sm"
@@ -47,7 +58,7 @@ export function PresenceClock({ location, statusText }: PresenceClockProps) {
         </div>
         <div className="text-left">
           <p className="text-xs text-zinc-400 dark:text-zinc-500 font-mono flex items-center gap-1">
-            <MapPin className="w-3 h-3 h-3 text-zinc-500" /> {location}
+            <MapPin className="w-3 h-3 text-zinc-500" /> {location}
           </p>
           <h4 className="text-base font-semibold text-zinc-800 dark:text-zinc-200 font-mono tracking-tight mt-0.5">
             {time || "12:00 AM"} <span className="text-xs text-zinc-400 dark:text-zinc-500 font-normal">({seconds}s)</span>
@@ -71,6 +82,26 @@ export function PresenceClock({ location, statusText }: PresenceClockProps) {
             {statusText}
           </div>
         </div>
+      </div>
+    </div>
+
+      {/* Social media row */}
+      <div className="flex items-center justify-center gap-4 mt-6" id="social-links-row">
+        {socialLinks.map((link) => {
+          const Icon = link.icon;
+          return (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              title={link.label}
+              className={`${link.color} hover:scale-110 transition-transform duration-150`}
+            >
+              <Icon className="w-5 h-5" />
+            </a>
+          );
+        })}
       </div>
     </div>
   );
