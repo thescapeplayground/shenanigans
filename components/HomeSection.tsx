@@ -45,7 +45,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
         </div>
 
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-neutral-950 dark:text-neutral-50 font-sans leading-[1.1] mt-2">
-          I'm <span className="font-mono text-indigo-600 dark:text-indigo-400">{profile.name}</span>. I design digital interfaces that feel invisible.
+          I'm <span className="font-mono text-red dark:text-red-400">{profile.name}</span>, but just in public set.
         </h1>
         
         <p className="text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed font-sans max-w-3xl">
