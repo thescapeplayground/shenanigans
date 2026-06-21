@@ -127,3 +127,23 @@
     @apply font-sans;
     }
 }
+
+/* Hide scrollbar completely across all browsers */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE & Edge */
+}
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+  width: 0;
+  height: 0;
+}
+body {
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
