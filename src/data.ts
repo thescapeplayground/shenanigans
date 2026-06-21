@@ -46,7 +46,7 @@ export const DEFAULT_PROJECTS: Project[] = [
     description: "A digital social update log, archive channel, and interactive developer community platform built around Telegram.",
     longDescription: "The Scape Network serves as an active hub and interactive bulletin channel on Telegram. It acts as a primary announcement platform for custom bot deployments, visual graphic experiments, and general technology modifications built under the Scape Sandbox banner.",
     category: "Other",
-    tags: ["Community", "Telegram Bot API", "Graphics", "Archiving"],
+    tags: ["Community", "Telegram", "Graphics", "Archiving"],
     link: "https://telegram.me/thescapenetwork",
     stats: "tg Community",
     featured: true,
@@ -83,7 +83,7 @@ export const DEFAULT_EXPERIENCES: Experience[] = [
     role: "Technical Support - Hybrid",
     company: "Alorica Philippines",
     companyUrl: "#",
-    period: "2025 - Present",
+    period: "2025 - 2026",
     description: "Alorica is a global company providing customer experience (CX) management and Business Process Outsourcing (BPO) services, offering contact center solutions, tech support, and digital services for various industries.",
     tags: ["Tech Support", "Customer Experience", "BPO", "Troubleshooting"]
   },
@@ -92,7 +92,7 @@ export const DEFAULT_EXPERIENCES: Experience[] = [
     role: "Part-time IT Instructor",
     company: "Braintrust Computer Systems, Inc.",
     companyUrl: "#",
-    period: "2023 - Present",
+    period: "2023 - 2026",
     description: "Teaching computer fundamentals, graphical concepts, and IT skills to students. Developing curriculum and providing hands-on technical training.",
     tags: ["Computer Fundamentals", "IT Instruction", "Graphics", "Technical Training"]
   },
