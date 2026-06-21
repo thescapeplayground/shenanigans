@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Profile, Experience } from "@/src/types";
 import { Briefcase, ArrowUpRight, GraduationCap, MapPin, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
@@ -37,7 +38,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
       {/* Hero Greeting Copy */}
       <motion.div variants={itemVariants} className="space-y-6 text-left" id="home-greeting-block">
         <div className="flex items-center gap-3">
-          <BadgeAvailability status={profile.availability} />
+          <BadgeAvailability />
           <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest flex items-center gap-1">
             <Sparkles className="w-3 h-3 text-amber-500" />  Photographer, Graphic Designer
           </span>
@@ -130,14 +131,61 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
   );
 }
 
-function BadgeAvailability({ status }: { status: 'available' | 'busy' | 'away' }) {
-  const configs = {
-    available: { text: "Active now", bg: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 dark:bg-emerald-400/5 border-emerald-500/20", indicator: "bg-emerald-500" },
-    busy: { text: "Busy", bg: "bg-amber-500/10 text-amber-700 dark:text-amber-400 dark:bg-amber-400/5 border-amber-500/20", indicator: "bg-amber-500" },
-    away: { text: "Away", bg: "bg-zinc-500/10 text-zinc-700 dark:text-zinc-400 dark:bg-zinc-400/5 border-zinc-500/20", indicator: "bg-zinc-500" }
+function getPHTNow() {
+  const now = new Date();
+  // Convert to PHT (UTC+8) manually since we need day-of-week in PHT
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  const pht = new Date(utc + 8 * 3600000);
+  return {
+    hour: pht.getHours(),
+    day: pht.getDay(), // 0=Sun, 1=Mon, ..., 6=Sat
+  };
+}
+
+function computeAvailability(): { status: 'available' | 'busy' | 'away'; text: string } {
+  const { hour, day } = getPHTNow();
+  const isWeekend = day === 0 || day === 6;
+
+  // Sleep: 9PM - 8AM (every day)
+  if (hour >= 21 || hour < 8) {
+    return { status: 'away', text: 'Sleep' };
+  }
+
+  if (isWeekend) {
+    // Weekend: Busy 8AM - 9PM
+    return { status: 'busy', text: 'Busy (Weekend)' };
+  }
+
+  // Weekday logic:
+  // Active: 8AM-12PM, 1PM-4PM
+  // Away: 12PM-1PM (lunch), 4PM-7PM
+  // (7PM-9PM falls through as Away too, but sleep handles 9PM+)
+  if ((hour >= 8 && hour < 12) || (hour >= 13 && hour < 16)) {
+    return { status: 'available', text: 'Active now' };
+  }
+
+  // Away covers: 12-1PM lunch, 4-7PM break, 7-9PM evening
+  return { status: 'away', text: 'Away' };
+}
+
+function BadgeAvailability() {
+  const [avail, setAvail] = useState(() => computeAvailability());
+
+  useEffect(() => {
+    const update = () => setAvail(computeAvailability());
+    update();
+    const interval = setInterval(update, 60000); // re-check every minute
+    return () => clearInterval(interval);
+  }, []);
+
+  const configs: Record<string, { bg: string; indicator: string }> = {
+    available: { bg: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 dark:bg-emerald-400/5 border-emerald-500/20", indicator: "bg-emerald-500" },
+    busy: { bg: "bg-amber-500/10 text-amber-700 dark:text-amber-400 dark:bg-amber-400/5 border-amber-500/20", indicator: "bg-amber-500" },
+    away: { bg: "bg-zinc-500/10 text-zinc-700 dark:text-zinc-400 dark:bg-zinc-400/5 border-zinc-500/20", indicator: "bg-zinc-500" }
   };
 
-  const { text, bg, indicator } = configs[status];
+  const { bg, indicator } = configs[avail.status];
+  const text = avail.text;
 
   return (
     <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-mono font-medium border ${bg}`} id="badge-availability-tag">
