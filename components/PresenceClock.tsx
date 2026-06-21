@@ -85,23 +85,40 @@ export function PresenceClock({ location, statusText }: PresenceClockProps) {
       </div>
     </div>
 
-      {/* Social media row */}
-      <div className="flex items-center justify-center gap-4 mt-6" id="social-links-row">
-        {socialLinks.map((link) => {
-          const Icon = link.icon;
-          return (
-            <a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noreferrer"
-              title={link.label}
-              className={`${link.color} hover:scale-110 transition-transform duration-150`}
-            >
-              <Icon className="w-5 h-5" />
-            </a>
-          );
-        })}
+      {/* Social Links Card — same styling as clock/status cards */}
+      <div 
+        className="flex items-center justify-between p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 backdrop-blur-sm shadow-sm mt-4"
+        id="col-social-links"
+      >
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900">
+            <span className="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400">
+              @
+            </span>
+          </div>
+          <div className="text-left">
+            <p className="text-xs text-zinc-400 dark:text-zinc-500 font-mono flex items-center gap-1">
+              Social Links
+            </p>
+            <div className="flex items-center gap-3 mt-1">
+              {socialLinks.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    title={link.label}
+                    className={`${link.color} hover:scale-110 transition-transform duration-150`}
+                  >
+                    <Icon className="w-4 h-4" />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
