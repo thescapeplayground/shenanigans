@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Clock, MapPin, Radio, Activity, Github, Instagram, Youtube, MessageCircle, Linkedin, Twitch, Music2 } from "lucide-react";
+import { Clock, MapPin, Radio, Activity, Github, Instagram, Youtube, MessageCircle, Linkedin, Twitch, Music2, MailCheck, MailX } from "lucide-react";
 import { motion } from "motion/react";
 
 interface PresenceClockProps {
@@ -12,6 +12,8 @@ interface PresenceClockProps {
 export function PresenceClock({ location, statusText }: PresenceClockProps) {
   const [time, setTime] = useState("");
   const [seconds, setSeconds] = useState(0);
+  const [resendStatus, setResendStatus] = useState<{ connected: boolean; message: string } | null>(null);
+  const [resendChecking, setResendChecking] = useState(true);
 
   useEffect(() => {
     const updateTime = () => {
@@ -29,6 +31,19 @@ export function PresenceClock({ location, statusText }: PresenceClockProps) {
     updateTime();
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/resend-status")
+      .then((res) => res.json())
+      .then((data) => {
+        setResendStatus(data);
+        setResendChecking(false);
+      })
+      .catch(() => {
+        setResendStatus({ connected: false, message: "Could not check email service." });
+        setResendChecking(false);
+      });
   }, []);
 
   const socialLinks = [
@@ -118,6 +133,45 @@ export function PresenceClock({ location, statusText }: PresenceClockProps) {
               })}
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Resend Status Card — checks email service connectivity */}
+      <div 
+        className="flex items-center justify-between p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 backdrop-blur-sm shadow-sm mt-4"
+        id="col-resend-status"
+      >
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900">
+            {resendChecking ? (
+              <Activity className="w-5 h-5 text-zinc-400 animate-spin" />
+            ) : resendStatus?.connected ? (
+              <MailCheck className="w-5 h-5 text-emerald-500" />
+            ) : (
+              <MailX className="w-5 h-5 text-red-500" />
+            )}
+          </div>
+          <div className="text-left">
+            <p className="text-xs text-zinc-400 dark:text-zinc-500 font-mono flex items-center gap-1">
+              Email Service
+            </p>
+            <p className="text-xs font-medium text-zinc-700 dark:text-zinc-300 mt-0.5">
+              {resendChecking
+                ? "Checking connection..."
+                : resendStatus?.connected
+                  ? "Resend API connected"
+                  : resendStatus?.message || "Not configured"}
+            </p>
+          </div>
+        </div>
+        <div className="flex-shrink-0">
+          {resendChecking ? (
+            <span className="inline-flex h-2 w-2 rounded-full bg-zinc-300 animate-pulse" />
+          ) : resendStatus?.connected ? (
+            <span className="inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+          ) : (
+            <span className="inline-flex h-2 w-2 rounded-full bg-red-500" />
+          )}
         </div>
       </div>
     </div>
