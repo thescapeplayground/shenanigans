@@ -23,6 +23,7 @@ export function PresenceClock({ location, statusText }: PresenceClockProps) {
           hour: "2-digit",
           minute: "2-digit",
           hour12: true,
+          timeZone: "Asia/Manila",
         })
       );
       setSeconds(now.getSeconds());
