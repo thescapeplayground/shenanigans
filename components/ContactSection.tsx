@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Send, CheckCircle2, Mail, Github, ArrowUpRight, Copy, Terminal, MessageSquarePlus } from "lucide-react";
+import { Send, CheckCircle2, Mail, Github, ArrowUpRight, Copy, Terminal, MessageSquarePlus, MessageCircle, Image } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Input as CustomInput } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -121,6 +121,50 @@ export function ContactSection() {
                   <p className="text-[10px] font-mono text-zinc-400 leading-none mb-0.5">GitHub Repository</p>
                   <p className="text-xs font-mono font-bold text-zinc-700 dark:text-zinc-300">
                     thescapeplayground
+                  </p>
+                </div>
+              </div>
+              <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
+            </a>
+
+            {/* Telegram handle */}
+            <a
+              href="https://t.me/isaiahscape"
+              target="_blank"
+              rel="noreferrer"
+              referrerPolicy="no-referrer"
+              className="flex items-center justify-between p-3.5 rounded-xl border border-zinc-200/50 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 hover:bg-zinc-50 dark:hover:bg-zinc-900/30 transition-all group"
+            >
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-white dark:bg-zinc-950 rounded-lg border border-zinc-100 dark:border-zinc-800">
+                  <MessageCircle className="w-4 h-4 text-sky-500" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-mono text-zinc-400 leading-none mb-0.5">Telegram</p>
+                  <p className="text-xs font-mono font-bold text-zinc-700 dark:text-zinc-300">
+                    @isaiahscape
+                  </p>
+                </div>
+              </div>
+              <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
+            </a>
+
+            {/* Instagram handle */}
+            <a
+              href="https://instagram.com/isaiahscape"
+              target="_blank"
+              rel="noreferrer"
+              referrerPolicy="no-referrer"
+              className="flex items-center justify-between p-3.5 rounded-xl border border-zinc-200/50 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 hover:bg-zinc-50 dark:hover:bg-zinc-900/30 transition-all group"
+            >
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-white dark:bg-zinc-950 rounded-lg border border-zinc-100 dark:border-zinc-800">
+                  <Image className="w-4 h-4 text-pink-500" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-mono text-zinc-400 leading-none mb-0.5">Instagram</p>
+                  <p className="text-xs font-mono font-bold text-zinc-700 dark:text-zinc-300">
+                    @isaiahscape
                   </p>
                 </div>
               </div>
