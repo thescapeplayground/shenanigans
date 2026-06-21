@@ -1,4 +1,4 @@
-# Minimalist Personal Portfolio
+# Leonardo's Terrace | shenanigans ver. two
 
 A highly polished, responsive, and minimalist developer homepage and project showcase. Inspired by minimalist modern design and swiss grid principles, this portfolio is built with Next.js 15, Tailwind CSS, Base UI, and Framer Motion, featuring elegant typography, dark/light theme switching, and beautiful interactive micro-utilities.
 
@@ -17,7 +17,7 @@ A highly polished, responsive, and minimalist developer homepage and project sho
 
 ## 🛠️ Technology Stack
 
-- **Framework**: Next.js 15+ (App Router, Server Components by default, optimized assets)
+- **Framework**: Next.js 16+ (App Router, Server Components by default, optimized assets)
 - **UI & Core Styling**: Tailwind CSS, `@base-ui/react` (headless interactive primitives)
 - **Animation Framework**: Framer Motion (`motion/react`)
 - **Icon Library**: Lucide React
