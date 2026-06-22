@@ -15,7 +15,6 @@ import { ServicesSection } from "@/components/ServicesSection";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Image, Wrench } from "lucide-react";
-import { Logo } from "@/components/Logo";
 
 type ActiveTab = "home" | "projects" | "stack" | "gallery" | "services" | "contact";
 
@@ -51,7 +50,7 @@ export default function Page() {
   };
 
   const navItems = [
-    { id: "home", label: "Home", icon: Home, isHome: true },
+    { id: "home", label: "Home", icon: Home },
     { id: "projects", label: "Projects", icon: FolderGit2 },
     { id: "stack", label: "Toolbox", icon: Cpu },
     { id: "gallery", label: "Gallery", icon: Image },
@@ -79,20 +78,17 @@ export default function Page() {
               id="top-floating-header"
             >
               <div className="max-w-[1440px] mx-auto px-6 py-4 flex items-center justify-between" id="header-content-inner">
-            <div
-              className="flex items-center gap-3 cursor-pointer group select-none"
-              onClick={() => setActiveTab("home")}
-              id="brand-logo"
-            >
-              <Logo className="w-8 h-8" />
-              <div className="flex items-center gap-1.5">
-                <span className="font-mono text-sm tracking-tight font-bold text-zinc-900 dark:text-zinc-100">
-                  Leonardo's Terrace
-                </span>
-                <span className="text-zinc-300 dark:text-zinc-700 font-normal">/</span>
-                <span className="font-mono text-xs text-zinc-500 capitalize">{activeTab}</span>
-              </div>
-            </div>
+                <div
+                  className="flex items-center gap-1.5 cursor-pointer group select-none"
+                  onClick={() => setActiveTab("home")}
+                  id="brand-logo"
+                >
+                  <span className="font-mono text-sm tracking-tight font-bold text-zinc-900 dark:text-zinc-100">
+                    Leonardo's Terrace
+                  </span>
+                  <span className="text-zinc-300 dark:text-zinc-700 font-normal">/</span>
+                  <span className="font-mono text-xs text-zinc-500 capitalize">{activeTab}</span>
+                </div>
                 <div className="flex items-center gap-2" id="action-tools-panel">
                   <ThemeToggle />
                 </div>
@@ -123,6 +119,7 @@ export default function Page() {
                 id="floating-navigation-island"
               >
                 {navItems.map((item) => {
+                  const Icon = item.icon;
                   const isActive = activeTab === item.id;
                   return (
                     <button
@@ -138,15 +135,11 @@ export default function Page() {
                           transition={{ type: "spring", stiffness: 380, damping: 30 }}
                         />
                       )}
-                      {item.isHome ? (
-                        <Logo className={`shrink-0 z-10 transition-all duration-200 ${isActive ? "w-5 h-5" : "w-4 h-4 opacity-80 group-hover:opacity-100"}`} />
-                      ) : (
-                        <item.icon
-                          className={`shrink-0 z-10 transition-all duration-200 ${
-                            isActive ? "text-white w-3.5 h-3.5" : "text-zinc-400 group-hover:text-zinc-200 w-3.5 h-3.5 sm:w-4 sm:h-4"
-                          }`}
-                        />
-                      )}
+                      <Icon
+                        className={`shrink-0 z-10 transition-all duration-200 ${
+                          isActive ? "text-white w-3.5 h-3.5" : "text-zinc-400 group-hover:text-zinc-200 w-3.5 h-3.5 sm:w-4 sm:h-4"
+                        }`}
+                      />
                     </button>
                   );
                 })}
