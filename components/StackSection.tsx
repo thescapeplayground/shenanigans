@@ -178,27 +178,31 @@ export function StackSection({ stack }: StackSectionProps) {
                     className="border border-zinc-100 dark:border-zinc-800/60 rounded-xl bg-zinc-50/50 dark:bg-zinc-900/10 overflow-hidden transition-all duration-200 hover:border-zinc-200 dark:hover:border-zinc-800"
                     id="device-card-samsung"
                   >
-                    <a
-                      href="https://www.samsung.com/ph/smartphones/galaxy-s24/"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="w-full flex items-center justify-between p-4 text-left focus:outline-none"
+                    <button
+                      onClick={() => toggleDevice("s24")}
+                      className="w-full flex items-center justify-between p-4 text-left focus:outline-none cursor-pointer"
                       id="device-toggle-s24"
                     >
                       <div className="flex items-center gap-3">
                         <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
                           <Smartphone className="w-5 h-5 text-red-500" />
                         </div>
-                        <span className="text-sm font-bold text-zinc-800 dark:text-zinc-200">
+                        <a
+                          href="https://www.samsung.com/ph/smartphones/galaxy-s24/"
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-sm font-bold text-zinc-800 dark:text-zinc-200 hover:text-red-500 dark:hover:text-red-400 transition-colors"
+                        >
                           Samsung Galaxy S24 5G
-                        </span>
+                        </a>
                       </div>
                       {openDevice === "s24" ? (
                         <ChevronUp className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
                       ) : (
                         <ChevronDown className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
                       )}
-                    </a>
+                    </button>
 
                     <AnimatePresence>
                       {openDevice === "s24" && (
@@ -276,27 +280,31 @@ export function StackSection({ stack }: StackSectionProps) {
                     className="border border-zinc-100 dark:border-zinc-800/60 rounded-xl bg-zinc-50/50 dark:bg-zinc-900/10 overflow-hidden transition-all duration-200 hover:border-zinc-200 dark:hover:border-zinc-800"
                     id="device-card-lenovo"
                   >
-                    <a
-                      href="https://www.lenovo.com/ph/en/p/laptops/ideapad/ideapad-3/ideapad-slim-3-gen-8-15-inch-amd/"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="w-full flex items-center justify-between p-4 text-left focus:outline-none"
+                    <button
+                      onClick={() => toggleDevice("lenovo")}
+                      className="w-full flex items-center justify-between p-4 text-left focus:outline-none cursor-pointer"
                       id="device-toggle-lenovo"
                     >
                       <div className="flex items-center gap-3">
                         <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
                           <Laptop className="w-5 h-5 text-blue-500" />
                         </div>
-                        <span className="text-sm font-bold text-zinc-800 dark:text-zinc-200">
+                        <a
+                          href="https://www.lenovo.com/ph/en/p/laptops/ideapad/ideapad-3/ideapad-slim-3-gen-8-15-inch-amd/"
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-sm font-bold text-zinc-800 dark:text-zinc-200 hover:text-red-500 dark:hover:text-red-400 transition-colors"
+                        >
                           Lenovo Ideapad Slim 3 (8th)
-                        </span>
+                        </a>
                       </div>
                       {openDevice === "lenovo" ? (
                         <ChevronUp className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
                       ) : (
                         <ChevronDown className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
                       )}
-                    </a>
+                    </button>
 
                     <AnimatePresence>
                       {openDevice === "lenovo" && (
