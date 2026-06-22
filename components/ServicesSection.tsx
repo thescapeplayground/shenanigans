@@ -15,7 +15,7 @@ const services = [
     title: "Installation",
     description: "Targeted software installations, depends on whatever device you have.",
     icon: Cpu,
-    color: "text-indigo-500",
+    color: "text-red-500",
     image: "/assets/tangiblestuff/TV - 5, Pt. III.png",
   },
   {

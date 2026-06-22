@@ -55,7 +55,7 @@ export function StackSection({ stack }: StackSectionProps) {
   const getIconElement = (name: string) => {
     switch (name) {
       case "Code2":
-        return <Code2 className="w-5 h-5 text-indigo-500" />;
+        return <Code2 className="w-5 h-5 text-red-500" />;
       case "Terminal":
         return <Terminal className="w-5 h-5 text-sky-500" />;
       case "Cpu":
@@ -187,7 +187,7 @@ export function StackSection({ stack }: StackSectionProps) {
                     >
                       <div className="flex items-center gap-3">
                         <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                          <Smartphone className="w-5 h-5 text-indigo-500" />
+                          <Smartphone className="w-5 h-5 text-red-500" />
                         </div>
                         <span className="text-sm font-bold text-zinc-800 dark:text-zinc-200">
                           Samsung Galaxy S24 5G

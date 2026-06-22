@@ -70,7 +70,7 @@ export default function Page() {
           transition={{ duration: 0.4 }}
         >
           <div
-            className="min-h-screen bg-zinc-50/50 dark:bg-black text-neutral-900 dark:text-neutral-100 flex flex-col justify-between selection:bg-indigo-500/10 transition-colors duration-200"
+            className="min-h-screen bg-zinc-50/50 dark:bg-black text-neutral-900 dark:text-neutral-100 flex flex-col justify-between selection:bg-red-500/10 transition-colors duration-200"
             id="main-app-container"
           >
             <header
@@ -116,7 +116,7 @@ export default function Page() {
               id="floating-dock-row"
             >
               <nav
-                className="p-1 px-1.5 sm:px-3 flex gap-0.5 sm:gap-1.5 justify-center sm:justify-start items-center rounded-full border border-zinc-200/10 dark:border-white/10 bg-black/70 dark:bg-black/65 backdrop-blur-xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)]"
+                className="p-1 px-1.5 sm:px-3 flex gap-0.5 sm:gap-1.5 justify-center sm:justify-start items-center rounded-full border border-red-500/20 dark:border-red-500/15 bg-white/70 dark:bg-black/65 backdrop-blur-xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)]"
                 id="floating-navigation-island"
               >
                 {navItems.map((item) => {
@@ -132,13 +132,15 @@ export default function Page() {
                       {isActive && (
                         <motion.div
                           layoutId="active-island-slide"
-                          className="absolute inset-0 bg-white/10 dark:bg-white/10 border border-white/5 rounded-full z-0"
+                          className="absolute inset-0 bg-red-500/15 dark:bg-red-500/10 border border-red-500/20 rounded-full z-0"
                           transition={{ type: "spring", stiffness: 380, damping: 30 }}
                         />
                       )}
                       <Icon
                         className={`shrink-0 z-10 transition-all duration-200 ${
-                          isActive ? "text-white w-3.5 h-3.5" : "text-zinc-400 group-hover:text-zinc-200 w-3.5 h-3.5 sm:w-4 sm:h-4"
+                          isActive
+                            ? "text-red-500 dark:text-red-400 w-3.5 h-3.5"
+                            : "text-zinc-500 dark:text-zinc-400 group-hover:text-red-500 dark:group-hover:text-red-300 w-3.5 h-3.5 sm:w-4 sm:h-4"
                         }`}
                       />
                     </button>
@@ -153,7 +155,7 @@ export default function Page() {
             >
               <p>© 2026 @isaiahscape. Built with realm, shenanigans, shadcnUI.</p>
               <div className="flex gap-4">
-                <a href="https://github.com/thescapeplayground/shenanigans" target="_blank" rel="noreferrer" className="hover:text-indigo-500 dark:hover:text-indigo-400">
+                <a href="https://github.com/thescapeplayground/shenanigans" target="_blank" rel="noreferrer" className="hover:text-red-500 dark:hover:text-red-400">
                   repository
                 </a>
               </div>

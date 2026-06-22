@@ -66,7 +66,7 @@ export function ContactSection() {
       {/* Left Column: Social Links & Availability info */}
       <div className="space-y-6 flex flex-col justify-between" id="contact-left-block">
         <div className="space-y-4">
-          <span className="px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 dark:bg-indigo-400/5 border border-indigo-500/10 text-xs font-mono font-medium inline-block">
+          <span className="px-2.5 py-1 rounded bg-red-500/10 text-red-700 dark:text-red-400 dark:bg-red-400/5 border border-red-500/10 text-xs font-mono font-medium inline-block">
             Let's Collaborate
           </span>
           <h2 className="text-3xl font-bold tracking-tight text-neutral-950 dark:text-neutral-50 font-sans">
@@ -91,7 +91,7 @@ export function ContactSection() {
             >
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white dark:bg-zinc-950 rounded-lg border border-zinc-100 dark:border-zinc-800">
-                  <Mail className="w-4 h-4 text-indigo-500" />
+                  <Mail className="w-4 h-4 text-red-500" />
                 </div>
                 <div>
                   <p className="text-[10px] font-mono text-zinc-400 leading-none mb-0.5">Copy Email</p>
@@ -101,7 +101,7 @@ export function ContactSection() {
                 </div>
               </div>
               <Button size="icon" variant="ghost" className="h-8 w-8 rounded-lg text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-zinc-100">
-                {copied ? <span className="text-[10px] font-mono text-indigo-600 font-bold">Copied!</span> : <Copy className="w-4 h-4" />}
+                {copied ? <span className="text-[10px] font-mono text-red-600 font-bold">Copied!</span> : <Copy className="w-4 h-4" />}
               </Button>
             </div>
 

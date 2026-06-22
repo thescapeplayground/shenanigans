@@ -44,7 +44,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
       case "active":
         return "bg-emerald-500 ring-emerald-500/30";
       case "building":
-        return "bg-indigo-500 ring-indigo-500/30";
+        return "bg-red-500 ring-red-500/30";
       case "completed":
         return "bg-sky-500 ring-sky-500/30";
       case "archived":
@@ -134,9 +134,9 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                     </div>
                   </div>
 
-                  <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 font-sans tracking-tight group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-150 inline-flex items-center gap-1">
+                  <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 font-sans tracking-tight group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-150 inline-flex items-center gap-1">
                     {project.title.toLowerCase()}
-                    <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </h3>
 
                   <p className="text-zinc-500 dark:text-zinc-400 text-xs sm:text-[13px] leading-relaxed font-sans line-clamp-2 pr-2">
@@ -177,7 +177,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               setSearchQuery("");
               setSelectedCategory("All");
             }}
-            className="text-xs text-indigo-500 hover:text-indigo-400 mt-2 gap-1.5 h-8 font-mono rounded-lg"
+            className="text-xs text-red-500 hover:text-red-400 mt-2 gap-1.5 h-8 font-mono rounded-lg"
           >
             <RefreshCw className="w-3.5 h-3.5" /> Clear Filters
           </Button>
