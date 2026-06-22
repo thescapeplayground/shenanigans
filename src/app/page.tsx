@@ -22,9 +22,11 @@ import { HomeSection } from "@/components/HomeSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { StackSection } from "@/components/StackSection";
 import { ContactSection } from "@/components/ContactSection";
+import { GallerySection } from "@/components/GallerySection";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { Image } from "lucide-react";
 
-type ActiveTab = "home" | "projects" | "stack" | "contact";
+type ActiveTab = "home" | "projects" | "stack" | "gallery" | "contact";
 
 export default function Page() {
   const [activeTab, setActiveTab] = useState<ActiveTab>("home");
@@ -58,6 +60,8 @@ export default function Page() {
         return <ProjectsSection projects={projects} />;
       case "stack":
         return <StackSection stack={DEFAULT_STACK} />;
+      case "gallery":
+        return <GallerySection />;
       case "contact":
         return <ContactSection />;
       default:
@@ -69,6 +73,7 @@ export default function Page() {
     { id: "home", label: "Home", icon: Home },
     { id: "projects", label: "Projects", icon: FolderGit2 },
     { id: "stack", label: "Toolbox", icon: Cpu },
+    { id: "gallery", label: "Gallery", icon: Image },
     { id: "contact", label: "Collaborate", icon: Mail },
   ];
 
