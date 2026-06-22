@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { motion } from "motion/react";
-import { Logo } from "./Logo";
 
 export function LoadingScreen() {
   useEffect(() => {
@@ -41,7 +40,7 @@ export function LoadingScreen() {
             ease: "easeOut"
           }}
         >
-          <Logo className="w-16 h-16" />
+          <img src="/favicon.svg" alt="Logo" className="w-16 h-16 dark:invert" />
         </motion.div>
 
         <motion.div

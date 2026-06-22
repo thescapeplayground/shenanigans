@@ -79,10 +79,11 @@ export default function Page() {
             >
               <div className="max-w-[1440px] mx-auto px-6 py-4 flex items-center justify-between" id="header-content-inner">
                 <div
-                  className="flex items-center gap-1.5 cursor-pointer group select-none"
+                  className="flex items-center gap-2 cursor-pointer group select-none"
                   onClick={() => setActiveTab("home")}
                   id="brand-logo"
                 >
+                  <img src="/favicon.svg" alt="Logo" className="w-6 h-6 dark:invert" />
                   <span className="font-mono text-sm tracking-tight font-bold text-zinc-900 dark:text-zinc-100">
                     Leonardo's Terrace
                   </span>
