@@ -187,7 +187,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
       {/* Project Expand Modal Overlay (Dialog component) */}
       <Dialog open={selectedProject !== null} onOpenChange={(open) => { if (!open) setSelectedProject(null); }}>
         {selectedProject && (
-          <DialogContent className="w-full sm:max-w-xl mx-auto text-left border-zinc-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-black/95 backdrop-blur-lg font-sans p-4 sm:p-6 max-h-[90vh] overflow-y-auto">
+          <DialogContent showCloseButton={false} className="w-full sm:max-w-xl mx-auto text-left border-zinc-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-black/95 backdrop-blur-lg font-sans p-4 sm:p-6 max-h-[90vh] overflow-y-auto">
             <DialogHeader className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-[11px] font-semibold font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
@@ -249,8 +249,18 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               </div>
             </div>
 
-            {/* Hyperlink out triggers */}
-            <div className="flex flex-row justify-end items-center gap-2 pt-2 border-t border-zinc-100 dark:border-zinc-900/50">
+            {/* Bottom action bar */}
+            <div className="flex flex-row items-center justify-between pt-2 border-t border-zinc-100 dark:border-zinc-900/50">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={() => setSelectedProject(null)}
+                className="rounded-lg h-9 font-mono text-xs text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100"
+              >
+                Close
+              </Button>
+
+              <div className="flex flex-row items-center gap-2">
               {selectedProject.github && (
                 <Button 
                   variant="outline" 
@@ -270,6 +280,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                   Live Site <ExternalLink className="w-3 h-3" />
                 </Button>
               )}
+            </div>
             </div>
           </DialogContent>
         )}
