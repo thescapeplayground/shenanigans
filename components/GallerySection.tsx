@@ -22,21 +22,21 @@ export function GallerySection() {
     {
       name: "TV",
       items: [
-        { src: "/assets/TV - 1, Fixed.png", alt: "TV Fixed 1", folder: "tv" },
-        { src: "/assets/TV Showcase - 1.png", alt: "TV Showcase 1", folder: "tv" },
-        { src: "/assets/TV Showcase - 2.png", alt: "TV Showcase 2", folder: "tv" },
+        { src: "/assets/tv/TV - 1, Fixed.png", alt: "TV Fixed 1", folder: "tv" },
+        { src: "/assets/tv/TV Showcase - 1.png", alt: "TV Showcase 1", folder: "tv" },
+        { src: "/assets/tv/TV Showcase - 2.png", alt: "TV Showcase 2", folder: "tv" },
       ],
     },
     {
       name: "Tangible Stuff",
       items: [
-        { src: "/assets/TV - 5, Pt. I.png", alt: "Tangible TV Pt I", folder: "tangiblestuff" },
-        { src: "/assets/TV - 5, Pt. II.png", alt: "Tangible TV Pt II", folder: "tangiblestuff" },
-        { src: "/assets/TV - 5, Pt. III.png", alt: "Tangible TV Pt III", folder: "tangiblestuff" },
-        { src: "/assets/TV - 5, Pt. IV.png", alt: "Tangible TV Pt IV", folder: "tangiblestuff" },
-        { src: "/assets/TV - 5, Pt. V.png", alt: "Tangible TV Pt V", folder: "tangiblestuff" },
-        { src: "/assets/TV - 5, Pt. VI.png", alt: "Tangible TV Pt VI", folder: "tangiblestuff" },
-        { src: "/assets/TV - 5, Pt. VII.png", alt: "Tangible TV Pt VII", folder: "tangiblestuff" },
+        { src: "/assets/tangiblestuff/TV - 5, Pt. I.png", alt: "Tangible TV Pt I", folder: "tangiblestuff" },
+        { src: "/assets/tangiblestuff/TV - 5, Pt. II.png", alt: "Tangible TV Pt II", folder: "tangiblestuff" },
+        { src: "/assets/tangiblestuff/TV - 5, Pt. III.png", alt: "Tangible TV Pt III", folder: "tangiblestuff" },
+        { src: "/assets/tangiblestuff/TV - 5, Pt. IV.png", alt: "Tangible TV Pt IV", folder: "tangiblestuff" },
+        { src: "/assets/tangiblestuff/TV - 5, Pt. V.png", alt: "Tangible TV Pt V", folder: "tangiblestuff" },
+        { src: "/assets/tangiblestuff/TV - 5, Pt. VI.png", alt: "Tangible TV Pt VI", folder: "tangiblestuff" },
+        { src: "/assets/tangiblestuff/TV - 5, Pt. VII.png", alt: "Tangible TV Pt VII", folder: "tangiblestuff" },
       ],
     },
   ].filter((folder) => folder.items.length > 0);
