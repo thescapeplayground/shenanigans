@@ -10,7 +10,12 @@ export const DEFAULT_PROFILE: Profile = {
   avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=faces",
   availability: "available",
   statusHeading: "Currently building",
-  statusText: "shenanigans version two-point-one"
+  statusText: "shenanigans version two-point-one",
+  codename: "leonardo, isaiahscape",
+  instagram: {
+    username: "isaiahscape",
+    followers: 990
+  }
 };
 
 export const DEFAULT_PROJECTS: Project[] = [

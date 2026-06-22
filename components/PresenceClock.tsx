@@ -7,9 +7,12 @@ import { motion } from "motion/react";
 interface PresenceClockProps {
   location: string;
   statusText: string;
+  codename?: string;
+  instagramUsername?: string;
+  instagramFollowers?: number;
 }
 
-export function PresenceClock({ location, statusText }: PresenceClockProps) {
+export function PresenceClock({ location, statusText, codename, instagramUsername, instagramFollowers }: PresenceClockProps) {
   const [time, setTime] = useState("");
   const [seconds, setSeconds] = useState(0);
   const [resendStatus, setResendStatus] = useState<{ connected: boolean; message: string } | null>(null);
@@ -47,8 +50,10 @@ export function PresenceClock({ location, statusText }: PresenceClockProps) {
       });
   }, []);
 
+  const formattedFollowers = instagramFollowers !== undefined
+    ? instagramFollowers.toLocaleString()
+    : undefined;
   const socialLinks = [
-    { href: "https://instagram.com/isaiahscape", icon: Instagram, label: "Instagram", color: "text-pink-500" },
     { href: "https://youtube.com/@isaiahscape", icon: Youtube, label: "YouTube", color: "text-red-500" },
     { href: "https://t.me/isaiahscape", icon: MessageCircle, label: "Telegram", color: "text-sky-500" },
     { href: "https://linkedin.com/in/isaiahscape", icon: Linkedin, label: "LinkedIn", color: "text-blue-600" },
@@ -102,14 +107,14 @@ export function PresenceClock({ location, statusText }: PresenceClockProps) {
     </div>
 
       {/* Social Links & Resend Status — side by side in a 2-col grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4" id="col-bottom-cards">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4" id="col-bottom-cards">
         {/* Social Links Card */}
         <div 
           className="flex items-center justify-between p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 backdrop-blur-sm shadow-sm"
           id="col-social-links"
         >
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900 w-10 h-10">
               <span className="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400">
                 @
               </span>
@@ -135,6 +140,59 @@ export function PresenceClock({ location, statusText }: PresenceClockProps) {
                   );
                 })}
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Codename Card */}
+        <div
+          className="flex items-center justify-between p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 backdrop-blur-sm shadow-sm"
+          id="col-codename"
+        >
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900">
+              <span className="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400">
+                #
+              </span>
+            </div>
+            <div className="text-left">
+              <p className="text-xs text-zinc-400 dark:text-zinc-500 font-mono flex items-center gap-1">
+                Codename
+              </p>
+              <p className="text-xs font-medium text-zinc-700 dark:text-zinc-300 mt-0.5 truncate" title={codename}>
+                {codename || "—"}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Instagram Card */}
+        <div
+          className="flex items-center justify-between p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 backdrop-blur-sm shadow-sm"
+          id="col-instagram"
+        >
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900">
+              <Instagram className="w-5 h-5 text-pink-500" />
+            </div>
+            <div className="text-left">
+              <p className="text-xs text-zinc-400 dark:text-zinc-500 font-mono flex items-center gap-1">
+                Instagram
+              </p>
+              {instagramUsername ? (
+                <p className="text-xs font-medium text-zinc-700 dark:text-zinc-300 mt-0.5 flex items-center gap-1">
+                  @{instagramUsername}
+                  {formattedFollowers !== undefined && (
+                    <span className="text-[10px] font-mono text-zinc-500 dark:text-zinc-400">
+                      ({formattedFollowers} followers)
+                    </span>
+                  )}
+                </p>
+              ) : (
+                <p className="text-xs font-medium text-zinc-700 dark:text-zinc-300 mt-0.5">
+                  No account linked
+                </p>
+              )}
             </div>
           </div>
         </div>

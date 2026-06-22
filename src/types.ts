@@ -35,6 +35,11 @@ export interface Profile {
   availability: 'available' | 'busy' | 'away';
   statusHeading?: string;
   statusText?: string;
+  codename?: string;
+  instagram?: {
+    username: string;
+    followers: number;
+  };
 }
 
 export interface StackItem {

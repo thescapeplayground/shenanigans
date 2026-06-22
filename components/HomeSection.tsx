@@ -62,6 +62,9 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
         <PresenceClock 
           location={profile.location} 
           statusText={profile.statusText || ""} 
+          codename={profile.codename}
+          instagramUsername={profile.instagram?.username}
+          instagramFollowers={profile.instagram?.followers}
         />
       </motion.div>
 
