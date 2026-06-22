@@ -9,7 +9,7 @@ export function LoadingScreen() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="min-h-screen bg-zinc-50 dark:bg-black flex items-center justify-center"
+      className="min-h-screen bg-zinc-50/50 dark:bg-black flex items-center justify-center"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
