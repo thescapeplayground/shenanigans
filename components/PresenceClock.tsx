@@ -53,7 +53,6 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
     ? instagramFollowers.toLocaleString()
     : undefined;
   const socialLinks = [
-    { href: "https://instagram.com/isaiahscape", icon: Instagram, label: "Instagram", color: "text-pink-500" },
     { href: "https://youtube.com/@isaiahscape", icon: Youtube, label: "YouTube", color: "text-red-500" },
     { href: "https://t.me/isaiahscape", icon: MessageCircle, label: "Telegram", color: "text-sky-500" },
     { href: "https://linkedin.com/in/isaiahscape", icon: Linkedin, label: "LinkedIn", color: "text-blue-600" },
@@ -128,8 +127,11 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
       </div>
 
       {/* Instagram Card */}
-      <div
-        className="flex items-center justify-between p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 backdrop-blur-sm shadow-sm"
+      <a
+        href={`https://instagram.com/${instagramUsername || "isaiahscape"}`}
+        target="_blank"
+        rel="noreferrer"
+        className="flex items-center justify-between p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 backdrop-blur-sm shadow-sm hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors duration-150"
         id="col-instagram"
       >
         <div className="flex items-center gap-3">
@@ -141,14 +143,16 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
               Instagram
             </p>
             {instagramUsername ? (
-              <p className="text-xs font-medium text-zinc-700 dark:text-zinc-300 mt-0.5 flex items-center gap-1">
-                @{instagramUsername}
+              <div className="mt-0.5">
+                <p className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
+                  @{instagramUsername}
+                </p>
                 {formattedFollowers !== undefined && (
-                  <span className="text-[10px] font-mono text-zinc-500 dark:text-zinc-400">
-                    ({formattedFollowers} followers)
-                  </span>
+                  <p className="text-[10px] font-mono text-zinc-500 dark:text-zinc-400">
+                    {formattedFollowers} followers
+                  </p>
                 )}
-              </p>
+              </div>
             ) : (
               <p className="text-xs font-medium text-zinc-700 dark:text-zinc-300 mt-0.5">
                 No account linked
@@ -156,7 +160,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
             )}
           </div>
         </div>
-      </div>
+      </a>
 
       {/* Social Links Card */}
       <div 
