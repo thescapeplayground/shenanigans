@@ -187,7 +187,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
       {/* Project Expand Modal Overlay (Dialog component) */}
       <Dialog open={selectedProject !== null} onOpenChange={(open) => { if (!open) setSelectedProject(null); }}>
         {selectedProject && (
-          <DialogContent className="max-w-xl text-left border-zinc-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-black/95 backdrop-blur-lg font-sans">
+          <DialogContent className="w-full sm:max-w-xl mx-auto text-left border-zinc-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-black/95 backdrop-blur-lg font-sans p-4 sm:p-6 max-h-[90vh] overflow-y-auto">
             <DialogHeader className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-[11px] font-semibold font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
