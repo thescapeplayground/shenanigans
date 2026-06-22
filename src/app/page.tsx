@@ -25,6 +25,7 @@ import { ContactSection } from "@/components/ContactSection";
 import { GallerySection } from "@/components/GallerySection";
 import { ServicesSection } from "@/components/ServicesSection";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { LoadingScreen } from "@/components/LoadingScreen";
 import { Image, Wrench } from "lucide-react";
 
 type ActiveTab = "home" | "projects" | "stack" | "gallery" | "services" | "contact";
@@ -38,47 +39,7 @@ export default function Page() {
   }, []);
 
   if (!mounted) {
-    return (
-      <div className="min-h-screen bg-zinc-50 dark:bg-black flex items-center justify-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-4"
-        >
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.4 }}
-            className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 font-sans"
-          >
-            Leonardo
-          </motion.span>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.4 }}
-            className="flex gap-1"
-          >
-            <motion.span
-              animate={{ opacity: [0.3, 1, 0.3] }}
-              transition={{ repeat: Infinity, duration: 1.2, delay: 0 }}
-              className="h-1.5 w-1.5 rounded-full bg-zinc-900 dark:bg-zinc-100"
-            />
-            <motion.span
-              animate={{ opacity: [0.3, 1, 0.3] }}
-              transition={{ repeat: Infinity, duration: 1.2, delay: 0.2 }}
-              className="h-1.5 w-1.5 rounded-full bg-zinc-900 dark:bg-zinc-100"
-            />
-            <motion.span
-              animate={{ opacity: [0.3, 1, 0.3] }}
-              transition={{ repeat: Infinity, duration: 1.2, delay: 0.4 }}
-              className="h-1.5 w-1.5 rounded-full bg-zinc-900 dark:bg-zinc-100"
-            />
-          </motion.div>
-        </motion.div>
-      </div>
-    );
+    return <LoadingScreen />;
   }
 
   const profile = DEFAULT_PROFILE;
