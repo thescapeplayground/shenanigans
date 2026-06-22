@@ -178,9 +178,11 @@ export function StackSection({ stack }: StackSectionProps) {
                     className="border border-zinc-100 dark:border-zinc-800/60 rounded-xl bg-zinc-50/50 dark:bg-zinc-900/10 overflow-hidden transition-all duration-200 hover:border-zinc-200 dark:hover:border-zinc-800"
                     id="device-card-samsung"
                   >
-                    <button
-                      onClick={() => toggleDevice("s24")}
-                      className="w-full flex items-center justify-between p-4 text-left focus:outline-none cursor-pointer"
+                    <a
+                      href="https://www.samsung.com/ph/smartphones/galaxy-s24/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-full flex items-center justify-between p-4 text-left focus:outline-none"
                       id="device-toggle-s24"
                     >
                       <div className="flex items-center gap-3">
@@ -196,7 +198,7 @@ export function StackSection({ stack }: StackSectionProps) {
                       ) : (
                         <ChevronDown className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
                       )}
-                    </button>
+                    </a>
 
                     <AnimatePresence>
                       {openDevice === "s24" && (
@@ -274,9 +276,11 @@ export function StackSection({ stack }: StackSectionProps) {
                     className="border border-zinc-100 dark:border-zinc-800/60 rounded-xl bg-zinc-50/50 dark:bg-zinc-900/10 overflow-hidden transition-all duration-200 hover:border-zinc-200 dark:hover:border-zinc-800"
                     id="device-card-lenovo"
                   >
-                    <button
-                      onClick={() => toggleDevice("lenovo")}
-                      className="w-full flex items-center justify-between p-4 text-left focus:outline-none cursor-pointer"
+                    <a
+                      href="https://www.lenovo.com/ph/en/p/laptops/ideapad/ideapad-3/ideapad-slim-3-gen-8-15-inch-amd/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-full flex items-center justify-between p-4 text-left focus:outline-none"
                       id="device-toggle-lenovo"
                     >
                       <div className="flex items-center gap-3">
@@ -292,7 +296,7 @@ export function StackSection({ stack }: StackSectionProps) {
                       ) : (
                         <ChevronDown className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
                       )}
-                    </button>
+                    </a>
 
                     <AnimatePresence>
                       {openDevice === "lenovo" && (
@@ -327,7 +331,10 @@ export function StackSection({ stack }: StackSectionProps) {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5" id="kits-grid-container">
                   {/* Kit Item 1 */}
-                  <div 
+                  <a
+                    href="https://www.linsoul.com/products/simgot-ew300"
+                    target="_blank"
+                    rel="noreferrer"
                     className="flex items-start gap-4 p-4 rounded-xl border border-zinc-100 dark:border-zinc-800/60 bg-zinc-50/20 dark:bg-zinc-900/5 hover:border-zinc-200 dark:hover:border-zinc-800 transition-colors"
                     id="kit-card-truthear"
                   >
@@ -342,10 +349,13 @@ export function StackSection({ stack }: StackSectionProps) {
                         TRN T2 16 Core, Kinera Celest Ruyi Pro
                       </p>
                     </div>
-                  </div>
+                  </a>
 
                   {/* Kit Item 2 */}
-                  <div 
+                  <a
+                    href="https://trn-audio.com/trn-black-pearl.html"
+                    target="_blank"
+                    rel="noreferrer"
                     className="flex items-start gap-4 p-4 rounded-xl border border-zinc-100 dark:border-zinc-800/60 bg-zinc-50/20 dark:bg-zinc-900/5 hover:border-zinc-200 dark:hover:border-zinc-800 transition-colors"
                     id="kit-card-tbk"
                   >
@@ -360,10 +370,13 @@ export function StackSection({ stack }: StackSectionProps) {
                         C43131 DAC, CB5100 Amplifier + 8-Band EQ
                       </p>
                     </div>
-                  </div>
+                  </a>
 
                   {/* Kit Item 3 */}
-                  <div 
+                  <a
+                    href="https://www.pulsar.gg/products/tenz-signature-edition"
+                    target="_blank"
+                    rel="noreferrer"
                     className="flex items-start gap-4 p-4 rounded-xl border border-zinc-100 dark:border-zinc-800/60 bg-zinc-50/20 dark:bg-zinc-900/5 hover:border-zinc-200 dark:hover:border-zinc-800 transition-colors"
                     id="kit-card-pulsar"
                   >
@@ -378,7 +391,7 @@ export function StackSection({ stack }: StackSectionProps) {
                         XS-1 Sensor, 32,000 DPI, 8K PR
                       </p>
                     </div>
-                  </div>
+                  </a>
 
                   {/* Kit Item 4 */}
                   <div 
