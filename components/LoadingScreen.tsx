@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { motion } from "motion/react";
+import { Logo } from "./Logo";
 
 export function LoadingScreen() {
   useEffect(() => {
@@ -31,7 +32,7 @@ export function LoadingScreen() {
         }}
         className="flex flex-col items-center gap-6"
       >
-        <motion.span
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{
@@ -39,10 +40,9 @@ export function LoadingScreen() {
             duration: 0.5,
             ease: "easeOut"
           }}
-          className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 font-sans"
         >
-          Leonardo
-        </motion.span>
+          <Logo className="w-16 h-16" />
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}
