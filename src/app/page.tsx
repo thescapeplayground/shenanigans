@@ -23,10 +23,11 @@ import { ProjectsSection } from "@/components/ProjectsSection";
 import { StackSection } from "@/components/StackSection";
 import { ContactSection } from "@/components/ContactSection";
 import { GallerySection } from "@/components/GallerySection";
+import { ServicesSection } from "@/components/ServicesSection";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { Image } from "lucide-react";
+import { Image, Wrench } from "lucide-react";
 
-type ActiveTab = "home" | "projects" | "stack" | "gallery" | "contact";
+type ActiveTab = "home" | "projects" | "stack" | "gallery" | "services" | "contact";
 
 export default function Page() {
   const [activeTab, setActiveTab] = useState<ActiveTab>("home");
@@ -62,6 +63,8 @@ export default function Page() {
         return <StackSection stack={DEFAULT_STACK} />;
       case "gallery":
         return <GallerySection />;
+      case "services":
+        return <ServicesSection />;
       case "contact":
         return <ContactSection />;
       default:
@@ -74,6 +77,7 @@ export default function Page() {
     { id: "projects", label: "Projects", icon: FolderGit2 },
     { id: "stack", label: "Toolbox", icon: Cpu },
     { id: "gallery", label: "Gallery", icon: Image },
+    { id: "services", label: "Services", icon: Wrench },
     { id: "contact", label: "Collaborate", icon: Mail },
   ];
 
