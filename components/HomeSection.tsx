@@ -29,12 +29,12 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
 
   return (
     <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="show"
-      className="space-y-12 py-4"
-      id="home-section-container"
-    >
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        className="space-y-12 py-4 relative z-10"
+        id="home-section-container"
+      >
       {/* Hero Greeting Copy */}
       <motion.div variants={itemVariants} className="space-y-6 text-left" id="home-greeting-block">
         <div className="flex items-center gap-3">
@@ -130,7 +130,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
           ))}
         </div>
       </motion.div>
-    </motion.div>
+      </motion.div>
   );
 }
 

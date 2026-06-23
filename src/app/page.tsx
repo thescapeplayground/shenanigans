@@ -13,6 +13,7 @@ import { ContactSection } from "@/components/ContactSection";
 import { GallerySection } from "@/components/GallerySection";
 import { ServicesSection } from "@/components/ServicesSection";
 import { LoadingScreen } from "@/components/LoadingScreen";
+import { MasonryBackground } from "@/components/MasonryBackground";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Image, Wrench } from "lucide-react";
 
@@ -69,6 +70,7 @@ export default function Page() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4 }}
         >
+          {activeTab === "home" && <MasonryBackground />}
           <div
             className="min-h-screen bg-zinc-50/50 dark:bg-black text-neutral-900 dark:text-neutral-100 flex flex-col justify-between selection:bg-red-500/10 transition-colors duration-200"
             id="main-app-container"
