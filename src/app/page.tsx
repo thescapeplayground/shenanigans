@@ -24,7 +24,7 @@ export default function Page() {
   const [showApp, setShowApp] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowApp(true), 1400);
+    const timer = setTimeout(() => setShowApp(true), 2000);
     return () => clearTimeout(timer);
   }, []);
 

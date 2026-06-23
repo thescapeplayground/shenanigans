@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useEffect, useState, useMemo } from "react";
+import { useRef, useEffect, useState, useMemo, useCallback } from "react";
+import Image from "next/image";
 
 // All photography images from /assets/masonry/
 const IMAGE_FILES = [
@@ -37,13 +38,16 @@ function distributeColumns(items: MasonryItem[], columnCount: number): MasonryIt
   items.forEach((item, i) => {
     cols[i % columnCount].push(item);
   });
-  // Exactly 2 copies — animation travels 50% (one full copy), so reset is invisible
-  return cols.map(col => [...col, ...col]);
+  return cols;
 }
 
 export function MasonryBackground() {
   const [columnCount, setColumnCount] = useState(4);
   const containerRef = useRef<HTMLDivElement>(null);
+  // One ref per column for direct DOM access
+  const colElsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const animRef = useRef<number>(0);
+  const lastTimeRef = useRef(0);
 
   useEffect(() => {
     function handleResize() {
@@ -60,15 +64,67 @@ export function MasonryBackground() {
   const items = useMemo(() => generateItems(), []);
   const columns = useMemo(() => distributeColumns(items, columnCount), [items, columnCount]);
 
-  // Left columns (even index) go UP, right columns (odd index) go DOWN
-  const speeds = useMemo(() => columns.map((_, i) => {
-    return 20 + i * 4 + Math.sin(i * 1.7) * 6;
-  }), [columns]);
+  // Set up animation loop
+  useEffect(() => {
+    const els = colElsRef.current;
+    if (!els || els.length === 0) return;
+
+    // Initialize scroll positions
+    els.forEach((el, i) => {
+      if (!el) return;
+      el.dataset.scrollPos = "0";
+    });
+
+    // Per-column speeds (px/s): even cols go up (-), odd go down (+)
+    const speeds = els.map((_, i) => {
+      const base = 18 + i * 2.5;
+      const dir = i % 2 === 0 ? -1 : 1;
+      return dir * base;
+    });
+
+    lastTimeRef.current = performance.now();
+
+    function tick(now: number) {
+      const dt = (now - lastTimeRef.current) / 1000;
+      lastTimeRef.current = now;
+
+      for (let i = 0; i < els.length; i++) {
+        const el = els[i];
+        if (!el) continue;
+
+        const halfH = el.scrollHeight / 2;
+        if (halfH <= 0) continue;
+
+        let pos = parseFloat(el.dataset.scrollPos || "0");
+        pos += speeds[i] * dt;
+
+        // Wrap at exactly half the height — pixel-perfect seamless loop
+        while (pos > 0) pos -= halfH;
+        while (pos <= -halfH) pos += halfH;
+
+        el.dataset.scrollPos = String(pos);
+        el.style.transform = `translateY(${pos}px)`;
+      }
+
+      animRef.current = requestAnimationFrame(tick);
+    }
+
+    animRef.current = requestAnimationFrame(tick);
+
+    return () => cancelAnimationFrame(animRef.current);
+  }, [columns.length]);
+
+  const setColRef = useCallback(
+    (idx: number) => (el: HTMLDivElement | null) => {
+      colElsRef.current[idx] = el;
+    },
+    []
+  );
 
   return (
     <div
       ref={containerRef}
-      className="pointer-events-none fixed inset-y-0 right-0 z-0 w-full max-w-[45%] lg:max-w-[50%] xl:max-w-[55%] overflow-hidden"
+      className="pointer-events-none fixed inset-y-0 right-0 z-0 w-full max-w-[45%] lg:max-w-[50%] xl:max-w-[55%] overflow-hidden max-sm:hidden"
       style={{
         maskImage: "linear-gradient(to right, transparent 0%, black 25%, black 100%)",
         WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 25%, black 100%)",
@@ -76,51 +132,34 @@ export function MasonryBackground() {
       aria-hidden="true"
     >
       <div className="flex gap-3 sm:gap-4 h-full w-full py-8">
-        {columns.map((col, colIdx) => {
-          const isUp = colIdx % 2 === 0;
-          return (
-            <div
-              key={colIdx}
-              className="flex-1 flex flex-col gap-3 sm:gap-4"
-              style={{
-                animation: `masonry-${isUp ? "up" : "down"}-${colIdx} ${speeds[colIdx]}s linear infinite`,
-                transform: isUp ? "translateY(0)" : "translateY(-50%)",
-              }}
-            >
-              {col.map((item, itemIdx) => (
-                <div
-                  key={`${item.id}-${itemIdx}`}
-                  className="w-full aspect-[3/4] rounded-xl overflow-hidden shrink-0 relative bg-zinc-700/30 dark:bg-zinc-800/40 border border-zinc-600/20 dark:border-zinc-700/20"
-                >
-                  <img
-                    src={item.src}
-                    alt=""
-                    className="w-full h-full object-cover"
-                    fetchPriority="low"
-                  />
-                </div>
-              ))}
-            </div>
-          );
-        })}
+        {columns.map((col, colIdx) => (
+          <div
+            key={colIdx}
+            ref={setColRef(colIdx)}
+            className="flex-1 flex flex-col gap-3 sm:gap-4"
+            style={{ transform: "translateY(0)", willChange: "transform" }}
+          >
+            {/* Two copies for visual continuity during scroll */}
+            {[...col, ...col].map((item, itemIdx) => (
+              <div
+                key={`${item.id}-${itemIdx}`}
+                className="w-full aspect-[3/4] rounded-xl overflow-hidden shrink-0 relative bg-zinc-700/30 dark:bg-zinc-800/40 border border-zinc-600/20 dark:border-zinc-700/20"
+              >
+                <Image
+                  src={item.src}
+                  alt=""
+                  fill
+                  sizes="(max-width: 640px) 25vw, (max-width: 1024px) 17vw, 12vw"
+                  className="object-cover"
+                  quality={20}
+                  priority={itemIdx < 4}
+                  loading={itemIdx < 4 ? undefined : "lazy"}
+                />
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
-
-      {/* Keyframes injected via style tag */}
-      <style>{`
-        ${columns.map((_, i) => {
-          const up = i % 2 === 0;
-          return `
-            @keyframes masonry-${up ? "up" : "down"}-${i} {
-              0% {
-                transform: translateY(${up ? "0" : "-50%"});
-              }
-              100% {
-                transform: translateY(${up ? "-50%" : "0"});
-              }
-            }
-          `;
-        }).join('')}
-      `}</style>
     </div>
   );
 }
