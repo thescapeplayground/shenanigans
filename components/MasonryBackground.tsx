@@ -143,7 +143,7 @@ export function MasonryBackground() {
             {[...col, ...col].map((item, itemIdx) => (
               <div
                 key={`${item.id}-${itemIdx}`}
-                className="w-full aspect-[3/4] rounded-xl overflow-hidden shrink-0 relative bg-zinc-700/30 dark:bg-zinc-800/40 border border-zinc-600/20 dark:border-zinc-700/20"
+                className="w-full aspect-[3/4] rounded-xl overflow-hidden shrink-0 relative bg-zinc-900/20 dark:bg-black/40 border border-zinc-800/10 dark:border-zinc-800/10"
               >
                 <Image
                   src={item.src}

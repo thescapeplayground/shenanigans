@@ -70,6 +70,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
 
       {/* Career Journey Timeline */}
       <motion.div variants={itemVariants} className="space-y-6 sm:space-y-8 text-left" id="home-timeline-block">
+        <div className="rounded-2xl bg-white/40 dark:bg-black/30 backdrop-blur-xl border border-zinc-200/30 dark:border-zinc-800/20 p-5 sm:p-6 space-y-6 sm:space-y-8">
         <div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-900/50 pb-3">
           <h2 className="text-base font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider font-mono flex items-center gap-2">
             <Briefcase className="w-4 h-4 text-zinc-500" /> Career Journey
@@ -128,6 +129,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
               )}
             </div>
           ))}
+        </div>
         </div>
       </motion.div>
       </motion.div>
