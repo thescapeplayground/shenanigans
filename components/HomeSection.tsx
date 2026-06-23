@@ -70,17 +70,15 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
 
       {/* Career Journey Timeline */}
       <motion.div variants={itemVariants} className="space-y-6 sm:space-y-8 text-left" id="home-timeline-block">
-        <div className="rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800/50 shadow-sm overflow-hidden">
-        <div className="px-5 sm:px-6 pt-5 sm:pt-6">
-        <div className="flex items-center justify-between pb-3">
+        <div className="rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800/50 shadow-sm p-5 sm:p-6">
+        <div className="flex items-center justify-between pb-5 mb-5 border-b border-zinc-100 dark:border-zinc-900/50">
           <h2 className="text-base font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider font-mono flex items-center gap-2">
             <Briefcase className="w-4 h-4 text-red-500 dark:text-red-400" /> Career Journey
           </h2>
           <span className="text-xs font-mono text-zinc-400">Archived Timeline</span>
         </div>
-        </div>
 
-        <div className="relative border-l border-zinc-200/80 dark:border-zinc-800 ml-6 sm:ml-7 pl-4 sm:pl-6 space-y-8 sm:space-y-10 pb-5 sm:pb-6" id="experience-vertical-timeline">
+        <div className="relative border-l border-zinc-200/80 dark:border-zinc-800 lg:ml-2 pl-4 sm:pl-6 space-y-8 sm:space-y-10" id="experience-vertical-timeline">
           {experiences.map((exp, index) => (
             <div key={exp.id} className="relative group text-left" id={`timeline-item-${exp.id}`}>
               {/* Timeline bubble indicator */}
