@@ -66,7 +66,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="presence-clock-grid">
       {/* Timezone / Location Indicator */}
       <div 
-        className="flex items-center gap-4 p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 backdrop-blur-sm shadow-sm"
+        className="flex items-center gap-4 p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-white dark:bg-zinc-900 shadow-sm"
         id="col-location-time"
       >
         <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900 w-10 h-10">
@@ -88,7 +88,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
 
       {/* Live Status Tracker */}
       <div 
-        className="flex items-center gap-4 p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 backdrop-blur-sm shadow-sm"
+        className="flex items-center gap-4 p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-white dark:bg-zinc-900 shadow-sm"
         id="col-current-activity"
       >
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900 w-10 h-10">
@@ -106,7 +106,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
 
       {/* Codename Card */}
       <div
-        className="flex items-center justify-between p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 backdrop-blur-sm shadow-sm"
+        className="flex items-center justify-between p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-white dark:bg-zinc-900 shadow-sm"
         id="col-codename"
       >
         <div className="flex items-center gap-3">
@@ -129,7 +129,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
         href={`https://instagram.com/${instagramUsername || "isaiahscape"}`}
         target="_blank"
         rel="noreferrer"
-        className="flex items-center justify-between p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 backdrop-blur-sm shadow-sm hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors duration-150"
+        className="flex items-center justify-between p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-white dark:bg-zinc-900 shadow-sm hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors duration-150"
         id="col-instagram"
       >
         <div className="flex items-center gap-3">
@@ -162,7 +162,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
 
       {/* Social Links Card */}
       <div 
-        className="flex items-center justify-between p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 backdrop-blur-sm shadow-sm"
+        className="flex items-center justify-between p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-white dark:bg-zinc-900 shadow-sm"
         id="col-social-links"
       >
         <div className="flex items-center gap-3">
@@ -196,7 +196,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
 
       {/* Resend Status Card */}
       <div 
-        className="flex items-center justify-between p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 backdrop-blur-sm shadow-sm"
+        className="flex items-center justify-between p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-white dark:bg-zinc-900 shadow-sm"
         id="col-resend-status"
       >
         <div className="flex items-center gap-3">

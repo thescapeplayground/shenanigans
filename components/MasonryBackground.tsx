@@ -155,8 +155,7 @@ export function MasonryBackground() {
                   priority={itemIdx < 4}
                   loading={itemIdx < 4 ? undefined : "lazy"}
                 />
-                {/* Dark gradient overlay on left side so text stays readable */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent pointer-events-none" />
+
               </div>
             ))}
           </div>
