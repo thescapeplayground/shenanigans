@@ -8,7 +8,7 @@ const services = [
     title: "Maintenance",
     description: "Routine upkeep and care to keep your systems, devices, and gear running smoothly over time.",
     icon: Wrench,
-    color: "text-emerald-500",
+    color: "text-red-500 dark:text-red-400",
     image: "/assets/tangiblestuff/TV - 5, Pt. IV.png",
   },
   {
@@ -22,7 +22,7 @@ const services = [
     title: "Repair",
     description: "Diagnostic and hands-on fixes for broken, slow, or malfunctioning tech and equipment.",
     icon: WrenchIcon,
-    color: "text-amber-500",
+    color: "text-red-500 dark:text-red-400",
     image: "/assets/tangiblestuff/TV - 5, Pt. II.png",
   },
   {
@@ -36,7 +36,7 @@ const services = [
     title: "Designing",
     description: "Visual, UI, and layout design work for interfaces, branding, and creative assets.",
     icon: Paintbrush,
-    color: "text-pink-500",
+    color: "text-red-500 dark:text-red-400",
     image: "/assets/tangiblestuff/TV - 5, Pt. VI.png",
   },
 ];

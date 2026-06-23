@@ -89,7 +89,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
 
         {/* Search input field */}
         <div className="relative w-full sm:w-64 shrink-0" id="search-input-wrapper">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-400" />
+          <Search className="absolute left-3 top-2.5 h-4 w-4 text-red-500 dark:text-red-400" />
           <Input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -169,7 +169,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
         </motion.div>
       ) : (
         <div className="py-20 text-center text-zinc-500" id="projects-empty-state">
-          <FolderGit2 className="w-12 h-12 mx-auto text-zinc-300 mb-3 animate-pulse" />
+          <FolderGit2 className="w-12 h-12 mx-auto text-red-500 dark:text-red-400 mb-3 animate-pulse" />
           <p className="text-sm font-mono mt-2">No projects matched your criteria.</p>
           <Button
             variant="ghost"
@@ -237,12 +237,12 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               {/* Date Metadata */}
               <div className="flex items-center gap-6 text-sm text-zinc-500 font-mono border-t border-zinc-100 dark:border-zinc-900/50 pt-4">
                 <div className="flex items-center gap-1.5">
-                  <Calendar className="w-4 h-4 text-zinc-400" />
+                  <Calendar className="w-4 h-4 text-red-500 dark:text-red-400" />
                   <span>Release: {selectedProject.date}</span>
                 </div>
                 {selectedProject.stats && (
                   <div className="flex items-center gap-1.5">
-                    <GitFork className="w-4 h-4 text-zinc-400" />
+                    <GitFork className="w-4 h-4 text-red-500 dark:text-red-400" />
                     <span>Scale: {selectedProject.stats}</span>
                   </div>
                 )}

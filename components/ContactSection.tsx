@@ -115,7 +115,7 @@ export function ContactSection() {
             >
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white dark:bg-zinc-950 rounded-lg border border-zinc-100 dark:border-zinc-800">
-                  <Github className="w-4 h-4 text-purple-500" />
+                  <Github className="w-4 h-4 text-red-500 dark:text-red-400" />
                 </div>
                 <div>
                   <p className="text-[10px] font-mono text-zinc-400 leading-none mb-0.5">GitHub Repository</p>
@@ -137,7 +137,7 @@ export function ContactSection() {
             >
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white dark:bg-zinc-950 rounded-lg border border-zinc-100 dark:border-zinc-800">
-                  <MessageCircle className="w-4 h-4 text-sky-500" />
+                  <MessageCircle className="w-4 h-4 text-red-500 dark:text-red-400" />
                 </div>
                 <div>
                   <p className="text-[10px] font-mono text-zinc-400 leading-none mb-0.5">Telegram</p>
@@ -159,7 +159,7 @@ export function ContactSection() {
             >
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white dark:bg-zinc-950 rounded-lg border border-zinc-100 dark:border-zinc-800">
-                  <Image className="w-4 h-4 text-pink-500" />
+                  <Image className="w-4 h-4 text-red-500 dark:text-red-400" />
                 </div>
                 <div>
                   <p className="text-[10px] font-mono text-zinc-400 leading-none mb-0.5">Instagram</p>

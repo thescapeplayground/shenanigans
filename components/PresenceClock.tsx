@@ -54,11 +54,11 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
     : undefined;
   const socialLinks = [
     { href: "https://youtube.com/@isaiahscape", icon: Youtube, label: "YouTube", color: "text-red-500" },
-    { href: "https://t.me/isaiahscape", icon: MessageCircle, label: "Telegram", color: "text-sky-500" },
-    { href: "https://linkedin.com/in/isaiahscape", icon: Linkedin, label: "LinkedIn", color: "text-blue-600" },
-    { href: "https://twitch.tv/isaiahscape", icon: Twitch, label: "Twitch", color: "text-purple-500" },
-    { href: "https://tiktok.com/@isaiahscape", icon: Music2, label: "TikTok", color: "text-zinc-900 dark:text-zinc-100" },
-    { href: "https://github.com/thescapeplayground/shenanigans", icon: Github, label: "GitHub", color: "text-zinc-800 dark:text-zinc-200" },
+    { href: "https://t.me/isaiahscape", icon: MessageCircle, label: "Telegram", color: "text-red-500 dark:text-red-400" },
+    { href: "https://linkedin.com/in/isaiahscape", icon: Linkedin, label: "LinkedIn", color: "text-red-500 dark:text-red-400" },
+    { href: "https://twitch.tv/isaiahscape", icon: Twitch, label: "Twitch", color: "text-red-500 dark:text-red-400" },
+    { href: "https://tiktok.com/@isaiahscape", icon: Music2, label: "TikTok", color: "text-red-500 dark:text-red-400" },
+    { href: "https://github.com/thescapeplayground/shenanigans", icon: Github, label: "GitHub", color: "text-red-500 dark:text-red-400" },
   ];
 
   return (
@@ -70,7 +70,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
         id="col-location-time"
       >
         <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900 w-10 h-10">
-          <Clock className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
+          <Clock className="w-5 h-5 text-red-500 dark:text-red-400" />
           <span className="absolute bottom-1 right-1 flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -92,7 +92,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
         id="col-current-activity"
       >
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900 w-10 h-10">
-          <Activity className="w-5 h-5 text-zinc-500 dark:text-zinc-400 animate-pulse text-red-500 dark:text-red-400" />
+          <Activity className="w-5 h-5 text-red-500 dark:text-red-400 animate-pulse" />
         </div>
         <div className="text-left overflow-hidden w-full">
           <p className="text-xs text-zinc-400 dark:text-zinc-500 font-mono flex items-center gap-1 pr-2">
@@ -134,7 +134,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
       >
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900">
-            <Instagram className="w-5 h-5 text-pink-500" />
+            <Instagram className="w-5 h-5 text-red-500 dark:text-red-400" />
           </div>
           <div className="text-left">
             <p className="text-xs text-zinc-400 dark:text-zinc-500 font-mono flex items-center gap-1">

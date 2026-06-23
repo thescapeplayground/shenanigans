@@ -73,7 +73,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
         <div className="rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800/50 shadow-sm p-5 sm:p-6">
         <div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-900/50 pb-3">
           <h2 className="text-base font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider font-mono flex items-center gap-2">
-            <Briefcase className="w-4 h-4 text-zinc-500" /> Career Journey
+            <Briefcase className="w-4 h-4 text-red-500 dark:text-red-400" /> Career Journey
           </h2>
           <span className="text-xs font-mono text-zinc-400">Archived Timeline</span>
         </div>

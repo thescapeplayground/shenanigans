@@ -55,29 +55,29 @@ export function StackSection({ stack }: StackSectionProps) {
   const getIconElement = (name: string) => {
     switch (name) {
       case "Code2":
-        return <Code2 className="w-5 h-5 text-red-500" />;
+        return <Code2 className="w-5 h-5 text-red-500 dark:text-red-400" />;
       case "Terminal":
-        return <Terminal className="w-5 h-5 text-sky-500" />;
+        return <Terminal className="w-5 h-5 text-red-500 dark:text-red-400" />;
       case "Cpu":
-        return <Cpu className="w-5 h-5 text-amber-500" />;
+        return <Cpu className="w-5 h-5 text-red-500 dark:text-red-400" />;
       case "Palette":
-        return <Palette className="w-5 h-5 text-pink-500" />;
+        return <Palette className="w-5 h-5 text-red-500 dark:text-red-400" />;
       case "Activity":
-        return <Activity className="w-5 h-5 text-rose-500" />;
+        return <Activity className="w-5 h-5 text-red-500 dark:text-red-400" />;
       case "Server":
-        return <Server className="w-5 h-5 text-emerald-500" />;
+        return <Server className="w-5 h-5 text-red-500 dark:text-red-400" />;
       case "Github":
-        return <Github className="w-5 h-5 text-purple-500" />;
+        return <Github className="w-5 h-5 text-red-500 dark:text-red-400" />;
       case "Laptop":
-        return <Laptop className="w-5 h-5 text-blue-500" />;
+        return <Laptop className="w-5 h-5 text-red-500 dark:text-red-400" />;
       case "PenTool":
-        return <PenTool className="w-5 h-5 text-orange-500" />;
+        return <PenTool className="w-5 h-5 text-red-500 dark:text-red-400" />;
       case "Music":
-        return <Music className="w-5 h-5 text-teal-500" />;
+        return <Music className="w-5 h-5 text-red-500 dark:text-red-400" />;
       case "Keyboard":
-        return <Keyboard className="w-5 h-5 text-violet-500" />;
+        return <Keyboard className="w-5 h-5 text-red-500 dark:text-red-400" />;
       default:
-        return <Boxes className="w-5 h-5 text-zinc-500" />;
+        return <Boxes className="w-5 h-5 text-red-500 dark:text-red-400" />;
     }
   };
 
@@ -157,7 +157,7 @@ export function StackSection({ stack }: StackSectionProps) {
               className="flex items-center gap-2 px-4 py-3 bg-zinc-50 dark:bg-zinc-900/50 border-b border-zinc-200 dark:border-zinc-800/80"
               id="gadgets-editor-header"
             >
-              <FileText className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
+              <FileText className="w-4 h-4 text-red-500 dark:text-red-400" />
               <span className="font-mono text-xs font-semibold text-zinc-600 dark:text-zinc-400 tracking-tight">
                 gadgets.md
               </span>
@@ -185,7 +185,7 @@ export function StackSection({ stack }: StackSectionProps) {
                     >
                       <div className="flex items-center gap-3">
                         <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                          <Smartphone className="w-5 h-5 text-red-500" />
+                          <Smartphone className="w-5 h-5 text-red-500 dark:text-red-400" />
                         </div>
                         <a
                           href="https://www.samsung.com/ph/smartphones/galaxy-s24/"
@@ -198,9 +198,9 @@ export function StackSection({ stack }: StackSectionProps) {
                         </a>
                       </div>
                       {openDevice === "s24" ? (
-                        <ChevronUp className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
+                        <ChevronUp className="w-4 h-4 text-red-500 dark:text-red-400" />
                       ) : (
-                        <ChevronDown className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
+                        <ChevronDown className="w-4 h-4 text-red-500 dark:text-red-400" />
                       )}
                     </button>
 
@@ -239,16 +239,16 @@ export function StackSection({ stack }: StackSectionProps) {
                     >
                       <div className="flex items-center gap-3">
                         <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                          <Cpu className="w-5 h-5 text-amber-500" />
+                          <Cpu className="w-5 h-5 text-red-500 dark:text-red-400" />
                         </div>
                         <span className="text-sm font-bold text-zinc-800 dark:text-zinc-200">
                           Gaming Specifications
                         </span>
                       </div>
                       {openDevice === "gaming" ? (
-                        <ChevronUp className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
+                        <ChevronUp className="w-4 h-4 text-red-500 dark:text-red-400" />
                       ) : (
-                        <ChevronDown className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
+                        <ChevronDown className="w-4 h-4 text-red-500 dark:text-red-400" />
                       )}
                     </button>
 
@@ -287,7 +287,7 @@ export function StackSection({ stack }: StackSectionProps) {
                     >
                       <div className="flex items-center gap-3">
                         <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                          <Laptop className="w-5 h-5 text-blue-500" />
+                          <Laptop className="w-5 h-5 text-red-500 dark:text-red-400" />
                         </div>
                         <a
                           href="https://www.lenovo.com/ph/en/p/laptops/ideapad/ideapad-3/ideapad-slim-3-gen-8-15-inch-amd/"
@@ -300,9 +300,9 @@ export function StackSection({ stack }: StackSectionProps) {
                         </a>
                       </div>
                       {openDevice === "lenovo" ? (
-                        <ChevronUp className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
+                        <ChevronUp className="w-4 h-4 text-red-500 dark:text-red-400" />
                       ) : (
-                        <ChevronDown className="w-4 h-4 text-zinc-400 dark:text-zinc-500" />
+                        <ChevronDown className="w-4 h-4 text-red-500 dark:text-red-400" />
                       )}
                     </button>
 
@@ -347,7 +347,7 @@ export function StackSection({ stack }: StackSectionProps) {
                     id="kit-card-truthear"
                   >
                     <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                      <Headphones className="w-5 h-5 text-teal-500" />
+                      <Headphones className="w-5 h-5 text-red-500 dark:text-red-400" />
                     </div>
                     <div className="space-y-1 text-left min-w-0">
                       <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-tight truncate">
@@ -368,7 +368,7 @@ export function StackSection({ stack }: StackSectionProps) {
                     id="kit-card-tbk"
                   >
                     <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                      <Sliders className="w-5 h-5 text-purple-500" />
+                      <Sliders className="w-5 h-5 text-red-500 dark:text-red-400" />
                     </div>
                     <div className="space-y-1 text-left min-w-0">
                       <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-tight truncate">
@@ -389,7 +389,7 @@ export function StackSection({ stack }: StackSectionProps) {
                     id="kit-card-pulsar"
                   >
                     <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                      <Mouse className="w-5 h-5 text-pink-500" />
+                      <Mouse className="w-5 h-5 text-red-500 dark:text-red-400" />
                     </div>
                     <div className="space-y-1 text-left min-w-0">
                       <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-tight truncate">
@@ -407,7 +407,7 @@ export function StackSection({ stack }: StackSectionProps) {
                     id="kit-card-aula"
                   >
                     <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                      <Keyboard className="w-5 h-5 text-violet-500" />
+                      <Keyboard className="w-5 h-5 text-red-500 dark:text-red-400" />
                     </div>
                     <div className="space-y-1 text-left min-w-0">
                       <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-tight truncate">
