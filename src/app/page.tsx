@@ -79,7 +79,7 @@ export default function Page() {
               className="sticky top-0 z-40 w-full border-b border-zinc-200/40 dark:border-zinc-800/20 bg-white/70 dark:bg-black/70 backdrop-blur-md"
               id="top-floating-header"
             >
-              <div className="max-w-[1440px] mx-auto px-6 py-4 flex items-center justify-between" id="header-content-inner">
+              <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between" id="header-content-inner">
                 <div
                   className="flex items-center gap-2 cursor-pointer group select-none"
                   onClick={() => setActiveTab("home")}
@@ -98,7 +98,7 @@ export default function Page() {
               </div>
             </header>
 
-            <main className="flex-1 max-w-[1440px] mx-auto w-full px-6 pt-8 pb-24 md:pb-16" id="core-content-stage">
+            <main className="flex-1 max-w-[1800px] mx-auto w-full px-4 sm:px-6 lg:px-8 pt-8 pb-24 md:pb-16" id="core-content-stage">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeTab}
@@ -152,7 +152,7 @@ export default function Page() {
             </div>
 
             <footer
-              className="text-center py-6 border-t border-zinc-200/20 dark:border-zinc-800/20 max-w-[1440px] mx-auto w-full px-6 text-xs font-mono text-zinc-400 dark:text-zinc-600 flex flex-col sm:flex-row justify-between items-center gap-2 shrink-0"
+              className="text-center py-6 border-t border-zinc-200/20 dark:border-zinc-800/20 max-w-[1800px] mx-auto w-full px-4 sm:px-6 lg:px-8 text-xs font-mono text-zinc-400 dark:text-zinc-600 flex flex-col sm:flex-row justify-between items-center gap-2 shrink-0"
               id="app-credit-footer"
             >
               <p>© 2026 @isaiahscape. Built with realm, shenanigans, shadcnUI.</p>
