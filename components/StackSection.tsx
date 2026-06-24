@@ -146,6 +146,8 @@ export function StackSection({ stack }: StackSectionProps) {
           </p>
         </div>
 
+        {/* Gadgets + Technical Skills laid out side by side on large screens */}
+        <div className="grid gap-10 lg:grid-cols-[3fr_2fr] items-start" id="gadgets-tech-layout">
         {/* SECTION 1: Devices and Kits (gadgets.md layout) */}
         <div className="space-y-4" id="gadgets-markdown-group">
           <div 
@@ -431,7 +433,7 @@ export function StackSection({ stack }: StackSectionProps) {
             <Settings className="w-3.5 h-3.5" /> Technical Skills
           </h3>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3" id="tech-skills-grid">
+          <div className="grid grid-cols-2 gap-3" id="tech-skills-grid">
             {softwareStack.map((item) => (
               <React.Fragment key={item.name}>
                 <Tooltip>
@@ -439,12 +441,12 @@ export function StackSection({ stack }: StackSectionProps) {
                     render={
                       <motion.div
                         variants={itemVariants}
-                        className="flex items-center gap-3 p-3 rounded-xl border border-zinc-200/50 dark:border-zinc-800/40 bg-zinc-50/50 dark:bg-zinc-900/10 hover:border-zinc-300 dark:hover:border-zinc-700/80 transition-colors duration-200 cursor-help"
+                        className="flex items-center gap-3 p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-white dark:bg-zinc-900 shadow-sm hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors duration-200 cursor-help"
                         id={`stack-item-${item.name.replace(/\s+/g, '-').toLowerCase()}`}
                       />
                     }
                   >
-                    <div className="p-1.5 rounded-lg bg-white dark:bg-zinc-950 border border-zinc-100/80 dark:border-zinc-800/80 shadow-xs">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/50 dark:border-zinc-800/40">
                       {getIconElement(item.iconName)}
                     </div>
                     <div>
@@ -463,6 +465,7 @@ export function StackSection({ stack }: StackSectionProps) {
               </React.Fragment>
             ))}
           </div>
+        </div>
         </div>
       </motion.div>
     </TooltipProvider>
