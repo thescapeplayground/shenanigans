@@ -60,7 +60,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   id="brand-logo"
                 >
                   <img src="/favicon.svg" alt="Logo" className="w-6 h-6 dark:invert" />
-                  <span className="font-mono text-sm tracking-tight font-bold text-zinc-900 dark:text-zinc-100">
+                  <span className="text-medium tracking-tight font-bold text-zinc-900 dark:text-zinc-100">
                     Leonardo&apos;s Terrace
                   </span>
                 </Link>
