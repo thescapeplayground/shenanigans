@@ -1,9 +1,13 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-// Initialize Resend lazily so the route still type-checks when the env var is
+// Initialize Resend lazily so the route still works when the env var is
 // absent during local development / static builds.
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResend() {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return null;
+  return new Resend(apiKey);
+}
 
 // Sender address configured via env so it can be swapped between the Resend
 // sandbox domain (onboarding@resend.dev) and a verified custom domain without
@@ -58,6 +62,14 @@ export async function POST(request: Request) {
         <p style="white-space: pre-wrap; line-height: 1.6; margin: 0;">${escapeHtml(message)}</p>
       </div>
     `;
+
+    const resend = getResend();
+    if (!resend) {
+      return NextResponse.json(
+        { error: "Email delivery is not configured." },
+        { status: 503 }
+      );
+    }
 
     const data = await resend.emails.send({
       from: FROM_ADDRESS,
