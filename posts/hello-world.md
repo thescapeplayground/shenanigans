@@ -6,7 +6,7 @@ date: "2026-06-26"
 tags: ["meta", "personal"]
 published: true
 ---
-## Why a blog?
+ ## Why a blog?
 
 I've been meaning to write things down for a while — thoughts, experiments, build logs, maybe even some tutorials. This is the place for all of that.
 
