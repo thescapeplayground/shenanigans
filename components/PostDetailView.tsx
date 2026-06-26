@@ -152,25 +152,6 @@ export function PostDetailView({ post }: { post: Post }) {
         </main>
       </div>
 
-      {/* Mobile heading indicator */}
-      {headings.length > 0 && (
-        <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-1.5 xl:hidden">
-          {headings.map((h) => (
-            <button
-              key={h.id}
-              onClick={() => scrollToHeading(h.id)}
-              className={`text-[10px] leading-none text-right transition-all ${
-                activeId === h.id
-                  ? "text-red-500 font-bold scale-110"
-                  : "text-zinc-400 dark:text-zinc-600 hover:text-zinc-600 dark:hover:text-zinc-400"
-              }`}
-              aria-label={h.text}
-            >
-              {h.text.split(" ")[0]}
-            </button>
-          ))}
-        </div>
-      )}
     </motion.div>
   );
 }
