@@ -63,8 +63,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   <span className="font-mono text-sm tracking-tight font-bold text-zinc-900 dark:text-zinc-100">
                     Leonardo&apos;s Terrace
                   </span>
-                  <span className="text-zinc-300 dark:text-zinc-700 font-normal">/</span>
-                  <span className="font-mono text-xs text-zinc-500 capitalize">{activeTab}</span>
                 </Link>
                 <div className="flex items-center gap-2" id="action-tools-panel">
                   <ThemeToggle />
