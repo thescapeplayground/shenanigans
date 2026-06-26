@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Home, FolderGit2, Mail, Cpu } from "lucide-react";
+import { Home, FolderGit2, Mail, Cpu, BookText } from "lucide-react";
 
 import { DEFAULT_PROFILE, DEFAULT_PROJECTS, DEFAULT_EXPERIENCES, DEFAULT_STACK } from "../data";
 
@@ -12,12 +12,13 @@ import { StackSection } from "@/components/StackSection";
 import { ContactSection } from "@/components/ContactSection";
 import { GallerySection } from "@/components/GallerySection";
 import { ServicesSection } from "@/components/ServicesSection";
+import { BlogSection } from "@/components/BlogSection";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { MasonryBackground } from "@/components/MasonryBackground";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Image, Wrench } from "lucide-react";
 
-type ActiveTab = "home" | "projects" | "stack" | "gallery" | "services" | "contact";
+type ActiveTab = "home" | "projects" | "stack" | "gallery" | "services" | "contact" | "blog";
 
 export default function Page() {
   const [activeTab, setActiveTab] = useState<ActiveTab>("home");
@@ -45,6 +46,8 @@ export default function Page() {
         return <ServicesSection />;
       case "contact":
         return <ContactSection />;
+      case "blog":
+        return <BlogSection />;
       default:
         return null;
     }
@@ -57,6 +60,7 @@ export default function Page() {
     { id: "gallery", label: "Gallery", icon: Image },
     { id: "services", label: "Services", icon: Wrench },
     { id: "contact", label: "Collaborate", icon: Mail },
+    { id: "blog", label: "Blog", icon: BookText },
   ];
 
   return (
