@@ -4,13 +4,14 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
-import { Home, FolderGit2, Mail, Cpu, BookText, Image, Wrench } from "lucide-react";
+import { Home, FolderGit2, Mail, Cpu, BookText, Image, Wrench, User } from "lucide-react";
 
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LoadingScreen } from "@/components/LoadingScreen";
 
 const navItems: { id: string; label: string; href: string; icon: typeof Home }[] = [
   { id: "home", label: "Home", href: "/", icon: Home },
+  { id: "about", label: "About", href: "/about", icon: User },
   { id: "projects", label: "Projects", href: "/projects", icon: FolderGit2 },
   { id: "stack", label: "Toolbox", href: "/stack", icon: Cpu },
   { id: "gallery", label: "Gallery", href: "/gallery", icon: Image },
@@ -116,7 +117,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               className="text-center py-6 border-t border-zinc-200/20 dark:border-zinc-800/20 max-w-[1800px] mx-auto w-full px-4 sm:px-6 lg:px-8 text-xs font-mono text-zinc-400 dark:text-zinc-600 flex flex-col sm:flex-row justify-between items-center gap-2 shrink-0"
               id="app-credit-footer"
             >
-              <p>&copy; 2026 @isaiahscape. Built with realm, shenanigans, shadcnUI.</p>
+              <p>&copy; 2026 The Scape Series: Playground</p>
               <div className="flex gap-4">
                 <a href="https://github.com/thescapeplayground/shenanigans" target="_blank" rel="noreferrer" className="hover:text-red-500 dark:hover:text-red-400">
                   repository

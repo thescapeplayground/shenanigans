@@ -1,11 +1,11 @@
-import { Project, Experience, Profile, StackItem } from './types';
+import { Project, Experience, Profile, StackItem, About } from './types';
 
 export const DEFAULT_PROFILE: Profile = {
   name: "Leonardo",
   username: "isaiahscape",
   role: "Photographer, Graphic Designer",
   bio: "Not here to impress — just keeping it real. Welcome to my personal corner of the web.",
-  secondaryBio: "I'm Isiaih Rafael Pavia, living in Davao, Philippines. Age 20. If you're interested in working together, feel free to reach out via my work email.",
+  secondaryBio: "I'm Isiaih Rafael Pavia, living in Davao, Philippines. If you're interested in working together, feel free to reach out via contact section.",
   location: "Manila, Philippines",
   avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=faces",
   availability: "available",
@@ -111,6 +111,39 @@ export const DEFAULT_EXPERIENCES: Experience[] = [
     tags: ["Event Production", "Multimedia Co-ordination", "Logistics"]
   }
 ];
+
+function computeAge(birthDate: Date): number {
+  const now = new Date();
+  let age = now.getFullYear() - birthDate.getFullYear();
+  const monthDiff = now.getMonth() - birthDate.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && now.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age;
+}
+
+const BIRTHDAY = new Date("2005-07-01T00:00:00+08:00");
+const CURRENT_AGE = computeAge(BIRTHDAY);
+
+export const DEFAULT_ABOUT: About = {
+  heading: "More about me",
+  paragraphs: [
+    `I'm Isiaih Rafael Pavia, a ${CURRENT_AGE}-year-old photographer, graphic designer, and developer based in Davao, Philippines. I've always been drawn to the intersection of creativity and technology — whether it's framing the perfect shot, crafting visual identities, or building tools that make life a little easier.`,
+    "I started my journey in the creative space through social media organizing and content editing, which naturally led to web development and automation. I believe in keeping things real, minimal, and functional. No fluff, just honest work.",
+    "When I'm not behind a camera or a keyboard, you'll probably find me exploring new music, tinkering with audio gear, or brainstorming the next project under The Scape Network. I'm also a part-time IT instructor, which keeps me grounded and constantly learning from the students I teach.",
+    "This site is my personal corner of the web — a place to document projects, share thoughts, and maybe inspire someone to build their own thing."
+  ],
+  image: {
+    url: "/assets/hero.jpg",
+    alt: "Profile portrait"
+  },
+  highlights: [
+    { label: "Age", value: `${CURRENT_AGE}` },
+    { label: "Location", value: "Davao, Philippines" },
+    { label: "Role", value: "Photographer, Web/Graphic Designer" },
+    { label: "Currently", value: "Finding a job" }
+  ]
+};
 
 export const DEFAULT_STACK: StackItem[] = [
   { name: "React", category: "frameworks", iconName: "Code2", level: "Advanced" },

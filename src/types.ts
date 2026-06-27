@@ -42,6 +42,19 @@ export interface Profile {
   };
 }
 
+export interface About {
+  heading: string;
+  paragraphs: string[];
+  image?: {
+    url: string;
+    alt: string;
+  };
+  highlights: {
+    label: string;
+    value: string;
+  }[];
+}
+
 export interface StackItem {
   name: string;
   category: 'languages' | 'frameworks' | 'tools' | 'hardware';
