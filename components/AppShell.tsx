@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
@@ -25,14 +25,96 @@ function resolveActiveTab(pathname: string): string {
   return pathname.replace(/^\//, "");
 }
 
+function DesktopNav({
+  activeTab,
+}: {
+  activeTab: string;
+}) {
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+        setVisible(false);
+      } else {
+        setVisible(true);
+      }
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <motion.div
+      className="fixed top-16 left-0 right-0 z-30 hidden sm:block pointer-events-none"
+      initial={false}
+      animate={{
+        y: visible ? 0 : -60,
+        opacity: visible ? 1 : 0,
+      }}
+      transition={{ duration: 0.25, ease: "easeInOut" }}
+    >
+      <nav className="mx-auto w-fit p-1 px-1.5 flex gap-0.5 justify-center items-center rounded-full shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] pointer-events-auto">
+        {navItems.map((item) => {
+          const Icon = item.icon;
+          const isActive = activeTab === item.id;
+          return (
+            <Link
+              key={item.id}
+              href={item.href}
+              className="relative flex items-center justify-center p-2.5 rounded-full transition-all group active:scale-95 cursor-pointer"
+            >
+              {isActive && (
+                <motion.div
+                  layoutId="active-island-slide-desktop"
+                  className="absolute inset-0 bg-red-500/15 dark:bg-red-500/10 border border-red-500/20 rounded-full z-0"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
+              <Icon
+                className={`shrink-0 z-10 transition-all duration-200 ${
+                  isActive
+                    ? "text-red-500 dark:text-red-400 w-4 h-4"
+                    : "text-zinc-500 dark:text-zinc-400 group-hover:text-red-500 dark:group-hover:text-red-300 w-4 h-4"
+                }`}
+              />
+            </Link>
+          );
+        })}
+      </nav>
+    </motion.div>
+  );
+}
+
 export function AppShell({ children }: { children: React.ReactNode }) {
   const [showApp, setShowApp] = useState(false);
+  const [mobileNavVisible, setMobileNavVisible] = useState(true);
+  const lastScrollY = useRef(0);
   const pathname = usePathname();
   const activeTab = resolveActiveTab(pathname);
 
   useEffect(() => {
     const timer = setTimeout(() => setShowApp(true), 2000);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+        setMobileNavVisible(false);
+      } else {
+        setMobileNavVisible(true);
+      }
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -62,7 +144,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 >
                   <img src="/favicon.svg" alt="Logo" className="w-6 h-6 dark:invert" />
                   <span className="text-medium tracking-tight font-bold text-zinc-900 dark:text-zinc-100">
-                    Leonardo&apos;s Terrace
+                    Leonardo's Terrace
                   </span>
                 </Link>
                 <div className="flex items-center gap-2" id="action-tools-panel">
@@ -75,12 +157,19 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               {children}
             </main>
 
-            <div
-              className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-auto max-w-[95%] sm:max-w-lg"
+            {/* Mobile — bottom nav bar with auto-hide on scroll */}
+            <motion.div
+              className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-auto max-w-[95%] sm:max-w-lg pointer-events-none"
               id="floating-dock-row"
+              initial={false}
+              animate={{
+                y: mobileNavVisible ? 0 : 100,
+                opacity: mobileNavVisible ? 1 : 0,
+              }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
             >
               <nav
-                className="p-1 px-1.5 sm:px-3 flex gap-0.5 sm:gap-1.5 justify-center sm:justify-start items-center rounded-full border border-red-500/20 dark:border-red-500/15 bg-white/70 dark:bg-black/65 backdrop-blur-xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)]"
+                className="p-1 px-1.5 sm:px-3 flex gap-0.5 sm:gap-1.5 justify-center sm:justify-start items-center rounded-full border border-red-500/20 dark:border-red-500/15 bg-white/70 dark:bg-black/65 backdrop-blur-xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] pointer-events-auto"
                 id="floating-navigation-island"
               >
                 {navItems.map((item) => {
@@ -111,7 +200,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   );
                 })}
               </nav>
-            </div>
+            </motion.div>
 
             <footer
               className="text-center py-6 border-t border-zinc-200/20 dark:border-zinc-800/20 max-w-[1800px] mx-auto w-full px-4 sm:px-6 lg:px-8 text-xs font-mono text-zinc-400 dark:text-zinc-600 flex flex-col sm:flex-row justify-between items-center gap-2 shrink-0"
