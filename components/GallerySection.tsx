@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { X } from "lucide-react";
+import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { motion, AnimatePresence } from "motion/react";
 
 interface GalleryItem {
@@ -120,7 +120,7 @@ export function GallerySection() {
               onClick={() => setSelectedImage(null)}
               className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
             >
-              <X className="w-5 h-5" />
+              <MaterialIcon icon="close" size="1.25rem" />
             </button>
             <motion.img
               initial={{ scale: 0.95, opacity: 0 }}

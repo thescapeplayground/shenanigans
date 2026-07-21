@@ -1,41 +1,41 @@
 "use client";
 
-import { Wrench, Hammer, Paintbrush, Cpu, WrenchIcon } from "lucide-react";
+import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { motion } from "motion/react";
 
 const services = [
   {
     title: "Maintenance",
     description: "Routine upkeep and care to keep your systems, devices, and gear running smoothly over time.",
-    icon: Wrench,
+    icon: "build",
     color: "text-red-500 dark:text-red-400",
     image: "/assets/tangiblestuff/TV - 5, Pt. IV.png",
   },
   {
     title: "Installation",
     description: "Targeted software installations, depends on whatever device you have.",
-    icon: Cpu,
+    icon: "memory",
     color: "text-red-500",
     image: "/assets/tangiblestuff/TV - 5, Pt. III.png",
   },
   {
     title: "Repair",
     description: "Diagnostic and hands-on fixes for broken, slow, or malfunctioning tech and equipment.",
-    icon: WrenchIcon,
+    icon: "handyman",
     color: "text-red-500 dark:text-red-400",
     image: "/assets/tangiblestuff/TV - 5, Pt. II.png",
   },
   {
     title: "Building",
     description: "Custom setups, configurations, and assemblies tailored to specific workflows or use cases.",
-    icon: Hammer,
+    icon: "construction",
     color: "text-rose-500",
     image: "/assets/tangiblestuff/TV - 5, Pt. V.png",
   },
   {
     title: "Designing",
     description: "Visual, UI, and layout design work for interfaces, branding, and creative assets.",
-    icon: Paintbrush,
+    icon: "palette",
     color: "text-red-500 dark:text-red-400",
     image: "/assets/tangiblestuff/TV - 5, Pt. VI.png",
   },
@@ -55,7 +55,6 @@ export function ServicesSection() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="services-grid">
         {services.map((service, index) => {
-          const Icon = service.icon;
           return (
             <motion.div
               key={service.title}
@@ -73,7 +72,7 @@ export function ServicesSection() {
               </div>
               <div className="flex items-start gap-4 p-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/50 dark:border-zinc-800/40">
-                  <Icon className={`w-5 h-5 ${service.color}`} />
+                  <MaterialIcon icon={service.icon} className={service.color} size="1.25rem" />
                 </div>
                 <div className="text-left">
                   <h3 className="text-sm font-bold text-zinc-800 dark:text-zinc-200">{service.title}</h3>

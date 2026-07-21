@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { About } from "@/src/types";
-import { UserCircle, Image as ImageIcon, MapPin, Calendar, Briefcase, Sparkles } from "lucide-react";
+import { MaterialIcon } from "@/components/ui/MaterialIcon";
 
 interface AboutSectionProps {
   about: About;
@@ -28,11 +28,11 @@ export function AboutSection({ about }: AboutSectionProps) {
     },
   };
 
-  const highlightIcons: Record<string, typeof Calendar> = {
-    Age: Calendar,
-    Location: MapPin,
-    Role: Briefcase,
-    Currently: Sparkles,
+  const highlightIcons: Record<string, string> = {
+    Age: "calendar_today",
+    Location: "location_on",
+    Role: "work",
+    Currently: "auto_awesome",
   };
 
   return (
@@ -92,14 +92,14 @@ export function AboutSection({ about }: AboutSectionProps) {
             </h3>
             <div className="divide-y divide-zinc-100 dark:divide-zinc-900/50">
               {about.highlights.map((h) => {
-                const Icon = highlightIcons[h.label] || UserCircle;
+                const iconName = highlightIcons[h.label] || "person";
                 return (
                   <div
                     key={h.label}
                     className="flex items-center justify-between py-2.5 first:pt-0 last:pb-0"
                   >
                     <span className="flex items-center gap-2 text-xs font-mono text-zinc-500 dark:text-zinc-400">
-                      <Icon className="w-3.5 h-3.5 text-red-500 dark:text-red-400" />
+                      <MaterialIcon icon={iconName} className="text-red-500 dark:text-red-400" size="1.1rem" />
                       {h.label}
                     </span>
                     <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100 text-right">

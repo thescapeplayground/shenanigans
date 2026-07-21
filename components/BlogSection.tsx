@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { Book, Newspaper } from "lucide-react";
+import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { PostMeta } from "@/lib/types/posts/index";
 
 function getReadingTime(text: string): string {
@@ -45,7 +45,7 @@ export function BlogSection() {
         {/* DETAILS.md card */}
         <div className="w-full bg-white/50 dark:bg-zinc-900/20 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50">
           <h3 className="w-full flex items-center gap-3 text-zinc-400 dark:text-zinc-500 px-5 py-3 border-b border-zinc-200/60 dark:border-zinc-800/50">
-            <Book className="w-4 h-4" />
+            <MaterialIcon icon="book" size="1rem" />
             <span className="text-xs font-mono tracking-wide">DETAILS.md</span>
           </h3>
           <p className="px-5 py-3 text-sm text-zinc-600 dark:text-zinc-400">
@@ -57,7 +57,7 @@ export function BlogSection() {
         {/* ALL_POSTS.md card */}
         <div className="w-full bg-white/50 dark:bg-zinc-900/20 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 flex flex-col overflow-hidden">
           <div className="w-full flex items-center gap-3 text-zinc-400 dark:text-zinc-500 px-5 py-3 border-b border-zinc-200/60 dark:border-zinc-800/50 bg-white/50 dark:bg-zinc-900/10 sticky top-0 z-10">
-            <Newspaper className="w-4 h-4" />
+            <MaterialIcon icon="newspaper" size="1rem" />
             <span className="text-xs font-mono tracking-wide">ALL_POSTS.md</span>
           </div>
 

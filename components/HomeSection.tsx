@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { Profile, Experience } from "@/src/types";
-import { Briefcase, ArrowUpRight, GraduationCap, MapPin, Sparkles } from "lucide-react";
+import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { motion } from "motion/react";
+
 import { PresenceClock } from "./PresenceClock";
 
 interface HomeSectionProps {
@@ -73,7 +74,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
         <div className="rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800/50 shadow-sm p-5 sm:p-6">
         <div className="flex items-center justify-between pb-5 mb-5 border-b border-zinc-100 dark:border-zinc-900/50">
           <h2 className="text-base font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider font-mono flex items-center gap-2">
-            <Briefcase className="w-4 h-4 text-red-500 dark:text-red-400" /> Career Journey
+            <MaterialIcon icon="work" className="text-red-500 dark:text-red-400" size="1.25rem" /> Career Journey
           </h2>
           <span className="text-xs font-mono text-zinc-400">Archived Timeline</span>
         </div>
@@ -100,10 +101,11 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
                     target="_blank"
                     referrerPolicy="no-referrer"
                     rel="noreferrer"
-                    className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-neutral-100 duration-150 inline-flex items-center gap-0.5 border-b border-dashed border-neutral-300 dark:border-neutral-700 pb-0.5 font-mono"
+                                        className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-neutral-100 duration-150 inline-flex items-center gap-0.5 border-b border-dashed border-neutral-300 dark:border-neutral-700 pb-0.5 font-mono"
                   >
-                    {exp.company} <ArrowUpRight className="w-3 h-3 text-neutral-400" />
+                    {exp.company} <MaterialIcon icon="north_east" className="text-neutral-400" size="0.75rem" />
                   </a>
+
                 ) : (
                   <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 font-mono">
                     {exp.company}

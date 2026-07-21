@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "../index.css";
+import "@material-symbols/font-400/rounded.css";
+
 
 export const metadata: Metadata = {
   title: "Leonardo's Terrace",

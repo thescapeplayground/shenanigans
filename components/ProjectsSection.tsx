@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Project } from "@/src/types";
-import { Search, FolderGit2, Calendar, GitFork, ArrowUpRight, Github, ExternalLink, RefreshCw } from "lucide-react";
+import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { motion, AnimatePresence } from "motion/react";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -89,7 +89,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
 
         {/* Search input field */}
         <div className="relative w-full sm:w-64 shrink-0" id="search-input-wrapper">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-red-500 dark:text-red-400" />
+          <MaterialIcon icon="search" className="absolute left-3 top-2.5 text-red-500 dark:text-red-400" size="1rem" />
           <Input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -136,7 +136,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
 
                   <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 font-sans tracking-tight group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-150 inline-flex items-center gap-1">
                     {project.title.toLowerCase()}
-                    <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <MaterialIcon icon="north_east" className="text-zinc-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" size="1rem" />
                   </h3>
 
                   <p className="text-zinc-500 dark:text-zinc-400 text-xs sm:text-[13px] leading-relaxed font-sans line-clamp-2 pr-2">
@@ -169,7 +169,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
         </motion.div>
       ) : (
         <div className="py-20 text-center text-zinc-500" id="projects-empty-state">
-          <FolderGit2 className="w-12 h-12 mx-auto text-red-500 dark:text-red-400 mb-3 animate-pulse" />
+          <MaterialIcon icon="folder" className="mx-auto text-red-500 dark:text-red-400 mb-3 animate-pulse" size="3rem" />
           <p className="text-sm font-mono mt-2">No projects matched your criteria.</p>
           <Button
             variant="ghost"
@@ -179,7 +179,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
             }}
             className="text-xs text-red-500 hover:text-red-400 mt-2 gap-1.5 h-8 font-mono rounded-lg"
           >
-            <RefreshCw className="w-3.5 h-3.5" /> Clear Filters
+            <MaterialIcon icon="refresh" size="0.875rem" /> Clear Filters
           </Button>
         </div>
       )}
@@ -237,12 +237,12 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               {/* Date Metadata */}
               <div className="flex items-center gap-6 text-sm text-zinc-500 font-mono border-t border-zinc-100 dark:border-zinc-900/50 pt-4">
                 <div className="flex items-center gap-1.5">
-                  <Calendar className="w-4 h-4 text-red-500 dark:text-red-400" />
+                  <MaterialIcon icon="calendar_today" className="text-red-500 dark:text-red-400" size="1rem" />
                   <span>Release: {selectedProject.date}</span>
                 </div>
                 {selectedProject.stats && (
                   <div className="flex items-center gap-1.5">
-                    <GitFork className="w-4 h-4 text-red-500 dark:text-red-400" />
+                    <MaterialIcon icon="fork_right" className="text-red-500 dark:text-red-400" size="1rem" />
                     <span>Scale: {selectedProject.stats}</span>
                   </div>
                 )}
@@ -268,7 +268,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                   render={<a href={selectedProject.github} target="_blank" rel="noreferrer" referrerPolicy="no-referrer" className="gap-1.5" />} 
                   className="rounded-lg h-9 font-mono text-xs text-zinc-600 dark:text-zinc-300"
                 >
-                  <Github className="w-4 h-4" /> Source <ExternalLink className="w-3 h-3" />
+                  <MaterialIcon icon="code" size="1rem" /> Source <MaterialIcon icon="open_in_new" size="0.75rem" />
                 </Button>
               )}
               {selectedProject.link && selectedProject.link !== "#" && (
@@ -277,7 +277,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                   render={<a href={selectedProject.link} target="_blank" rel="noreferrer" referrerPolicy="no-referrer" className="gap-1.5" />} 
                   className="rounded-lg h-9 font-mono text-xs bg-zinc-900 hover:bg-zinc-800 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 dark:hover:bg-zinc-200"
                 >
-                  Live Site <ExternalLink className="w-3 h-3" />
+                  Live Site <MaterialIcon icon="open_in_new" size="0.75rem" />
                 </Button>
               )}
             </div>

@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { ArrowLeft } from "lucide-react";
+import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { Post } from "@/lib/types/posts/index";
 
 interface HeadingItem {
@@ -130,7 +130,7 @@ export function PostDetailView({ post }: { post: Post }) {
             href="/blog"
             className="inline-flex items-center justify-center gap-2 text-sm font-medium transition-all rounded-md px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 self-start mb-10"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <MaterialIcon icon="arrow_back" size="1rem" />
             Back to blog
           </Link>
           <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:font-sans prose-headings:tracking-tight prose-a:text-red-500 dark:prose-a:text-red-400 prose-code:bg-zinc-100 dark:prose-code:bg-zinc-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-blockquote:border-red-500/30 prose-blockquote:text-zinc-500 dark:prose-blockquote:text-zinc-400 prose-headings:scroll-mt-24">

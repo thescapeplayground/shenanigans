@@ -4,20 +4,19 @@ import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
-import { Home, FolderGit2, Mail, Cpu, BookText, Image, Wrench, User } from "lucide-react";
-
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { LoadingScreen } from "@/components/LoadingScreen";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
-const navItems: { id: string; label: string; href: string; icon: typeof Home }[] = [
-  { id: "home", label: "Home", href: "/", icon: Home },
-  { id: "about", label: "About", href: "/about", icon: User },
-  { id: "projects", label: "Projects", href: "/projects", icon: FolderGit2 },
-  { id: "stack", label: "Toolbox", href: "/stack", icon: Cpu },
-  { id: "gallery", label: "Gallery", href: "/gallery", icon: Image },
-  { id: "services", label: "Services", href: "/services", icon: Wrench },
-  { id: "contact", label: "Collaborate", href: "/contact", icon: Mail },
-  { id: "blog", label: "Blog", href: "/blog", icon: BookText },
+const navItems: { id: string; label: string; href: string; icon: string }[] = [
+  { id: "home", label: "Home", href: "/", icon: "home" },
+  { id: "about", label: "About", href: "/about", icon: "person" },
+  { id: "projects", label: "Projects", href: "/projects", icon: "folder" },
+  { id: "stack", label: "Toolbox", href: "/stack", icon: "memory" },
+  { id: "gallery", label: "Gallery", href: "/gallery", icon: "image" },
+  { id: "services", label: "Services", href: "/services", icon: "build" },
+  { id: "contact", label: "Collaborate", href: "/contact", icon: "mail" },
+  { id: "blog", label: "Blog", href: "/blog", icon: "article" },
 ];
 
 function resolveActiveTab(pathname: string): string {
@@ -75,12 +74,14 @@ function DesktopNav({
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
-              <Icon
+              <MaterialIcon
+                icon={item.icon}
                 className={`shrink-0 z-10 transition-all duration-200 ${
                   isActive
-                    ? "text-red-500 dark:text-red-400 w-4 h-4"
-                    : "text-zinc-500 dark:text-zinc-400 group-hover:text-red-500 dark:group-hover:text-red-300 w-4 h-4"
+                    ? "text-red-500 dark:text-red-400"
+                    : "text-zinc-500 dark:text-zinc-400 group-hover:text-red-500 dark:group-hover:text-red-300"
                 }`}
+                size="1.25rem"
               />
             </Link>
           );
@@ -189,12 +190,14 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                           transition={{ type: "spring", stiffness: 380, damping: 30 }}
                         />
                       )}
-                      <Icon
+                      <MaterialIcon
+                        icon={item.icon}
                         className={`shrink-0 z-10 transition-all duration-200 ${
                           isActive
-                            ? "text-red-500 dark:text-red-400 w-3.5 h-3.5"
-                            : "text-zinc-500 dark:text-zinc-400 group-hover:text-red-500 dark:group-hover:text-red-300 w-3.5 h-3.5 sm:w-4 sm:h-4"
+                            ? "text-red-500 dark:text-red-400"
+                            : "text-zinc-500 dark:text-zinc-400 group-hover:text-red-500 dark:group-hover:text-red-300"
                         }`}
+                        size="1.25rem"
                       />
                     </Link>
                   );

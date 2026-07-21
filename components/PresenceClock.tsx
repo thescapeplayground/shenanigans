@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Clock, MapPin, Radio, Activity, Github, Instagram, Youtube, MessageCircle, Linkedin, Twitch, Music2, MailCheck, MailX, Fingerprint, Share2 } from "lucide-react";
+import { MaterialIcon } from "@/components/ui/MaterialIcon";
+import { BrandIcon } from "@/components/ui/BrandIcons";
 
 interface PresenceClockProps {
   location: string;
@@ -53,13 +54,17 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
     ? instagramFollowers.toLocaleString()
     : undefined;
   const socialLinks = [
-    { href: "https://youtube.com/@isaiahscape", icon: Youtube, label: "YouTube", color: "text-red-500" },
-    { href: "https://t.me/isaiahscape", icon: MessageCircle, label: "Telegram", color: "text-red-500 dark:text-red-400" },
-    { href: "https://linkedin.com/in/isaiahscape", icon: Linkedin, label: "LinkedIn", color: "text-red-500 dark:text-red-400" },
-    { href: "https://twitch.tv/isaiahscape", icon: Twitch, label: "Twitch", color: "text-red-500 dark:text-red-400" },
-    { href: "https://tiktok.com/@isaiahscape", icon: Music2, label: "TikTok", color: "text-red-500 dark:text-red-400" },
-    { href: "https://github.com/thescapeplayground/shenanigans", icon: Github, label: "GitHub", color: "text-red-500 dark:text-red-400" },
+    { href: "https://youtube.com/@isaiahscape", icon: "youtube" as const, label: "YouTube", color: "text-red-500" },
+    { href: "https://t.me/isaiahscape", icon: "send" as const, label: "Telegram", color: "text-red-500 dark:text-red-400" },
+    { href: "https://linkedin.com/in/isaiahscape", icon: "linkedin" as const, label: "LinkedIn", color: "text-red-500 dark:text-red-400" },
+    { href: "https://twitch.tv/isaiahscape", icon: "twitch" as const, label: "Twitch", color: "text-red-500 dark:text-red-400" },
+    { href: "https://tiktok.com/@isaiahscape", icon: "tiktok" as const, label: "TikTok", color: "text-red-500 dark:text-red-400" },
+    { href: "https://github.com/thescapeplayground/shenanigans", icon: "github" as const, label: "GitHub", color: "text-red-500 dark:text-red-400" },
   ];
+
+  const renderSocialIcon = (icon: string, className: string) => {
+    return <BrandIcon name={icon} size="1rem" className={`shrink-0 ${className || ""}`} />;
+  };
 
   return (
     <div className="my-8" id="presence-clock-section">
@@ -70,7 +75,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
         id="col-location-time"
       >
         <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900 w-10 h-10">
-          <Clock className="w-5 h-5 text-red-500 dark:text-red-400" />
+          <MaterialIcon icon="schedule" className="text-red-500 dark:text-red-400" size="1.25rem" />
           <span className="absolute bottom-1 right-1 flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -92,7 +97,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
         id="col-current-activity"
       >
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900 w-10 h-10">
-          <Activity className="w-5 h-5 text-red-500 dark:text-red-400 animate-pulse" />
+          <MaterialIcon icon="show_chart" className="text-red-500 dark:text-red-400 animate-pulse" size="1.25rem" />
         </div>
         <div className="text-left overflow-hidden w-full">
           <p className="text-xs text-zinc-400 dark:text-zinc-500 font-mono flex items-center gap-1 pr-2">
@@ -111,7 +116,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
       >
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900">
-            <Fingerprint className="w-5 h-5 text-red-500 dark:text-red-400" />
+            <MaterialIcon icon="fingerprint" className="text-red-500 dark:text-red-400" size="1.25rem" />
           </div>
           <div className="text-left">
             <p className="text-xs text-zinc-400 dark:text-zinc-500 font-mono flex items-center gap-1">
@@ -134,7 +139,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
       >
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900">
-            <Instagram className="w-5 h-5 text-red-500 dark:text-red-400" />
+            <BrandIcon name="instagram" size="1.25rem" className="text-red-500 dark:text-red-400" />
           </div>
           <div className="text-left">
             <p className="text-xs text-zinc-400 dark:text-zinc-500 font-mono flex items-center gap-1">
@@ -167,7 +172,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
       >
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900 w-10 h-10">
-            <Share2 className="w-5 h-5 text-red-500 dark:text-red-400" />
+            <MaterialIcon icon="share" className="text-red-500 dark:text-red-400" size="1.25rem" />
           </div>
           <div className="text-left">
             <p className="text-xs text-zinc-400 dark:text-zinc-500 font-mono flex items-center gap-1">
@@ -175,7 +180,6 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
             </p>
             <div className="flex items-center gap-3 mt-1">
               {socialLinks.map((link) => {
-                const Icon = link.icon;
                 return (
                   <a
                     key={link.label}
@@ -185,7 +189,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
                     title={link.label}
                     className={`${link.color} hover:scale-110 transition-transform duration-150`}
                   >
-                    <Icon className="w-4 h-4" />
+                    {renderSocialIcon(link.icon, link.color)}
                   </a>
                 );
               })}
@@ -202,11 +206,11 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900">
             {resendChecking ? (
-              <Activity className="w-5 h-5 text-zinc-400 animate-spin" />
+              <MaterialIcon icon="sync" className="text-zinc-400 animate-spin" size="1.25rem" />
             ) : resendStatus?.connected ? (
-              <MailCheck className="w-5 h-5 text-emerald-500" />
+              <MaterialIcon icon="check_circle" className="text-emerald-500" size="1.25rem" />
             ) : (
-              <MailX className="w-5 h-5 text-red-500" />
+              <MaterialIcon icon="cancel" className="text-red-500" size="1.25rem" />
             )}
           </div>
           <div className="text-left">

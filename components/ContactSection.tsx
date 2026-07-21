@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Send, CheckCircle2, Mail, Github, ArrowUpRight, Copy, Terminal, MessageSquarePlus, MessageCircle, Image } from "lucide-react";
+import { MaterialIcon } from "@/components/ui/MaterialIcon";
+import { BrandIcon } from "@/components/ui/BrandIcons";
 import { motion, AnimatePresence } from "motion/react";
 import { Input as CustomInput } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -91,7 +92,7 @@ export function ContactSection() {
             >
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white dark:bg-zinc-950 rounded-lg border border-zinc-100 dark:border-zinc-800">
-                  <Mail className="w-4 h-4 text-red-500" />
+                  <MaterialIcon icon="mail" className="text-red-500" size="1rem" />
                 </div>
                 <div>
                   <p className="text-[10px] font-mono text-zinc-400 leading-none mb-0.5">Copy Email</p>
@@ -101,7 +102,7 @@ export function ContactSection() {
                 </div>
               </div>
               <Button size="icon" variant="ghost" className="h-8 w-8 rounded-lg text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-zinc-100">
-                {copied ? <span className="text-[10px] font-mono text-red-600 font-bold">Copied!</span> : <Copy className="w-4 h-4" />}
+                {copied ? <span className="text-[10px] font-mono text-red-600 font-bold">Copied!</span> : <MaterialIcon icon="content_copy" size="1rem" />}
               </Button>
             </div>
 
@@ -115,7 +116,7 @@ export function ContactSection() {
             >
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white dark:bg-zinc-950 rounded-lg border border-zinc-100 dark:border-zinc-800">
-                  <Github className="w-4 h-4 text-red-500 dark:text-red-400" />
+                  <BrandIcon name="github" size="1rem" className="text-red-500 dark:text-red-400" />
                 </div>
                 <div>
                   <p className="text-[10px] font-mono text-zinc-400 leading-none mb-0.5">GitHub Repository</p>
@@ -124,7 +125,7 @@ export function ContactSection() {
                   </p>
                 </div>
               </div>
-              <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
+              <MaterialIcon icon="north_east" className="text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" size="1rem" />
             </a>
 
             {/* Telegram handle */}
@@ -137,7 +138,7 @@ export function ContactSection() {
             >
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white dark:bg-zinc-950 rounded-lg border border-zinc-100 dark:border-zinc-800">
-                  <MessageCircle className="w-4 h-4 text-red-500 dark:text-red-400" />
+                  <BrandIcon name="send" size="1rem" className="text-red-500 dark:text-red-400" />
                 </div>
                 <div>
                   <p className="text-[10px] font-mono text-zinc-400 leading-none mb-0.5">Telegram</p>
@@ -146,7 +147,7 @@ export function ContactSection() {
                   </p>
                 </div>
               </div>
-              <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
+              <MaterialIcon icon="north_east" className="text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" size="1rem" />
             </a>
 
             {/* Instagram handle */}
@@ -159,7 +160,7 @@ export function ContactSection() {
             >
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white dark:bg-zinc-950 rounded-lg border border-zinc-100 dark:border-zinc-800">
-                  <Image className="w-4 h-4 text-red-500 dark:text-red-400" />
+                  <BrandIcon name="instagram" size="1rem" className="text-red-500 dark:text-red-400" />
                 </div>
                 <div>
                   <p className="text-[10px] font-mono text-zinc-400 leading-none mb-0.5">Instagram</p>
@@ -168,7 +169,7 @@ export function ContactSection() {
                   </p>
                 </div>
               </div>
-              <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
+              <MaterialIcon icon="north_east" className="text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" size="1rem" />
             </a>
           </div>
         </div>
@@ -243,7 +244,7 @@ export function ContactSection() {
                 className="w-full bg-zinc-900 hover:bg-zinc-800 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 dark:hover:bg-zinc-200 h-10 gap-2 shrink-0 rounded-lg active:scale-95 transition-all mt-2"
                 id="contact-send-btn"
               >
-                <Send className="w-4 h-4 shrink-0" />
+                <MaterialIcon icon="send" className="shrink-0" size="1rem" />
                 <span>{sending ? "Delivering Note..." : "Deliver Note"}</span>
               </Button>
             </motion.form>
@@ -257,7 +258,7 @@ export function ContactSection() {
               id="message-sent-screen"
             >
               <div className="h-16 w-16 rounded-full bg-emerald-100 dark:bg-emerald-950/60 border border-emerald-200/50 flex items-center justify-center animate-bounce">
-                <CheckCircle2 className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
+                <MaterialIcon icon="check_circle" className="text-emerald-600 dark:text-emerald-400" size="2rem" />
               </div>
               <div className="space-y-1">
                 <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-50 font-mono">
