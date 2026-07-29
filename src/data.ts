@@ -70,6 +70,20 @@ export const DEFAULT_PROJECTS: Project[] = [
     featured: false,
     date: "Nov 2025",
     status: "archived"
+  },
+  {
+    id: "materialexp",
+    title: "Material Explorer",
+    description: "An Android APK explorer and file manager built with Material Design 3 principles for intuitive navigation and file operations.",
+    longDescription: "Material Explorer is a modern Android application that provides a clean, intuitive interface for browsing and managing APK files and device storage. Built with Material Design 3 (Material You) guidelines, it offers seamless file navigation, APK inspection, and management tools with dynamic theming support.",
+    category: "Experiment",
+    tags: ["Android", "Material Design 3", "Kotlin", "APK Explorer"],
+    github: "https://github.com/isaiahscape/materialexp",
+    link: "https://github.com/isaiahscape/materialexp/releases",
+    stats: "Android App",
+    featured: true,
+    date: "Jul 2026",
+    status: "active"
   }
 ];
 
