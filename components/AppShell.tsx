@@ -8,6 +8,8 @@ import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
+import { PageTransition } from "@/components/PageTransition";
+
 const navItems: { id: string; label: string; href: string; icon: string }[] = [
   { id: "home", label: "Home", href: "/", icon: "home" },
   { id: "about", label: "About", href: "/about", icon: "person" },
@@ -155,7 +157,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </header>
 
             <main className="flex-1 max-w-[1800px] mx-auto w-full px-4 sm:px-6 lg:px-8 pt-8 pb-24 md:pb-16" id="core-content-stage">
-              {children}
+              <PageTransition>{children}</PageTransition>
             </main>
 
             {/* Mobile — bottom nav bar with auto-hide on scroll */}
