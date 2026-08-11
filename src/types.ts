@@ -61,3 +61,21 @@ export interface StackItem {
   iconName: string;
   level?: string;
 }
+
+export interface ServiceCategory {
+  id: string;
+  title: string;
+  price: string;
+  icon: string;
+  color: string;
+  tagline: string;
+  items: string[];
+  note?: string;
+}
+
+export interface ServiceFaq {
+  question: string;
+  answer: string;
+  icon: string;
+}
+

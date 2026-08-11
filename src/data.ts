@@ -1,4 +1,4 @@
-import { Project, Experience, Profile, StackItem, About } from './types';
+import { Project, Experience, Profile, StackItem, About, ServiceCategory, ServiceFaq } from './types';
 
 export const DEFAULT_PROFILE: Profile = {
   name: "Leonardo",
@@ -187,3 +187,105 @@ export const DEFAULT_STACK: StackItem[] = [
   { name: "HHKB Professional", category: "hardware", iconName: "Keyboard", level: "Daily Driver" },
   { name: "MacBook Pro m3", category: "hardware", iconName: "Laptop", level: "Workhorse" }
 ];
+
+export const DEFAULT_SERVICES: ServiceCategory[] = [
+  {
+    id: "repairs",
+    title: "Troubleshoots & Repairs",
+    price: "Starts at ₱500",
+    icon: "handyman",
+    color: "text-red-500 dark:text-red-400",
+    tagline: "Diagnostic and hardware fixes for PCs, laptops, and mobile devices.",
+    items: [
+      "PC / Laptop not turning on, no power, or not charging",
+      "Phone running slow, bootlooping, stuck at logo, or crashing",
+      "Broken USB ports (Type-C, HDMI, Type-A, etc.)",
+      "Display & part replacements (LCD/OLED screens, peripherals)",
+      "Factory Reset & installation/boot issue resolution"
+    ],
+    note: "Checking and diagnosing is free! Payment is only collected once the device is successfully fixed."
+  },
+  {
+    id: "software",
+    title: "Software & OS Installation",
+    price: "Starts at ₱300",
+    icon: "memory",
+    color: "text-red-500 dark:text-red-400",
+    tagline: "Operating system deployment, software suites, and licenses.",
+    items: [
+      "Windows 10 / 11 Pro with Free License",
+      "Linux-based OS (Ubuntu, CachyOS, Fedora, Arch, etc.)",
+      "Latest Microsoft Office Suite with Free License",
+      "Custom editing & productivity software of your choice"
+    ],
+    note: "Available via online remote setup or in-home service. Select basic installs provided hassle-free."
+  },
+  {
+    id: "cleaning",
+    title: "PC / Laptop Maintenance & Cleaning",
+    price: "Starts at ₱2,000",
+    icon: "build",
+    color: "text-red-500 dark:text-red-400",
+    tagline: "Deep physical cleaning, thermal paste refresh, and cable routing.",
+    items: [
+      "Thermal Paste Replacement (any premium paste per request)",
+      "Peripherals Deep Cleaning (keyboard, monitor, enclosures)",
+      "Case Fans, Heatsink & Motherboard Dust Blowout",
+      "Clean Internal Cable Management & Repositioning"
+    ],
+    note: "5-hour same-day turnaround time for full desktop and laptop maintenance."
+  },
+  {
+    id: "desktop-build",
+    title: "Desktop Installation & Building",
+    price: "Starts at ₱500",
+    icon: "construction",
+    color: "text-red-500 dark:text-red-400",
+    tagline: "Custom PC assembly, part upgrades, and initial setup.",
+    items: [
+      "Component Installation / Replacement (CPU Cooler, Motherboard, AIO, RAM, PSU)",
+      "Case Fans Setup, Rehousing & Cable Routing",
+      "Essential Apps Included (MS Office, Chrome, Adobe Suite)"
+    ],
+    note: "Want me to source and purchase parts for your build? Sourcing service available upon agreement."
+  },
+  {
+    id: "shenanigans",
+    title: "Other Shenanigans",
+    price: "Starts at ₱1,500",
+    icon: "palette",
+    color: "text-red-500 dark:text-red-400",
+    tagline: "Web development, multimedia production, and design work.",
+    items: [
+      "Full-stack web application development (React, Next.js, JavaScript, etc.)",
+      "Photography & Videography production",
+      "Graphic Designing (custom themes, banners, & occasions)",
+      "Custom bots, tools, & tech consultation"
+    ],
+    note: "For specialized art and graphic designs, you can also connect with @thysvl.co on Instagram."
+  }
+];
+
+export const DEFAULT_SERVICE_FAQS: ServiceFaq[] = [
+  {
+    question: "Do I have to pay first or not?",
+    answer: "It depends. If the service requires pre-ordering specific hardware parts, upfront payment for materials is needed. Otherwise, repair labor is paid after completion.",
+    icon: "payments"
+  },
+  {
+    question: "So if no fix = no pay?",
+    answer: "Definitely, without any regrets. Checking and diagnosing your device is 100% free if it cannot be repaired.",
+    icon: "verified"
+  },
+  {
+    question: "How long does cleaning, repairing, and building take?",
+    answer: "• 5 hours for same-day cleaning (desktop & laptop)\n• 2 hours to 1 day for repairs (depending on issue complexity)\n• 3 hours minimum for building a desktop from scratch",
+    icon: "schedule"
+  },
+  {
+    question: "Are you willing to do home service?",
+    answer: "Yes! No extra travel charges if you are located near Matina, Davao. Locations outside Matina will have minimal additional transportation fees.",
+    icon: "home_repair_service"
+  }
+];
+
