@@ -22,10 +22,23 @@ export async function GET(
       return new NextResponse("Path is required", { status: 400 });
     }
 
-    // Decode URL component for filenames containing spaces or special characters
-    const decodedSegments = pathSegments.map((seg) => decodeURIComponent(seg));
-    const relativePath = decodedSegments.join("/");
-    const ext = path.extname(relativePath).toLowerCase();
+    // Fully unescape URL segments (handles single or double encoding)
+    const decodedSegments = pathSegments.map((seg) => {
+      let decoded = seg;
+      try {
+        while (decoded.includes("%")) {
+          const next = decodeURIComponent(decoded);
+          if (next === decoded) break;
+          decoded = next;
+        }
+      } catch (e) {
+        // Ignore URI decode errors
+      }
+      return decoded;
+    });
+
+    const filename = decodedSegments[decodedSegments.length - 1];
+    const ext = path.extname(filename).toLowerCase();
     const contentType = CONTENT_TYPES[ext] || "application/octet-stream";
 
     const headers = {
@@ -37,14 +50,15 @@ export async function GET(
 
     // 1. Try fetching from private GitHub repository if token is present
     if (token) {
-      const githubUrl = `https://raw.githubusercontent.com/isaiahscape/private-photos/main/${encodeURI(relativePath)}`;
+      const githubPath = decodedSegments.map((s) => encodeURIComponent(s)).join("/");
+      const githubUrl = `https://raw.githubusercontent.com/isaiahscape/private-photos/main/${githubPath}`;
       try {
         const ghResponse = await fetch(githubUrl, {
           headers: {
             Authorization: `Bearer ${token}`,
             Accept: "application/vnd.github.v3.raw",
           },
-          next: { revalidate: 86400 }, // Cache for 24 hours in Next.js data cache
+          next: { revalidate: 86400 },
         });
 
         if (ghResponse.ok) {

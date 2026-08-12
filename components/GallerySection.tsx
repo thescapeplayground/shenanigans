@@ -59,7 +59,7 @@ export function GallerySection() {
                       {previewItems[2] && (
                         <div className="absolute inset-0 translate-x-2 -translate-y-2 scale-[0.92] opacity-40 rounded-xl overflow-hidden border border-white/20">
                           <Image
-                            src={encodeURI(previewItems[2].src)}
+                            src={previewItems[2].src}
                             alt=""
                             fill
                             className="object-cover"
@@ -71,7 +71,7 @@ export function GallerySection() {
                       {previewItems[1] && (
                         <div className="absolute inset-0 translate-x-1 -translate-y-1 scale-[0.96] opacity-70 rounded-xl overflow-hidden border border-white/20">
                           <Image
-                            src={encodeURI(previewItems[1].src)}
+                            src={previewItems[1].src}
                             alt=""
                             fill
                             className="object-cover"
@@ -82,7 +82,7 @@ export function GallerySection() {
 
                       {/* Main Cover Image */}
                       <Image
-                        src={encodeURI(album.coverImage)}
+                        src={album.coverImage}
                         alt={album.name}
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -177,7 +177,7 @@ export function GallerySection() {
                 >
                   <div className="aspect-square w-full relative">
                     <Image
-                      src={encodeURI(item.src)}
+                      src={item.src}
                       alt={item.alt}
                       fill
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
