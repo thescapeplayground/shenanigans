@@ -29,7 +29,7 @@ interface MasonryItem {
 function generateItems(): MasonryItem[] {
   return IMAGE_FILES.map((file, i) => ({
     id: i,
-    src: `/assets/masonry/${encodeURIComponent(file)}`,
+    src: `/api/photos/masonry/${encodeURIComponent(file)}`,
   }));
 }
 

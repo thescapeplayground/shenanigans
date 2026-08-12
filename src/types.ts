@@ -79,3 +79,23 @@ export interface ServiceFaq {
   icon: string;
 }
 
+export interface GalleryPhoto {
+  id: string;
+  src: string;
+  alt: string;
+  title?: string;
+  date?: string;
+  folder: string;
+}
+
+export interface GalleryAlbum {
+  id: string;
+  name: string;
+  description: string;
+  coverImage: string;
+  folder: string;
+  icon?: string;
+  items: GalleryPhoto[];
+}
+
+

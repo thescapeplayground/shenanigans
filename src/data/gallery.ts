@@ -1,0 +1,58 @@
+import { GalleryAlbum } from "@/src/types";
+
+export const DEFAULT_GALLERY_ALBUMS: GalleryAlbum[] = [
+  {
+    id: "tv",
+    name: "TV Showcase",
+    description: "Custom TV graphics, visual banners, and display concepts.",
+    coverImage: "/api/photos/tv/TV%20-%201%2C%20Fixed.png",
+    folder: "tv",
+    icon: "tv",
+    items: [
+      { id: "tv-1", src: "/api/photos/tv/TV%20-%201%2C%20Fixed.png", alt: "TV Fixed 1", title: "TV Fixed Pt. I", folder: "tv" },
+      { id: "tv-2", src: "/api/photos/tv/TV%20Showcase%20-%201.png", alt: "TV Showcase 1", title: "TV Showcase Pt. I", folder: "tv" },
+      { id: "tv-3", src: "/api/photos/tv/TV%20Showcase%20-%202.png", alt: "TV Showcase 2", title: "TV Showcase Pt. II", folder: "tv" },
+    ],
+  },
+  {
+    id: "tangiblestuff",
+    name: "Tangible Stuff",
+    description: "Multi-part physical renders, artwork iterations, and tangible experiments.",
+    coverImage: "/api/photos/tangiblestuff/TV%20-%205%2C%20Pt.%20I.png",
+    folder: "tangiblestuff",
+    icon: "inventory_2",
+    items: [
+      { id: "tangible-1", src: "/api/photos/tangiblestuff/TV%20-%205%2C%20Pt.%20I.png", alt: "Tangible TV Pt I", title: "Tangible TV Pt. I", folder: "tangiblestuff" },
+      { id: "tangible-2", src: "/api/photos/tangiblestuff/TV%20-%205%2C%20Pt.%20II.png", alt: "Tangible TV Pt II", title: "Tangible TV Pt. II", folder: "tangiblestuff" },
+      { id: "tangible-3", src: "/api/photos/tangiblestuff/TV%20-%205%2C%20Pt.%20III.png", alt: "Tangible TV Pt III", title: "Tangible TV Pt. III", folder: "tangiblestuff" },
+      { id: "tangible-4", src: "/api/photos/tangiblestuff/TV%20-%205%2C%20Pt.%20IV.png", alt: "Tangible TV Pt IV", title: "Tangible TV Pt. IV", folder: "tangiblestuff" },
+      { id: "tangible-5", src: "/api/photos/tangiblestuff/TV%20-%205%2C%20Pt.%20V.png", alt: "Tangible TV Pt V", title: "Tangible TV Pt. V", folder: "tangiblestuff" },
+      { id: "tangible-6", src: "/api/photos/tangiblestuff/TV%20-%205%2C%20Pt.%20VI.png", alt: "Tangible TV Pt VI", title: "Tangible TV Pt. VI", folder: "tangiblestuff" },
+      { id: "tangible-7", src: "/api/photos/tangiblestuff/TV%20-%205%2C%20Pt.%20VII.png", alt: "Tangible TV Pt VII", title: "Tangible TV Pt. VII", folder: "tangiblestuff" },
+    ],
+  },
+  {
+    id: "photography",
+    name: "Photography",
+    description: "A collection of street shots, urban captures, portraits, and light plays.",
+    coverImage: "/api/photos/masonry/IMG_20260623_205128.jpg",
+    folder: "masonry",
+    icon: "photo_camera",
+    items: [
+      { id: "photo-1", src: "/api/photos/masonry/IMG_20260623_205128.jpg", alt: "Photography 1", title: "Nightscape Shot", folder: "photography" },
+      { id: "photo-2", src: "/api/photos/masonry/0065_3_4_img_260608_180608.jpg", alt: "Photography 2", title: "Golden Hour Frame", folder: "photography" },
+      { id: "photo-3", src: "/api/photos/masonry/IMG_20260623_204532.png", alt: "Photography 3", title: "Urban Perspective", folder: "photography" },
+      { id: "photo-4", src: "/api/photos/masonry/DSC_20230726_174759_Lmc8.4_R17_Prashant_Premium(beta2).jpg", alt: "Photography 4", title: "Portrait Tone I", folder: "photography" },
+      { id: "photo-5", src: "/api/photos/masonry/noob_v2.2_13-Feb-24_20.24.22.Profile2.jpg", alt: "Photography 5", title: "Aesthetic Profile", folder: "photography" },
+      { id: "photo-6", src: "/api/photos/masonry/IMG_20260623_204813.jpg", alt: "Photography 6", title: "Shadow & Light", folder: "photography" },
+      { id: "photo-7", src: "/api/photos/masonry/AGC_20260515_173533357.jpg", alt: "Photography 7", title: "Monochrome Capture", folder: "photography" },
+      { id: "photo-8", src: "/api/photos/masonry/DSC_20230611_101123_Lmc8.4_R17_Prashant_Premium(beta2).jpg", alt: "Photography 8", title: "Daylight Focus", folder: "photography" },
+      { id: "photo-9", src: "/api/photos/masonry/IMG_Veux_20240218_074746_lmc_8.4~2.jpg", alt: "Photography 9", title: "Morning Mist", folder: "photography" },
+      { id: "photo-10", src: "/api/photos/masonry/tower%201.png", alt: "Tower", title: "Tower Structure", folder: "photography" },
+      { id: "photo-11", src: "/api/photos/masonry/light%201.png", alt: "Light", title: "Light & Glow", folder: "photography" },
+      { id: "photo-12", src: "/api/photos/masonry/IMG_7691%201.png", alt: "Photography 12", title: "Vintage Mood", folder: "photography" },
+      { id: "photo-13", src: "/api/photos/masonry/IMG_7663%201.png", alt: "Photography 13", title: "Candid Angle", folder: "photography" },
+      { id: "photo-14", src: "/api/photos/masonry/ghost%201.png", alt: "Ghost", title: "Ghost Silhouette", folder: "photography" },
+    ],
+  },
+];

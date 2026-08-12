@@ -4,109 +4,201 @@ import { useState } from "react";
 import Image from "next/image";
 import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { motion, AnimatePresence } from "motion/react";
-
-interface GalleryItem {
-  src: string;
-  alt: string;
-  folder: string;
-}
-
-interface GalleryFolder {
-  name: string;
-  items: GalleryItem[];
-}
+import { DEFAULT_GALLERY_ALBUMS } from "@/src/data/gallery";
+import { GalleryAlbum, GalleryPhoto } from "@/src/types";
 
 export function GallerySection() {
-  const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
+  const [activeAlbum, setActiveAlbum] = useState<GalleryAlbum | null>(null);
+  const [selectedImage, setSelectedImage] = useState<GalleryPhoto | null>(null);
 
-  const folders: GalleryFolder[] = [
-    {
-      name: "TV",
-      items: [
-        { src: "/assets/tv/TV - 1, Fixed.png", alt: "TV Fixed 1", folder: "tv" },
-        { src: "/assets/tv/TV Showcase - 1.png", alt: "TV Showcase 1", folder: "tv" },
-        { src: "/assets/tv/TV Showcase - 2.png", alt: "TV Showcase 2", folder: "tv" },
-      ],
-    },
-    {
-      name: "Tangible Stuff",
-      items: [
-        { src: "/assets/tangiblestuff/TV - 5, Pt. I.png", alt: "Tangible TV Pt I", folder: "tangiblestuff" },
-        { src: "/assets/tangiblestuff/TV - 5, Pt. II.png", alt: "Tangible TV Pt II", folder: "tangiblestuff" },
-        { src: "/assets/tangiblestuff/TV - 5, Pt. III.png", alt: "Tangible TV Pt III", folder: "tangiblestuff" },
-        { src: "/assets/tangiblestuff/TV - 5, Pt. IV.png", alt: "Tangible TV Pt IV", folder: "tangiblestuff" },
-        { src: "/assets/tangiblestuff/TV - 5, Pt. V.png", alt: "Tangible TV Pt V", folder: "tangiblestuff" },
-        { src: "/assets/tangiblestuff/TV - 5, Pt. VI.png", alt: "Tangible TV Pt VI", folder: "tangiblestuff" },
-        { src: "/assets/tangiblestuff/TV - 5, Pt. VII.png", alt: "Tangible TV Pt VII", folder: "tangiblestuff" },
-      ],
-    },
-    {
-      name: "Photography",
-      items: [
-        { src: "/assets/masonry/IMG_20260623_205128.jpg", alt: "Photography IMG 20260623 205128", folder: "photography" },
-        { src: "/assets/masonry/0065_3_4_img_260608_180608.jpg", alt: "Photography 0065 3 4 img 260608", folder: "photography" },
-        { src: "/assets/masonry/IMG_20260623_204532.png", alt: "Photography IMG 20260623 204532", folder: "photography" },
-        { src: "/assets/masonry/DSC_20230726_174759_Lmc8.4_R17_Prashant_Premium(beta2).jpg", alt: "Photography DSC 20230726 174759", folder: "photography" },
-        { src: "/assets/masonry/noob_v2.2_13-Feb-24_20.24.22.Profile2.jpg", alt: "Photography noob v2.2 Profile2", folder: "photography" },
-        { src: "/assets/masonry/IMG_20260623_204813.jpg", alt: "Photography IMG 20260623 204813", folder: "photography" },
-        { src: "/assets/masonry/AGC_20260515_173533357.jpg", alt: "Photography AGC 20260515 173533357", folder: "photography" },
-        { src: "/assets/masonry/DSC_20230611_101123_Lmc8.4_R17_Prashant_Premium(beta2).jpg", alt: "Photography DSC 20230611 101123", folder: "photography" },
-        { src: "/assets/masonry/IMG_Veux_20240218_074746_lmc_8.4~2.jpg", alt: "Photography IMG Veux 20240218 074746", folder: "photography" },
-        { src: "/assets/masonry/tower 1.png", alt: "Photography Tower", folder: "photography" },
-        { src: "/assets/masonry/light 1.png", alt: "Photography Light", folder: "photography" },
-        { src: "/assets/masonry/IMG_7691 1.png", alt: "Photography IMG 7691", folder: "photography" },
-        { src: "/assets/masonry/IMG_7663 1.png", alt: "Photography IMG 7663", folder: "photography" },
-        { src: "/assets/masonry/ghost 1.png", alt: "Photography Ghost", folder: "photography" },
-      ],
-    },
-  ].filter((folder) => folder.items.length > 0);
+  const albums = DEFAULT_GALLERY_ALBUMS;
 
   return (
-    <div className="space-y-8 py-4" id="gallery-section">
-      <div className="space-y-2" id="gallery-header">
-        <h2 className="text-2xl font-bold tracking-tight text-neutral-950 dark:text-neutral-50 font-sans">
-          Gallery
-        </h2>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-xl font-sans">
-          A curated collection of banners, designs, and photography organized by folder.
-        </p>
-      </div>
+    <div className="space-y-6 py-4" id="gallery-section">
+      <AnimatePresence mode="wait">
+        {!activeAlbum ? (
+          /* ================= ALBUMS OVERVIEW VIEW ================= */
+          <motion.div
+            key="albums-grid"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-6"
+          >
+            <div className="space-y-2" id="gallery-header">
+              <div className="flex items-center gap-2">
+                <div className="p-2 rounded-xl bg-red-500/10 text-red-500">
+                  <MaterialIcon icon="folder_special" size="1.25rem" />
+                </div>
+                <h2 className="text-2xl font-bold tracking-tight text-neutral-950 dark:text-neutral-50 font-sans">
+                  Gallery & Albums
+                </h2>
+              </div>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-xl font-sans">
+                A curated collection of banners, visual designs, and photography organized into interactive album folders.
+              </p>
+            </div>
 
-      <div className="space-y-8" id="gallery-folders">
-        {folders.map((folder) => (
-          <div key={folder.name} className="space-y-4" id={`gallery-folder-${folder.name.toLowerCase().replace(/\s+/g, '-')}`}>
-            <h3 className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest font-mono">
-              {folder.name}
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-              {folder.items.map((item, index) => (
+            {/* Folder Cards Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+              {albums.map((album, index) => {
+                const previewItems = album.items.slice(0, 3);
+                return (
+                  <motion.div
+                    key={album.id}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.08 }}
+                    onClick={() => setActiveAlbum(album)}
+                    className="group relative cursor-pointer rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/70 dark:bg-zinc-900/40 p-4 transition-all duration-300 hover:border-red-500/40 hover:shadow-xl hover:shadow-red-500/5 hover:-translate-y-1"
+                  >
+                    {/* Visual Folder Card Stack Effect */}
+                    <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden mb-4 bg-zinc-200 dark:bg-zinc-800">
+                      {/* Back stack card 2 */}
+                      {previewItems[2] && (
+                        <div className="absolute inset-0 translate-x-2 -translate-y-2 scale-[0.92] opacity-40 rounded-xl overflow-hidden border border-white/20">
+                          <Image
+                            src={encodeURI(previewItems[2].src)}
+                            alt=""
+                            fill
+                            className="object-cover"
+                            sizes="30vw"
+                          />
+                        </div>
+                      )}
+                      {/* Back stack card 1 */}
+                      {previewItems[1] && (
+                        <div className="absolute inset-0 translate-x-1 -translate-y-1 scale-[0.96] opacity-70 rounded-xl overflow-hidden border border-white/20">
+                          <Image
+                            src={encodeURI(previewItems[1].src)}
+                            alt=""
+                            fill
+                            className="object-cover"
+                            sizes="30vw"
+                          />
+                        </div>
+                      )}
+
+                      {/* Main Cover Image */}
+                      <Image
+                        src={encodeURI(album.coverImage)}
+                        alt={album.name}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                      {/* Folder Badge & Count */}
+                      <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/60 backdrop-blur-md text-white text-xs font-medium border border-white/10">
+                          <MaterialIcon icon={album.icon || "folder"} size="0.875rem" />
+                          {album.items.length} photos
+                        </span>
+                        <span className="opacity-0 group-hover:opacity-100 transition-opacity p-1.5 rounded-full bg-white/20 text-white backdrop-blur-md">
+                          <MaterialIcon icon="arrow_forward" size="1rem" />
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Album Info */}
+                    <div className="space-y-1">
+                      <div className="flex items-center justify-between">
+                        <h3 className="font-semibold text-base text-zinc-900 dark:text-zinc-100 group-hover:text-red-500 transition-colors">
+                          {album.name}
+                        </h3>
+                        <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase">
+                          /{album.folder}
+                        </span>
+                      </div>
+                      <p className="text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2 leading-relaxed font-sans">
+                        {album.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
+        ) : (
+          /* ================= SINGLE ALBUM DETAIL VIEW ================= */
+          <motion.div
+            key="album-detail"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-6"
+          >
+            {/* Header / Breadcrumb Navigation */}
+            <div className="flex items-center justify-between pb-2 border-b border-zinc-200/80 dark:border-zinc-800/80">
+              <button
+                onClick={() => setActiveAlbum(null)}
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800/80 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-xs font-medium text-zinc-800 dark:text-zinc-200 transition-colors"
+              >
+                <MaterialIcon icon="arrow_back" size="1rem" />
+                <span>All Albums</span>
+              </button>
+
+              <div className="flex items-center gap-2 text-xs text-zinc-400 dark:text-zinc-500 font-mono">
+                <span>Gallery</span>
+                <span>/</span>
+                <span className="text-zinc-800 dark:text-zinc-200 font-semibold">{activeAlbum.name}</span>
+              </div>
+            </div>
+
+            {/* Folder Header Info Banner */}
+            <div className="rounded-2xl p-5 border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <MaterialIcon icon={activeAlbum.icon || "folder"} size="1.25rem" className="text-red-500" />
+                  <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">{activeAlbum.name}</h3>
+                </div>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">{activeAlbum.description}</p>
+              </div>
+              <div className="shrink-0">
+                <span className="px-3 py-1 rounded-full bg-red-500/10 text-red-500 text-xs font-semibold font-mono">
+                  {activeAlbum.items.length} Photos
+                </span>
+              </div>
+            </div>
+
+            {/* Photo Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+              {activeAlbum.items.map((item, index) => (
                 <motion.div
-                  key={index}
+                  key={item.id}
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.05 }}
+                  transition={{ delay: index * 0.04 }}
                   onClick={() => setSelectedImage(item)}
-                  className="group relative cursor-pointer rounded-xl overflow-hidden border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all"
+                  className="group relative cursor-pointer rounded-xl overflow-hidden border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 hover:border-red-500/50 transition-all shadow-sm hover:shadow-md"
                 >
                   <div className="aspect-square w-full relative">
                     <Image
                       src={encodeURI(item.src)}
                       alt={item.alt}
                       fill
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 34vw, 20vw"
-                      className="object-cover"
-                      quality={20}
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      quality={25}
                       loading="lazy"
                     />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                      <p className="text-xs font-medium text-white line-clamp-1 truncate">
+                        {item.title || item.alt}
+                      </p>
+                    </div>
                   </div>
                 </motion.div>
               ))}
             </div>
-          </div>
-        ))}
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* Lightbox */}
+      {/* Lightbox Modal */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
@@ -114,11 +206,11 @@ export function GallerySection() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedImage(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/85 backdrop-blur-md p-4"
           >
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+              className="absolute top-4 right-4 p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
             >
               <MaterialIcon icon="close" size="1.25rem" />
             </button>
@@ -129,8 +221,13 @@ export function GallerySection() {
               onClick={(e) => e.stopPropagation()}
               src={selectedImage.src}
               alt={selectedImage.alt}
-              className="max-w-[90vw] max-h-[90vh] rounded-lg shadow-2xl"
+              className="max-w-[90vw] max-h-[85vh] rounded-xl shadow-2xl object-contain"
             />
+            {selectedImage.title && (
+              <p className="mt-3 text-xs font-mono text-zinc-300 bg-black/60 px-3 py-1.5 rounded-full border border-white/10">
+                {selectedImage.title}
+              </p>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
