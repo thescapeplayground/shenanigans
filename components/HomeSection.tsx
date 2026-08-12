@@ -49,11 +49,11 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
           I'm <span className="text-red dark:text-red-400">{profile.name}</span>, but just in public set.
         </h1>
         
-        <p className="text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed font-sans max-w-3xl">
+        <p className="text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed font-sans w-full">
           {profile.bio}
         </p>
 
-        <p className="text-sm sm:text-base text-neutral-500 dark:text-neutral-400 leading-relaxed font-sans max-w-3xl">
+        <p className="text-sm sm:text-base text-neutral-500 dark:text-neutral-400 leading-relaxed font-sans w-full">
           {profile.secondaryBio}
         </p>
       </motion.div>
