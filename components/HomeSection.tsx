@@ -36,26 +36,32 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
         className="space-y-12 py-4 relative z-10"
         id="home-section-container"
       >
-      {/* Hero Greeting Copy */}
-      <motion.div variants={itemVariants} className="space-y-6 text-left" id="home-greeting-block">
-        <div className="flex items-center gap-3">
-          <BadgeAvailability />
-          <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest flex items-center gap-1">
-            Photographer, Graphic Designer
-          </span>
+      {/* Hero Greeting Copy - Full Screen & Full Bleed Banner */}
+      <motion.div 
+        variants={itemVariants} 
+        className="-mx-4 sm:-mx-6 lg:-mx-8 -mt-8 px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-5rem)] sm:min-h-[85vh] lg:min-h-[90vh] flex flex-col justify-center space-y-6 sm:space-y-8 text-left relative overflow-hidden" 
+        id="home-greeting-block"
+      >
+        <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl space-y-6">
+          <div className="flex items-center gap-3">
+            <BadgeAvailability />
+            <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest flex items-center gap-1">
+              Photographer, Graphic Designer
+            </span>
+          </div>
+
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-950 dark:text-neutral-50 font-sans leading-[1.1] mt-2">
+            I'm <span className="text-red-500 dark:text-red-400">{profile.name}</span>, but just in public set.
+          </h1>
+          
+          <p className="text-lg sm:text-xl lg:text-2xl text-neutral-700 dark:text-neutral-300 leading-relaxed font-sans">
+            {profile.bio}
+          </p>
+
+          <p className="text-base sm:text-lg text-neutral-500 dark:text-neutral-400 leading-relaxed font-sans">
+            {profile.secondaryBio}
+          </p>
         </div>
-
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-neutral-950 dark:text-neutral-50 font-sans leading-[1.1] mt-2">
-          I'm <span className="text-red dark:text-red-400">{profile.name}</span>, but just in public set.
-        </h1>
-        
-        <p className="text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed font-sans w-full">
-          {profile.bio}
-        </p>
-
-        <p className="text-sm sm:text-base text-neutral-500 dark:text-neutral-400 leading-relaxed font-sans w-full">
-          {profile.secondaryBio}
-        </p>
       </motion.div>
 
       {/* Real-time Presence Clock Indicator */}
