@@ -9,7 +9,6 @@ export function CustomCursor() {
 
   const cursorPointRef = useRef<HTMLDivElement>(null);
   const cursorTrailRef = useRef<HTMLDivElement>(null);
-  const cursorPulseRef = useRef<HTMLDivElement>(null);
 
   const mousePos = useRef({ x: -100, y: -100 });
   const trailPos = useRef({ x: -100, y: -100 });
@@ -25,9 +24,6 @@ export function CustomCursor() {
 
       if (cursorPointRef.current) {
         cursorPointRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-      }
-      if (cursorPulseRef.current) {
-        cursorPulseRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) scale(${hovered ? 1.4 : 1})`;
       }
     };
 
@@ -53,18 +49,13 @@ export function CustomCursor() {
     document.addEventListener("mouseenter", handleMouseEnter);
 
     const render = () => {
-      const speed = 0.2;
+      const speed = 0.18;
       trailPos.current.x += (mousePos.current.x - trailPos.current.x) * speed;
       trailPos.current.y += (mousePos.current.y - trailPos.current.y) * speed;
 
       if (cursorTrailRef.current) {
-        const scale = clicking ? 0.75 : hovered ? 1.5 : 1;
+        const scale = clicking ? 0.8 : hovered ? 1.5 : 1;
         cursorTrailRef.current.style.transform = `translate3d(${trailPos.current.x}px, ${trailPos.current.y}px, 0) scale(${scale})`;
-      }
-
-      if (cursorPulseRef.current) {
-        const scale = clicking ? 0.8 : hovered ? 1.4 : 0.8;
-        cursorPulseRef.current.style.transform = `translate3d(${mousePos.current.x}px, ${mousePos.current.y}px, 0) scale(${scale})`;
       }
 
       rafId.current = requestAnimationFrame(render);
@@ -90,11 +81,7 @@ export function CustomCursor() {
       />
       <div
         ref={cursorTrailRef}
-        className={`custom-cursor-trail ${visible ? (hovered ? "opacity-40" : "opacity-80") : "opacity-0"}`}
-      />
-      <div
-        ref={cursorPulseRef}
-        className={`custom-cursor-pulse ${visible && hovered ? "opacity-100" : "opacity-0"}`}
+        className={`custom-cursor-trail ${visible ? (hovered ? "opacity-90" : "opacity-60") : "opacity-0"}`}
       />
     </div>
   );
