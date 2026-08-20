@@ -44,7 +44,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-950 dark:text-neutral-50 font-sans leading-[1.1] mt-2"
           >
-            I'm <span className="text-red-500 dark:text-red-400">{profile.name}</span>, but just in public set.
+            I'm <span className="text-red-500 dark:text-red-400">{profile.name}</span>.
           </motion.h1>
           
           <motion.p 
