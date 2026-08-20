@@ -38,13 +38,14 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
   const formattedFollowers = instagramFollowers !== undefined
     ? instagramFollowers.toLocaleString()
     : undefined;
+
   const socialLinks = [
-    { href: "https://youtube.com/@isaiahscape", icon: "youtube" as const, label: "YouTube", color: "text-red-500" },
-    { href: "https://t.me/isaiahscape", icon: "send" as const, label: "Telegram", color: "text-red-500 dark:text-red-400" },
-    { href: "https://linkedin.com/in/isaiahscape", icon: "linkedin" as const, label: "LinkedIn", color: "text-red-500 dark:text-red-400" },
-    { href: "https://twitch.tv/isaiahscape", icon: "twitch" as const, label: "Twitch", color: "text-red-500 dark:text-red-400" },
-    { href: "https://tiktok.com/@isaiahscape", icon: "tiktok" as const, label: "TikTok", color: "text-red-500 dark:text-red-400" },
-    { href: "https://github.com/thescapeplayground/shenanigans", icon: "github" as const, label: "GitHub", color: "text-red-500 dark:text-red-400" },
+    { href: "https://youtube.com/@isaiahscape", icon: "youtube" as const, label: "YouTube", color: "text-purple-600 dark:text-purple-400" },
+    { href: "https://t.me/isaiahscape", icon: "send" as const, label: "Telegram", color: "text-purple-600 dark:text-purple-400" },
+    { href: "https://linkedin.com/in/isaiahscape", icon: "linkedin" as const, label: "LinkedIn", color: "text-purple-600 dark:text-purple-400" },
+    { href: "https://twitch.tv/isaiahscape", icon: "twitch" as const, label: "Twitch", color: "text-purple-600 dark:text-purple-400" },
+    { href: "https://tiktok.com/@isaiahscape", icon: "tiktok" as const, label: "TikTok", color: "text-purple-600 dark:text-purple-400" },
+    { href: "https://github.com/thescapeplayground/shenanigans", icon: "github" as const, label: "GitHub", color: "text-purple-600 dark:text-purple-400" },
   ];
 
   const renderSocialIcon = (icon: string, className: string) => {
@@ -54,13 +55,12 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
   return (
     <div className="my-8" id="presence-clock-section">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="presence-clock-grid">
-        {/* Timezone / Location Indicator */}
         <div 
           className="flex items-center gap-4 p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-white dark:bg-zinc-900 shadow-sm"
           id="col-location-time"
         >
-          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900 w-10 h-10">
-            <MaterialIcon icon="schedule" className="text-red-500 dark:text-red-400" size="1.25rem" />
+          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900">
+            <MaterialIcon icon="schedule" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
             <span className="absolute bottom-1 right-1 flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -76,13 +76,12 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
           </div>
         </div>
 
-        {/* Live Status Tracker */}
         <div 
           className="flex items-center gap-4 p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-white dark:bg-zinc-900 shadow-sm"
           id="col-current-activity"
         >
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900 w-10 h-10">
-            <MaterialIcon icon="show_chart" className="text-red-500 dark:text-red-400 animate-pulse" size="1.25rem" />
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900">
+            <MaterialIcon icon="show_chart" className="text-purple-600 dark:text-purple-400 animate-pulse" size="1.25rem" />
           </div>
           <div className="text-left overflow-hidden w-full">
             <p className="text-xs text-zinc-400 dark:text-zinc-500 font-mono flex items-center gap-1 pr-2">
@@ -94,14 +93,13 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
           </div>
         </div>
 
-        {/* Codename Card */}
         <div
           className="flex items-center justify-between p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-white dark:bg-zinc-900 shadow-sm"
           id="col-codename"
         >
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900">
-              <MaterialIcon icon="fingerprint" className="text-red-500 dark:text-red-400" size="1.25rem" />
+              <MaterialIcon icon="fingerprint" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
             </div>
             <div className="text-left">
               <p className="text-xs text-zinc-400 dark:text-zinc-500 font-mono flex items-center gap-1">
@@ -114,7 +112,6 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
           </div>
         </div>
 
-        {/* Instagram Card */}
         <a
           href={`https://instagram.com/${instagramUsername || "isaiahscape"}`}
           target="_blank"
@@ -124,7 +121,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
         >
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900">
-              <BrandIcon name="instagram" size="1.25rem" className="text-red-500 dark:text-red-400" />
+              <BrandIcon name="instagram" size="1.25rem" className="text-purple-600 dark:text-purple-400" />
             </div>
             <div className="text-left">
               <p className="text-xs text-zinc-400 dark:text-zinc-500 font-mono flex items-center gap-1">
@@ -150,14 +147,13 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
           </div>
         </a>
 
-        {/* Social Links Card */}
         <div 
           className="flex items-center justify-between p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-white dark:bg-zinc-900 shadow-sm"
           id="col-social-links"
         >
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900 w-10 h-10">
-              <MaterialIcon icon="share" className="text-red-500 dark:text-red-400" size="1.25rem" />
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900">
+              <MaterialIcon icon="share" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
             </div>
             <div className="text-left">
               <p className="text-xs text-zinc-400 dark:text-zinc-500 font-mono flex items-center gap-1">
@@ -183,7 +179,6 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
           </div>
         </div>
 
-        {/* Playground Card (replaces Email Service Card) */}
         <a
           href="https://play.isaiahthings.me"
           target="_blank"
@@ -193,7 +188,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
         >
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900">
-              <MaterialIcon icon="sports_esports" className="text-red-500 dark:text-red-400 group-hover:scale-110 transition-transform duration-200" size="1.25rem" />
+              <MaterialIcon icon="sports_esports" className="text-purple-600 dark:text-purple-400 group-hover:scale-110 transition-transform duration-200" size="1.25rem" />
             </div>
             <div className="text-left">
               <p className="text-xs text-zinc-400 dark:text-zinc-500 font-mono flex items-center gap-1">
@@ -204,7 +199,7 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-1 text-zinc-400 group-hover:text-red-500 transition-colors">
+          <div className="flex items-center gap-1 text-zinc-400 group-hover:text-purple-600 transition-colors">
             <MaterialIcon icon="north_east" size="0.875rem" />
           </div>
         </a>
@@ -212,4 +207,5 @@ export function PresenceClock({ location, statusText, codename, instagramUsernam
     </div>
   );
 }
+
 export default PresenceClock;

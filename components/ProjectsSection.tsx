@@ -44,7 +44,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
       case "active":
         return "bg-emerald-500 ring-emerald-500/30";
       case "building":
-        return "bg-red-500 ring-red-500/30";
+        return "bg-purple-600 ring-purple-500/30";
       case "completed":
         return "bg-sky-500 ring-sky-500/30";
       case "archived":
@@ -89,7 +89,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
 
         {/* Search input field */}
         <div className="relative w-full sm:w-64 shrink-0" id="search-input-wrapper">
-          <MaterialIcon icon="search" className="absolute left-3 top-2.5 text-red-500 dark:text-red-400" size="1rem" />
+          <MaterialIcon icon="search" className="absolute left-3 top-2.5 text-purple-600 dark:text-purple-400" size="1rem" />
           <Input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -134,9 +134,9 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                     </div>
                   </div>
 
-                  <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 font-sans tracking-tight group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-150 inline-flex items-center gap-1">
+                  <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 font-sans tracking-tight group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-150 inline-flex items-center gap-1">
                     {project.title.toLowerCase()}
-                    <MaterialIcon icon="north_east" className="text-zinc-400 group-hover:text-red-600 dark:group-hover:text-red-400 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" size="1rem" />
+                    <MaterialIcon icon="north_east" className="text-zinc-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" size="1rem" />
                   </h3>
 
                   <p className="text-zinc-500 dark:text-zinc-400 text-xs sm:text-[13px] leading-relaxed font-sans line-clamp-2 pr-2">
@@ -169,7 +169,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
         </motion.div>
       ) : (
         <div className="py-20 text-center text-zinc-500" id="projects-empty-state">
-          <MaterialIcon icon="folder" className="mx-auto text-red-500 dark:text-red-400 mb-3 animate-pulse" size="3rem" />
+          <MaterialIcon icon="folder" className="mx-auto text-purple-600 dark:text-purple-400 mb-3 animate-pulse" size="3rem" />
           <p className="text-sm font-mono mt-2">No projects matched your criteria.</p>
           <Button
             variant="ghost"
@@ -177,7 +177,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               setSearchQuery("");
               setSelectedCategory("All");
             }}
-            className="text-xs text-red-500 hover:text-red-400 mt-2 gap-1.5 h-8 font-mono rounded-lg"
+            className="text-xs text-purple-600 dark:text-purple-400 hover:text-purple-500 mt-2 gap-1.5 h-8 font-mono rounded-lg"
           >
             <MaterialIcon icon="refresh" size="0.875rem" /> Clear Filters
           </Button>
@@ -237,12 +237,12 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               {/* Date Metadata */}
               <div className="flex items-center gap-6 text-sm text-zinc-500 font-mono border-t border-zinc-100 dark:border-zinc-900/50 pt-4">
                 <div className="flex items-center gap-1.5">
-                  <MaterialIcon icon="calendar_today" className="text-red-500 dark:text-red-400" size="1rem" />
+                  <MaterialIcon icon="calendar_today" className="text-purple-600 dark:text-purple-400" size="1rem" />
                   <span>Release: {selectedProject.date}</span>
                 </div>
                 {selectedProject.stats && (
                   <div className="flex items-center gap-1.5">
-                    <MaterialIcon icon="fork_right" className="text-red-500 dark:text-red-400" size="1rem" />
+                    <MaterialIcon icon="fork_right" className="text-purple-600 dark:text-purple-400" size="1rem" />
                     <span>Scale: {selectedProject.stats}</span>
                   </div>
                 )}

@@ -44,7 +44,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-950 dark:text-neutral-50 font-sans leading-[1.1] mt-2"
           >
-            I'm <span className="text-red-500 dark:text-red-400">{profile.name}</span>.
+            I'm <span className="text-purple-600 dark:text-purple-400">{profile.name}</span>.
           </motion.h1>
           
           <motion.p 
@@ -96,7 +96,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
         <div className="rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800/50 shadow-sm p-5 sm:p-6">
           <div className="flex items-center justify-between pb-5 mb-5 border-b border-zinc-100 dark:border-zinc-900/50">
             <h2 className="text-base font-semibold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider font-mono flex items-center gap-2">
-              <MaterialIcon icon="work" className="text-red-500 dark:text-red-400" size="1.25rem" /> Career Journey
+              <MaterialIcon icon="work" className="text-purple-600 dark:text-purple-400" size="1.25rem" /> Career Journey
             </h2>
             <span className="text-xs font-mono text-zinc-400">Archived Timeline</span>
           </div>
@@ -112,10 +112,10 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
                 className="relative group text-left" 
                 id={`timeline-item-${exp.id}`}
               >
-                <div className="absolute -left-[21px] sm:-left-[29px] top-1.5 bg-background border border-zinc-300 dark:border-zinc-700 w-3 h-3 rounded-full group-hover:bg-red-500 transition-colors duration-300 ring-4 ring-background" />
+                <div className="absolute -left-[21px] sm:-left-[29px] top-1.5 bg-background border border-zinc-300 dark:border-zinc-700 w-3 h-3 rounded-full group-hover:bg-purple-600 transition-colors duration-300 ring-4 ring-background" />
                 
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                  <h3 className="text-base font-bold text-neutral-950 dark:text-neutral-50 font-sans flex items-center gap-1.5 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-200">
+                  <h3 className="text-base font-bold text-neutral-950 dark:text-neutral-50 font-sans flex items-center gap-1.5 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-200">
                     {exp.role}
                   </h3>
                   <span className="text-xs font-mono text-neutral-400 dark:text-neutral-500 shrink-0">

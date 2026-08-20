@@ -7,11 +7,10 @@ import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
 import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { ThemeToggle } from "@/components/ThemeToggle";
-
 import { PageTransition } from "@/components/PageTransition";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 
-const navItems: { id: string; label: string; href: string; icon: string }[] = [
+const navItems = [
   { id: "home", label: "Home", href: "/", icon: "home" },
   { id: "about", label: "About", href: "/about", icon: "person" },
   { id: "projects", label: "Projects", href: "/projects", icon: "folder" },
@@ -27,79 +26,13 @@ function resolveActiveTab(pathname: string): string {
   return pathname.replace(/^\//, "");
 }
 
-function DesktopNav({
-  activeTab,
-}: {
-  activeTab: string;
-}) {
-  const [visible, setVisible] = useState(true);
-  const lastScrollY = useRef(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
-        setVisible(false);
-      } else {
-        setVisible(true);
-      }
-      lastScrollY.current = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  return (
-    <motion.div
-      className="fixed top-16 left-0 right-0 z-30 hidden sm:block pointer-events-none"
-      initial={false}
-      animate={{
-        y: visible ? 0 : -60,
-        opacity: visible ? 1 : 0,
-      }}
-      transition={{ duration: 0.25, ease: "easeInOut" }}
-    >
-      <nav className="mx-auto w-fit p-1 px-1.5 flex gap-0.5 justify-center items-center rounded-full shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] pointer-events-auto">
-        {navItems.map((item) => {
-          const isActive = activeTab === item.id;
-          return (
-            <Link
-              key={item.id}
-              href={item.href}
-              className="relative flex items-center justify-center p-2.5 rounded-full transition-all group active:scale-95 cursor-pointer"
-            >
-              {isActive && (
-                <motion.div
-                  layoutId="active-island-slide-desktop"
-                  className="absolute inset-0 bg-red-500/15 dark:bg-red-500/10 border border-red-500/20 rounded-full z-0"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              )}
-              <MaterialIcon
-                icon={item.icon}
-                className={`shrink-0 z-10 transition-all duration-200 ${
-                  isActive
-                    ? "text-red-500 dark:text-red-400"
-                    : "text-zinc-500 dark:text-zinc-400 group-hover:text-red-500 dark:group-hover:text-red-300"
-                }`}
-                size="1.25rem"
-              />
-            </Link>
-          );
-        })}
-      </nav>
-    </motion.div>
-  );
-}
-
 export function AppShell({ children }: { children: React.ReactNode }) {
   const [showApp, setShowApp] = useState(false);
-  const [mobileNavVisible, setMobileNavVisible] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const lastScrollY = useRef(0);
   const pathname = usePathname();
   const activeTab = resolveActiveTab(pathname);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.001 });
@@ -110,20 +43,28 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setShowScrollTop(currentScrollY > 300);
-      if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
-        setMobileNavVisible(false);
-      } else {
-        setMobileNavVisible(true);
-      }
-      lastScrollY.current = currentScrollY;
-    };
+    setMenuOpen(false);
+  }, [pathname]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [menuOpen]);
 
   const handleScrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -141,14 +82,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
           >
-            {/* Scroll progress bar at top */}
             <motion.div
-              className="fixed top-0 left-0 right-0 h-[2.5px] bg-red-500 dark:bg-red-400 origin-left z-50 pointer-events-none"
+              className="fixed top-0 left-0 right-0 h-[2.5px] bg-purple-600 dark:bg-purple-400 origin-left z-50 pointer-events-none"
               style={{ scaleX }}
             />
 
             <div
-              className="min-h-screen bg-zinc-50/50 dark:bg-black text-neutral-900 dark:text-neutral-100 flex flex-col justify-between selection:bg-red-500/10 transition-colors duration-200"
+              className="min-h-screen bg-zinc-50/50 dark:bg-black text-neutral-900 dark:text-neutral-100 flex flex-col justify-between selection:bg-purple-500/15 transition-colors duration-200"
               id="main-app-container"
             >
               <header
@@ -176,67 +116,106 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 <PageTransition>{children}</PageTransition>
               </main>
 
-              {/* Scroll-to-top FAB button */}
-              <AnimatePresence>
-                {showScrollTop && (
-                  <motion.button
-                    initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.8, y: 10 }}
-                    onClick={handleScrollTop}
-                    className="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-white/80 dark:bg-zinc-900/80 border border-zinc-200/80 dark:border-zinc-800/80 text-neutral-800 dark:text-neutral-200 shadow-xl backdrop-blur-md hover:bg-red-500 hover:text-white dark:hover:bg-red-500 dark:hover:text-white transition-colors duration-200 cursor-pointer"
-                    aria-label="Scroll to top"
-                  >
-                    <MaterialIcon icon="arrow_upward" size="1.25rem" />
-                  </motion.button>
-                )}
-              </AnimatePresence>
+              {/* Floating Action Button Navigation (notayan.in design) */}
+              <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 pointer-events-auto" ref={menuRef} id="fab-nav-container">
+                <AnimatePresence>
+                  {menuOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9, y: 12 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.9, y: 12 }}
+                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                      className="w-64 p-3 rounded-2xl bg-white/90 dark:bg-zinc-950/90 border border-zinc-200/80 dark:border-zinc-800/80 shadow-2xl backdrop-blur-xl flex flex-col gap-2 origin-bottom-right overflow-hidden"
+                      id="fab-menu-card"
+                    >
+                      <div className="flex items-center justify-between px-3 py-2 border-b border-zinc-100 dark:border-zinc-900">
+                        <div className="flex items-center gap-2">
+                          <img src="/favicon.svg" alt="Logo" className="w-4 h-4 dark:invert" />
+                          <span className="text-xs font-mono font-semibold tracking-wide uppercase text-zinc-400 dark:text-zinc-500">
+                            Navigation
+                          </span>
+                        </div>
+                        <button 
+                          onClick={() => setMenuOpen(false)}
+                          className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors p-1 rounded-md"
+                        >
+                          <MaterialIcon icon="close" size="1rem" />
+                        </button>
+                      </div>
 
-              {/* Mobile bottom nav bar */}
-              <motion.div
-                className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-auto max-w-[95%] sm:max-w-lg pointer-events-none"
-                id="floating-dock-row"
-                initial={false}
-                animate={{
-                  y: mobileNavVisible ? 0 : 100,
-                  opacity: mobileNavVisible ? 1 : 0,
-                }}
-                transition={{ duration: 0.25, ease: "easeInOut" }}
-              >
-                <nav
-                  className="p-1 px-1.5 sm:px-3 flex gap-0.5 sm:gap-1.5 justify-center sm:justify-start items-center rounded-full border border-red-500/20 dark:border-red-500/15 bg-white/70 dark:bg-black/65 backdrop-blur-xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] pointer-events-auto"
-                  id="floating-navigation-island"
-                >
-                  {navItems.map((item) => {
-                    const isActive = activeTab === item.id;
-                    return (
-                      <Link
-                        key={item.id}
-                        href={item.href}
-                        className="relative flex items-center justify-center p-2.5 sm:p-3 rounded-full transition-all group active:scale-95 cursor-pointer"
-                        id={`nav-island-btn-${item.id}`}
+                      <div className="flex flex-col gap-1 max-h-[60vh] overflow-y-auto py-1">
+                        {navItems.map((item) => {
+                          const isActive = activeTab === item.id;
+                          return (
+                            <Link
+                              key={item.id}
+                              href={item.href}
+                              className={`flex items-center justify-between px-3 py-2 rounded-xl text-sm font-medium transition-all duration-150 group ${
+                                isActive
+                                  ? "bg-purple-500/10 text-purple-600 dark:text-purple-400 font-semibold"
+                                  : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-purple-600 dark:hover:text-purple-400"
+                              }`}
+                            >
+                              <div className="flex items-center gap-2.5">
+                                <MaterialIcon
+                                  icon={item.icon}
+                                  size="1.15rem"
+                                  className={isActive ? "text-purple-600 dark:text-purple-400" : "text-zinc-400 group-hover:text-purple-500"}
+                                />
+                                <span>{item.label}</span>
+                              </div>
+                              {isActive ? (
+                                <span className="w-1.5 h-1.5 rounded-full bg-purple-600 dark:bg-purple-400" />
+                              ) : (
+                                <MaterialIcon icon="arrow_forward" size="0.9rem" className="opacity-0 group-hover:opacity-100 transition-opacity text-zinc-400" />
+                              )}
+                            </Link>
+                          );
+                        })}
+                      </div>
+
+                      <div className="flex items-center justify-between px-3 pt-2 pb-1 border-t border-zinc-100 dark:border-zinc-900 text-xs text-zinc-400">
+                        <span>Theme</span>
+                        <ThemeToggle />
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <div className="flex items-center gap-2">
+                  <AnimatePresence>
+                    {showScrollTop && (
+                      <motion.button
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        onClick={handleScrollTop}
+                        className="p-3 rounded-xl bg-white/80 dark:bg-zinc-900/80 border border-zinc-200/80 dark:border-zinc-800/80 text-neutral-800 dark:text-neutral-200 shadow-xl backdrop-blur-md hover:bg-purple-600 hover:text-white dark:hover:bg-purple-600 dark:hover:text-white transition-all duration-200 cursor-pointer"
+                        aria-label="Scroll to top"
                       >
-                        {isActive && (
-                          <motion.div
-                            layoutId="active-island-slide"
-                            className="absolute inset-0 bg-red-500/15 dark:bg-red-500/10 border border-red-500/20 rounded-full z-0"
-                            transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                          />
-                        )}
-                        <MaterialIcon
-                          icon={item.icon}
-                          className={`shrink-0 z-10 transition-all duration-200 ${
-                            isActive
-                              ? "text-red-500 dark:text-red-400"
-                              : "text-zinc-500 dark:text-zinc-400 group-hover:text-red-500 dark:group-hover:text-red-300"
-                          }`}
-                          size="1.25rem"
-                        />
-                      </Link>
-                    );
-                  })}
-                </nav>
-              </motion.div>
+                        <MaterialIcon icon="arrow_upward" size="1.25rem" />
+                      </motion.button>
+                    )}
+                  </AnimatePresence>
+
+                  <button
+                    onClick={() => setMenuOpen((prev) => !prev)}
+                    className={`p-3.5 rounded-xl border shadow-xl backdrop-blur-xl transition-all duration-300 cursor-pointer flex items-center justify-center ${
+                      menuOpen
+                        ? "bg-purple-600 text-white border-purple-600 shadow-purple-500/20"
+                        : "bg-white/80 dark:bg-zinc-900/80 text-neutral-900 dark:text-neutral-100 border-zinc-200/80 dark:border-zinc-800/80 hover:border-purple-500/40 hover:text-purple-600 dark:hover:text-purple-400"
+                    }`}
+                    aria-label="Toggle navigation menu"
+                  >
+                    <motion.div
+                      animate={{ rotate: menuOpen ? 90 : 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <MaterialIcon icon={menuOpen ? "close" : "grid_view"} size="1.35rem" />
+                    </motion.div>
+                  </button>
+                </div>
+              </div>
 
               <footer
                 className="text-center py-6 border-t border-zinc-200/20 dark:border-zinc-800/20 max-w-[1800px] mx-auto w-full px-4 sm:px-6 lg:px-8 text-xs font-mono text-zinc-400 dark:text-zinc-600 flex flex-col sm:flex-row justify-between items-center gap-2 shrink-0"
@@ -244,7 +223,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               >
                 <p>&copy; 2026 The Scape Series: Playground</p>
                 <div className="flex gap-4">
-                  <a href="https://github.com/thescapeplayground/shenanigans" target="_blank" rel="noreferrer" className="hover:text-red-500 dark:hover:text-red-400">
+                  <a href="https://github.com/thescapeplayground/shenanigans" target="_blank" rel="noreferrer" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
                     repository
                   </a>
                 </div>

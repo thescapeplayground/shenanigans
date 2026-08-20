@@ -49,7 +49,7 @@ export function ServicesSection({
       {/* Header Block */}
       <motion.div variants={itemVariants} className="space-y-3" id="services-header">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="px-2.5 py-1 rounded-full bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20 text-xs font-mono font-medium">
+          <span className="px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 text-xs font-mono font-medium">
             Leonardo's Tangible Stuff
           </span>
           <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500">
@@ -81,7 +81,7 @@ export function ServicesSection({
       {/* Services List Grid */}
       <motion.div variants={itemVariants} className="space-y-4" id="services-list-group">
         <h3 className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest font-mono flex items-center gap-1.5">
-          <MaterialIcon icon="list_alt" className="text-red-500" size="1rem" /> Available Services
+          <MaterialIcon icon="list_alt" className="text-purple-600 dark:text-purple-400" size="1rem" /> Available Services
         </h3>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-5" id="services-cards-grid">
@@ -116,7 +116,7 @@ export function ServicesSection({
                 <ul className="space-y-2 pt-2 border-t border-zinc-100 dark:border-zinc-900/50">
                   {service.items.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 leading-normal">
-                      <MaterialIcon icon="check_circle" className="text-red-500 shrink-0 mt-0.5" size="1rem" />
+                      <MaterialIcon icon="check_circle" className="text-purple-600 dark:text-purple-400 shrink-0 mt-0.5" size="1rem" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -127,7 +127,7 @@ export function ServicesSection({
               {service.note && (
                 <div className="pt-2 border-t border-zinc-100 dark:border-zinc-900/50">
                   <p className="text-[11px] font-mono text-zinc-500 dark:text-zinc-400 leading-relaxed flex items-start gap-1.5 bg-zinc-50 dark:bg-zinc-900/40 p-2.5 rounded-xl border border-zinc-200/40 dark:border-zinc-800/40">
-                    <MaterialIcon icon="info" className="text-red-500 dark:text-red-400 shrink-0 mt-0.5" size="0.875rem" />
+                    <MaterialIcon icon="info" className="text-purple-600 dark:text-purple-400 shrink-0 mt-0.5" size="0.875rem" />
                     <span>{service.note}</span>
                   </p>
                 </div>
@@ -141,7 +141,7 @@ export function ServicesSection({
       <motion.div variants={itemVariants} className="space-y-4 pt-4 border-t border-zinc-200/50 dark:border-zinc-800/50" id="services-faq-group">
         <div className="space-y-1">
           <h3 className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest font-mono flex items-center gap-1.5">
-            <MaterialIcon icon="help_outline" className="text-red-500" size="1rem" /> Frequently Asked Questions
+            <MaterialIcon icon="help_outline" className="text-purple-600 dark:text-purple-400" size="1rem" /> Frequently Asked Questions
           </h3>
           <p className="text-xs text-zinc-500 dark:text-zinc-400">
             Got questions about diagnosis, payment, or turnarounds?
@@ -159,7 +159,7 @@ export function ServicesSection({
                 className="w-full flex items-center justify-between p-4 text-left focus:outline-none cursor-pointer gap-3"
               >
                 <div className="flex items-center gap-2.5">
-                  <MaterialIcon icon={faq.icon} className="text-red-500 dark:text-red-400 shrink-0" size="1.1rem" />
+                  <MaterialIcon icon={faq.icon} className="text-purple-600 dark:text-purple-400 shrink-0" size="1.1rem" />
                   <span className="text-xs sm:text-sm font-bold text-zinc-800 dark:text-zinc-200 font-sans">
                     {faq.question}
                   </span>

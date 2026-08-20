@@ -136,7 +136,7 @@ export function StackSection({ stack }: StackSectionProps) {
               className="flex items-center gap-2 px-4 py-3 bg-zinc-50 dark:bg-zinc-900/50 border-b border-zinc-200 dark:border-zinc-800/80"
               id="gadgets-editor-header"
             >
-              <MaterialIcon icon="description" className="text-red-500 dark:text-red-400" size="1rem" />
+              <MaterialIcon icon="description" className="text-purple-600 dark:text-purple-400" size="1rem" />
               <span className="font-mono text-xs font-semibold text-zinc-600 dark:text-zinc-400 tracking-tight">
                 gadgets.md
               </span>
@@ -164,22 +164,22 @@ export function StackSection({ stack }: StackSectionProps) {
                     >
                       <div className="flex items-center gap-3">
                         <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                          <MaterialIcon icon="smartphone" className="text-red-500 dark:text-red-400" size="1.25rem" />
+                          <MaterialIcon icon="smartphone" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
                         </div>
                         <a
                           href="https://www.samsung.com/ph/smartphones/galaxy-s24/"
                           target="_blank"
                           rel="noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="text-sm font-bold text-zinc-800 dark:text-zinc-200 hover:text-red-500 dark:hover:text-red-400 transition-colors"
+                          className="text-sm font-bold text-zinc-800 dark:text-zinc-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                         >
                           Samsung Galaxy S24 5G
                         </a>
                       </div>
                       {openDevice === "s24" ? (
-                        <MaterialIcon icon="expand_less" className="text-red-500 dark:text-red-400" size="1rem" />
+                        <MaterialIcon icon="expand_less" className="text-purple-600 dark:text-purple-400" size="1rem" />
                       ) : (
-                        <MaterialIcon icon="expand_more" className="text-red-500 dark:text-red-400" size="1rem" />
+                        <MaterialIcon icon="expand_more" className="text-purple-600 dark:text-purple-400" size="1rem" />
                       )}
                     </button>
 
@@ -218,16 +218,16 @@ export function StackSection({ stack }: StackSectionProps) {
                     >
                       <div className="flex items-center gap-3">
                         <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                          <MaterialIcon icon="memory" className="text-red-500 dark:text-red-400" size="1.25rem" />
+                          <MaterialIcon icon="memory" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
                         </div>
                         <span className="text-sm font-bold text-zinc-800 dark:text-zinc-200">
                           Gaming Specifications
                         </span>
                       </div>
                       {openDevice === "gaming" ? (
-                        <MaterialIcon icon="expand_less" className="text-red-500 dark:text-red-400" size="1rem" />
+                        <MaterialIcon icon="expand_less" className="text-purple-600 dark:text-purple-400" size="1rem" />
                       ) : (
-                        <MaterialIcon icon="expand_more" className="text-red-500 dark:text-red-400" size="1rem" />
+                        <MaterialIcon icon="expand_more" className="text-purple-600 dark:text-purple-400" size="1rem" />
                       )}
                     </button>
 
@@ -266,22 +266,22 @@ export function StackSection({ stack }: StackSectionProps) {
                     >
                       <div className="flex items-center gap-3">
                         <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                          <MaterialIcon icon="laptop" className="text-red-500 dark:text-red-400" size="1.25rem" />
+                          <MaterialIcon icon="laptop" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
                         </div>
                         <a
                           href="https://www.lenovo.com/ph/en/p/laptops/ideapad/ideapad-3/ideapad-slim-3-gen-8-15-inch-amd/"
                           target="_blank"
                           rel="noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="text-sm font-bold text-zinc-800 dark:text-zinc-200 hover:text-red-500 dark:hover:text-red-400 transition-colors"
+                          className="text-sm font-bold text-zinc-800 dark:text-zinc-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                         >
                           Lenovo Ideapad Slim 3 (8th)
                         </a>
                       </div>
                       {openDevice === "lenovo" ? (
-                        <MaterialIcon icon="expand_less" className="text-red-500 dark:text-red-400" size="1rem" />
+                        <MaterialIcon icon="expand_less" className="text-purple-600 dark:text-purple-400" size="1rem" />
                       ) : (
-                        <MaterialIcon icon="expand_more" className="text-red-500 dark:text-red-400" size="1rem" />
+                        <MaterialIcon icon="expand_more" className="text-purple-600 dark:text-purple-400" size="1rem" />
                       )}
                     </button>
 
@@ -326,7 +326,7 @@ export function StackSection({ stack }: StackSectionProps) {
                     id="kit-card-truthear"
                   >
                     <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                      <MaterialIcon icon="headphones" className="text-red-500 dark:text-red-400" size="1.25rem" />
+                      <MaterialIcon icon="headphones" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
                     </div>
                     <div className="space-y-1 text-left min-w-0">
                       <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-tight truncate">
@@ -347,7 +347,7 @@ export function StackSection({ stack }: StackSectionProps) {
                     id="kit-card-tbk"
                   >
                     <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                      <MaterialIcon icon="tune" className="text-red-500 dark:text-red-400" size="1.25rem" />
+                      <MaterialIcon icon="tune" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
                     </div>
                     <div className="space-y-1 text-left min-w-0">
                       <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-tight truncate">
@@ -368,7 +368,7 @@ export function StackSection({ stack }: StackSectionProps) {
                     id="kit-card-pulsar"
                   >
                     <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                      <MaterialIcon icon="mouse" className="text-red-500 dark:text-red-400" size="1.25rem" />
+                      <MaterialIcon icon="mouse" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
                     </div>
                     <div className="space-y-1 text-left min-w-0">
                       <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-tight truncate">
@@ -386,7 +386,7 @@ export function StackSection({ stack }: StackSectionProps) {
                     id="kit-card-aula"
                   >
                     <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                      <MaterialIcon icon="keyboard" className="text-red-500 dark:text-red-400" size="1.25rem" />
+                      <MaterialIcon icon="keyboard" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
                     </div>
                     <div className="space-y-1 text-left min-w-0">
                       <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-tight truncate">
@@ -424,7 +424,7 @@ export function StackSection({ stack }: StackSectionProps) {
                     }
                   >
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/50 dark:border-zinc-800/40">
-                      <MaterialIcon icon={getIconName(item.iconName)} className="text-red-500 dark:text-red-400" size="1.25rem" />
+                      <MaterialIcon icon={getIconName(item.iconName)} className="text-purple-600 dark:text-purple-400" size="1.25rem" />
                     </div>
                     <div>
                       <h4 className="text-sm font-semibold text-zinc-800 dark:text-zinc-200 leading-tight">

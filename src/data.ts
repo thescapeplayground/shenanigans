@@ -194,7 +194,7 @@ export const DEFAULT_SERVICES: ServiceCategory[] = [
     title: "Troubleshoots & Repairs",
     price: "Starts at ₱500",
     icon: "handyman",
-    color: "text-red-500 dark:text-red-400",
+    color: "text-purple-600 dark:text-purple-400",
     tagline: "Diagnostic and hardware fixes for PCs, laptops, and mobile devices.",
     items: [
       "PC / Laptop not turning on, no power, or not charging",
@@ -210,7 +210,7 @@ export const DEFAULT_SERVICES: ServiceCategory[] = [
     title: "Software & OS Installation",
     price: "Starts at ₱300",
     icon: "memory",
-    color: "text-red-500 dark:text-red-400",
+    color: "text-purple-600 dark:text-purple-400",
     tagline: "Operating system deployment, software suites, and licenses.",
     items: [
       "Windows 10 / 11 Pro with Free License",
@@ -225,7 +225,7 @@ export const DEFAULT_SERVICES: ServiceCategory[] = [
     title: "PC / Laptop Maintenance & Cleaning",
     price: "Starts at ₱2,000",
     icon: "build",
-    color: "text-red-500 dark:text-red-400",
+    color: "text-purple-600 dark:text-purple-400",
     tagline: "Deep physical cleaning, thermal paste refresh, and cable routing.",
     items: [
       "Thermal Paste Replacement (any premium paste per request)",
@@ -240,7 +240,7 @@ export const DEFAULT_SERVICES: ServiceCategory[] = [
     title: "Desktop Installation & Building",
     price: "Starts at ₱500",
     icon: "construction",
-    color: "text-red-500 dark:text-red-400",
+    color: "text-purple-600 dark:text-purple-400",
     tagline: "Custom PC assembly, part upgrades, and initial setup.",
     items: [
       "Component Installation / Replacement (CPU Cooler, Motherboard, AIO, RAM, PSU)",
@@ -254,7 +254,7 @@ export const DEFAULT_SERVICES: ServiceCategory[] = [
     title: "Other Shenanigans",
     price: "Starts at ₱1,500",
     icon: "palette",
-    color: "text-red-500 dark:text-red-400",
+    color: "text-purple-600 dark:text-purple-400",
     tagline: "Web development, multimedia production, and design work.",
     items: [
       "Full-stack web application development (React, Next.js, JavaScript, etc.)",

@@ -67,7 +67,7 @@ export function ContactSection() {
       {/* Left Column: Social Links & Availability info */}
       <div className="space-y-6 flex flex-col justify-between" id="contact-left-block">
         <div className="space-y-4">
-          <span className="px-2.5 py-1 rounded bg-red-500/10 text-red-700 dark:text-red-400 dark:bg-red-400/5 border border-red-500/10 text-xs font-mono font-medium inline-block">
+          <span className="px-2.5 py-1 rounded bg-purple-500/10 text-purple-700 dark:text-purple-400 dark:bg-purple-400/5 border border-purple-500/10 text-xs font-mono font-medium inline-block">
             Let's Collaborate
           </span>
           <h2 className="text-3xl font-bold tracking-tight text-neutral-950 dark:text-neutral-50 font-sans">
@@ -92,18 +92,20 @@ export function ContactSection() {
             >
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white dark:bg-zinc-950 rounded-lg border border-zinc-100 dark:border-zinc-800">
-                  <MaterialIcon icon="mail" className="text-red-500" size="1rem" />
+                  <MaterialIcon icon="mail" className="text-purple-600 dark:text-purple-400" size="1rem" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-mono text-zinc-400 leading-none mb-0.5">Copy Email</p>
-                  <p className="text-xs font-mono font-bold text-zinc-700 dark:text-zinc-300 select-all">
-                    {contactEmail}
-                  </p>
+                  <p className="text-[10px] font-mono text-zinc-400 leading-none mb-0.5">Email Address</p>
+                  <p className="text-xs font-mono font-medium text-zinc-800 dark:text-zinc-200">{contactEmail}</p>
                 </div>
               </div>
-              <Button size="icon" variant="ghost" className="h-8 w-8 rounded-lg text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-zinc-100">
-                {copied ? <span className="text-[10px] font-mono text-red-600 font-bold">Copied!</span> : <MaterialIcon icon="content_copy" size="1rem" />}
-              </Button>
+              <button 
+                onClick={handleCopyEmail}
+                className="p-1.5 hover:bg-zinc-200/50 dark:hover:bg-zinc-800 rounded text-zinc-400 hover:text-zinc-600 transition-colors"
+                title="Copy Email"
+              >
+                {copied ? <span className="text-[10px] font-mono text-purple-600 font-bold">Copied!</span> : <MaterialIcon icon="content_copy" size="1rem" />}
+              </button>
             </div>
 
             {/* GitHub handle */}
@@ -116,7 +118,7 @@ export function ContactSection() {
             >
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white dark:bg-zinc-950 rounded-lg border border-zinc-100 dark:border-zinc-800">
-                  <BrandIcon name="github" size="1rem" className="text-red-500 dark:text-red-400" />
+                  <BrandIcon name="github" size="1rem" className="text-purple-600 dark:text-purple-400" />
                 </div>
                 <div>
                   <p className="text-[10px] font-mono text-zinc-400 leading-none mb-0.5">GitHub Repository</p>
@@ -138,7 +140,7 @@ export function ContactSection() {
             >
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white dark:bg-zinc-950 rounded-lg border border-zinc-100 dark:border-zinc-800">
-                  <BrandIcon name="send" size="1rem" className="text-red-500 dark:text-red-400" />
+                  <BrandIcon name="send" size="1rem" className="text-purple-600 dark:text-purple-400" />
                 </div>
                 <div>
                   <p className="text-[10px] font-mono text-zinc-400 leading-none mb-0.5">Telegram</p>
@@ -160,7 +162,7 @@ export function ContactSection() {
             >
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white dark:bg-zinc-950 rounded-lg border border-zinc-100 dark:border-zinc-800">
-                  <BrandIcon name="instagram" size="1rem" className="text-red-500 dark:text-red-400" />
+                  <BrandIcon name="instagram" size="1rem" className="text-purple-600 dark:text-purple-400" />
                 </div>
                 <div>
                   <p className="text-[10px] font-mono text-zinc-400 leading-none mb-0.5">Instagram</p>

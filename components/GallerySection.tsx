@@ -28,7 +28,7 @@ export function GallerySection() {
           >
             <div className="space-y-2" id="gallery-header">
               <div className="flex items-center gap-2">
-                <div className="p-2 rounded-xl bg-red-500/10 text-red-500">
+                <div className="p-2 rounded-xl bg-purple-600/10 text-purple-600">
                   <MaterialIcon icon="folder_special" size="1.25rem" />
                 </div>
                 <h2 className="text-2xl font-bold tracking-tight text-neutral-950 dark:text-neutral-50 font-sans">
@@ -51,7 +51,7 @@ export function GallerySection() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.08 }}
                     onClick={() => setActiveAlbum(album)}
-                    className="group relative cursor-pointer rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/70 dark:bg-zinc-900/40 p-4 transition-all duration-300 hover:border-red-500/40 hover:shadow-xl hover:shadow-red-500/5 hover:-translate-y-1"
+                    className="group relative cursor-pointer rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/70 dark:bg-zinc-900/40 p-4 transition-all duration-300 hover:border-purple-600/40 hover:shadow-xl hover:shadow-purple-600/5 hover:-translate-y-1"
                   >
                     {/* Visual Folder Card Stack Effect */}
                     <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden mb-4 bg-zinc-200 dark:bg-zinc-800">
@@ -105,7 +105,7 @@ export function GallerySection() {
                     {/* Album Info */}
                     <div className="space-y-1">
                       <div className="flex items-center justify-between">
-                        <h3 className="font-semibold text-base text-zinc-900 dark:text-zinc-100 group-hover:text-red-500 transition-colors">
+                        <h3 className="font-semibold text-base text-zinc-900 dark:text-zinc-100 group-hover:text-purple-600 transition-colors">
                           {album.name}
                         </h3>
                         <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase">
@@ -152,13 +152,13 @@ export function GallerySection() {
             <div className="rounded-2xl p-5 border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <MaterialIcon icon={activeAlbum.icon || "folder"} size="1.25rem" className="text-red-500" />
+                  <MaterialIcon icon={activeAlbum.icon || "folder"} size="1.25rem" className="text-purple-600" />
                   <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">{activeAlbum.name}</h3>
                 </div>
                 <p className="text-xs text-zinc-500 dark:text-zinc-400">{activeAlbum.description}</p>
               </div>
               <div className="shrink-0">
-                <span className="px-3 py-1 rounded-full bg-red-500/10 text-red-500 text-xs font-semibold font-mono">
+                <span className="px-3 py-1 rounded-full bg-purple-600/10 text-purple-600 text-xs font-semibold font-mono">
                   {activeAlbum.items.length} Photos
                 </span>
               </div>
@@ -173,7 +173,7 @@ export function GallerySection() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.04 }}
                   onClick={() => setSelectedImage(item)}
-                  className="group relative cursor-pointer rounded-xl overflow-hidden border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 hover:border-red-500/50 transition-all shadow-sm hover:shadow-md"
+                  className="group relative cursor-pointer rounded-xl overflow-hidden border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 hover:border-purple-600/50 transition-all shadow-sm hover:shadow-md"
                 >
                   <div className="aspect-square w-full relative">
                     <Image

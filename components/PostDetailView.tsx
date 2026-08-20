@@ -112,7 +112,7 @@ export function PostDetailView({ post }: { post: Post }) {
                   <span
                     className={`text-xs leading-snug transition-all ${
                       activeId === h.id
-                        ? "text-red-500 font-bold"
+                        ? "text-purple-600 dark:text-purple-400"
                         : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
                     }`}
                   >
@@ -133,7 +133,7 @@ export function PostDetailView({ post }: { post: Post }) {
             <MaterialIcon icon="arrow_back" size="1rem" />
             Back to blog
           </Link>
-          <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:font-sans prose-headings:tracking-tight prose-a:text-red-500 dark:prose-a:text-red-400 prose-code:bg-zinc-100 dark:prose-code:bg-zinc-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-blockquote:border-red-500/30 prose-blockquote:text-zinc-500 dark:prose-blockquote:text-zinc-400 prose-headings:scroll-mt-24">
+          <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:font-sans prose-headings:tracking-tight prose-a:text-purple-600 dark:prose-a:text-purple-400 prose-code:bg-zinc-100 dark:prose-code:bg-zinc-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-blockquote:border-purple-500/30 prose-blockquote:text-zinc-500 dark:prose-blockquote:text-zinc-400 prose-headings:scroll-mt-24">
             <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-neutral-950 dark:text-neutral-50">
               {post.title}
             </h1>

@@ -87,7 +87,7 @@ export function BlogSection() {
                   className="w-full text-left rounded-lg border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/30 dark:bg-zinc-900/10 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/50 dark:hover:bg-zinc-800/20 transition-all cursor-pointer group overflow-hidden"
                 >
                   <div className="w-full flex flex-col px-4 pt-3 gap-1">
-                    <h3 className="font-semibold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-red-500 dark:group-hover:text-red-400 transition-colors">
+                    <h3 className="font-semibold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                       {post.title}
                     </h3>
                     <p className="text-xs text-zinc-400 dark:text-zinc-500">

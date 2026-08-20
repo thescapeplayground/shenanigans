@@ -99,7 +99,7 @@ export function AboutSection({ about }: AboutSectionProps) {
                     className="flex items-center justify-between py-2.5 first:pt-0 last:pb-0"
                   >
                     <span className="flex items-center gap-2 text-xs font-mono text-zinc-500 dark:text-zinc-400">
-                      <MaterialIcon icon={iconName} className="text-red-500 dark:text-red-400" size="1.1rem" />
+                      <MaterialIcon icon={iconName} className="text-purple-600 dark:text-purple-400" size="1.1rem" />
                       {h.label}
                     </span>
                     <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100 text-right">
@@ -119,7 +119,7 @@ export function AboutSection({ about }: AboutSectionProps) {
                 href="https://irvanma.eu.org"
                 target="_blank"
                 rel="noreferrer"
-                className="text-red-500 dark:text-red-400 hover:underline"
+                className="text-purple-600 dark:text-purple-400 hover:underline"
               >
                 lapp's realm
               </a>
@@ -128,7 +128,7 @@ export function AboutSection({ about }: AboutSectionProps) {
                 href="https://vercel.com"
                 target="_blank"
                 rel="noreferrer"
-                className="text-red-500 dark:text-red-400 hover:underline"
+                className="text-purple-600 dark:text-purple-400 hover:underline"
               >
                 Vercel
               </a>
@@ -137,7 +137,7 @@ export function AboutSection({ about }: AboutSectionProps) {
                 href="https://github.com/thescapeplayground/shenanigans"
                 target="_blank"
                 rel="noreferrer"
-                className="text-red-500 dark:text-red-400 hover:underline"
+                className="text-purple-600 dark:text-purple-400 hover:underline"
               >
                 isaiahscape/shenanigans
               </a>
@@ -148,7 +148,7 @@ export function AboutSection({ about }: AboutSectionProps) {
           {/* Decorative footnote */}
           <div className="pt-4 border-t border-zinc-100 dark:border-zinc-900/50">
             <p className="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500/60" />
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-500/60" />
               Thanks for reading.
             </p>
           </div>
