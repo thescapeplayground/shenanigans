@@ -209,20 +209,20 @@ export interface FerrofluidProps {
 }
 
 export function FerrofluidBackground({
-  colors = ["#3b0764", "#6d28d9", "#8b5cf6", "#a855f7", "#c084fc", "#f5f3ff"],
-  speed = 0.15,
-  scale = 1.3,
-  turbulence = 1.1,
-  fluidity = 0.15,
-  rimWidth = 0.45,
-  sharpness = 3.2,
-  shimmer = 2.0,
-  glow = 4.5,
+  colors = ["#2e1065", "#4c1d95", "#6d28d9", "#7c3aed", "#9333ea", "#c084fc"],
+  speed = 0.12,
+  scale = 2.5,
+  turbulence = 0.8,
+  fluidity = 0.1,
+  rimWidth = 0.2,
+  sharpness = 2.5,
+  shimmer = 1.2,
+  glow = 1.4,
   flowDirection = "down",
-  opacity = 1.0,
+  opacity = 0.8,
   mouseInteraction = true,
-  mouseStrength = 1.5,
-  mouseRadius = 0.4,
+  mouseStrength = 1.0,
+  mouseRadius = 0.35,
   mouseDampening = 0.15,
 }: FerrofluidProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -374,7 +374,7 @@ export function FerrofluidBackground({
   return (
     <div
       ref={containerRef}
-      className="pointer-events-none fixed inset-0 z-0 w-full h-full opacity-80 dark:opacity-95 mix-blend-screen dark:mix-blend-lighten blur-[2px]"
+      className="pointer-events-none fixed inset-0 z-0 w-full h-full opacity-35 dark:opacity-50 blur-[1px]"
       aria-hidden="true"
     />
   );
