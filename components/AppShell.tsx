@@ -9,6 +9,7 @@ import { LoadingScreen } from "@/components/LoadingScreen";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { PageTransition } from "@/components/PageTransition";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
+import { CustomCursor } from "@/components/CustomCursor";
 
 const navItems = [
   { id: "home", label: "Home", href: "/", icon: "home" },
@@ -79,6 +80,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
           >
+            <CustomCursor />
             <div
               className="min-h-screen bg-zinc-50/50 dark:bg-black text-neutral-900 dark:text-neutral-100 flex flex-col justify-between selection:bg-purple-500/15 transition-colors duration-200"
               id="main-app-container"

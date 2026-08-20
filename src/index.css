@@ -164,3 +164,56 @@ html.lenis, html.lenis body {
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
+
+.custom-cursor-pointer,
+.custom-cursor-trail,
+.custom-cursor-pulse {
+  pointer-events: none;
+  will-change: transform, opacity;
+  border-radius: 999px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.custom-cursor-pointer {
+  z-index: 99998;
+  mix-blend-mode: difference;
+  background: #fff;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  margin-left: -3px;
+  transition: opacity 0.2s, transform 0.1s ease-out;
+}
+
+.custom-cursor-trail {
+  z-index: 99999;
+  mix-blend-mode: difference;
+  background: #fff;
+  width: 18px;
+  height: 18px;
+  margin-top: -9px;
+  margin-left: -9px;
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.4);
+  transition: opacity 0.3s, transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.custom-cursor-pulse {
+  z-index: 99997;
+  mix-blend-mode: difference;
+  border: 1.5px solid #fff;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  margin-left: -20px;
+  transition: transform 0.4s cubic-bezier(0.1, 0.8, 0.3, 1), opacity 0.4s cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+@media (pointer: coarse), (max-width: 767px) {
+  .custom-cursor-pointer,
+  .custom-cursor-trail,
+  .custom-cursor-pulse {
+    display: none !important;
+  }
+}
