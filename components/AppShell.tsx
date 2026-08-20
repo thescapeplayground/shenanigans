@@ -173,11 +173,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                           );
                         })}
                       </div>
-
-                      <div className="flex items-center justify-between px-3 pt-2 pb-1 border-t border-zinc-100 dark:border-zinc-900 text-xs text-zinc-400">
-                        <span>Theme</span>
-                        <ThemeToggle />
-                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -190,7 +185,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.8 }}
                         onClick={handleScrollTop}
-                        className="p-3 rounded-xl bg-white/80 dark:bg-zinc-900/80 border border-zinc-200/80 dark:border-zinc-800/80 text-neutral-800 dark:text-neutral-200 shadow-xl backdrop-blur-md hover:bg-purple-600 hover:text-white dark:hover:bg-purple-600 dark:hover:text-white transition-all duration-200 cursor-pointer"
+                        className="w-12 h-12 aspect-square rounded-2xl bg-white/80 dark:bg-zinc-900/80 border border-zinc-200/80 dark:border-zinc-800/80 text-neutral-800 dark:text-neutral-200 shadow-xl backdrop-blur-md hover:bg-purple-600 hover:text-white dark:hover:bg-purple-600 dark:hover:text-white transition-all duration-200 cursor-pointer flex items-center justify-center shrink-0"
                         aria-label="Scroll to top"
                       >
                         <MaterialIcon icon="arrow_upward" size="1.25rem" />
@@ -200,7 +195,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
                   <button
                     onClick={() => setMenuOpen((prev) => !prev)}
-                    className={`p-3.5 rounded-xl border shadow-xl backdrop-blur-xl transition-all duration-300 cursor-pointer flex items-center justify-center ${
+                    className={`w-12 h-12 aspect-square rounded-2xl border shadow-xl backdrop-blur-xl transition-all duration-300 cursor-pointer flex items-center justify-center shrink-0 ${
                       menuOpen
                         ? "bg-purple-600 text-white border-purple-600 shadow-purple-500/20"
                         : "bg-white/80 dark:bg-zinc-900/80 text-neutral-900 dark:text-neutral-100 border-zinc-200/80 dark:border-zinc-800/80 hover:border-purple-500/40 hover:text-purple-600 dark:hover:text-purple-400"
@@ -210,6 +205,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     <motion.div
                       animate={{ rotate: menuOpen ? 90 : 0 }}
                       transition={{ duration: 0.2 }}
+                      className="flex items-center justify-center"
                     >
                       <MaterialIcon icon={menuOpen ? "close" : "grid_view"} size="1.35rem" />
                     </motion.div>
