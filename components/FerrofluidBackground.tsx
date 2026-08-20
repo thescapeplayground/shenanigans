@@ -170,10 +170,10 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     mGlow = exp(-md * md / (rr * rr)) * uMouseStrength;
   }
 
-  float band = (uRimWidth - abs((mapeaks - 0.4) * 2.0)) * 5.0;
-  float ltn = clamp(band - vn(p + dir * (t * spd * 0.5), 60.0, 12.0) * uShimmer, 0.0, 1.0);
+  float band = (uRimWidth - abs((mapeaks - 0.5) * 1.5)) * 4.0;
+  float ltn = clamp(band + vn(p + dir * (t * spd * 0.5), 40.0, 12.0) * uShimmer, 0.15, 1.0);
   ltn = pow(ltn, uSharpness) * uGlow;
-  ltn *= clamp(1.0 - mGlow, 0.0, 1.0);
+  ltn += mGlow * 1.5;
 
   float h = clamp(0.5 + (peaks - peaks2) * 0.8, 0.0, 1.0);
   vec3 col = palette(h);
@@ -209,19 +209,19 @@ export interface FerrofluidProps {
 }
 
 export function FerrofluidBackground({
-  colors = ["#7c3aed", "#9333ea", "#c084fc", "#e9d5ff", "#a855f7"],
-  speed = 0.15,
-  scale = 1.6,
+  colors = ["#a855f7", "#c084fc", "#e9d5ff", "#7c3aed", "#9333ea", "#ffffff"],
+  speed = 0.2,
+  scale = 1.5,
   turbulence = 1.0,
   fluidity = 0.2,
-  rimWidth = 0.65,
-  sharpness = 1.2,
+  rimWidth = 1.2,
+  sharpness = 1.0,
   shimmer = 1.5,
-  glow = 2.5,
+  glow = 5.0,
   flowDirection = "down",
-  opacity = 0.9,
+  opacity = 1.0,
   mouseInteraction = true,
-  mouseStrength = 1.2,
+  mouseStrength = 1.5,
   mouseRadius = 0.4,
   mouseDampening = 0.15,
 }: FerrofluidProps) {
@@ -374,7 +374,7 @@ export function FerrofluidBackground({
   return (
     <div
       ref={containerRef}
-      className="pointer-events-none fixed inset-0 z-0 w-full h-full opacity-75 dark:opacity-85"
+      className="pointer-events-none fixed inset-0 z-0 w-full h-full opacity-100"
       aria-hidden="true"
     />
   );
