@@ -374,7 +374,7 @@ export function FerrofluidBackground({
   return (
     <div
       ref={containerRef}
-      className="pointer-events-none fixed inset-0 z-0 w-full h-full opacity-50 dark:opacity-75 mix-blend-screen dark:mix-blend-lighten"
+      className="pointer-events-none fixed inset-0 z-0 w-full h-full opacity-50 dark:opacity-75 mix-blend-screen dark:mix-blend-lighten blur-2xl"
       aria-hidden="true"
     />
   );
