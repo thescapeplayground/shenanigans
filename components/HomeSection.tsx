@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Profile, Experience } from "@/src/types";
 import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { motion } from "motion/react";
@@ -66,6 +67,38 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
           >
             {profile.secondaryBio}
           </motion.p>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="flex flex-wrap items-center gap-3 pt-2"
+          >
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-medium text-xs sm:text-sm shadow-md shadow-purple-500/25 active:scale-95 transition-all duration-200"
+            >
+              <MaterialIcon icon="person" size="1.05rem" />
+              <span>About</span>
+            </Link>
+
+            <Link
+              href="/gallery"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900/80 hover:bg-zinc-800 text-zinc-100 border border-zinc-700/60 dark:bg-zinc-900/80 dark:hover:bg-zinc-800 dark:border-zinc-800 text-xs sm:text-sm font-medium backdrop-blur-sm active:scale-95 transition-all duration-200"
+            >
+              <MaterialIcon icon="photo_library" size="1.05rem" />
+              <span>Gallery</span>
+            </Link>
+
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900/80 hover:bg-zinc-800 text-zinc-100 border border-zinc-700/60 dark:bg-zinc-900/80 dark:hover:bg-zinc-800 dark:border-zinc-800 text-xs sm:text-sm font-medium backdrop-blur-sm active:scale-95 transition-all duration-200"
+            >
+              <MaterialIcon icon="mail" size="1.05rem" />
+              <span>Contact</span>
+            </Link>
+          </motion.div>
         </div>
       </motion.div>
 
