@@ -70,49 +70,42 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <SmoothScrollProvider>
-      <AnimatePresence mode="wait">
-        {!showApp ? (
-          <LoadingScreen key="loading" />
-        ) : (
-          <motion.div
-            key="app"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4 }}
-          >
-            <CustomCursor />
-            <div
-              className="min-h-screen bg-zinc-50/50 dark:bg-black text-neutral-900 dark:text-neutral-100 flex flex-col justify-between selection:bg-purple-500/15 transition-colors duration-200"
-              id="main-app-container"
+      <AnimatePresence>
+        {!showApp && <LoadingScreen key="loading" />}
+      </AnimatePresence>
+
+      <CustomCursor />
+      <div
+        className="min-h-screen bg-zinc-50/50 dark:bg-black text-neutral-900 dark:text-neutral-100 flex flex-col justify-between selection:bg-purple-500/15 transition-colors duration-200"
+        id="main-app-container"
+      >
+        <header
+          className="sticky top-0 z-40 w-full border-b border-zinc-200/40 dark:border-zinc-800/20 bg-white/70 dark:bg-black/70 backdrop-blur-md"
+          id="top-floating-header"
+        >
+          <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between" id="header-content-inner">
+            <Link
+              href="/"
+              className="flex items-center gap-2 cursor-pointer group select-none"
+              id="brand-logo"
             >
-              <header
-                className="sticky top-0 z-40 w-full border-b border-zinc-200/40 dark:border-zinc-800/20 bg-white/70 dark:bg-black/70 backdrop-blur-md"
-                id="top-floating-header"
-              >
-                <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between" id="header-content-inner">
-                  <Link
-                    href="/"
-                    className="flex items-center gap-2 cursor-pointer group select-none"
-                    id="brand-logo"
-                  >
-                    <img src="/favicon.svg" alt="Logo" className="w-6 h-6 dark:invert" />
-                    <span className="text-medium tracking-tight font-bold text-zinc-900 dark:text-zinc-100">
-                      Leonardo's Terrace
-                    </span>
-                  </Link>
-                  <div className="flex items-center gap-2" id="action-tools-panel">
-                    <ThemeToggle />
-                  </div>
-                </div>
-              </header>
+              <img src="/favicon.svg" alt="Logo" className="w-6 h-6 dark:invert" />
+              <span className="text-medium tracking-tight font-bold text-zinc-900 dark:text-zinc-100">
+                Leonardo's Terrace
+              </span>
+            </Link>
+            <div className="flex items-center gap-2" id="action-tools-panel">
+              <ThemeToggle />
+            </div>
+          </div>
+        </header>
 
-              <main className="flex-1 max-w-[1800px] mx-auto w-full px-4 sm:px-6 lg:px-8 pt-8 pb-24 md:pb-16" id="core-content-stage">
-                <PageTransition>{children}</PageTransition>
-              </main>
+        <main className="flex-1 max-w-[1800px] mx-auto w-full px-4 sm:px-6 lg:px-8 pt-8 pb-24 md:pb-16" id="core-content-stage">
+          <PageTransition>{children}</PageTransition>
+        </main>
 
-              {/* Floating Action Button Navigation (notayan.in design) */}
-              <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 pointer-events-auto" ref={menuRef} id="fab-nav-container">
-                <AnimatePresence>
+        <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 pointer-events-auto" ref={menuRef} id="fab-nav-container">
+          <AnimatePresence>
                   {menuOpen && (
                     <motion.div
                       initial={{ opacity: 0, scale: 0.9, y: 12 }}
@@ -204,9 +197,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 </div>
               </footer>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </SmoothScrollProvider>
   );
 }

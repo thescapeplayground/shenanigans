@@ -16,11 +16,11 @@ export function LoadingScreen() {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      className="min-h-screen bg-zinc-50/50 dark:bg-black flex items-center justify-center"
+      transition={{ duration: 0.45, ease: "easeInOut" }}
+      className="fixed inset-0 z-50 bg-zinc-50 dark:bg-black flex items-center justify-center pointer-events-auto"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
