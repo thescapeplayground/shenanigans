@@ -210,6 +210,12 @@ html.lenis, html.lenis body {
   transition: transform 0.4s cubic-bezier(0.1, 0.8, 0.3, 1), opacity 0.4s cubic-bezier(0.1, 0.8, 0.3, 1);
 }
 
+@media (pointer: fine) and (min-width: 768px) {
+  body, a, button, input, textarea, select, [role="button"], * {
+    cursor: none !important;
+  }
+}
+
 @media (pointer: coarse), (max-width: 767px) {
   .custom-cursor-pointer,
   .custom-cursor-trail,
