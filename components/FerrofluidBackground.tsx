@@ -178,7 +178,8 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
   float h = clamp(0.5 + (peaks - peaks2) * 0.8, 0.0, 1.0);
   vec3 col = palette(h);
 
-  vec3 outc = col * ltn;
+  vec3 bg = vec3(0.06, 0.015, 0.12);
+  vec3 outc = col * ltn + bg * (1.0 - clamp(ltn * 0.5, 0.0, 1.0));
   float a = clamp(max(outc.r, max(outc.g, outc.b)), 0.0, 1.0);
   fragColor = vec4(outc, a * uOpacity);
 }
@@ -209,20 +210,20 @@ export interface FerrofluidProps {
 }
 
 export function FerrofluidBackground({
-  colors = ["#2e1065", "#4c1d95", "#6d28d9", "#7c3aed", "#9333ea", "#c084fc"],
-  speed = 0.12,
-  scale = 2.5,
-  turbulence = 0.8,
-  fluidity = 0.1,
-  rimWidth = 0.2,
-  sharpness = 2.5,
-  shimmer = 1.2,
-  glow = 1.4,
+  colors = ["#4c1d95", "#6d28d9", "#8b5cf6", "#a855f7", "#c084fc", "#d8b4fe"],
+  speed = 0.15,
+  scale = 1.8,
+  turbulence = 1.3,
+  fluidity = 0.35,
+  rimWidth = 0.35,
+  sharpness = 2.8,
+  shimmer = 1.6,
+  glow = 2.4,
   flowDirection = "down",
-  opacity = 0.8,
+  opacity = 0.9,
   mouseInteraction = true,
-  mouseStrength = 1.0,
-  mouseRadius = 0.35,
+  mouseStrength = 1.2,
+  mouseRadius = 0.4,
   mouseDampening = 0.15,
 }: FerrofluidProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -374,7 +375,7 @@ export function FerrofluidBackground({
   return (
     <div
       ref={containerRef}
-      className="pointer-events-none fixed inset-0 z-0 w-full h-full opacity-35 dark:opacity-50 blur-[1px]"
+      className="pointer-events-none fixed inset-0 z-0 w-full h-full opacity-60 dark:opacity-85 mix-blend-screen dark:mix-blend-lighten blur-[1px]"
       aria-hidden="true"
     />
   );
