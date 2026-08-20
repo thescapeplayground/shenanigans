@@ -128,22 +128,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                       className="w-64 p-3 rounded-2xl bg-white/90 dark:bg-zinc-950/90 border border-zinc-200/80 dark:border-zinc-800/80 shadow-2xl backdrop-blur-xl flex flex-col gap-2 origin-bottom-right overflow-hidden"
                       id="fab-menu-card"
                     >
-                      <div className="flex items-center justify-between px-3 py-2 border-b border-zinc-100 dark:border-zinc-900">
-                        <div className="flex items-center gap-2">
-                          <img src="/favicon.svg" alt="Logo" className="w-4 h-4 dark:invert" />
-                          <span className="text-xs font-mono font-semibold tracking-wide uppercase text-zinc-400 dark:text-zinc-500">
-                            Navigation
-                          </span>
-                        </div>
-                        <button 
-                          onClick={() => setMenuOpen(false)}
-                          className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors p-1 rounded-md"
-                        >
-                          <MaterialIcon icon="close" size="1rem" />
-                        </button>
-                      </div>
-
-                      <div className="flex flex-col gap-1 max-h-[60vh] overflow-y-auto py-1">
+                      <div className="flex flex-col gap-1 max-h-[60vh] overflow-y-auto p-1">
                         {navItems.map((item) => {
                           const isActive = activeTab === item.id;
                           return (
