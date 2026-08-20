@@ -1,11 +1,35 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Renderer, Program, Mesh, Triangle } from "ogl";
+
+export interface FerrofluidProps {
+  className?: string;
+  dpr?: number;
+  paused?: boolean;
+  colors?: string[];
+  speed?: number;
+  scale?: number;
+  turbulence?: number;
+  fluidity?: number;
+  rimWidth?: number;
+  sharpness?: number;
+  shimmer?: number;
+  glow?: number;
+  flowDirection?: "up" | "down" | "left" | "right";
+  opacity?: number;
+  mouseInteraction?: boolean;
+  mouseStrength?: number;
+  mouseRadius?: number;
+  mouseDampening?: number;
+  mixBlendMode?: string;
+}
+
+type RGB = [number, number, number];
 
 const MAX_COLORS = 8;
 
-const hexToRGB = (hex: string): [number, number, number] => {
+const hexToRGB = (hex: string): RGB => {
   const c = hex.replace("#", "").padEnd(6, "0");
   const r = parseInt(c.slice(0, 2), 16) / 255;
   const g = parseInt(c.slice(2, 4), 16) / 255;
@@ -14,13 +38,13 @@ const hexToRGB = (hex: string): [number, number, number] => {
 };
 
 const prepColors = (input?: string[]) => {
-  const base = (input && input.length ? input : ["#2e1065", "#581c87", "#7e22ce", "#a855f7"]).slice(0, MAX_COLORS);
+  const base = (input && input.length ? input : ["#c084fc", "#a855f7", "#7c3aed", "#6366f1"]).slice(0, MAX_COLORS);
   const count = base.length;
-  const arr: [number, number, number][] = [];
+  const arr: RGB[] = [];
   for (let i = 0; i < MAX_COLORS; i++) {
     arr.push(hexToRGB(base[Math.min(i, base.length - 1)]));
   }
-  const avg: [number, number, number] = [0, 0, 0];
+  const avg: RGB = [0, 0, 0];
   for (let i = 0; i < count; i++) {
     avg[0] += arr[i][0];
     avg[1] += arr[i][1];
@@ -170,10 +194,10 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     mGlow = exp(-md * md / (rr * rr)) * uMouseStrength;
   }
 
-  float band = (uRimWidth - abs((mapeaks - 0.5) * 1.5)) * 4.0;
-  float ltn = clamp(band + vn(p + dir * (t * spd * 0.5), 40.0, 12.0) * uShimmer, 0.15, 1.0);
+  float band = (uRimWidth - abs((mapeaks - 0.4) * 2.0)) * 5.0;
+  float ltn = clamp(band - vn(p + dir * (t * spd * 0.5), 60.0, 12.0) * uShimmer, 0.0, 1.0);
   ltn = pow(ltn, uSharpness) * uGlow;
-  ltn += mGlow * 1.5;
+  ltn *= clamp(1.0 - mGlow, 0.0, 1.0);
 
   float h = clamp(0.5 + (peaks - peaks2) * 0.8, 0.0, 1.0);
   vec3 col = palette(h);
@@ -190,40 +214,26 @@ void main() {
 }
 `;
 
-export interface FerrofluidProps {
-  colors?: string[];
-  speed?: number;
-  scale?: number;
-  turbulence?: number;
-  fluidity?: number;
-  rimWidth?: number;
-  sharpness?: number;
-  shimmer?: number;
-  glow?: number;
-  flowDirection?: "up" | "down" | "left" | "right";
-  opacity?: number;
-  mouseInteraction?: boolean;
-  mouseStrength?: number;
-  mouseRadius?: number;
-  mouseDampening?: number;
-}
-
 export function FerrofluidBackground({
-  colors = ["#a855f7", "#c084fc", "#e9d5ff", "#7c3aed", "#9333ea", "#ffffff"],
+  className,
+  dpr,
+  paused = false,
+  colors = ["#c084fc", "#a855f7", "#7c3aed", "#6366f1"],
   speed = 0.2,
-  scale = 1.5,
-  turbulence = 1.0,
-  fluidity = 0.2,
-  rimWidth = 1.2,
-  sharpness = 1.0,
+  scale = 1.6,
+  turbulence = 1,
+  fluidity = 0.1,
+  rimWidth = 0.2,
+  sharpness = 2.5,
   shimmer = 1.5,
-  glow = 5.0,
+  glow = 2,
   flowDirection = "down",
-  opacity = 1.0,
+  opacity = 1,
   mouseInteraction = true,
-  mouseStrength = 1.5,
-  mouseRadius = 0.4,
+  mouseStrength = 1,
+  mouseRadius = 0.35,
   mouseDampening = 0.15,
+  mixBlendMode,
 }: FerrofluidProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
@@ -239,7 +249,7 @@ export function FerrofluidBackground({
     if (!container) return;
 
     const renderer = new Renderer({
-      dpr: typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1,
+      dpr: dpr ?? (typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1),
       alpha: true,
       antialias: true,
     });
@@ -335,7 +345,7 @@ export function FerrofluidBackground({
         lastTimeRef.current = t;
       }
 
-      if (programRef.current && meshRef.current) {
+      if (!paused && programRef.current && meshRef.current) {
         try {
           renderer.render({ scene: meshRef.current });
         } catch (err) {
@@ -352,8 +362,24 @@ export function FerrofluidBackground({
       if (canvas.parentElement === container) {
         container.removeChild(canvas);
       }
+      const callIfFn = (obj: unknown, key: string) => {
+        const fn = obj && (obj as Record<string, unknown>)[key];
+        if (typeof fn === "function") {
+          fn.call(obj);
+        }
+      };
+      callIfFn(programRef.current, "remove");
+      callIfFn(geometryRef.current, "remove");
+      callIfFn(meshRef.current, "remove");
+      callIfFn(rendererRef.current, "destroy");
+      programRef.current = null;
+      geometryRef.current = null;
+      meshRef.current = null;
+      rendererRef.current = null;
     };
   }, [
+    dpr,
+    paused,
     colors,
     speed,
     scale,
@@ -374,7 +400,10 @@ export function FerrofluidBackground({
   return (
     <div
       ref={containerRef}
-      className="pointer-events-none fixed inset-0 z-0 w-full h-full opacity-100"
+      className={`pointer-events-none fixed inset-0 z-0 w-full h-full overflow-hidden ${className ?? ""}`}
+      style={{
+        ...(mixBlendMode && { mixBlendMode: mixBlendMode as React.CSSProperties["mixBlendMode"] }),
+      }}
       aria-hidden="true"
     />
   );
