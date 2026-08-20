@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -33,9 +33,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const activeTab = resolveActiveTab(pathname);
   const menuRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.001 });
 
   useEffect(() => {
     const timer = setTimeout(() => setShowApp(true), 2000);
@@ -82,11 +79,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
           >
-            <motion.div
-              className="fixed top-0 left-0 right-0 h-[2.5px] bg-purple-600 dark:bg-purple-400 origin-left z-50 pointer-events-none"
-              style={{ scaleX }}
-            />
-
             <div
               className="min-h-screen bg-zinc-50/50 dark:bg-black text-neutral-900 dark:text-neutral-100 flex flex-col justify-between selection:bg-purple-500/15 transition-colors duration-200"
               id="main-app-container"
