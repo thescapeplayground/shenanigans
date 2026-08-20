@@ -20,7 +20,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="-mx-4 sm:-mx-6 lg:-mx-8 -mt-8 px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-5rem)] sm:min-h-[85vh] lg:min-h-[90vh] flex flex-col justify-center space-y-6 sm:space-y-8 text-left relative overflow-hidden" 
+        className="-mx-4 sm:-mx-6 lg:-mx-8 -mt-8 px-4 sm:px-6 lg:px-8 pt-8 sm:pt-14 pb-8 sm:pb-12 flex flex-col justify-start space-y-6 sm:space-y-8 text-left relative overflow-hidden" 
         id="home-greeting-block"
       >
         <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl space-y-6">
