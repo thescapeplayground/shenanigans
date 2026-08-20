@@ -1,12 +1,11 @@
 import { DEFAULT_PROFILE, DEFAULT_EXPERIENCES } from "../../data";
-
 import { HomeSection } from "@/components/HomeSection";
-import { MasonryBackground } from "@/components/MasonryBackground";
+import { FerrofluidBackground } from "@/components/FerrofluidBackground";
 
 export default function HomePage() {
   return (
     <>
-      <MasonryBackground />
+      <FerrofluidBackground />
       <HomeSection profile={DEFAULT_PROFILE} experiences={DEFAULT_EXPERIENCES} />
     </>
   );
