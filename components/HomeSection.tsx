@@ -78,14 +78,6 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
               className="flex flex-wrap items-center gap-3 pt-2"
             >
               <Link
-                href="/about"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-medium text-xs sm:text-sm shadow-md shadow-purple-500/25 active:scale-95 transition-all duration-200"
-              >
-                <MaterialIcon icon="person" size="1.05rem" />
-                <span>About</span>
-              </Link>
-
-              <Link
                 href="/gallery"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900/80 hover:bg-zinc-800 text-zinc-100 border border-zinc-700/60 dark:bg-zinc-900/80 dark:hover:bg-zinc-800 dark:border-zinc-800 text-xs sm:text-sm font-medium backdrop-blur-sm active:scale-95 transition-all duration-200"
               >
