@@ -105,7 +105,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
             <FolderCard
               href="/about"
               badgeText="About"
-              title={profile.name}
+              title="About Me"
               subtitle="Personal dossier & background"
             />
           </motion.div>
