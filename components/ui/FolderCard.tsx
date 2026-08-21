@@ -52,15 +52,19 @@ export function FolderCard({
 
           {/* 1. Back Plate */}
           <g clipPath="url(#folder-back-clip)">
-            {/* Dark fluid marble texture background */}
-            <rect width="380" height="320" fill="#18181b" />
-            <circle cx="50" cy="80" r="140" fill="rgba(220, 38, 38, 0.45)" />
-            <circle cx="320" cy="60" r="150" fill="rgba(13, 148, 136, 0.45)" />
-            <circle cx="200" cy="240" r="160" fill="rgba(15, 23, 42, 0.8)" />
-            {/* Dark tab highlight */}
+            <image
+              href="/assets/folder-texture.jpg"
+              width="380"
+              height="320"
+              preserveAspectRatio="xMidYMid slice"
+              className="transition-transform duration-700 group-hover:scale-105"
+            />
+            {/* Subtle dark aura overlay */}
+            <rect width="380" height="320" fill="rgba(0, 0, 0, 0.22)" />
+            {/* Tab top specular sheen */}
             <path
               d="M 170,56 Q 195,56 205,36 Q 215,16 235,16 L 364,16 L 364,80 Z"
-              fill="rgba(255, 255, 255, 0.06)"
+              fill="rgba(255, 255, 255, 0.08)"
             />
           </g>
           {/* Back plate border */}
