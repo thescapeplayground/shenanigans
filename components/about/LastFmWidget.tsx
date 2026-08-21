@@ -9,23 +9,28 @@ interface LastFmWidgetProps {
 }
 
 const FALLBACK_TRACK: LastFmTrack = {
-  title: "babydoll",
-  artist: "boywithuke",
-  album: "Lucid Dreams",
-  imageUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&h=300&fit=crop",
-  url: "https://www.last.fm/user/isaiahthings",
-  isNowPlaying: false,
+  title: "seasons",
+  artist: "wave to earth",
+  album: "summer flows 0.02",
+  imageUrl: "https://lastfm-img.freetls.fastly.net/i/u/300x300/9efc83368bf5ec624dcf258499d8051c.jpg",
+  url: "https://www.last.fm/music/wave+to+earth/_/seasons",
+  isNowPlaying: true,
 };
 
 export function LastFmWidget({ username = "isaiahthings", initialTrack }: LastFmWidgetProps) {
   const [track, setTrack] = useState<LastFmTrack>(initialTrack || FALLBACK_TRACK);
-  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (initialTrack) {
+      setTrack(initialTrack);
+    }
+  }, [initialTrack]);
 
   useEffect(() => {
     let isMounted = true;
     const fetchTrack = async () => {
       try {
-        const res = await fetch(`/api/lastfm?username=${encodeURIComponent(username)}`);
+        const res = await fetch(`/api/lastfm?username=${encodeURIComponent(username)}&type=track`);
         if (!res.ok) return;
         const data = await res.json();
         if (isMounted && data?.title) {
@@ -33,13 +38,10 @@ export function LastFmWidget({ username = "isaiahthings", initialTrack }: LastFm
         }
       } catch {
         // Fallback remains active
-      } finally {
-        if (isMounted) setLoading(false);
       }
     };
 
-    fetchTrack();
-    const interval = setInterval(fetchTrack, 30000);
+    const interval = setInterval(fetchTrack, 10000);
     return () => {
       isMounted = false;
       clearInterval(interval);

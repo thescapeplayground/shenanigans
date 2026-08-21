@@ -62,6 +62,25 @@ export interface LastFmTrack {
   imageUrl?: string;
   url: string;
   isNowPlaying: boolean;
+  playedAt?: string;
+}
+
+export interface LastFmUserProfile {
+  username: string;
+  realName?: string;
+  playCount: number;
+  artistCount?: number;
+  trackCount?: number;
+  registeredDate?: string;
+  avatarUrl?: string;
+  url: string;
+  country?: string;
+}
+
+export interface LastFmCombinedData {
+  currentTrack: LastFmTrack;
+  recentTracks: LastFmTrack[];
+  userProfile: LastFmUserProfile;
 }
 
 export interface About {

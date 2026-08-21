@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import { About } from "@/src/types";
 import { MaterialIcon } from "@/components/ui/MaterialIcon";
-import { LastFmWidget } from "@/components/about/LastFmWidget";
+import { LastFmSection } from "@/components/about/LastFmSection";
 import { GamesGrid } from "@/components/about/GamesGrid";
 
 interface AboutSectionProps {
@@ -143,14 +143,7 @@ export function AboutSection({ about }: AboutSectionProps) {
       </div>
 
       <motion.div variants={itemVariants} className="pt-6 border-t border-zinc-200/60 dark:border-zinc-800/60 space-y-8" id="about-extra-sections">
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h3 className="text-xs font-semibold font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
-              Current Vibe & Audio
-            </h3>
-          </div>
-          <LastFmWidget username={about.lastFmUsername || "isaiahscape"} />
-        </div>
+        <LastFmSection username={about.lastFmUsername || "isaiahthings"} />
 
         {about.games && about.games.length > 0 && (
           <GamesGrid games={about.games} />
