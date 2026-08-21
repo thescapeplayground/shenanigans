@@ -1,4 +1,4 @@
-import { Project, Experience, Profile, StackItem, About, ServiceCategory, ServiceFaq } from './types';
+import { Project, Experience, Profile, StackItem, About, ServiceCategory, ServiceFaq, GameItem } from './types';
 
 export const DEFAULT_PROFILE: Profile = {
   name: "Leonardo",
@@ -153,6 +153,20 @@ function computeAge(birthDate: Date): number {
 const BIRTHDAY = new Date("2005-07-01T00:00:00+08:00");
 const CURRENT_AGE = computeAge(BIRTHDAY);
 
+export const DEFAULT_GAMES: GameItem[] = [
+  {
+    id: "valorant",
+    title: "Valorant",
+    badge: "Competitive",
+    description: "Tactical 5v5 character-based hero shooter with precise gunplay and adaptive agent abilities.",
+    platform: "PC",
+    genre: "Tactical FPS",
+    status: "Active",
+    tags: ["Riot Games", "Multiplayer", "Tactical", "Ranked"],
+    link: "https://playvalorant.com"
+  } 
+];
+
 export const DEFAULT_ABOUT: About = {
   heading: "More about me",
   paragraphs: [
@@ -170,7 +184,9 @@ export const DEFAULT_ABOUT: About = {
     { label: "Location", value: "Davao, Philippines" },
     { label: "Role", value: "Photographer, Web/Graphic Designer" },
     { label: "Currently", value: "Finding a job" }
-  ]
+  ],
+  games: DEFAULT_GAMES,
+  lastFmUsername: "isaiahthings"
 };
 
 export const DEFAULT_STACK: StackItem[] = [

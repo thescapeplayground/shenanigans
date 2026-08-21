@@ -212,3 +212,22 @@ html.lenis, html.lenis body {
     display: none !important;
   }
 }
+
+@keyframes spin-vinyl {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-vinyl {
+  animation: spin-vinyl 14s linear infinite;
+}
+
+.animate-spin-vinyl-paused {
+  animation: spin-vinyl 14s linear infinite;
+  animation-play-state: paused;
+}
+

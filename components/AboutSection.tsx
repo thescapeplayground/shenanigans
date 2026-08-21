@@ -3,6 +3,8 @@
 import { motion } from "motion/react";
 import { About } from "@/src/types";
 import { MaterialIcon } from "@/components/ui/MaterialIcon";
+import { LastFmWidget } from "@/components/about/LastFmWidget";
+import { GamesGrid } from "@/components/about/GamesGrid";
 
 interface AboutSectionProps {
   about: About;
@@ -40,22 +42,19 @@ export function AboutSection({ about }: AboutSectionProps) {
       variants={containerVariants}
       initial="hidden"
       animate="show"
-      className="space-y-10 py-4 relative z-10"
+      className="space-y-12 py-4 relative z-10"
       id="about-section-container"
     >
-      {/* Section Header */}
       <motion.div variants={itemVariants} className="space-y-2 text-left" id="about-header-block">
         <h2 className="text-2xl font-bold font-sans tracking-tight text-neutral-950 dark:text-neutral-50 flex items-center gap-2">
           {about.heading}
         </h2>
       </motion.div>
 
-      {/* Content Grid: Image + Paragraphs */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10" id="about-content-grid">
-        {/* Left Column: Profile Image */}
         <motion.div variants={itemVariants} className="lg:col-span-1" id="about-left-column">
           {about.image && (
-            <div className="rounded-2xl overflow-hidden border border-zinc-200/60 dark:border-zinc-800/60 bg-white/70 dark:bg-zinc-950/60 backdrop-blur-sm shadow-sm">
+            <div className="rounded-2xl overflow-hidden border border-zinc-200/60 dark:border-zinc-800/60 bg-white/70 dark:bg-zinc-950/60 backdrop-blur-sm shadow-sm sticky top-24">
               <div className="aspect-square relative overflow-hidden">
                 <img
                   src={about.image.url}
@@ -67,13 +66,11 @@ export function AboutSection({ about }: AboutSectionProps) {
           )}
         </motion.div>
 
-        {/* Right Column: Paragraphs + Quick Facts */}
         <motion.div
           variants={itemVariants}
           className="space-y-6 lg:col-span-2"
           id="about-right-column"
         >
-          {/* More about me paragraphs */}
           <div className="space-y-5" id="about-paragraphs-block">
             {about.paragraphs.map((paragraph, index) => (
               <p
@@ -85,7 +82,6 @@ export function AboutSection({ about }: AboutSectionProps) {
             ))}
           </div>
 
-          {/* Quick Facts (below paragraphs) */}
           <div className="rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60 bg-white/70 dark:bg-zinc-950/60 backdrop-blur-sm shadow-sm p-5 space-y-3">
             <h3 className="text-xs font-semibold font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
               Quick Facts
@@ -111,7 +107,6 @@ export function AboutSection({ about }: AboutSectionProps) {
             </div>
           </div>
 
-          {/* Built with credit */}
           <div className="rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60 bg-white/70 dark:bg-zinc-950/60 backdrop-blur-sm shadow-sm p-5">
             <p className="text-xs font-mono text-zinc-500 dark:text-zinc-400 leading-relaxed">
               This site is built using Next.js, TailwindCSS, shadcn/UI with Framer Motion and{" "}
@@ -144,16 +139,30 @@ export function AboutSection({ about }: AboutSectionProps) {
               .
             </p>
           </div>
-
-          {/* Decorative footnote */}
-          <div className="pt-4 border-t border-zinc-100 dark:border-zinc-900/50">
-            <p className="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-500/60" />
-              Thanks for reading.
-            </p>
-          </div>
         </motion.div>
       </div>
+
+      <motion.div variants={itemVariants} className="pt-6 border-t border-zinc-200/60 dark:border-zinc-800/60 space-y-8" id="about-extra-sections">
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-xs font-semibold font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
+              Current Vibe & Audio
+            </h3>
+          </div>
+          <LastFmWidget username={about.lastFmUsername || "isaiahscape"} />
+        </div>
+
+        {about.games && about.games.length > 0 && (
+          <GamesGrid games={about.games} />
+        )}
+
+        <div className="pt-2 border-t border-zinc-100 dark:border-zinc-900/50">
+          <p className="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-purple-500/60" />
+            Thanks for reading.
+          </p>
+        </div>
+      </motion.div>
     </motion.div>
   );
 }

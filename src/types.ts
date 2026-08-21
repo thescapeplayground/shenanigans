@@ -42,6 +42,28 @@ export interface Profile {
   };
 }
 
+export interface GameItem {
+  id: string;
+  title: string;
+  badge?: string;
+  description: string;
+  platform: string;
+  genre: string;
+  status?: string;
+  tags?: string[];
+  link?: string;
+  image?: string;
+}
+
+export interface LastFmTrack {
+  title: string;
+  artist: string;
+  album?: string;
+  imageUrl?: string;
+  url: string;
+  isNowPlaying: boolean;
+}
+
 export interface About {
   heading: string;
   paragraphs: string[];
@@ -53,6 +75,8 @@ export interface About {
     label: string;
     value: string;
   }[];
+  games?: GameItem[];
+  lastFmUsername?: string;
 }
 
 export interface StackItem {
