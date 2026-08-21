@@ -7,6 +7,7 @@ import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { motion } from "motion/react";
 
 import { PresenceClock } from "./PresenceClock";
+import { FolderCard } from "./ui/FolderCard";
 
 interface HomeSectionProps {
   profile: Profile;
@@ -24,80 +25,97 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
         className="-mx-4 sm:-mx-6 lg:-mx-8 -mt-8 px-4 sm:px-6 lg:px-8 min-h-[calc(100dvh-5.5rem)] flex flex-col justify-center space-y-6 sm:space-y-8 text-left relative overflow-hidden" 
         id="home-greeting-block"
       >
-        <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl space-y-6">
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex items-center gap-3"
-          >
-            <BadgeAvailability />
-            <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest flex items-center gap-1">
-              Photographer, Graphic Designer
-            </span>
-          </motion.div>
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="lg:col-span-7 xl:col-span-8 space-y-6">
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="flex items-center gap-3"
+            >
+              <BadgeAvailability />
+              <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest flex items-center gap-1">
+                Photographer, Graphic Designer
+              </span>
+            </motion.div>
 
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-950 dark:text-neutral-50 font-sans leading-[1.1] mt-2"
-          >
-            I'm <span className="text-purple-600 dark:text-purple-400">{profile.name}</span>.
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg sm:text-xl lg:text-2xl text-neutral-700 dark:text-neutral-300 leading-relaxed font-sans"
-          >
-            {profile.bio}
-          </motion.p>
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-950 dark:text-neutral-50 font-sans leading-[1.1] mt-2"
+            >
+              I'm <span className="text-purple-600 dark:text-purple-400">{profile.name}</span>.
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-lg sm:text-xl lg:text-2xl text-neutral-700 dark:text-neutral-300 leading-relaxed font-sans"
+            >
+              {profile.bio}
+            </motion.p>
 
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-base sm:text-lg text-neutral-500 dark:text-neutral-400 leading-relaxed font-sans"
-          >
-            {profile.secondaryBio}
-          </motion.p>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-base sm:text-lg text-neutral-500 dark:text-neutral-400 leading-relaxed font-sans"
+            >
+              {profile.secondaryBio}
+            </motion.p>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex flex-wrap items-center gap-3 pt-2"
+            >
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-medium text-xs sm:text-sm shadow-md shadow-purple-500/25 active:scale-95 transition-all duration-200"
+              >
+                <MaterialIcon icon="person" size="1.05rem" />
+                <span>About</span>
+              </Link>
+
+              <Link
+                href="/gallery"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900/80 hover:bg-zinc-800 text-zinc-100 border border-zinc-700/60 dark:bg-zinc-900/80 dark:hover:bg-zinc-800 dark:border-zinc-800 text-xs sm:text-sm font-medium backdrop-blur-sm active:scale-95 transition-all duration-200"
+              >
+                <MaterialIcon icon="photo_library" size="1.05rem" />
+                <span>Gallery</span>
+              </Link>
+
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900/80 hover:bg-zinc-800 text-zinc-100 border border-zinc-700/60 dark:bg-zinc-900/80 dark:hover:bg-zinc-800 dark:border-zinc-800 text-xs sm:text-sm font-medium backdrop-blur-sm active:scale-95 transition-all duration-200"
+              >
+                <MaterialIcon icon="mail" size="1.05rem" />
+                <span>Contact</span>
+              </Link>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 25, scale: 0.95 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-wrap items-center gap-3 pt-2"
+            transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 xl:col-span-4 flex justify-center lg:justify-end items-center pt-4 lg:pt-0"
           >
-            <Link
+            <FolderCard
               href="/about"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-medium text-xs sm:text-sm shadow-md shadow-purple-500/25 active:scale-95 transition-all duration-200"
-            >
-              <MaterialIcon icon="person" size="1.05rem" />
-              <span>About</span>
-            </Link>
-
-            <Link
-              href="/gallery"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900/80 hover:bg-zinc-800 text-zinc-100 border border-zinc-700/60 dark:bg-zinc-900/80 dark:hover:bg-zinc-800 dark:border-zinc-800 text-xs sm:text-sm font-medium backdrop-blur-sm active:scale-95 transition-all duration-200"
-            >
-              <MaterialIcon icon="photo_library" size="1.05rem" />
-              <span>Gallery</span>
-            </Link>
-
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900/80 hover:bg-zinc-800 text-zinc-100 border border-zinc-700/60 dark:bg-zinc-900/80 dark:hover:bg-zinc-800 dark:border-zinc-800 text-xs sm:text-sm font-medium backdrop-blur-sm active:scale-95 transition-all duration-200"
-            >
-              <MaterialIcon icon="mail" size="1.05rem" />
-              <span>Contact</span>
-            </Link>
+              badgeText="About"
+              title={profile.name}
+              subtitle="Personal dossier & background"
+            />
           </motion.div>
         </div>
       </motion.div>
