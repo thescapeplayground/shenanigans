@@ -104,7 +104,7 @@ export function FolderCard({
         <div className="absolute inset-x-[7%] top-[24%] bottom-[7%] z-[2] flex flex-col justify-between pointer-events-none p-3 sm:p-4">
           {/* Top Badge: "About" */}
           <div className="pt-1">
-            <span className="text-2xl sm:text-3xl font-bold font-sans tracking-tight text-white drop-shadow-md">
+            <span className="text-2xl sm:text-3xl font-extrabold font-sans tracking-tight text-zinc-950 dark:text-zinc-900">
               {badgeText}
             </span>
           </div>
