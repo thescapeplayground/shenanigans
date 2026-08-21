@@ -99,7 +99,7 @@ export async function GET(request: Request) {
   try {
     const recentUrl = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${encodeURIComponent(
       username
-    )}&api_key=${apiKey}&format=json&limit=6`;
+    )}&api_key=${apiKey}&format=json&limit=8`;
 
     const userUrl = `https://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=${encodeURIComponent(
       username

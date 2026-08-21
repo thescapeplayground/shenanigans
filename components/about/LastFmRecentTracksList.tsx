@@ -24,7 +24,7 @@ export function LastFmRecentTracksList({ tracks }: LastFmRecentTracksListProps) 
       </div>
 
       <div className="divide-y divide-zinc-100 dark:divide-zinc-900/60">
-        {tracks.slice(0, 5).map((track, idx) => (
+        {tracks.slice(0, 6).map((track, idx) => (
           <a
             key={`${track.title}-${idx}`}
             href={track.url}
