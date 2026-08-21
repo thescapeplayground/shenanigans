@@ -102,12 +102,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
             transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 xl:col-span-4 flex justify-center lg:justify-end items-center pt-4 lg:pt-0"
           >
-            <FolderCard
-              href="/about"
-              badgeText="About"
-              title="About Me"
-              subtitle="Personal dossier & background"
-            />
+            <FolderCard href="/about" badgeText="About" />
           </motion.div>
         </div>
       </motion.div>

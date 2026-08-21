@@ -6,24 +6,20 @@ import { MaterialIcon } from "@/components/ui/MaterialIcon";
 interface FolderCardProps {
   href?: string;
   badgeText?: string;
-  title?: string;
-  subtitle?: string;
 }
 
 export function FolderCard({
   href = "/about",
   badgeText = "About",
-  title = "About Me",
-  subtitle = "Personal dossier & background",
 }: FolderCardProps) {
   return (
     <Link
       href={href}
-      className="group relative block w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[380px] aspect-[1.18/1] select-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-3xl"
+      className="group relative block w-full max-w-[300px] sm:max-w-[340px] lg:max-w-[360px] aspect-[1.18/1] select-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-3xl"
       id="hero-folder-card"
       aria-label="View About Section"
     >
-      <div className="relative w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.03] group-active:scale-[0.98]">
+      <div className="relative w-full h-full p-2 transition-transform duration-500 ease-out group-hover:scale-[1.03] group-active:scale-[0.98]">
         {/* SVG Definition & Shapes */}
         <svg
           viewBox="0 0 380 320"
@@ -105,7 +101,7 @@ export function FolderCard({
         </div>
 
         {/* Foreground Content Overlay */}
-        <div className="absolute inset-x-[7%] top-[24%] bottom-[7%] z-[2] flex flex-col justify-between pointer-events-none p-2 sm:p-3">
+        <div className="absolute inset-x-[7%] top-[24%] bottom-[7%] z-[2] flex flex-col justify-between pointer-events-none p-3 sm:p-4">
           {/* Top Badge: "About" */}
           <div className="pt-1">
             <span className="text-2xl sm:text-3xl font-bold font-sans tracking-tight text-white drop-shadow-md">
@@ -113,18 +109,8 @@ export function FolderCard({
             </span>
           </div>
 
-          {/* Bottom Row: Title, Subtitle & Action Icon */}
-          <div className="flex items-end justify-between gap-3 pb-1">
-            <div className="space-y-0.5 max-w-[calc(100%-52px)]">
-              <h3 className="text-sm sm:text-base font-bold font-sans text-white tracking-tight truncate">
-                {title}
-              </h3>
-              <p className="text-[11px] sm:text-xs font-sans text-zinc-300/80 truncate">
-                {subtitle}
-              </p>
-            </div>
-
-            {/* Circular button */}
+          {/* Bottom Action Icon */}
+          <div className="flex items-end justify-end pb-1">
             <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-zinc-900/95 border border-white/25 shadow-lg flex items-center justify-center text-zinc-200 group-hover:text-white group-hover:border-purple-400/60 group-hover:bg-zinc-800 transition-all duration-300 shrink-0 pointer-events-auto">
               <MaterialIcon
                 icon="arrow_outward"
