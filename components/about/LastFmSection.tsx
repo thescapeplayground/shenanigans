@@ -127,7 +127,7 @@ export function LastFmSection({ username = "isaiahthings" }: LastFmSectionProps)
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
+        viewport={{ once: true }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className="flex items-center justify-between"
       >
@@ -143,7 +143,7 @@ export function LastFmSection({ username = "isaiahthings" }: LastFmSectionProps)
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
+          viewport={{ once: true, margin: "0px 0px -30px 0px" }}
           transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-7 flex flex-col gap-4"
         >
@@ -154,7 +154,7 @@ export function LastFmSection({ username = "isaiahthings" }: LastFmSectionProps)
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
+          viewport={{ once: true, margin: "0px 0px -30px 0px" }}
           transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-5"
         >

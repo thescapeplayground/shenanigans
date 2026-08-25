@@ -28,7 +28,7 @@ export function GallerySection() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="space-y-2 text-left"
               id="gallery-header"
@@ -54,7 +54,7 @@ export function GallerySection() {
                     key={album.id}
                     initial={{ opacity: 0, y: 20, scale: 0.98 }}
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    viewport={{ once: true, margin: "-40px" }}
+                    viewport={{ once: true, margin: "0px 0px -30px 0px" }}
                     transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
                     onClick={() => setActiveAlbum(album)}
                     className="group relative cursor-pointer rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/70 dark:bg-zinc-900/40 p-4 transition-all duration-300 hover:border-purple-600/40 hover:shadow-xl hover:shadow-purple-600/5 hover:-translate-y-1 text-left"
@@ -149,7 +149,7 @@ export function GallerySection() {
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="rounded-2xl p-5 border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
             >
@@ -173,7 +173,7 @@ export function GallerySection() {
                   key={item.id}
                   initial={{ opacity: 0, scale: 0.95, y: 15 }}
                   whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-30px" }}
+                  viewport={{ once: true, margin: "0px 0px -20px 0px" }}
                   transition={{ duration: 0.45, delay: Math.min(index * 0.04, 0.25), ease: [0.16, 1, 0.3, 1] }}
                   onClick={() => setSelectedImage(item)}
                   className="group relative cursor-pointer rounded-xl overflow-hidden border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 hover:border-purple-600/50 transition-all shadow-sm hover:shadow-md"

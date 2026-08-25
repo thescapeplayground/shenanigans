@@ -20,7 +20,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
       <motion.div 
         initial={{ opacity: 0, y: 30, scale: 0.98 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, margin: "-80px" }}
+        viewport={{ once: true }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className="-mx-4 sm:-mx-6 lg:-mx-8 -mt-8 px-4 sm:px-6 lg:px-8 min-h-[calc(100dvh-5.5rem)] flex flex-col justify-center space-y-6 sm:space-y-8 text-left relative overflow-hidden" 
         id="home-greeting-block"
@@ -110,7 +110,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
       <motion.div 
         initial={{ opacity: 0, y: 35, scale: 0.97 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, margin: "-60px" }}
+        viewport={{ once: true, margin: "0px 0px -40px 0px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         id="interactive-clock-block"
       >
@@ -126,7 +126,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
       <motion.div 
         initial={{ opacity: 0, y: 35 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
+        viewport={{ once: true, margin: "0px 0px -40px 0px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="space-y-6 sm:space-y-8 text-left" 
         id="home-timeline-block"
@@ -145,7 +145,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
                 key={exp.id} 
                 initial={{ opacity: 0, y: 25, x: -10 }}
                 whileInView={{ opacity: 1, y: 0, x: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
+                viewport={{ once: true, margin: "0px 0px -30px 0px" }}
                 transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="relative group text-left" 
                 id={`timeline-item-${exp.id}`}

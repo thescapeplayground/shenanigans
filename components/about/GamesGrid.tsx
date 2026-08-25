@@ -15,7 +15,7 @@ export function GamesGrid({ games }: GamesGridProps) {
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
+        viewport={{ once: true }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className="flex items-center justify-between"
       >
@@ -33,7 +33,7 @@ export function GamesGrid({ games }: GamesGridProps) {
             key={game.id}
             initial={{ opacity: 0, y: 20, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: "-30px" }}
+            viewport={{ once: true, margin: "0px 0px -30px 0px" }}
             transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
             className="group relative rounded-2xl border border-zinc-200/70 dark:border-zinc-800/70 bg-white/70 dark:bg-zinc-950/60 backdrop-blur-sm p-5 shadow-sm transition-all duration-300 hover:border-purple-500/40 dark:hover:border-purple-500/40 hover:-translate-y-0.5 flex flex-col justify-between"
           >

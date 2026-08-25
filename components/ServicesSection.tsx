@@ -31,7 +31,7 @@ export function ServicesSection({
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
+        viewport={{ once: true }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className="space-y-3"
         id="services-header"
@@ -69,7 +69,7 @@ export function ServicesSection({
         <motion.h3
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest font-mono flex items-center gap-1.5"
         >
@@ -82,7 +82,7 @@ export function ServicesSection({
               key={service.id}
               initial={{ opacity: 0, y: 25, scale: 0.98 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-40px" }}
+              viewport={{ once: true, margin: "0px 0px -30px 0px" }}
               transition={{ duration: 0.5, delay: Math.min(index * 0.06, 0.25), ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col justify-between p-5 rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60 bg-white/70 dark:bg-zinc-950/60 backdrop-blur-sm shadow-xs hover:border-zinc-300 dark:hover:border-zinc-700 transition-all space-y-4"
               id={`service-card-${service.id}`}
@@ -134,7 +134,7 @@ export function ServicesSection({
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="space-y-1"
         >
@@ -152,7 +152,7 @@ export function ServicesSection({
               key={index}
               initial={{ opacity: 0, y: 20, scale: 0.98 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-30px" }}
+              viewport={{ once: true, margin: "0px 0px -20px 0px" }}
               transition={{ duration: 0.45, delay: Math.min(index * 0.05, 0.25), ease: [0.16, 1, 0.3, 1] }}
               className="border border-zinc-200/60 dark:border-zinc-800/60 rounded-xl bg-white/70 dark:bg-zinc-950/60 overflow-hidden shadow-xs transition-all hover:border-zinc-300 dark:hover:border-zinc-700"
             >
@@ -196,7 +196,7 @@ export function ServicesSection({
       <motion.div
         initial={{ opacity: 0, y: 25, scale: 0.99 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, margin: "-40px" }}
+        viewport={{ once: true, margin: "0px 0px -30px 0px" }}
         transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
         className="p-6 rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60 bg-white/70 dark:bg-zinc-950/60 backdrop-blur-sm shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4"
         id="services-cta-banner"

@@ -94,7 +94,7 @@ export function StackSection({ stack }: StackSectionProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="space-y-2"
           id="stack-header"
@@ -111,7 +111,7 @@ export function StackSection({ stack }: StackSectionProps) {
           <motion.div
             initial={{ opacity: 0, y: 25, scale: 0.99 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: "-40px" }}
+            viewport={{ once: true }}
             transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-4"
             id="gadgets-markdown-group"
@@ -383,7 +383,7 @@ export function StackSection({ stack }: StackSectionProps) {
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
+            viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-4"
             id="tech-stack-group"
@@ -401,7 +401,7 @@ export function StackSection({ stack }: StackSectionProps) {
                         <motion.div
                           initial={{ opacity: 0, y: 15, scale: 0.98 }}
                           whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                          viewport={{ once: true, margin: "-30px" }}
+                          viewport={{ once: true, margin: "0px 0px -30px 0px" }}
                           transition={{ duration: 0.4, delay: Math.min(index * 0.03, 0.25), ease: [0.16, 1, 0.3, 1] }}
                           className="flex items-center gap-3 p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-white dark:bg-zinc-900 shadow-sm hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors duration-200 cursor-help"
                           id={`stack-item-${item.name.replace(/\s+/g, '-').toLowerCase()}`}

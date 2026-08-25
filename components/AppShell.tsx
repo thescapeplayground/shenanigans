@@ -36,9 +36,23 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowApp(true), 2000);
+    const timer = setTimeout(() => {
+      setShowApp(true);
+      window.scrollTo(0, 0);
+    }, 2000);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (!showApp) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showApp]);
 
   useEffect(() => {
     setMenuOpen(false);

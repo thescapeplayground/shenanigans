@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 
 interface SmoothScrollProviderProps {
@@ -9,6 +10,9 @@ interface SmoothScrollProviderProps {
 }
 
 export function SmoothScrollProvider({ children, enabled = true }: SmoothScrollProviderProps) {
+  const lenisRef = useRef<Lenis | null>(null);
+  const pathname = usePathname();
+
   useEffect(() => {
     if (!enabled) return;
 
@@ -22,6 +26,8 @@ export function SmoothScrollProvider({ children, enabled = true }: SmoothScrollP
       touchMultiplier: 1.8,
     });
 
+    lenisRef.current = lenis;
+
     let rafId: number;
     function raf(time: number) {
       lenis.raf(time);
@@ -33,8 +39,15 @@ export function SmoothScrollProvider({ children, enabled = true }: SmoothScrollP
     return () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, [enabled]);
+
+  useEffect(() => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    }
+  }, [pathname]);
 
   return <>{children}</>;
 }

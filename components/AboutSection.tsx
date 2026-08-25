@@ -23,7 +23,7 @@ export function AboutSection({ about }: AboutSectionProps) {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
+        viewport={{ once: true }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className="space-y-2 text-left"
         id="about-header-block"
@@ -37,7 +37,7 @@ export function AboutSection({ about }: AboutSectionProps) {
         <motion.div
           initial={{ opacity: 0, y: 25, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-1"
           id="about-left-column"
@@ -59,7 +59,7 @@ export function AboutSection({ about }: AboutSectionProps) {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
+            viewport={{ once: true }}
             transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-5"
             id="about-paragraphs-block"
@@ -77,7 +77,7 @@ export function AboutSection({ about }: AboutSectionProps) {
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.99 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: "-40px" }}
+            viewport={{ once: true, margin: "0px 0px -40px 0px" }}
             transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60 bg-white/70 dark:bg-zinc-950/60 backdrop-blur-sm shadow-sm p-5 space-y-3"
           >
@@ -108,7 +108,7 @@ export function AboutSection({ about }: AboutSectionProps) {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
+            viewport={{ once: true, margin: "0px 0px -40px 0px" }}
             transition={{ duration: 0.55, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60 bg-white/70 dark:bg-zinc-950/60 backdrop-blur-sm shadow-sm p-5"
           >
@@ -149,7 +149,7 @@ export function AboutSection({ about }: AboutSectionProps) {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: true, margin: "0px 0px -40px 0px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="pt-6 border-t border-zinc-200/60 dark:border-zinc-800/60 space-y-8"
         id="about-extra-sections"

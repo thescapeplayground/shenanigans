@@ -118,7 +118,7 @@ export function PostDetailView({ post }: { post: Post }) {
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
+          viewport={{ once: true }}
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         >
           <Link
@@ -134,7 +134,7 @@ export function PostDetailView({ post }: { post: Post }) {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
           >
             <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-neutral-950 dark:text-neutral-50">
@@ -151,7 +151,7 @@ export function PostDetailView({ post }: { post: Post }) {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
+            viewport={{ once: true, margin: "0px 0px -30px 0px" }}
             transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             ref={contentRef}
             className="leading-relaxed text-neutral-700 dark:text-neutral-300 space-y-4 text-sm sm:text-base pt-6 border-t border-zinc-200/40 dark:border-zinc-800/30 prose-headings:mt-0 [&>h2:first-child]:mt-0 [&>h3:first-child]:mt-0"

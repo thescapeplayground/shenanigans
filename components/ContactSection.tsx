@@ -67,7 +67,7 @@ export function ContactSection() {
       <motion.div
         initial={{ opacity: 0, y: 25, scale: 0.99 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, margin: "-40px" }}
+        viewport={{ once: true }}
         transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
         className="space-y-6 flex flex-col justify-between"
         id="contact-left-block"
@@ -181,7 +181,7 @@ export function ContactSection() {
       <motion.div
         initial={{ opacity: 0, y: 25, scale: 0.99 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, margin: "-40px" }}
+        viewport={{ once: true }}
         transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         className="p-6 sm:p-8 rounded-2xl border border-zinc-200/60 dark:border-zinc-800 bg-white/50 dark:bg-zinc-950/30 backdrop-blur-sm shadow-sm relative overflow-hidden"
         id="contact-form-pane"

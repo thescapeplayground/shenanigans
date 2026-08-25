@@ -58,7 +58,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
+        viewport={{ once: true }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className="text-left space-y-2"
         id="projects-header-block"
@@ -74,7 +74,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
+        viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
         className="flex flex-col sm:flex-row gap-4 justify-between items-stretch sm:items-center"
         id="projects-controls-row"
@@ -121,7 +121,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                 layout
                 initial={{ opacity: 0, y: 25, scale: 0.98 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-40px" }}
+                viewport={{ once: true, margin: "0px 0px -30px 0px" }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.45, delay: Math.min(index * 0.05, 0.25), ease: [0.16, 1, 0.3, 1] }}
                 onClick={() => setSelectedProject(project)}

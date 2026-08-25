@@ -29,7 +29,7 @@ export function BlogSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="space-y-2 text-left"
           id="blog-header"
@@ -45,7 +45,7 @@ export function BlogSection() {
         <motion.div
           initial={{ opacity: 0, y: 20, scale: 0.99 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-40px" }}
+          viewport={{ once: true }}
           transition={{ duration: 0.55, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
           className="w-full bg-white/50 dark:bg-zinc-900/20 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 text-left"
         >
@@ -62,7 +62,7 @@ export function BlogSection() {
         <motion.div
           initial={{ opacity: 0, y: 25, scale: 0.99 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-40px" }}
+          viewport={{ once: true, margin: "0px 0px -30px 0px" }}
           transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="w-full bg-white/50 dark:bg-zinc-900/20 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 flex flex-col overflow-hidden text-left"
         >
@@ -95,7 +95,7 @@ export function BlogSection() {
                   key={post.slug}
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-30px" }}
+                  viewport={{ once: true, margin: "0px 0px -20px 0px" }}
                   transition={{ duration: 0.45, delay: Math.min(index * 0.05, 0.25), ease: [0.16, 1, 0.3, 1] }}
                 >
                   <Link
