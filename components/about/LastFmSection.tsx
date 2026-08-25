@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "motion/react";
 import { LastFmCombinedData } from "@/src/types";
 import { LastFmWidget } from "./LastFmWidget";
 import { LastFmUserProfileCard } from "./LastFmUserProfileCard";
@@ -123,24 +124,42 @@ export function LastFmSection({ username = "isaiahthings" }: LastFmSectionProps)
 
   return (
     <div className="space-y-4" id="lastfm-combined-section">
-      <div className="flex items-center justify-between">
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="flex items-center justify-between"
+      >
         <h3 className="text-xs font-semibold font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
           Listening Activity
         </h3>
         <span className="text-xs font-mono text-zinc-400 dark:text-zinc-600">
           LastFM Live
         </span>
-      </div>
+      </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-        <div className="lg:col-span-7 flex flex-col gap-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-7 flex flex-col gap-4"
+        >
           <LastFmWidget username={username} initialTrack={data.currentTrack} />
           <LastFmUserProfileCard profile={data.userProfile} loading={loading} />
-        </div>
+        </motion.div>
 
-        <div className="lg:col-span-5">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-5"
+        >
           <LastFmRecentTracksList tracks={data.recentTracks} />
-        </div>
+        </motion.div>
       </div>
     </div>
   );

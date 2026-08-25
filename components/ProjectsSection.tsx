@@ -24,7 +24,6 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  // Categorization
   const categories = ["All", "Development", "Design", "Experiment"];
 
   const filteredProjects = projects.filter((project) => {
@@ -56,19 +55,30 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
 
   return (
     <div className="space-y-8 py-4" id="projects-section-container">
-      {/* Intro info */}
-      <div className="text-left space-y-2" id="projects-header-block">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="text-left space-y-2"
+        id="projects-header-block"
+      >
         <h2 className="text-2xl font-bold font-sans tracking-tight text-neutral-950 dark:text-neutral-50 flex items-center gap-2">
           Projects Grid
         </h2>
         <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-xl font-sans">
           A living directory of open-source frameworks, aesthetic design concepts, micro-utilities, and interactive tools.
         </p>
-      </div>
+      </motion.div>
 
-      {/* Filter and Search Bar row */}
-      <div className="flex flex-col sm:flex-row gap-4 justify-between items-stretch sm:items-center" id="projects-controls-row">
-        {/* Category Badges */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.5, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+        className="flex flex-col sm:flex-row gap-4 justify-between items-stretch sm:items-center"
+        id="projects-controls-row"
+      >
         <div className="flex flex-wrap items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0" id="cat-filter-pills">
           {categories.map((cat) => (
             <Button
@@ -87,7 +97,6 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
           ))}
         </div>
 
-        {/* Search input field */}
         <div className="relative w-full sm:w-64 shrink-0" id="search-input-wrapper">
           <MaterialIcon icon="search" className="absolute left-3 top-2.5 text-purple-600 dark:text-purple-400" size="1rem" />
           <Input
@@ -98,36 +107,33 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
             id="search-input-field"
           />
         </div>
-      </div>
+      </motion.div>
 
-      {/* Grid List with Animations */}
       {filteredProjects.length > 0 ? (
-        <motion.div
-          layout
+        <div
           className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6"
           id="bento-projects-grid"
         >
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
+            {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
                 layout
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.18 }}
+                initial={{ opacity: 0, y: 25, scale: 0.98 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-40px" }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.45, delay: Math.min(index * 0.05, 0.25), ease: [0.16, 1, 0.3, 1] }}
                 onClick={() => setSelectedProject(project)}
                 className="group relative cursor-pointer flex flex-col justify-between p-6 rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60 bg-white/70 dark:bg-zinc-950/60 backdrop-blur-sm hover:border-zinc-400 dark:hover:border-zinc-600 transition-all shadow-[0_2px_8px_rgba(0,0,0,0.01)] hover:shadow-md min-h-[210px] md:h-[210px] text-left"
                 id={`project-card-${project.id}`}
               >
-                {/* Upper row: title, category and link indicator */}
                 <div className="space-y-3" id={`project-upper-${project.id}`}>
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-semibold font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
                       {project.category}
                     </span>
-                    
-                    {/* Status circle with glowing effects */}
+
                     <div className="flex items-center gap-1.5 font-mono text-[10px] text-zinc-400">
                       <span className={`h-2 w-2 rounded-full ring-4 ${getStatusColor(project.status)}`} />
                       <span className="capitalize">{project.status}</span>
@@ -144,7 +150,6 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                   </p>
                 </div>
 
-                {/* Bottom row: stat and tag indicators */}
                 <div className="flex items-center justify-between border-t border-zinc-100 dark:border-zinc-900/50 pt-3" id={`project-lower-${project.id}`}>
                   <div className="flex flex-wrap gap-1 max-w-[70%]">
                     {project.tags.slice(0, 3).map((tag) => (
@@ -166,7 +171,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
       ) : (
         <div className="py-20 text-center text-zinc-500" id="projects-empty-state">
           <MaterialIcon icon="folder" className="mx-auto text-purple-600 dark:text-purple-400 mb-3 animate-pulse" size="3rem" />
@@ -184,7 +189,6 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
         </div>
       )}
 
-      {/* Project Expand Modal Overlay (Dialog component) */}
       <Dialog open={selectedProject !== null} onOpenChange={(open) => { if (!open) setSelectedProject(null); }}>
         {selectedProject && (
           <DialogContent showCloseButton={false} className="w-full sm:max-w-xl mx-auto text-left border-zinc-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-black/95 backdrop-blur-lg font-sans p-4 sm:p-6 max-h-[90vh] overflow-y-auto">
@@ -210,7 +214,6 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
             </DialogHeader>
 
             <div className="space-y-6 my-4 pr-1">
-              {/* Detailed description */}
               <div className="space-y-2">
                 <h4 className="text-xs font-semibold text-zinc-400 uppercase tracking-widest font-mono">Overview</h4>
                 <p className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans mt-1">
@@ -218,7 +221,6 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                 </p>
               </div>
 
-              {/* Technologies Tag Array */}
               <div className="space-y-2">
                 <h4 className="text-xs font-semibold text-zinc-400 uppercase tracking-widest font-mono">Environment & Stack</h4>
                 <div className="flex flex-wrap gap-1.5 mt-1.5">
@@ -234,7 +236,6 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                 </div>
               </div>
 
-              {/* Date Metadata */}
               <div className="flex items-center gap-6 text-sm text-zinc-500 font-mono border-t border-zinc-100 dark:border-zinc-900/50 pt-4">
                 <div className="flex items-center gap-1.5">
                   <MaterialIcon icon="calendar_today" className="text-purple-600 dark:text-purple-400" size="1rem" />
@@ -249,7 +250,6 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               </div>
             </div>
 
-            {/* Bottom action bar */}
             <div className="flex flex-row items-center justify-between pt-2 border-t border-zinc-100 dark:border-zinc-900/50">
               <Button 
                 variant="ghost" 
@@ -261,26 +261,26 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               </Button>
 
               <div className="flex flex-row items-center gap-2">
-              {selectedProject.github && (
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  render={<a href={selectedProject.github} target="_blank" rel="noreferrer" referrerPolicy="no-referrer" className="gap-1.5" />} 
-                  className="rounded-lg h-9 font-mono text-xs text-zinc-600 dark:text-zinc-300"
-                >
-                  <MaterialIcon icon="code" size="1rem" /> Source <MaterialIcon icon="open_in_new" size="0.75rem" />
-                </Button>
-              )}
-              {selectedProject.link && selectedProject.link !== "#" && (
-                <Button 
-                  size="sm" 
-                  render={<a href={selectedProject.link} target="_blank" rel="noreferrer" referrerPolicy="no-referrer" className="gap-1.5" />} 
-                  className="rounded-lg h-9 font-mono text-xs bg-zinc-900 hover:bg-zinc-800 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 dark:hover:bg-zinc-200"
-                >
-                  Live Site <MaterialIcon icon="open_in_new" size="0.75rem" />
-                </Button>
-              )}
-            </div>
+                {selectedProject.github && (
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    render={<a href={selectedProject.github} target="_blank" rel="noreferrer" referrerPolicy="no-referrer" className="gap-1.5" />} 
+                    className="rounded-lg h-9 font-mono text-xs text-zinc-600 dark:text-zinc-300"
+                  >
+                    <MaterialIcon icon="code" size="1rem" /> Source <MaterialIcon icon="open_in_new" size="0.75rem" />
+                  </Button>
+                )}
+                {selectedProject.link && selectedProject.link !== "#" && (
+                  <Button 
+                    size="sm" 
+                    render={<a href={selectedProject.link} target="_blank" rel="noreferrer" referrerPolicy="no-referrer" className="gap-1.5" />} 
+                    className="rounded-lg h-9 font-mono text-xs bg-zinc-900 hover:bg-zinc-800 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 dark:hover:bg-zinc-200"
+                  >
+                    Live Site <MaterialIcon icon="open_in_new" size="0.75rem" />
+                  </Button>
+                )}
+              </div>
             </div>
           </DialogContent>
         )}
@@ -288,4 +288,5 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
     </div>
   );
 }
+
 export default ProjectsSection;

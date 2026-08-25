@@ -64,8 +64,14 @@ export function ContactSection() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14 py-4 text-left font-sans" id="contact-section-container">
-      {/* Left Column: Social Links & Availability info */}
-      <div className="space-y-6 flex flex-col justify-between" id="contact-left-block">
+      <motion.div
+        initial={{ opacity: 0, y: 25, scale: 0.99 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+        className="space-y-6 flex flex-col justify-between"
+        id="contact-left-block"
+      >
         <div className="space-y-4">
           <span className="px-2.5 py-1 rounded bg-purple-500/10 text-purple-700 dark:text-purple-400 dark:bg-purple-400/5 border border-purple-500/10 text-xs font-mono font-medium inline-block">
             Let's Collaborate
@@ -78,14 +84,12 @@ export function ContactSection() {
           </p>
         </div>
 
-        {/* Contact shortcuts Card */}
         <div className="space-y-4" id="direct-collaborate-links">
           <h3 className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest font-mono">
             Direct Routing
           </h3>
 
           <div className="space-y-2">
-            {/* Email copying widget */}
             <div
               className="flex items-center justify-between p-3.5 rounded-xl border border-zinc-200/50 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 hover:bg-zinc-50 dark:hover:bg-zinc-900/30 transition-all cursor-pointer group"
               onClick={handleCopyEmail}
@@ -108,7 +112,6 @@ export function ContactSection() {
               </button>
             </div>
 
-            {/* GitHub handle */}
             <a
               href="https://github.com/thescapeplayground/shenanigans"
               target="_blank"
@@ -130,7 +133,6 @@ export function ContactSection() {
               <MaterialIcon icon="north_east" className="text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" size="1rem" />
             </a>
 
-            {/* Telegram handle */}
             <a
               href="https://t.me/isaiahscape"
               target="_blank"
@@ -152,7 +154,6 @@ export function ContactSection() {
               <MaterialIcon icon="north_east" className="text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" size="1rem" />
             </a>
 
-            {/* Instagram handle */}
             <a
               href="https://instagram.com/isaiahscape"
               target="_blank"
@@ -175,10 +176,13 @@ export function ContactSection() {
             </a>
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Right Column: Contact form with AnimatePresence toast */}
-      <div
+      <motion.div
+        initial={{ opacity: 0, y: 25, scale: 0.99 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         className="p-6 sm:p-8 rounded-2xl border border-zinc-200/60 dark:border-zinc-800 bg-white/50 dark:bg-zinc-950/30 backdrop-blur-sm shadow-sm relative overflow-hidden"
         id="contact-form-pane"
       >
@@ -243,7 +247,7 @@ export function ContactSection() {
               <Button
                 type="submit"
                 disabled={sending}
-                className="w-full bg-zinc-900 hover:bg-zinc-800 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 dark:hover:bg-zinc-200 h-10 gap-2 shrink-0 rounded-lg active:scale-95 transition-all mt-2"
+                className="w-full bg-zinc-900 hover:bg-zinc-800 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950 dark:hover:bg-zinc-200 h-10 gap-2 shrink-0 rounded-lg active:scale-95 transition-all mt-2 cursor-pointer"
                 id="contact-send-btn"
               >
                 <MaterialIcon icon="send" className="shrink-0" size="1rem" />
@@ -275,7 +279,7 @@ export function ContactSection() {
                 variant="outline"
                 size="sm"
                 onClick={() => setFormSubmitted(false)}
-                className="rounded-full h-8 font-mono text-xs text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 border-zinc-200 dark:border-zinc-800"
+                className="rounded-full h-8 font-mono text-xs text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 border-zinc-200 dark:border-zinc-800 cursor-pointer"
                 id="contact-another-form-btn"
               >
                 Send Another Message
@@ -283,8 +287,9 @@ export function ContactSection() {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
+      </motion.div>
     </div>
   );
 }
+
 export default ContactSection;

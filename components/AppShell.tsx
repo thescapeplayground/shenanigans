@@ -69,7 +69,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <SmoothScrollProvider>
+    <SmoothScrollProvider enabled={showApp}>
       <AnimatePresence>
         {!showApp && <LoadingScreen key="loading" />}
       </AnimatePresence>
@@ -101,7 +101,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </header>
 
         <main className="flex-1 max-w-[1800px] mx-auto w-full px-4 sm:px-6 lg:px-8 pt-8 pb-24 md:pb-16" id="core-content-stage">
-          <PageTransition>{children}</PageTransition>
+          {showApp ? <PageTransition>{children}</PageTransition> : null}
         </main>
 
         <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 pointer-events-auto" ref={menuRef} id="fab-nav-container">

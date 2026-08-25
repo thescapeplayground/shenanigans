@@ -21,14 +21,12 @@ interface SpecItem {
 }
 
 export function StackSection({ stack }: StackSectionProps) {
-  // Device toggle state
   const [openDevice, setOpenDevice] = useState<string | null>(null);
 
   const toggleDevice = (id: string) => {
     setOpenDevice(openDevice === id ? null : id);
   };
 
-  // Helper to map dynamic icon name strings to MaterialIcon names
   const getIconName = (name: string) => {
     switch (name) {
       case "Code2":
@@ -60,7 +58,6 @@ export function StackSection({ stack }: StackSectionProps) {
 
   const softwareStack = stack.filter(item => item.category !== 'hardware');
 
-  // Hardcoded device specifications for interactive dropdown checkups
   const s24Specs: SpecItem[] = [
     { label: "Display", value: "6.2\" Dynamic AMOLED 2X, FHD+, 120Hz Variable Refresh" },
     { label: "SoC System", value: "Samsung Exynos 2400 (4nm) Deca-Core Processing" },
@@ -88,364 +85,353 @@ export function StackSection({ stack }: StackSectionProps) {
     { label: "Accessories", value: "Secure fingerprint reader, HD Camera with privacy shutter" }
   ];
 
-  // Animation constants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    show: { opacity: 1, scale: 1, transition: { type: "spring" as const, stiffness: 100, damping: 15 } }
-  };
-
   return (
     <TooltipProvider delay={150}>
-      <motion.div 
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
+      <div 
         className="space-y-10 py-4 text-left font-sans"
         id="stack-section-container"
       >
-        {/* Header Block */}
-        <div className="space-y-2" id="stack-header">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-2"
+          id="stack-header"
+        >
           <h2 className="text-2xl font-bold tracking-tight text-neutral-950 dark:text-neutral-50 flex items-center gap-2">
             Devices & Toolbox
           </h2>
           <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-xl">
             A curated record of custom hardware configurations, dynamic workspace kits, and core software tools.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Gadgets + Technical Skills laid out side by side on large screens */}
         <div className="grid gap-10 lg:grid-cols-[3fr_2fr] items-start" id="gadgets-tech-layout">
-        {/* SECTION 1: Devices and Kits (gadgets.md layout) */}
-        <div className="space-y-4" id="gadgets-markdown-group">
-          <div 
-            className="w-full rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 overflow-hidden shadow-xs"
-            id="gadgets-editor-frame"
+          <motion.div
+            initial={{ opacity: 0, y: 25, scale: 0.99 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            className="space-y-4"
+            id="gadgets-markdown-group"
           >
-            {/* Header tab */}
             <div 
-              className="flex items-center gap-2 px-4 py-3 bg-zinc-50 dark:bg-zinc-900/50 border-b border-zinc-200 dark:border-zinc-800/80"
-              id="gadgets-editor-header"
+              className="w-full rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 overflow-hidden shadow-xs"
+              id="gadgets-editor-frame"
             >
-              <MaterialIcon icon="description" className="text-purple-600 dark:text-purple-400" size="1rem" />
-              <span className="font-mono text-xs font-semibold text-zinc-600 dark:text-zinc-400 tracking-tight">
-                gadgets.md
-              </span>
-            </div>
-
-            {/* Contents block matching screenshot */}
-            <div className="p-5 space-y-6" id="gadgets-editor-contents">
-               
-              {/* Devices Category */}
-              <div className="space-y-3" id="gadgets-category-devices">
-                <h3 className="text-xs font-mono font-medium tracking-wider text-zinc-400 dark:text-zinc-500 uppercase">
-                  Devices
-                </h3>
-
-                <div className="space-y-2.5" id="devices-toggles-container">
-                  {/* Samsung Galaxy S24 5G Accordion */}
-                  <div 
-                    className="border border-zinc-100 dark:border-zinc-800/60 rounded-xl bg-zinc-50/50 dark:bg-zinc-900/10 overflow-hidden transition-all duration-200 hover:border-zinc-200 dark:hover:border-zinc-800"
-                    id="device-card-samsung"
-                  >
-                    <button
-                      onClick={() => toggleDevice("s24")}
-                      className="w-full flex items-center justify-between p-4 text-left focus:outline-none cursor-pointer"
-                      id="device-toggle-s24"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                          <MaterialIcon icon="smartphone" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
-                        </div>
-                        <a
-                          href="https://www.samsung.com/ph/smartphones/galaxy-s24/"
-                          target="_blank"
-                          rel="noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="text-sm font-bold text-zinc-800 dark:text-zinc-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
-                        >
-                          Samsung Galaxy S24 5G
-                        </a>
-                      </div>
-                      {openDevice === "s24" ? (
-                        <MaterialIcon icon="expand_less" className="text-purple-600 dark:text-purple-400" size="1rem" />
-                      ) : (
-                        <MaterialIcon icon="expand_more" className="text-purple-600 dark:text-purple-400" size="1rem" />
-                      )}
-                    </button>
-
-                    <AnimatePresence>
-                      {openDevice === "s24" && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="border-t border-zinc-100 dark:border-zinc-800/60 bg-white/50 dark:bg-zinc-950/40"
-                          id="device-specs-samsung"
-                        >
-                          <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 text-xs">
-                            {s24Specs.map((spec) => (
-                              <div key={spec.label} className="flex flex-col gap-0.5 py-1">
-                                <span className="font-mono text-[10px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">{spec.label}</span>
-                                <span className="font-medium text-zinc-700 dark:text-zinc-300">{spec.value}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-
-                  {/* Gaming Specifications Accordion */}
-                  <div 
-                    className="border border-zinc-100 dark:border-zinc-800/60 rounded-xl bg-zinc-50/50 dark:bg-zinc-900/10 overflow-hidden transition-all duration-200 hover:border-zinc-200 dark:hover:border-zinc-800"
-                    id="device-card-gaming"
-                  >
-                    <button
-                      onClick={() => toggleDevice("gaming")}
-                      className="w-full flex items-center justify-between p-4 text-left focus:outline-none cursor-pointer"
-                      id="device-toggle-gaming"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                          <MaterialIcon icon="memory" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
-                        </div>
-                        <span className="text-sm font-bold text-zinc-800 dark:text-zinc-200">
-                          Gaming Specifications
-                        </span>
-                      </div>
-                      {openDevice === "gaming" ? (
-                        <MaterialIcon icon="expand_less" className="text-purple-600 dark:text-purple-400" size="1rem" />
-                      ) : (
-                        <MaterialIcon icon="expand_more" className="text-purple-600 dark:text-purple-400" size="1rem" />
-                      )}
-                    </button>
-
-                    <AnimatePresence>
-                      {openDevice === "gaming" && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="border-t border-zinc-100 dark:border-zinc-800/60 bg-white/50 dark:bg-zinc-950/40"
-                          id="device-specs-gaming"
-                        >
-                          <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 text-xs">
-                            {gamingSpecs.map((spec) => (
-                              <div key={spec.label} className="flex flex-col gap-0.5 py-1">
-                                <span className="font-mono text-[10px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">{spec.label}</span>
-                                <span className="font-medium text-zinc-700 dark:text-zinc-300">{spec.value}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-
-                  {/* Lenovo Ideapad Slim 3 (8th) Accordion */}
-                  <div 
-                    className="border border-zinc-100 dark:border-zinc-800/60 rounded-xl bg-zinc-50/50 dark:bg-zinc-900/10 overflow-hidden transition-all duration-200 hover:border-zinc-200 dark:hover:border-zinc-800"
-                    id="device-card-lenovo"
-                  >
-                    <button
-                      onClick={() => toggleDevice("lenovo")}
-                      className="w-full flex items-center justify-between p-4 text-left focus:outline-none cursor-pointer"
-                      id="device-toggle-lenovo"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                          <MaterialIcon icon="laptop" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
-                        </div>
-                        <a
-                          href="https://www.lenovo.com/ph/en/p/laptops/ideapad/ideapad-3/ideapad-slim-3-gen-8-15-inch-amd/"
-                          target="_blank"
-                          rel="noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="text-sm font-bold text-zinc-800 dark:text-zinc-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
-                        >
-                          Lenovo Ideapad Slim 3 (8th)
-                        </a>
-                      </div>
-                      {openDevice === "lenovo" ? (
-                        <MaterialIcon icon="expand_less" className="text-purple-600 dark:text-purple-400" size="1rem" />
-                      ) : (
-                        <MaterialIcon icon="expand_more" className="text-purple-600 dark:text-purple-400" size="1rem" />
-                      )}
-                    </button>
-
-                    <AnimatePresence>
-                      {openDevice === "lenovo" && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="border-t border-zinc-100 dark:border-zinc-800/60 bg-white/50 dark:bg-zinc-950/40"
-                          id="device-specs-lenovo"
-                        >
-                          <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 text-xs">
-                            {lenovoSpecs.map((spec) => (
-                              <div key={spec.label} className="flex flex-col gap-0.5 py-1">
-                                <span className="font-mono text-[10px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">{spec.label}</span>
-                                <span className="font-medium text-zinc-700 dark:text-zinc-300">{spec.value}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </div>
+              <div 
+                className="flex items-center gap-2 px-4 py-3 bg-zinc-50 dark:bg-zinc-900/50 border-b border-zinc-200 dark:border-zinc-800/80"
+                id="gadgets-editor-header"
+              >
+                <MaterialIcon icon="description" className="text-purple-600 dark:text-purple-400" size="1rem" />
+                <span className="font-mono text-xs font-semibold text-zinc-600 dark:text-zinc-400 tracking-tight">
+                  gadgets.md
+                </span>
               </div>
 
-              {/* Kits Category */}
-              <div className="space-y-3" id="gadgets-category-kits">
-                <h3 className="text-xs font-mono font-medium tracking-wider text-zinc-400 dark:text-zinc-500 uppercase">
-                  Kits
-                </h3>
+              <div className="p-5 space-y-6" id="gadgets-editor-contents">
+                <div className="space-y-3" id="gadgets-category-devices">
+                  <h3 className="text-xs font-mono font-medium tracking-wider text-zinc-400 dark:text-zinc-500 uppercase">
+                    Devices
+                  </h3>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5" id="kits-grid-container">
-                  {/* Kit Item 1 */}
-                  <a
-                    href="https://www.linsoul.com/products/simgot-ew300"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-start gap-4 p-4 rounded-xl border border-zinc-100 dark:border-zinc-800/60 bg-zinc-50/20 dark:bg-zinc-900/5 hover:border-zinc-200 dark:hover:border-zinc-800 transition-colors"
-                    id="kit-card-truthear"
-                  >
-                    <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                      <MaterialIcon icon="headphones" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
-                    </div>
-                    <div className="space-y-1 text-left min-w-0">
-                      <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-tight truncate">
-                        Simgot EW300 1DD + 1 Planar + 1PZT Tribrid Driver IEMs
-                      </h4>
-                      <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed font-mono">
-                        TRN T2 16 Core, Kinera Celest Ruyi Pro
-                      </p>
-                    </div>
-                  </a>
+                  <div className="space-y-2.5" id="devices-toggles-container">
+                    <div 
+                      className="border border-zinc-100 dark:border-zinc-800/60 rounded-xl bg-zinc-50/50 dark:bg-zinc-900/10 overflow-hidden transition-all duration-200 hover:border-zinc-200 dark:hover:border-zinc-800"
+                      id="device-card-samsung"
+                    >
+                      <button
+                        onClick={() => toggleDevice("s24")}
+                        className="w-full flex items-center justify-between p-4 text-left focus:outline-none cursor-pointer"
+                        id="device-toggle-s24"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
+                            <MaterialIcon icon="smartphone" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
+                          </div>
+                          <a
+                            href="https://www.samsung.com/ph/smartphones/galaxy-s24/"
+                            target="_blank"
+                            rel="noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="text-sm font-bold text-zinc-800 dark:text-zinc-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                          >
+                            Samsung Galaxy S24 5G
+                          </a>
+                        </div>
+                        {openDevice === "s24" ? (
+                          <MaterialIcon icon="expand_less" className="text-purple-600 dark:text-purple-400" size="1rem" />
+                        ) : (
+                          <MaterialIcon icon="expand_more" className="text-purple-600 dark:text-purple-400" size="1rem" />
+                        )}
+                      </button>
 
-                  {/* Kit Item 2 */}
-                  <a
-                    href="https://trn-audio.com/trn-black-pearl.html"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-start gap-4 p-4 rounded-xl border border-zinc-100 dark:border-zinc-800/60 bg-zinc-50/20 dark:bg-zinc-900/5 hover:border-zinc-200 dark:hover:border-zinc-800 transition-colors"
-                    id="kit-card-tbk"
-                  >
-                    <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                      <MaterialIcon icon="tune" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
+                      <AnimatePresence>
+                        {openDevice === "s24" && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="border-t border-zinc-100 dark:border-zinc-800/60 bg-white/50 dark:bg-zinc-950/40"
+                            id="device-specs-samsung"
+                          >
+                            <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 text-xs">
+                              {s24Specs.map((spec) => (
+                                <div key={spec.label} className="flex flex-col gap-0.5 py-1">
+                                  <span className="font-mono text-[10px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">{spec.label}</span>
+                                  <span className="font-medium text-zinc-700 dark:text-zinc-300">{spec.value}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
-                    <div className="space-y-1 text-left min-w-0">
-                      <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-tight truncate">
-                        TRN Black Pearl
-                      </h4>
-                      <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed font-mono">
-                        C43131 DAC, CB5100 Amplifier + 8-Band EQ
-                      </p>
-                    </div>
-                  </a>
 
-                  {/* Kit Item 3 */}
-                  <a
-                    href="https://www.pulsar.gg/products/tenz-signature-edition"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-start gap-4 p-4 rounded-xl border border-zinc-100 dark:border-zinc-800/60 bg-zinc-50/20 dark:bg-zinc-900/5 hover:border-zinc-200 dark:hover:border-zinc-800 transition-colors"
-                    id="kit-card-pulsar"
-                  >
-                    <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                      <MaterialIcon icon="mouse" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
-                    </div>
-                    <div className="space-y-1 text-left min-w-0">
-                      <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-tight truncate">
-                        Pulsar's TenZ Signature Edition
-                      </h4>
-                      <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed font-mono">
-                        XS-1 Sensor, 32,000 DPI, 8K PR
-                      </p>
-                    </div>
-                  </a>
+                    <div 
+                      className="border border-zinc-100 dark:border-zinc-800/60 rounded-xl bg-zinc-50/50 dark:bg-zinc-900/10 overflow-hidden transition-all duration-200 hover:border-zinc-200 dark:hover:border-zinc-800"
+                      id="device-card-gaming"
+                    >
+                      <button
+                        onClick={() => toggleDevice("gaming")}
+                        className="w-full flex items-center justify-between p-4 text-left focus:outline-none cursor-pointer"
+                        id="device-toggle-gaming"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
+                            <MaterialIcon icon="memory" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
+                          </div>
+                          <span className="text-sm font-bold text-zinc-800 dark:text-zinc-200">
+                            Gaming Specifications
+                          </span>
+                        </div>
+                        {openDevice === "gaming" ? (
+                          <MaterialIcon icon="expand_less" className="text-purple-600 dark:text-purple-400" size="1rem" />
+                        ) : (
+                          <MaterialIcon icon="expand_more" className="text-purple-600 dark:text-purple-400" size="1rem" />
+                        )}
+                      </button>
 
-                  {/* Kit Item 4 */}
-                  <div 
-                    className="flex items-start gap-4 p-4 rounded-xl border border-zinc-100 dark:border-zinc-800/60 bg-zinc-50/20 dark:bg-zinc-900/5 hover:border-zinc-200 dark:hover:border-zinc-800 transition-colors"
-                    id="kit-card-aula"
-                  >
-                    <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
-                      <MaterialIcon icon="keyboard" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
+                      <AnimatePresence>
+                        {openDevice === "gaming" && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="border-t border-zinc-100 dark:border-zinc-800/60 bg-white/50 dark:bg-zinc-950/40"
+                            id="device-specs-gaming"
+                          >
+                            <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 text-xs">
+                              {gamingSpecs.map((spec) => (
+                                <div key={spec.label} className="flex flex-col gap-0.5 py-1">
+                                  <span className="font-mono text-[10px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">{spec.label}</span>
+                                  <span className="font-medium text-zinc-700 dark:text-zinc-300">{spec.value}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
-                    <div className="space-y-1 text-left min-w-0">
-                      <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-tight truncate">
-                        Aula F75
-                      </h4>
-                      <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed font-mono">
-                        75% Wireless Gasket Mounted Keyboard
-                      </p>
+
+                    <div 
+                      className="border border-zinc-100 dark:border-zinc-800/60 rounded-xl bg-zinc-50/50 dark:bg-zinc-900/10 overflow-hidden transition-all duration-200 hover:border-zinc-200 dark:hover:border-zinc-800"
+                      id="device-card-lenovo"
+                    >
+                      <button
+                        onClick={() => toggleDevice("lenovo")}
+                        className="w-full flex items-center justify-between p-4 text-left focus:outline-none cursor-pointer"
+                        id="device-toggle-lenovo"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
+                            <MaterialIcon icon="laptop" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
+                          </div>
+                          <a
+                            href="https://www.lenovo.com/ph/en/p/laptops/ideapad/ideapad-3/ideapad-slim-3-gen-8-15-inch-amd/"
+                            target="_blank"
+                            rel="noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="text-sm font-bold text-zinc-800 dark:text-zinc-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                          >
+                            Lenovo Ideapad Slim 3 (8th)
+                          </a>
+                        </div>
+                        {openDevice === "lenovo" ? (
+                          <MaterialIcon icon="expand_less" className="text-purple-600 dark:text-purple-400" size="1rem" />
+                        ) : (
+                          <MaterialIcon icon="expand_more" className="text-purple-600 dark:text-purple-400" size="1rem" />
+                        )}
+                      </button>
+
+                      <AnimatePresence>
+                        {openDevice === "lenovo" && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="border-t border-zinc-100 dark:border-zinc-800/60 bg-white/50 dark:bg-zinc-950/40"
+                            id="device-specs-lenovo"
+                          >
+                            <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 text-xs">
+                              {lenovoSpecs.map((spec) => (
+                                <div key={spec.label} className="flex flex-col gap-0.5 py-1">
+                                  <span className="font-mono text-[10px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">{spec.label}</span>
+                                  <span className="font-medium text-zinc-700 dark:text-zinc-300">{spec.value}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3" id="gadgets-category-kits">
+                  <h3 className="text-xs font-mono font-medium tracking-wider text-zinc-400 dark:text-zinc-500 uppercase">
+                    Kits
+                  </h3>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5" id="kits-grid-container">
+                    <a
+                      href="https://www.linsoul.com/products/simgot-ew300"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-start gap-4 p-4 rounded-xl border border-zinc-100 dark:border-zinc-800/60 bg-zinc-50/20 dark:bg-zinc-900/5 hover:border-zinc-200 dark:hover:border-zinc-800 transition-colors"
+                      id="kit-card-truthear"
+                    >
+                      <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
+                        <MaterialIcon icon="headphones" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
+                      </div>
+                      <div className="space-y-1 text-left min-w-0">
+                        <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-tight truncate">
+                          Simgot EW300 1DD + 1 Planar + 1PZT Tribrid Driver IEMs
+                        </h4>
+                        <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed font-mono">
+                          TRN T2 16 Core, Kinera Celest Ruyi Pro
+                        </p>
+                      </div>
+                    </a>
+
+                    <a
+                      href="https://trn-audio.com/trn-black-pearl.html"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-start gap-4 p-4 rounded-xl border border-zinc-100 dark:border-zinc-800/60 bg-zinc-50/20 dark:bg-zinc-900/5 hover:border-zinc-200 dark:hover:border-zinc-800 transition-colors"
+                      id="kit-card-tbk"
+                    >
+                      <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
+                        <MaterialIcon icon="tune" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
+                      </div>
+                      <div className="space-y-1 text-left min-w-0">
+                        <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-tight truncate">
+                          TRN Black Pearl
+                        </h4>
+                        <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed font-mono">
+                          C43131 DAC, CB5100 Amplifier + 8-Band EQ
+                        </p>
+                      </div>
+                    </a>
+
+                    <a
+                      href="https://www.pulsar.gg/products/tenz-signature-edition"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-start gap-4 p-4 rounded-xl border border-zinc-100 dark:border-zinc-800/60 bg-zinc-50/20 dark:bg-zinc-900/5 hover:border-zinc-200 dark:hover:border-zinc-800 transition-colors"
+                      id="kit-card-pulsar"
+                    >
+                      <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
+                        <MaterialIcon icon="mouse" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
+                      </div>
+                      <div className="space-y-1 text-left min-w-0">
+                        <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-tight truncate">
+                          Pulsar's TenZ Signature Edition
+                        </h4>
+                        <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed font-mono">
+                          XS-1 Sensor, 32,000 DPI, 8K PR
+                        </p>
+                      </div>
+                    </a>
+
+                    <div 
+                      className="flex items-start gap-4 p-4 rounded-xl border border-zinc-100 dark:border-zinc-800/60 bg-zinc-50/20 dark:bg-zinc-900/5 hover:border-zinc-200 dark:hover:border-zinc-800 transition-colors"
+                      id="kit-card-aula"
+                    >
+                      <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-90 w-10 h-10 flex items-center justify-center border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
+                        <MaterialIcon icon="keyboard" className="text-purple-600 dark:text-purple-400" size="1.25rem" />
+                      </div>
+                      <div className="space-y-1 text-left min-w-0">
+                        <h4 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-tight truncate">
+                          Aula F75
+                        </h4>
+                        <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed font-mono">
+                          75% Wireless Gasket Mounted Keyboard
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-
             </div>
-          </div>
-        </div>
+          </motion.div>
 
-        {/* SECTION 2: Development Stack / Technical Skills (under device details) */}
-        <div className="space-y-4" id="tech-stack-group">
-          <h3 className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest font-mono flex items-center gap-1.5">
-            <MaterialIcon icon="settings" className="text-zinc-400 dark:text-zinc-500" size="0.875rem" /> Technical Skills
-          </h3>
-          
-          <div className="grid grid-cols-2 gap-3" id="tech-skills-grid">
-            {softwareStack.map((item) => (
-              <React.Fragment key={item.name}>
-                <Tooltip>
-                  <TooltipTrigger
-                    render={
-                      <motion.div
-                        variants={itemVariants}
-                        className="flex items-center gap-3 p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-white dark:bg-zinc-900 shadow-sm hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors duration-200 cursor-help"
-                        id={`stack-item-${item.name.replace(/\s+/g, '-').toLowerCase()}`}
-                      />
-                    }
-                  >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/50 dark:border-zinc-800/40">
-                      <MaterialIcon icon={getIconName(item.iconName)} className="text-purple-600 dark:text-purple-400" size="1.25rem" />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-semibold text-zinc-800 dark:text-zinc-200 leading-tight">
-                        {item.name}
-                      </h4>
-                      <p className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500 capitalize leading-tight">
-                        {item.category}
-                      </p>
-                    </div>
-                  </TooltipTrigger>
-                  <TooltipContent className="bg-zinc-950 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-950 rounded-lg px-2.5 py-1 text-xs font-mono border-none shadow-md">
-                    Level: {item.level || "Highly Capable"}
-                  </TooltipContent>
-                </Tooltip>
-              </React.Fragment>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="space-y-4"
+            id="tech-stack-group"
+          >
+            <h3 className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest font-mono flex items-center gap-1.5">
+              <MaterialIcon icon="settings" className="text-zinc-400 dark:text-zinc-500" size="0.875rem" /> Technical Skills
+            </h3>
+            
+            <div className="grid grid-cols-2 gap-3" id="tech-skills-grid">
+              {softwareStack.map((item, index) => (
+                <React.Fragment key={item.name}>
+                  <Tooltip>
+                    <TooltipTrigger
+                      render={
+                        <motion.div
+                          initial={{ opacity: 0, y: 15, scale: 0.98 }}
+                          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                          viewport={{ once: true, margin: "-30px" }}
+                          transition={{ duration: 0.4, delay: Math.min(index * 0.03, 0.25), ease: [0.16, 1, 0.3, 1] }}
+                          className="flex items-center gap-3 p-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 bg-white dark:bg-zinc-900 shadow-sm hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors duration-200 cursor-help"
+                          id={`stack-item-${item.name.replace(/\s+/g, '-').toLowerCase()}`}
+                        />
+                      }
+                    >
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/50 dark:border-zinc-800/40">
+                        <MaterialIcon icon={getIconName(item.iconName)} className="text-purple-600 dark:text-purple-400" size="1.25rem" />
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-semibold text-zinc-800 dark:text-zinc-200 leading-tight">
+                          {item.name}
+                        </h4>
+                        <p className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500 capitalize leading-tight">
+                          {item.category}
+                        </p>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-zinc-950 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-950 rounded-lg px-2.5 py-1 text-xs font-mono border-none shadow-md">
+                      Level: {item.level || "Highly Capable"}
+                    </TooltipContent>
+                  </Tooltip>
+                </React.Fragment>
+              ))}
+            </div>
+          </motion.div>
         </div>
-        </div>
-      </motion.div>
+      </div>
     </TooltipProvider>
   );
 }
+
 export default StackSection;

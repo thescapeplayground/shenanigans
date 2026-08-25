@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "motion/react";
 import { GameItem } from "@/src/types";
 
 interface GamesGridProps {
@@ -11,19 +12,29 @@ export function GamesGrid({ games }: GamesGridProps) {
 
   return (
     <div className="space-y-4" id="games-showcase-container">
-      <div className="flex items-center justify-between">
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="flex items-center justify-between"
+      >
         <h3 className="text-xs font-semibold font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
           Games & Media
         </h3>
         <span className="text-xs font-mono text-zinc-400 dark:text-zinc-600">
           {games.length} titles
         </span>
-      </div>
+      </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {games.map((game) => (
-          <div
+        {games.map((game, index) => (
+          <motion.div
             key={game.id}
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
             className="group relative rounded-2xl border border-zinc-200/70 dark:border-zinc-800/70 bg-white/70 dark:bg-zinc-950/60 backdrop-blur-sm p-5 shadow-sm transition-all duration-300 hover:border-purple-500/40 dark:hover:border-purple-500/40 hover:-translate-y-0.5 flex flex-col justify-between"
           >
             <div className="space-y-2.5">
@@ -73,7 +84,7 @@ export function GamesGrid({ games }: GamesGridProps) {
                 </a>
               )}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

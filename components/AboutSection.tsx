@@ -11,25 +11,6 @@ interface AboutSectionProps {
 }
 
 export function AboutSection({ about }: AboutSectionProps) {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 15 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { type: "spring" as const, stiffness: 100, damping: 15 },
-    },
-  };
-
   const highlightIcons: Record<string, string> = {
     Age: "calendar_today",
     Location: "location_on",
@@ -38,21 +19,29 @@ export function AboutSection({ about }: AboutSectionProps) {
   };
 
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="show"
-      className="space-y-12 py-4 relative z-10"
-      id="about-section-container"
-    >
-      <motion.div variants={itemVariants} className="space-y-2 text-left" id="about-header-block">
+    <div className="space-y-12 py-4 relative z-10" id="about-section-container">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="space-y-2 text-left"
+        id="about-header-block"
+      >
         <h2 className="text-2xl font-bold font-sans tracking-tight text-neutral-950 dark:text-neutral-50 flex items-center gap-2">
           {about.heading}
         </h2>
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10" id="about-content-grid">
-        <motion.div variants={itemVariants} className="lg:col-span-1" id="about-left-column">
+        <motion.div
+          initial={{ opacity: 0, y: 25, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-1"
+          id="about-left-column"
+        >
           {about.image && (
             <div className="rounded-2xl overflow-hidden border border-zinc-200/60 dark:border-zinc-800/60 bg-white/70 dark:bg-zinc-950/60 backdrop-blur-sm shadow-sm sticky top-24">
               <div className="aspect-square relative overflow-hidden">
@@ -66,12 +55,15 @@ export function AboutSection({ about }: AboutSectionProps) {
           )}
         </motion.div>
 
-        <motion.div
-          variants={itemVariants}
-          className="space-y-6 lg:col-span-2"
-          id="about-right-column"
-        >
-          <div className="space-y-5" id="about-paragraphs-block">
+        <div className="space-y-6 lg:col-span-2" id="about-right-column">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            className="space-y-5"
+            id="about-paragraphs-block"
+          >
             {about.paragraphs.map((paragraph, index) => (
               <p
                 key={index}
@@ -80,9 +72,15 @@ export function AboutSection({ about }: AboutSectionProps) {
                 {paragraph}
               </p>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60 bg-white/70 dark:bg-zinc-950/60 backdrop-blur-sm shadow-sm p-5 space-y-3">
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.99 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60 bg-white/70 dark:bg-zinc-950/60 backdrop-blur-sm shadow-sm p-5 space-y-3"
+          >
             <h3 className="text-xs font-semibold font-mono tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">
               Quick Facts
             </h3>
@@ -105,9 +103,15 @@ export function AboutSection({ about }: AboutSectionProps) {
                 );
               })}
             </div>
-          </div>
+          </motion.div>
 
-          <div className="rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60 bg-white/70 dark:bg-zinc-950/60 backdrop-blur-sm shadow-sm p-5">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.55, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60 bg-white/70 dark:bg-zinc-950/60 backdrop-blur-sm shadow-sm p-5"
+          >
             <p className="text-xs font-mono text-zinc-500 dark:text-zinc-400 leading-relaxed">
               This site is built using Next.js, TailwindCSS, shadcn/UI with Framer Motion and{" "}
               <a
@@ -138,11 +142,18 @@ export function AboutSection({ about }: AboutSectionProps) {
               </a>
               .
             </p>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
 
-      <motion.div variants={itemVariants} className="pt-6 border-t border-zinc-200/60 dark:border-zinc-800/60 space-y-8" id="about-extra-sections">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="pt-6 border-t border-zinc-200/60 dark:border-zinc-800/60 space-y-8"
+        id="about-extra-sections"
+      >
         <LastFmSection username={about.lastFmUsername || "isaiahthings"} />
 
         {about.games && about.games.length > 0 && (
@@ -156,6 +167,6 @@ export function AboutSection({ about }: AboutSectionProps) {
           </p>
         </div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 }

@@ -25,25 +25,30 @@ export function BlogSection() {
 
   return (
     <div className="space-y-6 py-4" id="blog-section">
-      <motion.div
-        key="post-list"
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2 }}
-        className="space-y-5"
-      >
-        {/* Blog header */}
-        <div className="space-y-2" id="blog-header">
+      <div className="space-y-5">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-2 text-left"
+          id="blog-header"
+        >
           <h2 className="text-2xl font-bold tracking-tight text-neutral-950 dark:text-neutral-50 font-sans">
             Blog
           </h2>
           <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-xl font-sans">
             Thoughts, build logs, and other shenanigans.
           </p>
-        </div>
+        </motion.div>
 
-        {/* DETAILS.md card */}
-        <div className="w-full bg-white/50 dark:bg-zinc-900/20 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50">
+        <motion.div
+          initial={{ opacity: 0, y: 20, scale: 0.99 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.55, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full bg-white/50 dark:bg-zinc-900/20 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 text-left"
+        >
           <h3 className="w-full flex items-center gap-3 text-zinc-400 dark:text-zinc-500 px-5 py-3 border-b border-zinc-200/60 dark:border-zinc-800/50">
             <MaterialIcon icon="book" size="1rem" />
             <span className="text-xs font-mono tracking-wide">DETAILS.md</span>
@@ -52,10 +57,15 @@ export function BlogSection() {
             In case you were wondering — yes, I write things. Mostly build logs,
             thoughts on design and code, and whatever else feels worth putting down.
           </p>
-        </div>
+        </motion.div>
 
-        {/* ALL_POSTS.md card */}
-        <div className="w-full bg-white/50 dark:bg-zinc-900/20 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 flex flex-col overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 25, scale: 0.99 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full bg-white/50 dark:bg-zinc-900/20 rounded-xl border border-zinc-200/60 dark:border-zinc-800/50 flex flex-col overflow-hidden text-left"
+        >
           <div className="w-full flex items-center gap-3 text-zinc-400 dark:text-zinc-500 px-5 py-3 border-b border-zinc-200/60 dark:border-zinc-800/50 bg-white/50 dark:bg-zinc-900/10 sticky top-0 z-10">
             <MaterialIcon icon="newspaper" size="1rem" />
             <span className="text-xs font-mono tracking-wide">ALL_POSTS.md</span>
@@ -80,39 +90,46 @@ export function BlogSection() {
                 No posts yet. Stay tuned.
               </p>
             ) : (
-              posts.map((post) => (
-                <Link
+              posts.map((post, index) => (
+                <motion.div
                   key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className="w-full text-left rounded-lg border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/30 dark:bg-zinc-900/10 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/50 dark:hover:bg-zinc-800/20 transition-all cursor-pointer group overflow-hidden"
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-30px" }}
+                  transition={{ duration: 0.45, delay: Math.min(index * 0.05, 0.25), ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <div className="w-full flex flex-col px-4 pt-3 gap-1">
-                    <h3 className="font-semibold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                      {post.title}
-                    </h3>
-                    <p className="text-xs text-zinc-400 dark:text-zinc-500">
-                      Published on {post.date} &bull; {getReadingTime(post.description)}
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="w-full block text-left rounded-lg border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/30 dark:bg-zinc-900/10 hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-100/50 dark:hover:bg-zinc-800/20 transition-all cursor-pointer group overflow-hidden"
+                  >
+                    <div className="w-full flex flex-col px-4 pt-3 gap-1">
+                      <h3 className="font-semibold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                        {post.title}
+                      </h3>
+                      <p className="text-xs text-zinc-400 dark:text-zinc-500">
+                        Published on {post.date} &bull; {getReadingTime(post.description)}
+                      </p>
+                    </div>
+                    <p className="w-full px-4 py-2 text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2 leading-relaxed">
+                      {post.description}
                     </p>
-                  </div>
-                  <p className="w-full px-4 py-2 text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2 leading-relaxed">
-                    {post.description}
-                  </p>
-                  <div className="w-full px-4 pb-3 flex flex-wrap gap-1.5">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[10px] px-2.5 py-0.5 rounded-full bg-zinc-200/60 dark:bg-zinc-700/50 text-zinc-500 dark:text-zinc-400"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </Link>
+                    <div className="w-full px-4 pb-3 flex flex-wrap gap-1.5">
+                      {post.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-[10px] px-2.5 py-0.5 rounded-full bg-zinc-200/60 dark:bg-zinc-700/50 text-zinc-500 dark:text-zinc-400"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </Link>
+                </motion.div>
               ))
             )}
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </div>
   );
 }

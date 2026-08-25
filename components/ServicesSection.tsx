@@ -23,31 +23,19 @@ export function ServicesSection({
     setOpenFaq(openFaq === index ? null : index);
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 12 },
-    show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 100, damping: 15 } },
-  };
-
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="show"
+    <div
       className="space-y-10 py-4 font-sans text-left"
       id="services-section-container"
     >
-      {/* Header Block */}
-      <motion.div variants={itemVariants} className="space-y-3" id="services-header">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="space-y-3"
+        id="services-header"
+      >
         <div className="flex flex-wrap items-center gap-2">
           <span className="px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 text-xs font-mono font-medium">
             Leonardo's Tangible Stuff
@@ -65,7 +53,6 @@ export function ServicesSection({
           From hardware diagnostics and thermal overhauls to software installations and custom web development. Transparent pricing with free diagnosis.
         </p>
 
-        {/* Scope badges */}
         <div className="flex flex-wrap gap-1.5 pt-1">
           {["maintenance", "building", "upgrades", "repairing", "designing"].map((tag) => (
             <span
@@ -78,21 +65,29 @@ export function ServicesSection({
         </div>
       </motion.div>
 
-      {/* Services List Grid */}
-      <motion.div variants={itemVariants} className="space-y-4" id="services-list-group">
-        <h3 className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest font-mono flex items-center gap-1.5">
+      <div className="space-y-4" id="services-list-group">
+        <motion.h3
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest font-mono flex items-center gap-1.5"
+        >
           <MaterialIcon icon="list_alt" className="text-purple-600 dark:text-purple-400" size="1rem" /> Available Services
-        </h3>
+        </motion.h3>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-5" id="services-cards-grid">
-          {services.map((service) => (
-            <div
+          {services.map((service, index) => (
+            <motion.div
               key={service.id}
+              initial={{ opacity: 0, y: 25, scale: 0.98 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: Math.min(index * 0.06, 0.25), ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col justify-between p-5 rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60 bg-white/70 dark:bg-zinc-950/60 backdrop-blur-sm shadow-xs hover:border-zinc-300 dark:hover:border-zinc-700 transition-all space-y-4"
               id={`service-card-${service.id}`}
             >
               <div className="space-y-3">
-                {/* Header row: title, icon & price badge */}
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <div className="p-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/50 dark:border-zinc-800/40 shrink-0">
@@ -112,7 +107,6 @@ export function ServicesSection({
                   </span>
                 </div>
 
-                {/* Service items checklist */}
                 <ul className="space-y-2 pt-2 border-t border-zinc-100 dark:border-zinc-900/50">
                   {service.items.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 leading-normal">
@@ -123,7 +117,6 @@ export function ServicesSection({
                 </ul>
               </div>
 
-              {/* Note pill */}
               {service.note && (
                 <div className="pt-2 border-t border-zinc-100 dark:border-zinc-900/50">
                   <p className="text-[11px] font-mono text-zinc-500 dark:text-zinc-400 leading-relaxed flex items-start gap-1.5 bg-zinc-50 dark:bg-zinc-900/40 p-2.5 rounded-xl border border-zinc-200/40 dark:border-zinc-800/40">
@@ -132,26 +125,35 @@ export function ServicesSection({
                   </p>
                 </div>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
-      {/* FAQ Section */}
-      <motion.div variants={itemVariants} className="space-y-4 pt-4 border-t border-zinc-200/50 dark:border-zinc-800/50" id="services-faq-group">
-        <div className="space-y-1">
+      <div className="space-y-4 pt-4 border-t border-zinc-200/50 dark:border-zinc-800/50" id="services-faq-group">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-1"
+        >
           <h3 className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest font-mono flex items-center gap-1.5">
             <MaterialIcon icon="help_outline" className="text-purple-600 dark:text-purple-400" size="1rem" /> Frequently Asked Questions
           </h3>
           <p className="text-xs text-zinc-500 dark:text-zinc-400">
             Got questions about diagnosis, payment, or turnarounds?
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3" id="faq-accordion-grid">
           {faqs.map((faq, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 20, scale: 0.98 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.45, delay: Math.min(index * 0.05, 0.25), ease: [0.16, 1, 0.3, 1] }}
               className="border border-zinc-200/60 dark:border-zinc-800/60 rounded-xl bg-white/70 dark:bg-zinc-950/60 overflow-hidden shadow-xs transition-all hover:border-zinc-300 dark:hover:border-zinc-700"
             >
               <button
@@ -186,14 +188,16 @@ export function ServicesSection({
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
-      {/* Bottom CTA Block */}
       <motion.div
-        variants={itemVariants}
+        initial={{ opacity: 0, y: 25, scale: 0.99 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
         className="p-6 rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60 bg-white/70 dark:bg-zinc-950/60 backdrop-blur-sm shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4"
         id="services-cta-banner"
       >
@@ -213,7 +217,7 @@ export function ServicesSection({
           <MaterialIcon icon="mail" size="0.875rem" /> Get in Touch
         </Button>
       </motion.div>
-    </motion.div>
+    </div>
   );
 }
 

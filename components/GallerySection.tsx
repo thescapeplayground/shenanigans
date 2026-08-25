@@ -17,7 +17,6 @@ export function GallerySection() {
     <div className="space-y-6 py-4" id="gallery-section">
       <AnimatePresence mode="wait">
         {!activeAlbum ? (
-          /* ================= ALBUMS OVERVIEW VIEW ================= */
           <motion.div
             key="albums-grid"
             initial={{ opacity: 0, y: 12 }}
@@ -26,7 +25,14 @@ export function GallerySection() {
             transition={{ duration: 0.2 }}
             className="space-y-6"
           >
-            <div className="space-y-2" id="gallery-header">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-2 text-left"
+              id="gallery-header"
+            >
               <div className="flex items-center gap-2">
                 <div className="p-2 rounded-xl bg-purple-600/10 text-purple-600">
                   <MaterialIcon icon="folder_special" size="1.25rem" />
@@ -38,24 +44,22 @@ export function GallerySection() {
               <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-xl font-sans">
                 A curated collection of banners, visual designs, and photography organized into interactive album folders.
               </p>
-            </div>
+            </motion.div>
 
-            {/* Folder Cards Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
               {albums.map((album, index) => {
                 const previewItems = album.items.slice(0, 3);
                 return (
                   <motion.div
                     key={album.id}
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.08 }}
+                    initial={{ opacity: 0, y: 20, scale: 0.98 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
                     onClick={() => setActiveAlbum(album)}
-                    className="group relative cursor-pointer rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/70 dark:bg-zinc-900/40 p-4 transition-all duration-300 hover:border-purple-600/40 hover:shadow-xl hover:shadow-purple-600/5 hover:-translate-y-1"
+                    className="group relative cursor-pointer rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/70 dark:bg-zinc-900/40 p-4 transition-all duration-300 hover:border-purple-600/40 hover:shadow-xl hover:shadow-purple-600/5 hover:-translate-y-1 text-left"
                   >
-                    {/* Visual Folder Card Stack Effect */}
                     <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden mb-4 bg-zinc-200 dark:bg-zinc-800">
-                      {/* Back stack card 2 */}
                       {previewItems[2] && (
                         <div className="absolute inset-0 translate-x-2 -translate-y-2 scale-[0.92] opacity-40 rounded-xl overflow-hidden border border-white/20">
                           <Image
@@ -67,7 +71,6 @@ export function GallerySection() {
                           />
                         </div>
                       )}
-                      {/* Back stack card 1 */}
                       {previewItems[1] && (
                         <div className="absolute inset-0 translate-x-1 -translate-y-1 scale-[0.96] opacity-70 rounded-xl overflow-hidden border border-white/20">
                           <Image
@@ -80,7 +83,6 @@ export function GallerySection() {
                         </div>
                       )}
 
-                      {/* Main Cover Image */}
                       <Image
                         src={album.coverImage}
                         alt={album.name}
@@ -90,7 +92,6 @@ export function GallerySection() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-                      {/* Folder Badge & Count */}
                       <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
                         <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/60 backdrop-blur-md text-white text-xs font-medium border border-white/10">
                           <MaterialIcon icon={album.icon || "folder"} size="0.875rem" />
@@ -102,7 +103,6 @@ export function GallerySection() {
                       </div>
                     </div>
 
-                    {/* Album Info */}
                     <div className="space-y-1">
                       <div className="flex items-center justify-between">
                         <h3 className="font-semibold text-base text-zinc-900 dark:text-zinc-100 group-hover:text-purple-600 transition-colors">
@@ -122,20 +122,18 @@ export function GallerySection() {
             </div>
           </motion.div>
         ) : (
-          /* ================= SINGLE ALBUM DETAIL VIEW ================= */
           <motion.div
             key="album-detail"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.2 }}
-            className="space-y-6"
+            className="space-y-6 text-left"
           >
-            {/* Header / Breadcrumb Navigation */}
             <div className="flex items-center justify-between pb-2 border-b border-zinc-200/80 dark:border-zinc-800/80">
               <button
                 onClick={() => setActiveAlbum(null)}
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800/80 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-xs font-medium text-zinc-800 dark:text-zinc-200 transition-colors"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800/80 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-xs font-medium text-zinc-800 dark:text-zinc-200 transition-colors cursor-pointer"
               >
                 <MaterialIcon icon="arrow_back" size="1rem" />
                 <span>All Albums</span>
@@ -148,8 +146,13 @@ export function GallerySection() {
               </div>
             </div>
 
-            {/* Folder Header Info Banner */}
-            <div className="rounded-2xl p-5 border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="rounded-2xl p-5 border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+            >
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <MaterialIcon icon={activeAlbum.icon || "folder"} size="1.25rem" className="text-purple-600" />
@@ -162,16 +165,16 @@ export function GallerySection() {
                   {activeAlbum.items.length} Photos
                 </span>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Photo Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {activeAlbum.items.map((item, index) => (
                 <motion.div
                   key={item.id}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.04 }}
+                  initial={{ opacity: 0, scale: 0.95, y: 15 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-30px" }}
+                  transition={{ duration: 0.45, delay: Math.min(index * 0.04, 0.25), ease: [0.16, 1, 0.3, 1] }}
                   onClick={() => setSelectedImage(item)}
                   className="group relative cursor-pointer rounded-xl overflow-hidden border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 hover:border-purple-600/50 transition-all shadow-sm hover:shadow-md"
                 >
@@ -198,7 +201,6 @@ export function GallerySection() {
         )}
       </AnimatePresence>
 
-      {/* Lightbox Modal */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
@@ -210,7 +212,7 @@ export function GallerySection() {
           >
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-4 right-4 p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+              className="absolute top-4 right-4 p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
             >
               <MaterialIcon icon="close" size="1.25rem" />
             </button>
