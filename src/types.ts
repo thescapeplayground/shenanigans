@@ -122,6 +122,28 @@ export interface ServiceFaq {
   icon: string;
 }
 
+export interface PhotoMetadata {
+  make?: string;
+  model?: string;
+  lens?: string;
+  focalLength?: string;
+  focalLength35mm?: string;
+  aperture?: string;
+  shutterSpeed?: string;
+  iso?: string | number;
+  exposureBias?: string;
+  dimensions?: string;
+  aspectRatio?: string;
+  fileSize?: string;
+  mimeType?: string;
+  dateTaken?: string;
+  location?: string;
+  software?: string;
+  colorSpace?: string;
+  flash?: string;
+  rawTags?: Record<string, unknown>;
+}
+
 export interface GalleryPhoto {
   id: string;
   src: string;
@@ -129,6 +151,7 @@ export interface GalleryPhoto {
   title?: string;
   date?: string;
   folder: string;
+  metadata?: PhotoMetadata;
 }
 
 export interface GalleryAlbum {

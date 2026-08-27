@@ -1,17 +1,74 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { motion, AnimatePresence } from "motion/react";
 import { DEFAULT_GALLERY_ALBUMS } from "@/src/data/gallery";
-import { GalleryAlbum, GalleryPhoto } from "@/src/types";
+import { GalleryAlbum, GalleryPhoto, PhotoMetadata } from "@/src/types";
+import { PhotoDetailsPanel } from "@/components/gallery/PhotoDetailsPanel";
+import { extractPhotoMetadata } from "@/src/lib/exif";
 
 export function GallerySection() {
   const [activeAlbum, setActiveAlbum] = useState<GalleryAlbum | null>(null);
   const [selectedImage, setSelectedImage] = useState<GalleryPhoto | null>(null);
+  const [showDetails, setShowDetails] = useState(false);
+  const [activeMetadata, setActiveMetadata] = useState<PhotoMetadata | null>(null);
 
   const albums = DEFAULT_GALLERY_ALBUMS;
+
+  const currentItems = activeAlbum?.items || [];
+  const currentIndex = selectedImage
+    ? currentItems.findIndex((item) => item.id === selectedImage.id)
+    : -1;
+
+  const handleSelectImage = useCallback((photo: GalleryPhoto) => {
+    setSelectedImage(photo);
+    setActiveMetadata(photo.metadata || {});
+
+    extractPhotoMetadata(photo.src, photo.metadata).then((extracted) => {
+      setActiveMetadata(extracted);
+    });
+  }, []);
+
+  const handlePrev = useCallback(() => {
+    if (currentIndex > 0) {
+      handleSelectImage(currentItems[currentIndex - 1]);
+    } else if (currentItems.length > 0) {
+      handleSelectImage(currentItems[currentItems.length - 1]);
+    }
+  }, [currentIndex, currentItems, handleSelectImage]);
+
+  const handleNext = useCallback(() => {
+    if (currentIndex < currentItems.length - 1) {
+      handleSelectImage(currentItems[currentIndex + 1]);
+    } else if (currentItems.length > 0) {
+      handleSelectImage(currentItems[0]);
+    }
+  }, [currentIndex, currentItems, handleSelectImage]);
+
+  useEffect(() => {
+    if (!selectedImage) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (showDetails) {
+          setShowDetails(false);
+        } else {
+          setSelectedImage(null);
+        }
+      } else if (e.key === "ArrowLeft") {
+        handlePrev();
+      } else if (e.key === "ArrowRight") {
+        handleNext();
+      } else if (e.key === "i" || e.key === "I") {
+        setShowDetails((prev) => !prev);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedImage, showDetails, handlePrev, handleNext]);
 
   return (
     <div className="space-y-6 py-4" id="gallery-section">
@@ -175,7 +232,7 @@ export function GallerySection() {
                   whileInView={{ opacity: 1, scale: 1, y: 0 }}
                   viewport={{ once: true, margin: "0px 0px -20px 0px" }}
                   transition={{ duration: 0.45, delay: Math.min(index * 0.04, 0.25), ease: [0.16, 1, 0.3, 1] }}
-                  onClick={() => setSelectedImage(item)}
+                  onClick={() => handleSelectImage(item)}
                   className="group relative cursor-pointer rounded-xl overflow-hidden border border-zinc-200/60 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/10 hover:border-purple-600/50 transition-all shadow-sm hover:shadow-md"
                 >
                   <div className="aspect-square w-full relative">
@@ -188,10 +245,24 @@ export function GallerySection() {
                       quality={25}
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
-                      <p className="text-xs font-medium text-white line-clamp-1 truncate">
-                        {item.title || item.alt}
-                      </p>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-between p-2.5">
+                      <div className="flex justify-end">
+                        {item.metadata?.focalLength && (
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-md text-zinc-300 border border-white/10">
+                            {item.metadata.focalLength}
+                          </span>
+                        )}
+                      </div>
+                      <div className="space-y-0.5">
+                        <p className="text-xs font-medium text-white line-clamp-1 truncate">
+                          {item.title || item.alt}
+                        </p>
+                        {item.metadata?.model && (
+                          <p className="text-[10px] text-zinc-400 font-mono truncate">
+                            {item.metadata.model}
+                          </p>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -201,6 +272,7 @@ export function GallerySection() {
         )}
       </AnimatePresence>
 
+      {/* Lightbox / Modal with Details Inspector */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
@@ -208,28 +280,107 @@ export function GallerySection() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedImage(null)}
-            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/85 backdrop-blur-md p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md"
           >
-            <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute top-4 right-4 p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
-            >
-              <MaterialIcon icon="close" size="1.25rem" />
-            </button>
-            <motion.img
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
+            {/* Top Toolbar */}
+            <div
               onClick={(e) => e.stopPropagation()}
-              src={selectedImage.src}
-              alt={selectedImage.alt}
-              className="max-w-[90vw] max-h-[85vh] rounded-xl shadow-2xl object-contain"
-            />
-            {selectedImage.title && (
-              <p className="mt-3 text-xs font-mono text-zinc-300 bg-black/60 px-3 py-1.5 rounded-full border border-white/10">
-                {selectedImage.title}
-              </p>
+              className="absolute top-0 left-0 right-0 p-4 sm:p-5 flex items-center justify-between z-40 bg-gradient-to-b from-black/80 to-transparent pointer-events-auto"
+            >
+              <div className="flex items-center gap-3">
+                {selectedImage.title && (
+                  <span className="text-xs sm:text-sm font-medium text-zinc-200 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                    {selectedImage.title}
+                  </span>
+                )}
+                {currentIndex >= 0 && (
+                  <span className="text-xs font-mono text-zinc-400 bg-black/30 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/5">
+                    {currentIndex + 1} / {currentItems.length}
+                  </span>
+                )}
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setShowDetails((prev) => !prev)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all cursor-pointer border ${
+                    showDetails
+                      ? "bg-purple-600 text-white border-purple-500 shadow-lg shadow-purple-600/30"
+                      : "bg-white/10 hover:bg-white/20 text-zinc-200 border-white/10"
+                  }`}
+                  title="Toggle Photo Details & EXIF Metadata (Key: I)"
+                >
+                  <MaterialIcon icon="info" size="1.1rem" />
+                  <span className="hidden sm:inline">Details</span>
+                </button>
+
+                <button
+                  onClick={() => setSelectedImage(null)}
+                  className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer border border-white/10"
+                  title="Close (Key: Esc)"
+                  aria-label="Close lightbox"
+                >
+                  <MaterialIcon icon="close" size="1.15rem" />
+                </button>
+              </div>
+            </div>
+
+            {/* Navigation Arrows */}
+            {currentItems.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handlePrev();
+                  }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 hover:bg-black/80 text-white border border-white/10 backdrop-blur-md transition-all hover:scale-105 z-30 cursor-pointer hidden sm:flex items-center justify-center"
+                  aria-label="Previous photo"
+                >
+                  <MaterialIcon icon="chevron_left" size="1.5rem" />
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNext();
+                  }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 hover:bg-black/80 text-white border border-white/10 backdrop-blur-md transition-all hover:scale-105 z-30 cursor-pointer hidden sm:flex items-center justify-center"
+                  aria-label="Next photo"
+                >
+                  <MaterialIcon icon="chevron_right" size="1.5rem" />
+                </button>
+              </>
             )}
+
+            {/* Main Image Stage */}
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className={`relative flex items-center justify-center transition-all duration-300 p-4 sm:p-8 max-w-full max-h-full ${
+                showDetails ? "sm:pr-[430px]" : ""
+              }`}
+            >
+              <motion.img
+                key={selectedImage.id}
+                initial={{ scale: 0.96, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.96, opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                className="max-w-[90vw] max-h-[82vh] rounded-xl shadow-2xl object-contain select-none"
+              />
+            </div>
+
+            {/* Slide-out Details Inspector */}
+            <AnimatePresence>
+              {showDetails && activeMetadata && (
+                <PhotoDetailsPanel
+                  photo={selectedImage}
+                  metadata={activeMetadata}
+                  isOpen={showDetails}
+                  onClose={() => setShowDetails(false)}
+                />
+              )}
+            </AnimatePresence>
           </motion.div>
         )}
       </AnimatePresence>
