@@ -183,7 +183,7 @@ html.lenis, html.lenis body {
   height: 7px;
   margin-top: -3.5px;
   margin-left: -3.5px;
-  transition: opacity 0.2s, transform 0.1s ease-out;
+  transition: opacity 0.15s ease-out;
 }
 
 .custom-cursor-trail {
@@ -196,7 +196,7 @@ html.lenis, html.lenis body {
   margin-top: -14px;
   margin-left: -14px;
   box-shadow: 0 0 14px rgba(168, 85, 247, 0.3);
-  transition: opacity 0.3s, transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: opacity 0.2s ease-out, border-color 0.2s ease-out;
 }
 
 @media (pointer: fine) and (min-width: 768px) {
