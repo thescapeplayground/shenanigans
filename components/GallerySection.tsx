@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useTransition } from "react";
 import Image from "next/image";
 import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { motion, AnimatePresence } from "motion/react";
@@ -9,27 +9,161 @@ import { GalleryAlbum, GalleryPhoto, PhotoMetadata } from "@/src/types";
 import { PhotoDetailsPanel } from "@/components/gallery/PhotoDetailsPanel";
 import { extractPhotoMetadata } from "@/src/lib/exif";
 
-export function GallerySection() {
-  const [activeAlbum, setActiveAlbum] = useState<GalleryAlbum | null>(null);
+interface GallerySectionProps {
+  initialAlbumSlug?: string;
+  initialPhotoSlug?: string;
+}
+
+function getPhotoSlug(photo: GalleryPhoto): string {
+  const parts = photo.src.split("/");
+  const filename = decodeURIComponent(parts[parts.length - 1] || "");
+  return filename || photo.id;
+}
+
+export function GallerySection({
+  initialAlbumSlug,
+  initialPhotoSlug,
+}: GallerySectionProps) {
+  const albums = DEFAULT_GALLERY_ALBUMS;
+
+  const findInitialAlbum = useCallback(() => {
+    if (!initialAlbumSlug) return null;
+    return (
+      albums.find(
+        (a) =>
+          a.id.toLowerCase() === initialAlbumSlug.toLowerCase() ||
+          a.folder.toLowerCase() === initialAlbumSlug.toLowerCase()
+      ) || null
+    );
+  }, [albums, initialAlbumSlug]);
+
+  const [activeAlbum, setActiveAlbum] = useState<GalleryAlbum | null>(findInitialAlbum);
   const [selectedImage, setSelectedImage] = useState<GalleryPhoto | null>(null);
   const [showDetails, setShowDetails] = useState(false);
   const [activeMetadata, setActiveMetadata] = useState<PhotoMetadata | null>(null);
-
-  const albums = DEFAULT_GALLERY_ALBUMS;
+  const [copiedLink, setCopiedLink] = useState(false);
+  const [, startTransition] = useTransition();
 
   const currentItems = activeAlbum?.items || [];
   const currentIndex = selectedImage
     ? currentItems.findIndex((item) => item.id === selectedImage.id)
     : -1;
 
-  const handleSelectImage = useCallback((photo: GalleryPhoto) => {
-    setSelectedImage(photo);
-    setActiveMetadata(photo.metadata || {});
-
-    extractPhotoMetadata(photo.src, photo.metadata).then((extracted) => {
-      setActiveMetadata(extracted);
-    });
+  const updateUrl = useCallback((album: GalleryAlbum | null, photo: GalleryPhoto | null) => {
+    if (typeof window === "undefined") return;
+    let nextUrl = "/gallery";
+    if (album) {
+      nextUrl = `/gallery/${album.id}`;
+      if (photo) {
+        const photoSlug = getPhotoSlug(photo);
+        nextUrl = `/gallery/${album.id}/${encodeURIComponent(photoSlug)}`;
+      }
+    }
+    if (window.location.pathname !== nextUrl) {
+      window.history.pushState({ albumId: album?.id, photoId: photo?.id }, "", nextUrl);
+    }
   }, []);
+
+  const handleSelectImage = useCallback(
+    (photo: GalleryPhoto | null, syncUrl = true) => {
+      setSelectedImage(photo);
+      if (photo) {
+        setActiveMetadata(photo.metadata || {});
+        extractPhotoMetadata(photo.src, photo.metadata).then((extracted) => {
+          setActiveMetadata(extracted);
+        });
+        if (syncUrl && activeAlbum) {
+          updateUrl(activeAlbum, photo);
+        }
+      } else {
+        setActiveMetadata(null);
+        if (syncUrl && activeAlbum) {
+          updateUrl(activeAlbum, null);
+        }
+      }
+    },
+    [activeAlbum, updateUrl]
+  );
+
+  const handleSelectAlbum = useCallback(
+    (album: GalleryAlbum | null, syncUrl = true) => {
+      startTransition(() => {
+        setActiveAlbum(album);
+        setSelectedImage(null);
+        setActiveMetadata(null);
+      });
+      if (syncUrl) {
+        updateUrl(album, null);
+      }
+    },
+    [updateUrl]
+  );
+
+  useEffect(() => {
+    if (initialAlbumSlug) {
+      const matchedAlbum = albums.find(
+        (a) =>
+          a.id.toLowerCase() === initialAlbumSlug.toLowerCase() ||
+          a.folder.toLowerCase() === initialAlbumSlug.toLowerCase()
+      );
+      if (matchedAlbum) {
+        setActiveAlbum(matchedAlbum);
+        if (initialPhotoSlug) {
+          const matchedPhoto = matchedAlbum.items.find(
+            (p) =>
+              p.id.toLowerCase() === initialPhotoSlug.toLowerCase() ||
+              getPhotoSlug(p).toLowerCase() === initialPhotoSlug.toLowerCase()
+          );
+          if (matchedPhoto) {
+            handleSelectImage(matchedPhoto, false);
+          }
+        }
+      }
+    }
+  }, [initialAlbumSlug, initialPhotoSlug, albums, handleSelectImage]);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const pathSegments = window.location.pathname
+        .replace(/^\/gallery\/?/, "")
+        .split("/")
+        .filter(Boolean)
+        .map((s) => decodeURIComponent(s));
+
+      if (pathSegments.length === 0) {
+        setActiveAlbum(null);
+        setSelectedImage(null);
+      } else {
+        const albumSlug = pathSegments[0];
+        const matchedAlbum = albums.find(
+          (a) =>
+            a.id.toLowerCase() === albumSlug.toLowerCase() ||
+            a.folder.toLowerCase() === albumSlug.toLowerCase()
+        );
+        setActiveAlbum(matchedAlbum || null);
+
+        if (matchedAlbum && pathSegments.length > 1) {
+          const photoSlug = pathSegments.slice(1).join("/");
+          const matchedPhoto = matchedAlbum.items.find(
+            (p) =>
+              p.id.toLowerCase() === photoSlug.toLowerCase() ||
+              getPhotoSlug(p).toLowerCase() === photoSlug.toLowerCase()
+          );
+          if (matchedPhoto) {
+            setSelectedImage(matchedPhoto);
+            setActiveMetadata(matchedPhoto.metadata || {});
+          } else {
+            setSelectedImage(null);
+          }
+        } else {
+          setSelectedImage(null);
+        }
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [albums]);
 
   const handlePrev = useCallback(() => {
     if (currentIndex > 0) {
@@ -47,6 +181,15 @@ export function GallerySection() {
     }
   }, [currentIndex, currentItems, handleSelectImage]);
 
+  const handleShareLink = useCallback(() => {
+    if (typeof window === "undefined" || !activeAlbum || !selectedImage) return;
+    const photoSlug = getPhotoSlug(selectedImage);
+    const fullUrl = `${window.location.origin}/gallery/${activeAlbum.id}/${encodeURIComponent(photoSlug)}`;
+    navigator.clipboard.writeText(fullUrl);
+    setCopiedLink(true);
+    setTimeout(() => setCopiedLink(false), 2000);
+  }, [activeAlbum, selectedImage]);
+
   useEffect(() => {
     if (!selectedImage) return;
 
@@ -55,7 +198,7 @@ export function GallerySection() {
         if (showDetails) {
           setShowDetails(false);
         } else {
-          setSelectedImage(null);
+          handleSelectImage(null);
         }
       } else if (e.key === "ArrowLeft") {
         handlePrev();
@@ -68,7 +211,7 @@ export function GallerySection() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedImage, showDetails, handlePrev, handleNext]);
+  }, [selectedImage, showDetails, handlePrev, handleNext, handleSelectImage]);
 
   return (
     <div className="space-y-6 py-4" id="gallery-section">
@@ -113,7 +256,7 @@ export function GallerySection() {
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: true, margin: "0px 0px -30px 0px" }}
                     transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                    onClick={() => setActiveAlbum(album)}
+                    onClick={() => handleSelectAlbum(album)}
                     className="group relative cursor-pointer rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/70 dark:bg-zinc-900/40 p-4 transition-all duration-300 hover:border-purple-600/40 hover:shadow-xl hover:shadow-purple-600/5 hover:-translate-y-1 text-left"
                   >
                     <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden mb-4 bg-zinc-200 dark:bg-zinc-800">
@@ -189,7 +332,7 @@ export function GallerySection() {
           >
             <div className="flex items-center justify-between pb-2 border-b border-zinc-200/80 dark:border-zinc-800/80">
               <button
-                onClick={() => setActiveAlbum(null)}
+                onClick={() => handleSelectAlbum(null)}
                 className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-800/80 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-xs font-medium text-zinc-800 dark:text-zinc-200 transition-colors cursor-pointer"
               >
                 <MaterialIcon icon="arrow_back" size="1rem" />
@@ -272,35 +415,42 @@ export function GallerySection() {
         )}
       </AnimatePresence>
 
-      {/* Lightbox / Modal with Details Inspector */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSelectedImage(null)}
+            onClick={() => handleSelectImage(null)}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md"
           >
-            {/* Top Toolbar */}
             <div
               onClick={(e) => e.stopPropagation()}
               className="absolute top-0 left-0 right-0 p-4 sm:p-5 flex items-center justify-between z-40 bg-gradient-to-b from-black/80 to-transparent pointer-events-auto"
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 min-w-0">
                 {selectedImage.title && (
-                  <span className="text-xs sm:text-sm font-medium text-zinc-200 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                  <span className="text-xs sm:text-sm font-medium text-zinc-200 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 truncate max-w-[200px] sm:max-w-md">
                     {selectedImage.title}
                   </span>
                 )}
                 {currentIndex >= 0 && (
-                  <span className="text-xs font-mono text-zinc-400 bg-black/30 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/5">
+                  <span className="text-xs font-mono text-zinc-400 bg-black/30 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/5 shrink-0">
                     {currentIndex + 1} / {currentItems.length}
                   </span>
                 )}
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  onClick={handleShareLink}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium bg-white/10 hover:bg-white/20 text-zinc-200 border border-white/10 transition-colors cursor-pointer"
+                  title="Copy Direct Photo Link"
+                >
+                  <MaterialIcon icon={copiedLink ? "check" : "share"} size="1.05rem" />
+                  <span className="hidden sm:inline">{copiedLink ? "Copied Link" : "Share"}</span>
+                </button>
+
                 <button
                   onClick={() => setShowDetails((prev) => !prev)}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all cursor-pointer border ${
@@ -315,7 +465,7 @@ export function GallerySection() {
                 </button>
 
                 <button
-                  onClick={() => setSelectedImage(null)}
+                  onClick={() => handleSelectImage(null)}
                   className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer border border-white/10"
                   title="Close (Key: Esc)"
                   aria-label="Close lightbox"
@@ -325,7 +475,6 @@ export function GallerySection() {
               </div>
             </div>
 
-            {/* Navigation Arrows */}
             {currentItems.length > 1 && (
               <>
                 <button
@@ -351,7 +500,6 @@ export function GallerySection() {
               </>
             )}
 
-            {/* Main Image Stage */}
             <div
               onClick={(e) => e.stopPropagation()}
               className={`relative flex items-center justify-center transition-all duration-300 p-4 sm:p-8 max-w-full max-h-full ${
@@ -370,7 +518,6 @@ export function GallerySection() {
               />
             </div>
 
-            {/* Slide-out Details Inspector */}
             <AnimatePresence>
               {showDetails && activeMetadata && (
                 <PhotoDetailsPanel

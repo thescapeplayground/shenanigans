@@ -24,7 +24,8 @@ const navItems = [
 
 function resolveActiveTab(pathname: string): string {
   if (pathname === "/") return "home";
-  return pathname.replace(/^\//, "");
+  const firstSegment = pathname.split("/").filter(Boolean)[0] || "";
+  return firstSegment || "home";
 }
 
 export function AppShell({ children }: { children: React.ReactNode }) {
