@@ -1,7 +1,7 @@
 {
-  "name": "react-example",
+  "name": "shenanigans",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.2.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.js",
