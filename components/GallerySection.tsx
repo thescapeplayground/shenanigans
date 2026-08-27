@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useTransition } from "react";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { motion, AnimatePresence } from "motion/react";
 import { DEFAULT_GALLERY_ALBUMS } from "@/src/data/gallery";
@@ -9,40 +10,32 @@ import { GalleryAlbum, GalleryPhoto, PhotoMetadata } from "@/src/types";
 import { PhotoDetailsPanel } from "@/components/gallery/PhotoDetailsPanel";
 import { extractPhotoMetadata } from "@/src/lib/exif";
 
-interface GallerySectionProps {
-  initialAlbumSlug?: string;
-  initialPhotoSlug?: string;
-}
-
-function getPhotoSlug(photo: GalleryPhoto): string {
+function getPhotoIdentifier(photo: GalleryPhoto): string {
   const parts = photo.src.split("/");
   const filename = decodeURIComponent(parts[parts.length - 1] || "");
   return filename || photo.id;
 }
 
-export function GallerySection({
-  initialAlbumSlug,
-  initialPhotoSlug,
-}: GallerySectionProps) {
-  const albums = DEFAULT_GALLERY_ALBUMS;
-
-  const findInitialAlbum = useCallback(() => {
-    if (!initialAlbumSlug) return null;
-    return (
-      albums.find(
-        (a) =>
-          a.id.toLowerCase() === initialAlbumSlug.toLowerCase() ||
-          a.folder.toLowerCase() === initialAlbumSlug.toLowerCase()
-      ) || null
-    );
-  }, [albums, initialAlbumSlug]);
-
-  const [activeAlbum, setActiveAlbum] = useState<GalleryAlbum | null>(findInitialAlbum);
+export function GallerySection() {
+  const searchParams = useSearchParams();
+  const [albums, setAlbums] = useState<GalleryAlbum[]>(DEFAULT_GALLERY_ALBUMS);
+  const [activeAlbum, setActiveAlbum] = useState<GalleryAlbum | null>(null);
   const [selectedImage, setSelectedImage] = useState<GalleryPhoto | null>(null);
   const [showDetails, setShowDetails] = useState(false);
   const [activeMetadata, setActiveMetadata] = useState<PhotoMetadata | null>(null);
   const [copiedLink, setCopiedLink] = useState(false);
   const [, startTransition] = useTransition();
+
+  useEffect(() => {
+    fetch("/api/gallery")
+      .then((res) => res.json())
+      .then((data: GalleryAlbum[]) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setAlbums(data);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const currentItems = activeAlbum?.items || [];
   const currentIndex = selectedImage
@@ -51,17 +44,19 @@ export function GallerySection({
 
   const updateUrl = useCallback((album: GalleryAlbum | null, photo: GalleryPhoto | null) => {
     if (typeof window === "undefined") return;
-    let nextUrl = "/gallery";
+    const url = new URL(window.location.href);
     if (album) {
-      nextUrl = `/gallery/${album.id}`;
+      url.searchParams.set("album", album.id);
       if (photo) {
-        const photoSlug = getPhotoSlug(photo);
-        nextUrl = `/gallery/${album.id}/${encodeURIComponent(photoSlug)}`;
+        url.searchParams.set("photo", getPhotoIdentifier(photo));
+      } else {
+        url.searchParams.delete("photo");
       }
+    } else {
+      url.searchParams.delete("album");
+      url.searchParams.delete("photo");
     }
-    if (window.location.pathname !== nextUrl) {
-      window.history.pushState({ albumId: album?.id, photoId: photo?.id }, "", nextUrl);
-    }
+    window.history.replaceState(null, "", url.toString());
   }, []);
 
   const handleSelectImage = useCallback(
@@ -100,19 +95,22 @@ export function GallerySection({
   );
 
   useEffect(() => {
-    if (initialAlbumSlug) {
+    const albumParam = searchParams.get("album");
+    const photoParam = searchParams.get("photo");
+
+    if (albumParam) {
       const matchedAlbum = albums.find(
         (a) =>
-          a.id.toLowerCase() === initialAlbumSlug.toLowerCase() ||
-          a.folder.toLowerCase() === initialAlbumSlug.toLowerCase()
+          a.id.toLowerCase() === albumParam.toLowerCase() ||
+          a.folder.toLowerCase() === albumParam.toLowerCase()
       );
       if (matchedAlbum) {
         setActiveAlbum(matchedAlbum);
-        if (initialPhotoSlug) {
+        if (photoParam) {
           const matchedPhoto = matchedAlbum.items.find(
             (p) =>
-              p.id.toLowerCase() === initialPhotoSlug.toLowerCase() ||
-              getPhotoSlug(p).toLowerCase() === initialPhotoSlug.toLowerCase()
+              p.id.toLowerCase() === photoParam.toLowerCase() ||
+              getPhotoIdentifier(p).toLowerCase() === photoParam.toLowerCase()
           );
           if (matchedPhoto) {
             handleSelectImage(matchedPhoto, false);
@@ -120,50 +118,7 @@ export function GallerySection({
         }
       }
     }
-  }, [initialAlbumSlug, initialPhotoSlug, albums, handleSelectImage]);
-
-  useEffect(() => {
-    const handlePopState = () => {
-      const pathSegments = window.location.pathname
-        .replace(/^\/gallery\/?/, "")
-        .split("/")
-        .filter(Boolean)
-        .map((s) => decodeURIComponent(s));
-
-      if (pathSegments.length === 0) {
-        setActiveAlbum(null);
-        setSelectedImage(null);
-      } else {
-        const albumSlug = pathSegments[0];
-        const matchedAlbum = albums.find(
-          (a) =>
-            a.id.toLowerCase() === albumSlug.toLowerCase() ||
-            a.folder.toLowerCase() === albumSlug.toLowerCase()
-        );
-        setActiveAlbum(matchedAlbum || null);
-
-        if (matchedAlbum && pathSegments.length > 1) {
-          const photoSlug = pathSegments.slice(1).join("/");
-          const matchedPhoto = matchedAlbum.items.find(
-            (p) =>
-              p.id.toLowerCase() === photoSlug.toLowerCase() ||
-              getPhotoSlug(p).toLowerCase() === photoSlug.toLowerCase()
-          );
-          if (matchedPhoto) {
-            setSelectedImage(matchedPhoto);
-            setActiveMetadata(matchedPhoto.metadata || {});
-          } else {
-            setSelectedImage(null);
-          }
-        } else {
-          setSelectedImage(null);
-        }
-      }
-    };
-
-    window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
-  }, [albums]);
+  }, [searchParams, albums, handleSelectImage]);
 
   const handlePrev = useCallback(() => {
     if (currentIndex > 0) {
@@ -183,8 +138,8 @@ export function GallerySection({
 
   const handleShareLink = useCallback(() => {
     if (typeof window === "undefined" || !activeAlbum || !selectedImage) return;
-    const photoSlug = getPhotoSlug(selectedImage);
-    const fullUrl = `${window.location.origin}/gallery/${activeAlbum.id}/${encodeURIComponent(photoSlug)}`;
+    const photoParam = getPhotoIdentifier(selectedImage);
+    const fullUrl = `${window.location.origin}/gallery?album=${encodeURIComponent(activeAlbum.id)}&photo=${encodeURIComponent(photoParam)}`;
     navigator.clipboard.writeText(fullUrl);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2000);
