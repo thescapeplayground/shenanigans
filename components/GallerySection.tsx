@@ -267,7 +267,9 @@ export function GallerySection({
                             alt=""
                             fill
                             className="object-cover"
-                            sizes="30vw"
+                            sizes="120px"
+                            quality={15}
+                            loading="lazy"
                           />
                         </div>
                       )}
@@ -278,7 +280,9 @@ export function GallerySection({
                             alt=""
                             fill
                             className="object-cover"
-                            sizes="30vw"
+                            sizes="120px"
+                            quality={15}
+                            loading="lazy"
                           />
                         </div>
                       )}
@@ -287,7 +291,9 @@ export function GallerySection({
                         src={album.coverImage}
                         alt={album.name}
                         fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        sizes="(max-width: 640px) 320px, 380px"
+                        quality={20}
+                        loading="lazy"
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
@@ -383,9 +389,9 @@ export function GallerySection({
                       src={item.src}
                       alt={item.alt}
                       fill
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      sizes="(max-width: 640px) 180px, (max-width: 1024px) 240px, 280px"
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      quality={25}
+                      quality={20}
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-between p-2.5">
@@ -502,20 +508,22 @@ export function GallerySection({
 
             <div
               onClick={(e) => e.stopPropagation()}
-              className={`relative flex items-center justify-center transition-all duration-300 p-4 sm:p-8 max-w-full max-h-full ${
+              className={`relative flex items-center justify-center transition-all duration-300 p-4 sm:p-8 w-full h-[85vh] ${
                 showDetails ? "sm:pr-[430px]" : ""
               }`}
             >
-              <motion.img
-                key={selectedImage.id}
-                initial={{ scale: 0.96, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.96, opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                src={selectedImage.src}
-                alt={selectedImage.alt}
-                className="max-w-[90vw] max-h-[82vh] rounded-xl shadow-2xl object-contain select-none"
-              />
+              <div className="relative w-full h-full max-w-[90vw] max-h-[82vh] flex items-center justify-center">
+                <Image
+                  key={selectedImage.id}
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  fill
+                  sizes="(max-width: 1024px) 90vw, 1200px"
+                  quality={60}
+                  priority
+                  className="object-contain rounded-xl shadow-2xl select-none"
+                />
+              </div>
             </div>
 
             <AnimatePresence>
