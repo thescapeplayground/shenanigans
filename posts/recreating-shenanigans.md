@@ -50,7 +50,7 @@ The application architecture was restructured around modular sections rendered s
 
 Beyond code, a huge reason for rebuilding was having a proper space to showcase visual work — street photography, gear explorations, and graphic design experiments.
 
-![Profile portrait](/assets/hero.jpg)
+![Street Photography & Nightscape Frame](/api/photos/masonry/IMG_20260623_205128.jpg)
 
 The new gallery system organizes visual assets in a clean masonry format with folder-texture headers, giving each collection its own distinct identity rather than tossing everything into a generic thumbnail grid.
 
