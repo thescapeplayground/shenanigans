@@ -12,12 +12,24 @@ interface HeadingItem {
   level: number;
 }
 
+function decodeHtmlEntities(str: string): string {
+  return str
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
+    .replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(parseInt(dec, 10)))
+    .replace(/&amp;/gi, "&")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&quot;/gi, '"')
+    .replace(/&apos;/gi, "'");
+}
+
 function parseHeadings(html: string): HeadingItem[] {
   const matches = html.matchAll(/<h([2-3])\b[^>]*>(.*?)<\/h[2-3]>/gi);
   const items: HeadingItem[] = [];
   for (const match of matches) {
     const level = parseInt(match[1]);
-    const text = match[2].replace(/<[^>]*>/g, "").trim();
+    const rawText = match[2].replace(/<[^>]*>/g, "").trim();
+    const text = decodeHtmlEntities(rawText);
     const id = text
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
