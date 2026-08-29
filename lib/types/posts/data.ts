@@ -10,11 +10,11 @@ export const POSTS_META: PostMeta[] = [
     published: true,
   },
   {
-    slug: "building-shenanigans-v2",
-    title: "Building Shenanigans v2",
-    description: "What went into rebuilding this site from the ground up.",
-    date: "2026-06-24",
-    tags: ["dev", "design", "nextjs"],
+    slug: "recreating-shenanigans",
+    title: "Recreating Shenanigans",
+    description: "A complete walkthrough of tearing down the old site architecture, reconsidering the visual palette, and rebuilding with modern Next.js, tactile aesthetics, and curated features.",
+    date: "2026-08-29",
+    tags: ["dev", "design", "nextjs", "tailwind"],
     published: true,
   },
 ];

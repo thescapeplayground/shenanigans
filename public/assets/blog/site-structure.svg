@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" width="100%" height="100%" fill="none">
+  <rect width="800" height="340" rx="16" fill="#09090b" stroke="#27272a" stroke-width="1.5"/>
+  <text x="36" y="44" fill="#fafafa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" letter-spacing="-0.02em">Interface &amp; Component Map</text>
+  <text x="36" y="66" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12">Interactive module ecosystem power-driving the reimagined portfolio</text>
+
+  <!-- Node 1: App Shell & Dynamic Island Navigation -->
+  <g transform="translate(36, 90)">
+    <rect width="220" height="95" rx="10" fill="#18181b" stroke="#3f3f46" stroke-width="1.2"/>
+    <rect x="14" y="14" width="8" height="8" rx="4" fill="#9333ea"/>
+    <text x="30" y="22" fill="#fafafa" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="600">AppShell &amp; Navigation</text>
+    <text x="14" y="48" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">Floating docked pill nav</text>
+    <text x="14" y="66" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">Framer motion spring physics</text>
+    <text x="14" y="84" fill="#9333ea" font-family="monospace" font-size="10">components/AppShell.tsx</text>
+  </g>
+
+  <!-- Node 2: Presence & Live Status -->
+  <g transform="translate(290, 90)">
+    <rect width="220" height="95" rx="10" fill="#18181b" stroke="#3f3f46" stroke-width="1.2"/>
+    <rect x="14" y="14" width="8" height="8" rx="4" fill="#22c55e"/>
+    <text x="30" y="22" fill="#fafafa" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="600">Presence &amp; Clock</text>
+    <text x="14" y="48" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">Live Manila / UTC+8 timezone</text>
+    <text x="14" y="66" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">Spotify / Last.fm scrobbler</text>
+    <text x="14" y="84" fill="#22c55e" font-family="monospace" font-size="10">components/PresenceClock.tsx</text>
+  </g>
+
+  <!-- Node 3: Content & Markdown Core -->
+  <g transform="translate(544, 90)">
+    <rect width="220" height="95" rx="10" fill="#18181b" stroke="#3f3f46" stroke-width="1.2"/>
+    <rect x="14" y="14" width="8" height="8" rx="4" fill="#38bdf8"/>
+    <text x="30" y="22" fill="#fafafa" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="600">Dynamic Post Engine</text>
+    <text x="14" y="48" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">Remark HTML AST pipeline</text>
+    <text x="14" y="66" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">Sticky interactive TOC tracker</text>
+    <text x="14" y="84" fill="#38bdf8" font-family="monospace" font-size="10">lib/types/posts/render.ts</text>
+  </g>
+
+  <!-- Node 4: Masonry & Private Photos -->
+  <g transform="translate(36, 205)">
+    <rect width="347" height="105" rx="10" fill="#18181b" stroke="#3f3f46" stroke-width="1.2"/>
+    <rect x="14" y="14" width="8" height="8" rx="4" fill="#f59e0b"/>
+    <text x="30" y="22" fill="#fafafa" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="600">Photography &amp; Gallery Pipeline</text>
+    <text x="14" y="48" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">Auto-sync with private GitHub repo / fallback local drives</text>
+    <text x="14" y="66" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">Masonry dynamic grid + Folder card aesthetic</text>
+    <text x="14" y="86" fill="#f59e0b" font-family="monospace" font-size="10">src/app/api/photos/route.ts</text>
+  </g>
+
+  <!-- Node 5: Services & Experiments -->
+  <g transform="translate(417, 205)">
+    <rect width="347" height="105" rx="10" fill="#18181b" stroke="#3f3f46" stroke-width="1.2"/>
+    <rect x="14" y="14" width="8" height="8" rx="4" fill="#ec4899"/>
+    <text x="30" y="22" fill="#fafafa" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="600">Services &amp; Experiments Hub</text>
+    <text x="14" y="48" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">Modular service categories, FAQ accordions &amp; pricing</text>
+    <text x="14" y="66" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">Curated Android APKs, web utilities, &amp; community bots</text>
+    <text x="14" y="86" fill="#ec4899" font-family="monospace" font-size="10">components/ServicesSection.tsx</text>
+  </g>
+</svg>
