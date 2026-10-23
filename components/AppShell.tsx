@@ -40,7 +40,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     const timer = setTimeout(() => {
       setShowApp(true);
       window.scrollTo(0, 0);
-    }, 2000);
+    }, 2200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -104,7 +104,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               className="flex items-center gap-2 cursor-pointer group select-none"
               id="brand-logo"
             >
-              <img src="/favicon.svg" alt="Logo" className="w-6 h-6 dark:invert" />
+              <img src="/logo-black.svg" alt="Logo" className="w-6 h-6 dark:hidden" />
+              <img src="/logo-white.svg" alt="Logo" className="w-6 h-6 hidden dark:block" />
               <span className="text-medium tracking-tight font-bold text-zinc-900 dark:text-zinc-100">
                 Leonardo's Terrace
               </span>
