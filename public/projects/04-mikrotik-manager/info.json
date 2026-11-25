@@ -1,0 +1,12 @@
+{
+  "title": "Mikrotik Manager",
+  "category": "Network Utility",
+  "description": "An automated helper utility designed to manage DHCP & IP allocations, prevent IP conflicts, and query active subnets on Mikrotik routers.",
+  "tech": [
+    "TypeScript",
+    "Node.js"
+  ],
+  "visitUrl": "",
+  "githubUrl": "https://github.com/isaiahscape/mikrotik-ipoemgr",
+  "status": "Completed"
+}

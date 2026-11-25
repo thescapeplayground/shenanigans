@@ -5,15 +5,15 @@ export function SetupSection() {
         <div className="setup-header reveal-on-scroll reveal-left delay-1">
           <h2 className="setup-main-title">my setup.</h2>
           <p className="setup-philosophy">
-            A carefully curated selection of gear and daily drivers that power my design and development workflows.
+            A curated record of custom hardware configurations, camera gear, audio kits, and daily drivers.
           </p>
         </div>
 
         <div className="setup-grid">
-          {/* Monitor Card: Spans 7 Columns */}
+          {/* Workstation PC Card: Spans 7 Columns */}
           <div className="setup-card card-monitor span-7 reveal-on-scroll delay-2">
             <div className="setup-card-header">
-              <span className="setup-tag">// DISPLAY</span>
+              <span className="setup-tag">// WORKSTATION PC</span>
               <div className="setup-icon-wrapper">
                 <svg className="setup-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <rect x="2" y="3" width="20" height="13" rx="1.5" />
@@ -22,11 +22,11 @@ export function SetupSection() {
               </div>
             </div>
             <div className="setup-card-body">
-              <h3 className="setup-item-title">Acer 21.5" Monitor</h3>
+              <h3 className="setup-item-title">Ryzen 7 5700X3D & RTX 4060</h3>
               <div className="setup-specs">
-                <span className="spec-tag">100Hz Refresh</span>
-                <span className="spec-tag">99% sRGB Color</span>
-                <span className="spec-tag">1ms Response</span>
+                <span className="spec-tag">MSI MAG B550 Tomahawk</span>
+                <span className="spec-tag">32GB FURY DDR4</span>
+                <span className="spec-tag">1TB 990 EVO NVMe</span>
               </div>
             </div>
           </div>
@@ -43,31 +43,30 @@ export function SetupSection() {
               </div>
             </div>
             <div className="setup-card-body">
-              <h3 className="setup-item-title">Aula F75</h3>
+              <h3 className="setup-item-title">Aula F75 & HHKB Pro</h3>
               <div className="setup-specs">
-                <span className="spec-tag">75% Form Factor</span>
-                <span className="spec-tag">THOCC</span>
-                <span className="spec-tag">Gasket Mounted</span>
+                <span className="spec-tag">75% Wireless Gasket</span>
+                <span className="spec-tag">HHKB Professional</span>
               </div>
             </div>
           </div>
 
-          {/* Tablet Card: Spans 4 Columns */}
+          {/* Laptop Card: Spans 4 Columns */}
           <div className="setup-card card-tablet span-4 reveal-on-scroll delay-2">
             <div className="setup-card-header">
-              <span className="setup-tag">// TABLET</span>
+              <span className="setup-tag">// LAPTOP</span>
               <div className="setup-icon-wrapper">
                 <svg className="setup-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <rect x="4" y="2" width="16" height="20" rx="2" />
-                  <circle cx="12" cy="20" r="0.5" fill="currentColor" />
+                  <rect x="3" y="4" width="18" height="12" rx="2" />
+                  <path d="M2 20h20" />
                 </svg>
               </div>
             </div>
             <div className="setup-card-body">
-              <h3 className="setup-item-title">Motorola Pad 60 Neo 5G</h3>
+              <h3 className="setup-item-title">Lenovo Ryzen 5 7530U</h3>
               <div className="setup-specs">
-                <span className="spec-tag">COC!!!!</span>
-                <span className="spec-tag">Media & Notes</span>
+                <span className="spec-tag">16GB DDR4-3200</span>
+                <span className="spec-tag">512GB NVMe • 15.6" FHD</span>
               </div>
             </div>
           </div>
@@ -84,10 +83,10 @@ export function SetupSection() {
               </div>
             </div>
             <div className="setup-card-body">
-              <h3 className="setup-item-title">Motorola G54 5G</h3>
+              <h3 className="setup-item-title">Samsung Galaxy S24 5G</h3>
               <div className="setup-specs">
-                <span className="spec-tag">Primary Driver</span>
-                <span className="spec-tag">AxionAosp ftw</span>
+                <span className="spec-tag">Exynos 2400</span>
+                <span className="spec-tag">120Hz AMOLED 2X</span>
               </div>
             </div>
           </div>
@@ -104,41 +103,39 @@ export function SetupSection() {
               </div>
             </div>
             <div className="setup-card-body">
-              <h3 className="setup-item-title">Logitech G102</h3>
+              <h3 className="setup-item-title">Pulsar TenZ Signature</h3>
               <div className="setup-specs">
-                <span className="spec-tag">8000 DPI Sensor</span>
-                <span className="spec-tag">Lightsync RGB</span>
+                <span className="spec-tag">XS-1 Sensor</span>
+                <span className="spec-tag">32,000 DPI • 8K PR</span>
               </div>
             </div>
           </div>
 
-          {/* IEM 1 Card: Spans 6 Columns */}
+          {/* Camera Card: Spans 6 Columns */}
           <div className="setup-card card-iem-1 span-6 reveal-on-scroll delay-2">
             <div className="setup-card-header">
-              <span className="setup-tag">// AUDIO / IEM</span>
+              <span className="setup-tag">// CAMERA</span>
               <div className="setup-icon-wrapper">
                 <svg className="setup-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M3 14c0-4.97 4.03-9 9-9s9 4.03 9 9" />
-                  <rect x="3" y="12" width="4" height="6" rx="1.5" />
-                  <rect x="17" y="12" width="4" height="6" rx="1.5" />
-                  <path d="M7 15h10M9 18h6" />
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                  <circle cx="12" cy="13" r="4" />
                 </svg>
               </div>
             </div>
             <div className="setup-card-body">
-              <h3 className="setup-item-title">7Hz x Crinacle Zero:2</h3>
+              <h3 className="setup-item-title">Canon EOS 700D</h3>
               <div className="setup-specs">
-                <span className="spec-tag">Audiocular C03 Cable</span>
-                <span className="spec-tag">Tuned by Crinacle</span>
-                <span className="spec-tag">10mm Dynamic Driver</span>
+                <span className="spec-tag">EF 50mm f/1.8 STM</span>
+                <span className="spec-tag">EF-S 18-55mm IS STM</span>
+                <span className="spec-tag">Street & Portraits</span>
               </div>
             </div>
           </div>
 
-          {/* IEM 2 Card: Spans 6 Columns */}
+          {/* Audio / IEM & DAC Card: Spans 6 Columns */}
           <div className="setup-card card-iem-2 span-6 reveal-on-scroll delay-3">
             <div className="setup-card-header">
-              <span className="setup-tag">// AUDIO / IEM</span>
+              <span className="setup-tag">// AUDIO / IEM & DAC</span>
               <div className="setup-icon-wrapper">
                 <svg className="setup-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M3 14c0-4.97 4.03-9 9-9s9 4.03 9 9" />
@@ -149,11 +146,11 @@ export function SetupSection() {
               </div>
             </div>
             <div className="setup-card-body">
-              <h3 className="setup-item-title">GK Kunten</h3>
+              <h3 className="setup-item-title">Simgot EW300 & TRN Black Pearl</h3>
               <div className="setup-specs">
-                <span className="spec-tag">10mm Super-Linear Driver</span>
-                <span className="spec-tag">Wired IEM</span>
-                <span className="spec-tag">V-Shaped Tuning</span>
+                <span className="spec-tag">1DD + Planar + PZT</span>
+                <span className="spec-tag">TRN T2 16 Core</span>
+                <span className="spec-tag">CS43131 DAC / CB5100 Amp</span>
               </div>
             </div>
           </div>

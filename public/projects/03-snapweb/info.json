@@ -1,0 +1,13 @@
+{
+  "title": "Snapseed for Web",
+  "category": "Web App",
+  "description": "A zero-server client-side photo processing web app inspired by Snapseed, featuring tactile gesture tuning, histograms, and RAW-like filters.",
+  "tech": [
+    "TypeScript",
+    "Tailwind CSS",
+    "HTML5"
+  ],
+  "visitUrl": "https://snapweb.isaiahthings.me/",
+  "githubUrl": "https://github.com/isaiahscape/snapweb-remixed",
+  "status": "Active"
+}

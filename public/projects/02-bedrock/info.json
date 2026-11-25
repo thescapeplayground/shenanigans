@@ -1,0 +1,14 @@
+{
+  "title": "Bedrock",
+  "category": "Android App",
+  "description": "A minimalist monochrome notes editor for Android with Markdown live preview, interactive checklists, SHA-256 local encryption, and offline sync.",
+  "tech": [
+    "Kotlin",
+    "Jetpack Compose",
+    "Android",
+    "Markdown"
+  ],
+  "visitUrl": "https://foss.isaiahthings.me",
+  "githubUrl": "https://github.com/isaiahscape/bedrock",
+  "status": "Active"
+}

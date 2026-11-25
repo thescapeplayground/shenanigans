@@ -1,58 +1,35 @@
 import { useState, useEffect } from 'react';
 
+function computeAge(birthDate: Date): number {
+  const now = new Date();
+  let age = now.getFullYear() - birthDate.getFullYear();
+  const monthDiff = now.getMonth() - birthDate.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && now.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age;
+}
+
+const CURRENT_AGE = computeAge(new Date('2005-07-01T00:00:00+08:00'));
+
 const infoWidgets = [
-  { title: "Typing Speed", value: "68", unit: "WPM" },
-  { title: "Timezone", value: "+5:30", unit: "IST / GMT" },
-  { title: "Nationality", value: "IND", unit: "(Indian)" },
-  { title: "Favorites", value: "Dog", unit: "Yes" },
-  { title: "Caffeine Intake", value: "250", unit: "mg/d" },
-  { title: "CSE CGPA", value: "7.90", unit: "OUT OF 10.0" },
-  { title: "Education", value: "MCA", unit: "Tezpur Univ." },
-  { title: "Personality", value: "God", unit: "Complex" }
+  { title: "Timezone", value: "+8:00", unit: "PHT / GMT+8" },
+  { title: "Nationality", value: "PH", unit: "(Filipino)" },
+  { title: "Age", value: String(CURRENT_AGE), unit: "Years Old" },
+  { title: "Location", value: "DVO", unit: "Davao, PH" },
+  { title: "Camera", value: "700D", unit: "Canon EOS" },
+  { title: "Instruction", value: "IT", unit: "Braintrust" },
+  { title: "Collective", value: "Scape", unit: "Network" },
+  { title: "Status", value: "Open", unit: "For Work" }
 ];
 
 const gamesList = [
   {
-    title: "Clash of Clans",
-    genre: "Strategy",
-    description: "Supercell's strategy game. Train troops, build layouts, and participate in Clan Wars.",
+    title: "Valorant",
+    genre: "Tactical FPS",
+    description: "Tactical 5v5 character-based hero shooter with precise gunplay and adaptive agent abilities.",
     platforms: [
-      { label: "iOS", href: "https://apps.apple.com/us/app/clash-of-clans/id529479190" },
-      { label: "Android", href: "https://play.google.com/store/apps/details?id=com.supercell.clashofclans" }
-    ],
-    accounts: [
-      { name: "『 WeeD々AyaN』", tag: "#PPY9Q0JYU" },
-      { name: "Notayan", tag: "#2QCUR28C0" }
-    ]
-  },
-  {
-    title: "Wuthering Waves",
-    genre: "ARPG",
-    description: "A beautiful open-world action RPG featuring resonator combat mechanics and traversal systems.",
-    platforms: [
-      { label: "PC", href: "https://download.kurogames.net" },
-      { label: "iOS", href: "https://apps.apple.com/us/app/wuthering-waves/id6475033368" },
-      { label: "Android", href: "https://play.google.com/store/apps/details?id=com.kurogame.wuthering.waves.global" }
-    ]
-  },
-  {
-    title: "DBZ: Sparking Zero",
-    genre: "Fighting",
-    description: "Next-gen Dragon Ball arena fighter featuring destructible environments and a massive roster.",
-    platforms: [
-      { label: "PC", href: "https://store.steampowered.com/app/1790600/DRAGON_BALL_Sparking_ZERO/" },
-      { label: "PS5", href: "https://store.playstation.com" },
-      { label: "Xbox", href: "https://www.xbox.com" }
-    ]
-  },
-  {
-    title: "Devil May Cry 5",
-    genre: "Action",
-    description: "High-octane, combo-driven action game featuring Dante, Nero, and V demon-slaying styles.",
-    platforms: [
-      { label: "PC", href: "https://store.steampowered.com/app/601150/Devil_May_Cry_5/" },
-      { label: "PS5", href: "https://www.playstation.com" },
-      { label: "Xbox", href: "https://www.xbox.com" }
+      { label: "PC", href: "https://playvalorant.com" }
     ]
   }
 ];
@@ -96,6 +73,27 @@ interface LastFMStats {
   weeklyPlaycount?: string;
 }
 
+interface LastFMImageItem {
+  '#text': string;
+  size: string;
+}
+
+interface LastFMRawRecentTrack {
+  name: string;
+  artist: { '#text': string; name?: string };
+  album?: { '#text': string };
+  image?: LastFMImageItem[];
+  url: string;
+  '@attr'?: { nowplaying: 'true' | 'false' };
+}
+
+interface LastFMRawTopTrack {
+  name: string;
+  artist?: { name?: string };
+  url: string;
+  playcount?: string;
+}
+
 interface AboutPageProps {
   username: string;
   apiKey: string;
@@ -118,8 +116,8 @@ export function AboutPage({ username, apiKey }: AboutPageProps) {
           fetch(`${baseUrl}/?method=user.getweeklytrackchart&user=${username}&api_key=${apiKey}&format=json`).then((res) => res.json().catch(() => null)),
         ]);
 
-        const recentTracksList = recentTracks?.recenttracks?.track?.map((track: any) => {
-          const imgUrl = track.image?.find((i: any) => i.size === 'extralarge' || i.size === 'large')?.['#text'] || track.image?.[0]?.['#text'] || '';
+        const recentTracksList = (recentTracks?.recenttracks?.track as LastFMRawRecentTrack[] | undefined)?.map((track) => {
+          const imgUrl = track.image?.find((i) => i.size === 'extralarge' || i.size === 'large')?.['#text'] || track.image?.[0]?.['#text'] || '';
           return {
             name: track.name,
             artist: track.artist,
@@ -132,7 +130,7 @@ export function AboutPage({ username, apiKey }: AboutPageProps) {
 
         const topArtist = topArtists?.topartists?.artist?.[0];
 
-        const topTracksList = topTracks?.toptracks?.track?.map((track: any) => ({
+        const topTracksList = (topTracks?.toptracks?.track as LastFMRawTopTrack[] | undefined)?.map((track) => ({
           name: track.name,
           artist: { "#text": track.artist?.name || "" },
           url: track.url,
@@ -169,7 +167,7 @@ export function AboutPage({ username, apiKey }: AboutPageProps) {
   return (
     <div className="page-view-container fade-in">
       <header className="page-header">
-        <span className="page-label">eh me?</span>
+        <span className="page-label">leonardo // isaiahscape</span>
         <h1 className="page-title">about me.</h1>
       </header>
 
@@ -177,19 +175,23 @@ export function AboutPage({ username, apiKey }: AboutPageProps) {
       <h2 className="category-title" style={{ marginTop: '24px' }}>BIOGRAPHY</h2>
       <div className="about-md-body" style={{ padding: '0 0 24px 0', marginBottom: '24px' }}>
         <p className="body-para">
-          A no-shame self-proclaimed ace of all trades, I learn things based
-          on my whim and needs. A fast learner, yet a slow practitioner. Brain
-          cell counts are pretty low to say the least but they're doing
-          their best lmao. I don't like bad design and aesthetics. Retro
-          is amazing and modern is minimal. Make things good, not just work.
-          Not picky about food and stuffs but I really love spiciness. Not
-          really into movies and shit but if you wanna talk about anime,
-          I'm your man.
+          I'm Isiaih Rafael Pavia (also known as Leonardo / @isaiahscape), a {CURRENT_AGE}-year-old
+          photographer, graphic designer, and developer based in Davao, Philippines. I've always
+          been drawn to the intersection of creativity and technology — whether it's framing the
+          perfect shot, crafting visual identities, or building tools that make life a little easier.
+        </p>
+        <p className="body-para" style={{ marginTop: '14px' }}>
+          I started my journey in the creative space through social media organizing and content
+          editing under The Scape Network, which naturally led to web development, Android apps,
+          and automation. I also worked as a part-time IT instructor at Braintrust Computer Systems,
+          technical support at Alorica Philippines, and with the HCDC College of Technology Students
+          Organization Productions Committee. I believe in keeping things real, minimal, and functional.
+          No fluff, just honest work.
         </p>
       </div>
 
-      {/* Skill Issue Section */}
-      <h2 className="category-title" style={{ marginTop: '24px' }}>SKILL ISSUE</h2>
+      {/* Quick Facts / Widgets Section */}
+      <h2 className="category-title" style={{ marginTop: '24px' }}>QUICK FACTS</h2>
       <div className="about-md-body" style={{ padding: '16px 0 24px 0', marginBottom: '24px' }}>
         <div className="about-widget-grid">
           {infoWidgets.map((item, i) => (
@@ -216,14 +218,14 @@ export function AboutPage({ username, apiKey }: AboutPageProps) {
             {/* Profile Info Row */}
             <div className="lastfm-profile-card">
               <img
-                src={stats.user.image?.[2]?.['#text'] || '/profpic.jpg'}
+                src={stats.user.image?.[2]?.['#text'] || '/assets/hero.jpg'}
                 alt={stats.user.name}
                 className="lastfm-avatar"
-                onError={(e) => { e.currentTarget.src = '/profpic.jpg' }}
+                onError={(e) => { e.currentTarget.src = '/assets/hero.jpg' }}
               />
               <div className="lastfm-profile-details">
                 <span className="lastfm-username">@{stats.user.name}</span>
-                <span className="lastfm-realname">{stats.user.realname || 'Ayan Biswas'}</span>
+                <span className="lastfm-realname">{stats.user.realname || 'Leonardo'}</span>
                 {stats.user.registered && (
                   <span className="lastfm-registered">
                     Scrobbled since {new Date(Number(stats.user.registered.unixtime) * 1000).toLocaleDateString()}
@@ -242,10 +244,7 @@ export function AboutPage({ username, apiKey }: AboutPageProps) {
             </div>
 
             <p className="body-para" style={{ fontSize: '14px', marginBottom: '20px' }}>
-              And here is the fun part! My music taste is all over the place in the best way. I am big on South Asian indie, especially the hidden gems like Umer Anjum, Natasha Noorani, and Talal Qureshi. Emotional lyrics, slick production, and that local meets global vibe? I am all in.
-            </p>
-            <p className="body-para" style={{ fontSize: '14px', marginBottom: '24px' }}>
-              I have got a soft spot for hiphop, soft tracks and glitchy electronic sounds. My playlists are a mix of mellow indie and experimental beats, I don't gatekeep, I just vibe. Good music is good music after all!
+              When I'm not behind a camera or a keyboard, I'm usually exploring new music and tinkering with audio gear. My rotation leans toward OPM, indie, dreampop, and late-night tracks — artists like wave to earth, Mazzy Star, Arthur Nery, and Unique Salonga.
             </p>
 
             {/* Stats & Weekly Chart */}
@@ -274,7 +273,7 @@ export function AboutPage({ username, apiKey }: AboutPageProps) {
               )}
             </div>
 
-            {/* 2-Column Recent Tracks List matching Realm */}
+            {/* 2-Column Recent Tracks List */}
             <h3 className="category-title" style={{ fontSize: '13px', marginBottom: '16px', fontFamily: 'var(--mono)' }}>
               Recent Tracks
             </h3>
@@ -283,10 +282,10 @@ export function AboutPage({ username, apiKey }: AboutPageProps) {
                 <div key={idx} className="lastfm-track-card">
                   <div className="lastfm-track-main">
                     <img
-                      src={track.image || '/profpic.jpg'}
+                      src={track.image || '/assets/hero.jpg'}
                       alt={track.name}
                       className="lastfm-track-art"
-                      onError={(e) => { e.currentTarget.src = '/profpic.jpg' }}
+                      onError={(e) => { e.currentTarget.src = '/assets/hero.jpg' }}
                     />
                     <div className="lastfm-track-info">
                       <span className="lastfm-track-title truncate" title={track.name}>
@@ -329,57 +328,36 @@ export function AboutPage({ username, apiKey }: AboutPageProps) {
         )}
       </div>
 
-
-
-      {/* Redesigned Games Section */}
-      <h2 className="category-title" style={{ marginTop: '24px' }}>We do a bit of gaming</h2>
+      {/* Games Section */}
+      <h2 className="category-title" style={{ marginTop: '24px' }}>GAMES & MEDIA</h2>
       <div className="about-md-body" style={{ padding: '16px 0 0 0' }}>
         <div className="about-games-grid">
-          {gamesList.map((game, i) => {
-            const themeClass =
-              game.title === "Clash of Clans" ? "game-theme-coc" :
-                game.title === "Wuthering Waves" ? "game-theme-ww" :
-                  game.title === "DBZ: Sparking Zero" ? "game-theme-dbz" :
-                    "game-theme-dmc";
+          {gamesList.map((game, i) => (
+            <div key={i} className="game-card-modern game-theme-ww">
+              <div className="game-card-badge-modern">{game.genre}</div>
+              <h3 className="game-card-title-modern">{game.title}</h3>
+              <p className="game-card-desc-modern">{game.description}</p>
 
-            return (
-              <div key={i} className={`game-card-modern ${themeClass}`}>
-                <div className="game-card-badge-modern">{game.genre}</div>
-                <h3 className="game-card-title-modern">{game.title}</h3>
-                <p className="game-card-desc-modern">{game.description}</p>
-
-                {game.accounts && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '4px' }}>
-                    {game.accounts.map((acc, idx) => (
-                      <div key={idx} className="coc-account-badge">
-                        <span className="coc-acc-title">{acc.name}</span>
-                        <span className="coc-acc-id">{acc.tag}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                <div className="game-spec-links" style={{ marginTop: 'auto' }}>
-                  {game.platforms.map((plat, idx) => (
-                    <a
-                      key={idx}
-                      href={plat.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="game-link-badge-modern"
-                    >
-                      {plat.label}
-                      <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block' }}>
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                        <polyline points="15 3 21 3 21 9" />
-                        <line x1="10" y1="14" x2="21" y2="3" />
-                      </svg>
-                    </a>
-                  ))}
-                </div>
+              <div className="game-spec-links" style={{ marginTop: 'auto' }}>
+                {game.platforms.map((plat, idx) => (
+                  <a
+                    key={idx}
+                    href={plat.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="game-link-badge-modern"
+                  >
+                    {plat.label}
+                    <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block' }}>
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                  </a>
+                ))}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </div>

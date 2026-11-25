@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%" fill="none">
+  <rect width="800" height="450" rx="16" fill="#09090b" stroke="#27272a" stroke-width="1.5"/>
+  <text x="36" y="46" fill="#fafafa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600">Kairo's Old Bot — Modular Telegram Utility</text>
+  <text x="36" y="68" fill="#71717a" font-family="monospace" font-size="12">Python • Telegram Bot API • Legacy Group Automation</text>
+  <rect x="36" y="96" width="728" height="314" rx="14" fill="#18181b" stroke="#27272a" stroke-width="1.2"/>
+  <text x="58" y="136" fill="#a855f7" font-family="monospace" font-size="12">KairoKangedBot // ARCHIVE</text>
+  <rect x="58" y="160" width="218" height="210" rx="12" fill="#09090b" stroke="#27272a"/>
+  <text x="76" y="192" fill="#fafafa" font-family="sans-serif" font-size="14" font-weight="600">/admin</text>
+  <text x="76" y="218" fill="#71717a" font-family="monospace" font-size="11">Role &amp; permissions</text>
+  <text x="76" y="238" fill="#71717a" font-family="monospace" font-size="11">Channel moderation</text>
+  <rect x="292" y="160" width="218" height="210" rx="12" fill="#09090b" stroke="#27272a"/>
+  <text x="310" y="192" fill="#fafafa" font-family="sans-serif" font-size="14" font-weight="600">/triggers</text>
+  <text x="310" y="218" fill="#71717a" font-family="monospace" font-size="11">Automated replies</text>
+  <text x="310" y="238" fill="#71717a" font-family="monospace" font-size="11">Custom filters</text>
+  <rect x="526" y="160" width="216" height="210" rx="12" fill="#09090b" stroke="#27272a"/>
+  <text x="544" y="192" fill="#fafafa" font-family="sans-serif" font-size="14" font-weight="600">/utils</text>
+  <text x="544" y="218" fill="#71717a" font-family="monospace" font-size="11">Lightweight scripts</text>
+  <text x="544" y="238" fill="#71717a" font-family="monospace" font-size="11">Cloud-ready worker</text>
+</svg>

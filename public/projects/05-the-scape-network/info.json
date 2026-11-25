@@ -1,0 +1,12 @@
+{
+  "title": "The Scape Network",
+  "category": "Community",
+  "description": "A digital social update log, creative archive channel, and interactive developer/design hub built around Telegram under the Scape Sandbox banner.",
+  "tech": [
+    "Telegram",
+    "Figma"
+  ],
+  "visitUrl": "https://telegram.me/thescapenetwork",
+  "githubUrl": "",
+  "status": "Active"
+}

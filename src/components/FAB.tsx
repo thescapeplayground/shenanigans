@@ -81,12 +81,12 @@ export function FAB({
         <div className="fab-menu-card">
           {/* Top Banner Image */}
           <div className="fab-menu-banner">
-            <img src="/menu.webp" alt="Menu banner" className="fab-menu-banner-img" />
+            <img src="/assets/folder-texture.jpg" alt="Menu banner" className="fab-menu-banner-img" />
           </div>
 
           <div className="fab-menu-header">
             <img src="/logo.svg" alt="Logo" className="menu-header-logo" style={{ objectFit: 'contain', padding: '1px' }} />
-            <span className="menu-header-title">ayan biswas.</span>
+            <span className="menu-header-title">leonardo.</span>
           </div>
 
           <nav className="fab-menu-links">
@@ -163,13 +163,13 @@ export function FAB({
           </nav>
 
           <div className="fab-menu-footer">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="footer-social-link">GitHub</a>
+            <a href="https://github.com/isaiahscape" target="_blank" rel="noopener noreferrer" className="footer-social-link">GitHub</a>
             <span className="footer-divider">•</span>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="footer-social-link">Instagram</a>
+            <a href="https://instagram.com/isaiahscape" target="_blank" rel="noopener noreferrer" className="footer-social-link">Instagram</a>
             <span className="footer-divider">•</span>
-            <a href="https://t.me/not_ayan99" target="_blank" rel="noopener noreferrer" className="footer-social-link">Telegram</a>
+            <a href="https://t.me/isaiahscape" target="_blank" rel="noopener noreferrer" className="footer-social-link">Telegram</a>
             <span className="footer-divider">•</span>
-            <a href="mailto:ayan98542@gmail.com" className="footer-social-link">Email</a>
+            <a href="mailto:isaiahscape@duck.com" className="footer-social-link">Email</a>
           </div>
         </div>
       )}

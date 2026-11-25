@@ -1,0 +1,13 @@
+{
+  "title": "Material Explorer",
+  "category": "Android App",
+  "description": "An Android APK explorer and file manager built with Material Design 3 principles for intuitive navigation, APK inspection, and dynamic theming.",
+  "tech": [
+    "Android",
+    "Kotlin",
+    "Material Design 3"
+  ],
+  "visitUrl": "https://github.com/isaiahscape/materialexp/releases",
+  "githubUrl": "https://github.com/isaiahscape/materialexp",
+  "status": "Active"
+}

@@ -1,6 +1,6 @@
 # Portfolio Site Structure & Development Guidelines
 
-This document details the visual identity, structure, and instructions for building and editing this portfolio website. 
+This document details the visual identity, structure, and instructions for building and editing **Shenanigans v3.0 (Leonardo's Terrace)** (`isaiahscape`).
 
 > [!IMPORTANT]
 > **Instructions for AI Coding Assistants:**
@@ -12,101 +12,70 @@ This document details the visual identity, structure, and instructions for build
 
 ## 1. Visual Identity & Design System
 
-The site adheres to a sleek, modern, digital grid aesthetic:
-- **Core Background**: Light cream-tan (`--bg-tan` / `#cdc8c5`).
+The site adheres to a sleek, modern, digital grid aesthetic with a global tactile paper texture overlay:
+- **Core Background**: Light cream-tan (`--bg-tan` / `#e9e5e2`) and Obsidian dark (`#060606`).
 - **Typography**: Clean display and sans-serif fonts using the variable font `Aspekta` (`--sans` / AspektaVF). Monospaced fonts for status/meta lines (`--mono`).
-- **Card Panels**: Translucent white panels (`background: rgba(255, 255, 255, 0.45)`) with fine dark borders (`border: 1px solid rgba(8, 6, 13, 0.15)`) and a `28px` corner radius.
-- **Background Details**: Dark, ultra-subtle coordinate grid lines (`rgba(8, 6, 13, 0.03)`) at 36px intervals.
-- **Accents**: Muted dark tones (`#08060d`), with high-contrast highlight elements in coral-red (`#e05a5a`).
+- **Card Panels**: Translucent panels (`--card-bg`) with fine borders (`--border-color`) and rounded corners.
+- **Accents**: Coral-rose (`--accent` / `#F1A5A0`) paired with high-contrast monochrome text (`--text-dark`, `--text-muted`).
 
 ---
 
 ## 2. Page Layout & Sections
 
-The single-page application is structured inside a centered blueprint page-wrapper (matching the News page style of WallWidgy) within [App.tsx](file:///d:/portfolio-new/src/App.tsx) and styled via [App.css](file:///d:/portfolio-new/src/App.css):
+The single-page application is structured inside a centered blueprint `page-wrapper` within [App.tsx](file:///c:/Users/Leonardo/shenanigans/src/App.tsx) and styled via [App.css](file:///c:/Users/Leonardo/shenanigans/src/App.css):
 
 ### 1. Page Wrapper & Technical Header
-- **Page Wrapper**: A centered `1100px` container with vertical borders (`border-left`/`border-right`) on desktop that frames all sections.
-- **Technical Header**: A 12-column grid-based header divided into:
-  - Column 1 (span 3): Branding logo (`AYAN.DEV`).
-  - Column 2 (span 6): Technical title (`PORTFOLIO MK. II // 2026`).
-  - Column 3 (span 3): Active status indicator (`AVAILABLE FOR WORK`) with a pulsing coral dot.
-- **Section Dividers**: Every main section is set to span the full width of the wrapper, separated by a thin horizontal border line (`border-bottom`).
+- **Technical Header**: Displays branding (`isaiahscape`) on the left and light/dark theme toggle on the right (with View Transitions support).
 
 ### 2. Preloader Screen
-- Cycles through multiple language greeting words (`Hello`, `Bonjour`, `Ciao`, etc.) with keyframe word fade-ins and a pulsing progress dot.
+- Cycles through multilingual greetings (`Hello`, `Kumusta`, `Bonjour`, `Ciao`, etc.) with keyframe word fade-ins and a pulsing progress dot.
 
-### 2. Hero Section
-- A borderless layout with the visual banner on top, and details underneath with natural visual spacing.
-- **Top Block (Visual Card)**: A wide banner image card displaying `/hero.gif` with the original `realm` interactive Lens zoom effect, and an overlapping circular avatar (`/profpic-animated.webp` with fallback) shunted to the left.
-- **Middle Block (Details Row)**: Spacious left-aligned details containing a monospaced section tag (`// PORTFOLIO START`), large title ("I am Ayan"), tagline, and horizontal social buttons on the right.
-- **Bottom Block (Footer)**: A monospaced footer tag (`not_ayan. / 23 y.o. student`) separated by a bottom divider hairline.
+### 3. Hero Section ([Hero.tsx](file:///c:/Users/Leonardo/shenanigans/src/components/Hero.tsx))
+- **Visual Card**: Banner image (`/assets/folder-texture.jpg`) with interactive `Lens` zoom effect, and overlapping circular avatar (`/assets/hero.jpg` with `/favicon-with-bg.svg` fallback).
+- **Details Row**: Title ("I am Leonardo"), tagline ("photographer, graphic designer & developer — keeping things real, minimal, and functional."), and social buttons linking to GitHub (`isaiahscape`), Instagram (`@isaiahscape`), Telegram (`@isaiahscape`), and LinkedIn (`isaiahscape`).
 
-### 3. About Info Grid
-- A 12-column layout displaying cards for:
-  - **Box 1 (span 5)**: Location details, badges representing roles, and a cursive ampersand highlight.
-  - **Box 2 (span 4)**: Educational timeline utilizing custom timeline items, badges, and vertical connecting lines.
-  - **Box 3 (span 3)**: Pure decorative radial mesh gradient circle card.
-  - **Box 4 (span 9)**: Project automation logs and AOSP customROM channel/chat link badges.
-  - **Box 5 (span 3)**: Music widget showing current active last.fm listening status ("babydoll" by boywithuke) with a spinning vinyl record animation.
+### 4. About Info Grid
+- **Box 1**: Davao, Philippines location, dynamically computed age (born July 1, 2005), and role badges (`photographer`, `graphic designer`, `web dev`, `it instructor`).
+- **Box 2**: Experience timeline (`The Scape Network`, `Braintrust Computer Systems`).
+- **Box 3**: Decorative radial mesh gradient circle.
+- **Box 4**: Overview of creative and engineering work with links to *The Scape Network*, *SnapWeb Editor*, *FOSS Releases (Bedrock)*, and *Playground* (`play.isaiahthings.me`).
+- **Box 5**: Last.fm live listening widget (`isaiahthings`, fallback `"seasons"` by `wave to earth`) with spinning vinyl disc animation.
 
-### 4. Works / Projects Section ("stuff i have worked on")
-- **Active Projects Panel**: Interactive layout with paginated preview blocks:
-  - **Left Panel**: Pagination controls, logo badge, and descriptions of featured projects (*Wallwidgy*, *Axion OS*, *Design Hub*).
-  - **Right Panel**: A 3D stacked mock-up preview using cards that rotate/animate when hovering.
-- **Creative Redirect Banner**: A minimal, compact banner designed for high-conversion:
-  - **Left Info**: Clean copy ("Looking for my design & photography?") alongside a monospaced tag (`// CREATIVE WORK`) and description.
-  - **Right Actions**: Clean CTA buttons redirecting visitors to `Photography ↗` (transparent layout button) and `Graphic Design ↗` (solid dark layout button).
-  - Built with responsive column styling that collapses vertically on mobile/tablet screens.
+### 5. Works / Projects Section ("stuff i have worked on")
+- Paginated project showcase driven by `/manifest.json` (generated by `generate-manifest.js` from `public/projects/`):
+  - *Material Explorer*, *Bedrock*, *Snapseed for Web*, *Mikrotik Manager*, *The Scape Network*, and *Kairo's Old Bot*.
+- Creative redirect banner linking to the Photography and Graphic Design sections in the Creations view.
 
-### 5. Skills Section
-- Two-column detail checklist:
-  - **Left**: Core design philosophy statement.
-  - **Right**: Categorized skills lists (Frontend/Dev, Design/Creative, Systems/Core) using bullet indicators.
+### 6. Skills Section
+- Categorized skills across **Frontend & Web** (React, Next.js, TypeScript, Tailwind CSS, Node.js, Vite), **Design & Visuals** (Photography, Graphic Design, Figma, HTML5 Canvas/WebGL), and **Mobile, Systems & IT** (Kotlin, Jetpack Compose, Android/Material Design 3, Mikrotik & IPoE, PC Builds & Linux).
 
-### 6. My Setup Section
-- Displays a grid layout of daily driver equipment and specifications using a 12-column grid layout:
-  - **Monitor Card (span 7)**: Shows specs for Acer 21.5" monitor (100Hz, 99% sRGB, 1ms).
-  - **Keyboard Card (span 5)**: Details the Aula F75 mechanical keyboard.
-  - **Tablet Card (span 4)**: Shows details for Motorola Pad 60 Neo 5G.
-  - **Phone Card (span 4)**: Displays specs of the Motorola G54 5G.
-  - **Mouse Card (span 4)**: Displays specs of the Logitech G102.
-  - **7Hz x Crinacle Zero:2 IEM Card (span 6)**: Details the tuned 7Hz Zero:2 earbuds with Audiocular C03 upgrade cable.
-  - **GK Kunten IEM Card (span 6)**: Details the 10mm dynamic driver GK Kunten audio gear.
-- Adheres to the digital grid style with custom SVG illustrations, standard border radii, and accent colors.
+### 7. My Setup Section
+- 12-column hardware & daily driver grid:
+  - **Workstation PC (span 7)**: Ryzen 7 5700X3D, RTX 4060, MSI MAG B550 Tomahawk, 32GB FURY DDR4, 1TB 990 EVO NVMe.
+  - **Keyboard (span 5)**: Aula F75 & HHKB Professional.
+  - **Laptop (span 4)**: Lenovo Ryzen 5 7530U (16GB DDR4-3200, 512GB NVMe).
+  - **Phone (span 4)**: Samsung Galaxy S24 5G.
+  - **Mouse (span 4)**: Pulsar TenZ Signature Edition.
+  - **Camera (span 6)**: Canon EOS 700D (EF 50mm f/1.8 STM, EF-S 18-55mm IS STM).
+  - **Audio / IEM & DAC (span 6)**: Simgot EW300 & TRN Black Pearl.
 
-### 7. GitHub Contribution Graph
-- Mimics a standard Git contribution grid calendar layout using organic, pre-computed level values (0–4) and custom square colors.
+### 8. GitHub Contribution Graph
+- Live GitHub contribution calendar and stats fetched for `isaiahscape` via [useGitHubData.ts](file:///c:/Users/Leonardo/shenanigans/src/hooks/useGitHubData.ts).
 
-### 8. Contact Section (Redesigned)
-- Uses the same 12-column grid layout as the rest of the site:
-  - **Collaboration Card (span 7)**: Description text and pills for Freelance, Contracts, and Full-time roles.
-  - **Status Card (span 5)**: Location meta-info and a green indicator dot pulsing via an outer keyframe ring.
-  - **Email Card (span 5)**: Large direct link (`ayan98542@gmail.com`) and a rounded send button with hover transitions.
-  - **Socials Card (span 7)**: Links to Twitter/X, Instagram, and GitHub styled as custom block rows that slide horizontally on hover.
-- **Note**: The old header tag `✦ 04 / CONTACT` has been removed.
-
-### 9. Editorial Footer
-- A clean, dark-themed footer (`#0c0a0f`) with footer columns, copyright notices, custom navigation back-to-top transition, and a dynamic local time clock.
+### 9. Contact & Editorial Footer
+- **Contact Section**: Availability in Davao, Philippines, direct email (`isaiahscape@duck.com`), and social links (`GitHub`, `Instagram`, `Telegram`, `LinkedIn`).
+- **Footer**: Attribution (`Leonardo (isaiahscape)` / `The Scape Series: Playground`), navigation links, and live local time in `Asia/Manila`.
 
 ---
 
-## 2.1 Projects Page View (Dedicated Page)
-
-The dedicated Projects page ([ProjectsPage.tsx](file:///d:/portfolio-new/src/components/ProjectsPage.tsx)) is rendered when the user navigates to the Projects view and is divided into four major visual blocks:
-1. **Technical Header & Section Nav**: Header displaying the section title and anchor nav buttons linking to the subsections with smooth scrolling.
-2. **Web Projects Section (`#dev-projects`)**: Shows featured websites and core software projects with status indicators, tech tags, and codebase links.
-3. **Logos & Branding Section (`#logo-design`)**: Compact grid of logo cards featuring abstract inline SVG branding marks on a coordinate blueprint overlay.
-4. **Graphic Design Section (`#graphic-design`)**:
-   - **Posters**: Typography design poster layouts designed natively with vertical headers, Swiss layouts, and geometric grids.
-   - **Ads**: Layout advertisements featuring specs rows and call-to-action cards.
-5. **Photography Section (`#photography`)**: Masonry grid showing high-contrast photographs (Tokyo street scene and Brutalist concrete architecture) loaded from `public/images/`.
+## 2.1 Sub-Pages (Hash Routed)
+- **About Page ([AboutPage.tsx](file:///c:/Users/Leonardo/shenanigans/src/components/AboutPage.tsx))**: Full biography, quick facts, live Last.fm scrobbles/stats (`isaiahthings`), and Valorant gaming card.
+- **Projects / Creations Page ([ProjectsPage.tsx](file:///c:/Users/Leonardo/shenanigans/src/components/ProjectsPage.tsx))**: Filterable dev projects, SVG brand marks (`public/logos/`), designs (`public/designs/`), and photography (`public/photography/`) loaded from `/manifest.json`.
+- **Blogs Page ([BlogsPage.tsx](file:///c:/Users/Leonardo/shenanigans/src/components/BlogsPage.tsx))**: Markdown dev logs (*Remaking Snapseed on the Web from Scratch*, *Recreating Shenanigans*, *Hello World*) rendered via `marked`.
 
 ---
 
 ## 3. Maintenance Procedures
 
-When editing code, follow these validation steps:
-1. **Compilation Check**: Run `npm run build` in the project root to check for any TypeScript, lint, or Vite configuration issues.
-2. **Visual Continuity**: Verify that section backgrounds remain transparent unless targeting footer elements. Ensure text is highly legible on the `--bg-tan` background.
-3. **Interactive Polish**: Check that custom hover states (like the horizontal translation of social cells or scaling buttons) transition cleanly.
+1. **Asset Manifest**: Run `node generate-manifest.js` (automatically invoked by `npm run dev` and `npm run build`) after adding items to `public/projects/`, `public/logos/`, `public/designs/`, or `public/photography/`.
+2. **Build Check**: Run `npm run build` (`node generate-manifest.js && tsc -b && vite build`) in the project root to validate TypeScript types and the Vite bundle.

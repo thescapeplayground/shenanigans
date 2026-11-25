@@ -35,37 +35,37 @@ interface Manifest {
 const LOCAL_DEFAULT_MANIFEST: Manifest = {
   projects: [
     {
-      id: 'wallwidgy',
-      title: 'Wallwidgy',
-      category: 'Web App',
-      description: 'A wallpaper site made to feel premium while providing a curated collection of high quality wallpapers. Features dynamic filtering and custom palettes.',
-      tech: ['React', 'JavaScript', 'Tailwind CSS', 'Framer Motion'],
-      visitUrl: 'https://github.com',
-      githubUrl: 'https://github.com',
+      id: '01-material-explorer',
+      title: 'Material Explorer',
+      category: 'Android App',
+      description: 'An Android APK explorer and file manager built with Material Design 3 principles for intuitive navigation, APK inspection, and dynamic theming.',
+      tech: ['Android', 'Kotlin', 'Material Design 3'],
+      visitUrl: 'https://github.com/isaiahscape/materialexp/releases',
+      githubUrl: 'https://github.com/isaiahscape/materialexp',
       status: 'Active',
-      photos: ['/projects/wallwidgy/tokyo_street.png']
+      photos: ['/projects/01-material-explorer/preview.svg']
     },
     {
-      id: 'axion-os',
-      title: 'Axion OS',
-      category: 'System',
-      description: 'A custom Android Open Source Project operating system focused on performance, battery life, and clean UI configurations. Rebuilt kernel optimizations.',
-      tech: ['Android', 'C++', 'Java', 'Linux'],
-      visitUrl: 'https://github.com',
-      githubUrl: 'https://github.com',
-      status: 'Maintained',
-      photos: ['/projects/axion-os/hero.jpg']
+      id: '02-bedrock',
+      title: 'Bedrock',
+      category: 'Android App',
+      description: 'A minimalist monochrome notes editor for Android with Markdown live preview, interactive checklists, SHA-256 local encryption, and offline sync.',
+      tech: ['Kotlin', 'Jetpack Compose', 'Android', 'Markdown'],
+      visitUrl: 'https://foss.isaiahthings.me',
+      githubUrl: 'https://github.com/isaiahscape/bedrock',
+      status: 'Active',
+      photos: ['/projects/02-bedrock/preview.svg']
     },
     {
-      id: 'design-hub',
-      title: 'Design Hub',
-      category: 'Design Platform',
-      description: 'A platform connecting web designers and developers to share mockups, feedback, and assets in a collaborative blueprint workspace.',
-      tech: ['Figma', 'React', 'CSS3', 'Node.js'],
-      visitUrl: 'https://github.com',
-      githubUrl: 'https://github.com',
-      status: 'Completed',
-      photos: ['/projects/design-hub/gradient.png']
+      id: '03-snapweb',
+      title: 'Snapseed for Web',
+      category: 'Web App',
+      description: 'A zero-server client-side photo processing web app inspired by Snapseed, featuring tactile gesture tuning, histograms, and RAW-like filters.',
+      tech: ['TypeScript', 'Tailwind CSS', 'HTML5'],
+      visitUrl: 'https://snapweb.isaiahthings.me/',
+      githubUrl: 'https://github.com/isaiahscape/snapweb-remixed',
+      status: 'Active',
+      photos: ['/projects/03-snapweb/preview.svg']
     }
   ],
   designs: {},
@@ -111,73 +111,19 @@ function getTechIconUrl(tech: string): string {
     'composeui': 'jetpackcompose',
     'jetpackcompose': 'jetpackcompose',
     'kotlin': 'kotlin',
-    'typescript': 'typescript'
+    'typescript': 'typescript',
+    'materialdesign3': 'materialdesign',
+    'markdown': 'markdown',
+    'telegram': 'telegram',
+    'python': 'python',
+    'figma': 'figma'
   };
 
   const finalSlug = customMapping[slug] || slug;
   return `https://cdn.simpleicons.org/${finalSlug}`;
 }
 
-const MOCKUP_DATA_MAP: Record<string, any> = {
-  'wallwidgy': {
-    logo: 'w',
-    mockups: {
-      back: {
-        title: 'Explore Categories',
-        items: [
-          { name: 'Nature', gradient: 'linear-gradient(135deg, #1f4068, #162447)' },
-          { name: 'Anime', gradient: 'linear-gradient(135deg, #F1A5A0, #4e1a3d)' },
-          { name: 'Art', gradient: 'linear-gradient(135deg, #ffd369, #393e46)' }
-        ]
-      },
-      middle: {
-        gradient: 'linear-gradient(to top, #08060d, #cdc8c5)'
-      },
-      front: {
-        title: 'Wallwidgy',
-        photo: '',
-        walls: [
-          'linear-gradient(to bottom, #30cfd0 0%, #330867 100%)',
-          'linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)',
-          'linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%)',
-          'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-        ]
-      }
-    }
-  },
-  'Wallwidgy android': {
-    logo: 'wa',
-    mockups: {
-      back: {
-        title: 'System Integration',
-        items: [
-          { name: 'Material You', gradient: 'linear-gradient(135deg, #a1c4fd, #c2e9fb)' },
-          { name: 'Favorites', gradient: 'linear-gradient(135deg, #ff9a9e, #fecfef)' },
-          { name: 'Curated API', gradient: 'linear-gradient(135deg, #30cfd0, #330867)' }
-        ]
-      },
-      middle: {
-        gradient: 'linear-gradient(135deg, #1f4068, #162447)'
-      },
-      front: {
-        title: 'Wallwidgy Compose',
-        photo: '',
-        walls: [
-          'linear-gradient(to bottom, #30cfd0 0%, #330867 100%)',
-          'linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)',
-          'linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%)',
-          'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-        ]
-      }
-    }
-  }
-};
-
 const getProjectMockupData = (proj: Project) => {
-  if (MOCKUP_DATA_MAP[proj.id]) {
-    return MOCKUP_DATA_MAP[proj.id];
-  }
-  // Generic fallback using screenshots/metadata
   const logo = proj.title.charAt(0).toLowerCase();
   const photo = proj.photos && proj.photos.length > 0 ? proj.photos[0] : '';
   
@@ -316,7 +262,6 @@ export function WorksSection() {
         {/* Right Panel: Interactive 3D Stack Mockup */}
         <div className="project-preview-panel">
           <div className="mockup-stack">
-            {/* Back Card */}
             <div className="mockup-card card-back">
               <div className="mockup-header-bar">
                 <span className="mockup-dot"></span>
@@ -326,7 +271,7 @@ export function WorksSection() {
               <div className="mockup-body">
                 <h6 className="mockup-card-title">{mockupData.mockups.back.title}</h6>
                 <div className="mockup-categories">
-                  {mockupData.mockups.back.items.map((item: any, idx: number) => (
+                  {mockupData.mockups.back.items.map((item: { name: string; gradient: string }, idx: number) => (
                     <div className="category-item" key={idx}>
                       <span className="cat-gradient" style={{ background: item.gradient }}></span>
                       <span className="cat-name">{item.name}</span>
@@ -336,7 +281,6 @@ export function WorksSection() {
               </div>
             </div>
 
-            {/* Middle Card */}
             <div className="mockup-card card-middle">
               <div className="mockup-header-bar">
                 <span className="mockup-dot"></span>
@@ -348,7 +292,6 @@ export function WorksSection() {
               </div>
             </div>
 
-            {/* Front Card */}
             <div 
               className="mockup-card card-front"
               style={mockupData.mockups.front.photo ? { overflow: 'hidden' } : undefined}
@@ -389,14 +332,14 @@ export function WorksSection() {
           <span className="design-redirect-tag">// CREATIVE WORK</span>
           <h3 className="design-redirect-title">Looking for my design & photography?</h3>
           <p className="design-redirect-desc">
-            Explore a compiled gallery of typography poster experiments, vector branding, interactive user interface systems, and street photography.
+            Explore my projects, brand marks, visual experiments, and street photography work under The Scape Network.
           </p>
         </div>
         <div className="design-redirect-actions">
-          <a href="/photography" className="design-redirect-btn btn-photography">
+          <a href="#projects/photography" className="design-redirect-btn btn-photography">
             Photography <span className="arrow">↗</span>
           </a>
-          <a href="/design" className="design-redirect-btn btn-design">
+          <a href="#projects/graphic-design" className="design-redirect-btn btn-design">
             Graphic Design <span className="arrow">↗</span>
           </a>
         </div>

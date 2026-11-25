@@ -1,509 +1,136 @@
 {
   "projects": [
     {
-      "id": "01-wallwidgy",
-      "title": "Wallwidgy",
-      "category": "Web App",
-      "description": "A wallpaper site made to feel premium while providing a curated collection of high quality wallpapers. Features dynamic filtering and custom palettes.",
+      "id": "01-material-explorer",
+      "title": "Material Explorer",
+      "category": "Android App",
+      "description": "An Android APK explorer and file manager built with Material Design 3 principles for intuitive navigation, APK inspection, and dynamic theming.",
       "tech": [
-        "React",
-        "JavaScript",
-        "Tailwind CSS"
+        "Android",
+        "Kotlin",
+        "Material Design 3"
       ],
-      "visitUrl": "https://wallwidgy.app",
-      "githubUrl": "https://github.com/not-ayan/wallwidgy",
+      "visitUrl": "https://github.com/isaiahscape/materialexp/releases",
+      "githubUrl": "https://github.com/isaiahscape/materialexp",
       "status": "Active",
       "photos": [
-        "/projects/01-wallwidgy/wallwidgy.png"
+        "/projects/01-material-explorer/preview.svg"
       ]
     },
     {
-      "id": "02-Atlas",
-      "title": "Atlas",
-      "category": "Web App",
-      "description": "A all in one research agent built to help you write your research papers easily. A work in progress as of now",
-      "tech": [
-        "React",
-        "JavaScript",
-        "Tailwind CSS"
-      ],
-      "visitUrl": "",
-      "githubUrl": "",
-      "status": "Wip",
-      "photos": [
-        "/projects/02-Atlas/Atlas.png"
-      ]
-    },
-    {
-      "id": "03-Wallwidgy android",
-      "title": "Wallwidgy Android",
+      "id": "02-bedrock",
+      "title": "Bedrock",
       "category": "Android App",
-      "description": "A beautiful Android wallpaper app built with Jetpack Compose featuring dynamic Material You styling,Curated wallpapers , favorites management, and customizable user index sources.",
+      "description": "A minimalist monochrome notes editor for Android with Markdown live preview, interactive checklists, SHA-256 local encryption, and offline sync.",
       "tech": [
         "Kotlin",
-        "Compose UI",
-        "Jetpack Compose"
+        "Jetpack Compose",
+        "Android",
+        "Markdown"
       ],
-      "visitUrl": "https://wallwidgy.app/android",
-      "githubUrl": "https://github.com/not-ayan/wallwidgy_android",
+      "visitUrl": "https://foss.isaiahthings.me",
+      "githubUrl": "https://github.com/isaiahscape/bedrock",
       "status": "Active",
       "photos": [
-        "/projects/03-Wallwidgy android/main.png"
+        "/projects/02-bedrock/preview.svg"
       ]
     },
     {
-      "id": "04-Aleem.studio",
-      "title": "Aleem.studio",
+      "id": "03-snapweb",
+      "title": "Snapseed for Web",
       "category": "Web App",
-      "description": "A portfolio for a interior designer feauturing a minimal yet modern layout",
+      "description": "A zero-server client-side photo processing web app inspired by Snapseed, featuring tactile gesture tuning, histograms, and RAW-like filters.",
       "tech": [
-        "Next.js",
         "TypeScript",
-        "Tailwind CSS"
+        "Tailwind CSS",
+        "HTML5"
       ],
-      "visitUrl": "https://aleemstudio.netlify.app/",
+      "visitUrl": "https://snapweb.isaiahthings.me/",
+      "githubUrl": "https://github.com/isaiahscape/snapweb-remixed",
+      "status": "Active",
+      "photos": [
+        "/projects/03-snapweb/preview.svg"
+      ]
+    },
+    {
+      "id": "04-mikrotik-manager",
+      "title": "Mikrotik Manager",
+      "category": "Network Utility",
+      "description": "An automated helper utility designed to manage DHCP & IP allocations, prevent IP conflicts, and query active subnets on Mikrotik routers.",
+      "tech": [
+        "TypeScript",
+        "Node.js"
+      ],
+      "visitUrl": "",
+      "githubUrl": "https://github.com/isaiahscape/mikrotik-ipoemgr",
+      "status": "Completed",
+      "photos": [
+        "/projects/04-mikrotik-manager/preview.svg"
+      ]
+    },
+    {
+      "id": "05-the-scape-network",
+      "title": "The Scape Network",
+      "category": "Community",
+      "description": "A digital social update log, creative archive channel, and interactive developer/design hub built around Telegram under the Scape Sandbox banner.",
+      "tech": [
+        "Telegram",
+        "Figma"
+      ],
+      "visitUrl": "https://telegram.me/thescapenetwork",
       "githubUrl": "",
       "status": "Active",
       "photos": [
-        "/projects/04-Aleem.studio/main.png"
+        "/projects/05-the-scape-network/preview.svg"
       ]
     },
     {
-      "id": "05-Paradox travels",
-      "title": "Paradox Travels",
-      "category": "Web App",
-      "description": "A modern luxury travel website where refined design meets personalized adventure.",
+      "id": "06-kairo-bot",
+      "title": "Kairo's Old Bot",
+      "category": "Automation",
+      "description": "A legacy open-source modular Telegram utility bot built for fast channel administrative workflows, automated triggers, and group utilities.",
       "tech": [
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS"
+        "Python",
+        "Telegram"
       ],
-      "visitUrl": "https://paradox-travels.vercel.app",
-      "githubUrl": "",
-      "status": "Active",
+      "visitUrl": "",
+      "githubUrl": "https://github.com/isaiahscape/KairoKangedBot",
+      "status": "Archived",
       "photos": [
-        "/projects/05-Paradox travels/main.png"
-      ]
-    },
-    {
-      "id": "06-openaula",
-      "title": "OpenAULA",
-      "category": "WebHID App",
-      "description": "A zero-install, cross-platform WebHID controller for the AULA F75 mechanical keyboard. Reverse-engineered proprietary USB HID protocols to control 15 hardware lighting animations, per-key RGB painting, and device parameters directly in the browser.",
-      "tech": [
-        "React",
-        "TypeScript",
-        "WebHID API",
-        "Tailwind CSS"
-      ],
-      "visitUrl": "https://openaula.vercel.app",
-      "githubUrl": "https://github.com/not-ayan/aula-f75-web",
-      "status": "Active",
-      "photos": [
-        "/projects/06-openaula/main.png"
+        "/projects/06-kairo-bot/preview.svg"
       ]
     }
   ],
-  "designs": {
-    "ads & misc": [
-      {
-        "path": "/designs/ads & misc/Desktop 1-alt.webp",
-        "aspect": 3.415
-      },
-      {
-        "path": "/designs/ads & misc/Desktop 2.webp",
-        "aspect": 3.415
-      },
-      {
-        "path": "/designs/ads & misc/Desktop 3.webp",
-        "aspect": 3.415
-      },
-      {
-        "path": "/designs/ads & misc/Frame 12.webp",
-        "aspect": 1.8023
-      },
-      {
-        "path": "/designs/ads & misc/Frame 160.webp",
-        "aspect": 0.8
-      },
-      {
-        "path": "/designs/ads & misc/Frame 170.webp",
-        "aspect": 0.78
-      },
-      {
-        "path": "/designs/ads & misc/Frame 248.webp",
-        "aspect": 0.7028
-      },
-      {
-        "path": "/designs/ads & misc/Frame 49.webp",
-        "aspect": 3.0168
-      },
-      {
-        "path": "/designs/ads & misc/Frame 50.webp",
-        "aspect": 3.0168
-      },
-      {
-        "path": "/designs/ads & misc/Frame 51.webp",
-        "aspect": 3.0168
-      },
-      {
-        "path": "/designs/ads & misc/Frame 68.webp",
-        "aspect": 1
-      },
-      {
-        "path": "/designs/ads & misc/Frame 70.webp",
-        "aspect": 1
-      },
-      {
-        "path": "/designs/ads & misc/Frame 71.webp",
-        "aspect": 1
-      },
-      {
-        "path": "/designs/ads & misc/Frame 73.webp",
-        "aspect": 1
-      },
-      {
-        "path": "/designs/ads & misc/Frame 74.webp",
-        "aspect": 1
-      },
-      {
-        "path": "/designs/ads & misc/Frame 75.webp",
-        "aspect": 1
-      },
-      {
-        "path": "/designs/ads & misc/Frame 76.webp",
-        "aspect": 1
-      }
-    ],
-    "posters": [
-      {
-        "path": "/designs/posters/Frame 1-1.webp",
-        "aspect": 1.9899
-      },
-      {
-        "path": "/designs/posters/Frame 1-2.webp",
-        "aspect": 2
-      },
-      {
-        "path": "/designs/posters/Frame 1.webp",
-        "aspect": 1.6829
-      },
-      {
-        "path": "/designs/posters/Frame 118.webp",
-        "aspect": 0.7398
-      },
-      {
-        "path": "/designs/posters/Frame 156.webp",
-        "aspect": 2.1212
-      },
-      {
-        "path": "/designs/posters/Frame 256.webp",
-        "aspect": 1.8224
-      },
-      {
-        "path": "/designs/posters/Frame 4.webp",
-        "aspect": 1
-      },
-      {
-        "path": "/designs/posters/Frame 48.webp",
-        "aspect": 1.7788
-      },
-      {
-        "path": "/designs/posters/Frame 5.webp",
-        "aspect": 2.0353
-      },
-      {
-        "path": "/designs/posters/Frame 7.webp",
-        "aspect": 1.8658
-      },
-      {
-        "path": "/designs/posters/Frame 73.webp",
-        "aspect": 1
-      },
-      {
-        "path": "/designs/posters/Frame 9.webp",
-        "aspect": 1.8666
-      },
-      {
-        "path": "/designs/posters/Frame 99.webp",
-        "aspect": 1.7992
-      },
-      {
-        "path": "/designs/posters/image 136.webp",
-        "aspect": 1.382
-      },
-      {
-        "path": "/designs/posters/Rectangle 60.webp",
-        "aspect": 1
-      },
-      {
-        "path": "/designs/posters/Rectangle 63.webp",
-        "aspect": 1
-      },
-      {
-        "path": "/designs/posters/Rectangle 75.webp",
-        "aspect": 1.9986
-      },
-      {
-        "path": "/designs/posters/Rectangle 76.webp",
-        "aspect": 1.5993
-      },
-      {
-        "path": "/designs/posters/Rectangle 77.webp",
-        "aspect": 1.5993
-      },
-      {
-        "path": "/designs/posters/Rectangle 78.webp",
-        "aspect": 1.7421
-      },
-      {
-        "path": "/designs/posters/Rectangle 79.webp",
-        "aspect": 2.0014
-      },
-      {
-        "path": "/designs/posters/Rectangle 80.webp",
-        "aspect": 2.0734
-      },
-      {
-        "path": "/designs/posters/Rectangle 81.webp",
-        "aspect": 2.0014
-      },
-      {
-        "path": "/designs/posters/Rectangle 82.webp",
-        "aspect": 2.0014
-      },
-      {
-        "path": "/designs/posters/Rectangle 83.webp",
-        "aspect": 1.6012
-      }
-    ]
-  },
+  "designs": {},
   "logos": [
     {
-      "id": "ayan",
-      "title": "Ayan",
-      "tag": "// BRAND MARK",
-      "desc": "A minimalist personal monogram that subtly embeds my name through abstract geometry, reflecting my identity as a designer and developer.",
-      "imagePath": "/logos/ayan/logo.png"
+      "id": "bedrock",
+      "title": "Bedrock",
+      "tag": "// ANDROID APP",
+      "desc": "Monochrome stone-cut block mark for Bedrock, a distraction-free encrypted Markdown notes app.",
+      "imagePath": "/logos/bedrock/logo.svg"
     },
     {
-      "id": "nova",
-      "title": "Nova",
-      "tag": "// BRAND MARK",
-      "desc": "A modern personal logo blending thin elegance with bold geometry, inspired by Marvel's Nova. The cut in the 'O' represents the idea that nothing continues forever, giving the mark both visual balance and personal meaning.",
-      "imagePath": "/logos/nova/logo.png"
+      "id": "shenanigans",
+      "title": "Shenanigans",
+      "tag": "// PERSONAL MONOGRAM",
+      "desc": "Primary geometric glyph for Shenanigans / Leonardo's Terrace, built with adaptive light and dark contrast.",
+      "imagePath": "/logos/shenanigans/logo.svg"
     },
     {
-      "id": "rising",
-      "title": "Rising",
-      "tag": "// BRAND MARK",
-      "desc": "A modern brand mark that fuses the letter 'R' of Rising with an arrow, representing growth, momentum, and an unwavering drive to move forward.",
-      "imagePath": "/logos/rising/logo.png"
+      "id": "snapweb",
+      "title": "Snapweb",
+      "tag": "// PHOTO EDITOR",
+      "desc": "Tactile curve and shutter emblem for Snapseed for Web, a zero-server browser photo processing tool.",
+      "imagePath": "/logos/snapweb/logo.svg"
     },
     {
-      "id": "wallwidgy",
-      "title": "Wallwidgy",
-      "tag": "// BRAND MARK",
-      "desc": "A modern logo that merges the initials of Wallwidgy into a single flowing mark, symbolizing continuity, creativity, and the effortless discovery of wallpapers.",
-      "imagePath": "/logos/wallwidgy/logo.png"
+      "id": "the-scape-network",
+      "title": "The Scape Network",
+      "tag": "// COLLECTIVE EMBLEM",
+      "desc": "Minimalist aperture and frame mark for The Scape Network — photography, visual design, and creative tech.",
+      "imagePath": "/logos/the-scape-network/logo.svg"
     }
   ],
-  "photography": [
-    {
-      "path": "/photography/AGC_20251112_214831193.webp",
-      "aspect": 1.3339
-    },
-    {
-      "path": "/photography/IMG-20250909-WA0034.webp",
-      "aspect": 1.4817
-    },
-    {
-      "path": "/photography/IMG-20250916-WA0090.webp",
-      "aspect": 1.3333
-    },
-    {
-      "path": "/photography/IMG-20251224-WA0038.webp",
-      "aspect": 0.8095
-    },
-    {
-      "path": "/photography/IMG-20260228-WA0196.webp",
-      "aspect": 1.7778
-    },
-    {
-      "path": "/photography/IMG_0951.webp",
-      "aspect": 0.7928
-    },
-    {
-      "path": "/photography/IMG_0958.webp",
-      "aspect": 0.7143
-    },
-    {
-      "path": "/photography/IMG_1488.webp",
-      "aspect": 0.75
-    },
-    {
-      "path": "/photography/IMG_1492.webp",
-      "aspect": 0.7502
-    },
-    {
-      "path": "/photography/IMG_1501.webp",
-      "aspect": 0.7596
-    },
-    {
-      "path": "/photography/IMG_20240212_172443186_MP.webp",
-      "aspect": 1.7776
-    },
-    {
-      "path": "/photography/IMG_20240222_223733842_HDR.webp",
-      "aspect": 0.75
-    },
-    {
-      "path": "/photography/IMG_20240222_223827845_HDR (1).webp",
-      "aspect": 1.7776
-    },
-    {
-      "path": "/photography/IMG_20251112_215225075_HDR_AE.webp",
-      "aspect": 0.75
-    },
-    {
-      "path": "/photography/IMG_20251227_194622.webp",
-      "aspect": 0.6669
-    },
-    {
-      "path": "/photography/IMG_20260213_184412345_HDR.webp",
-      "aspect": 0.7159
-    },
-    {
-      "path": "/photography/IMG_20260426_165429 (1).webp",
-      "aspect": 0.75
-    },
-    {
-      "path": "/photography/PXL_20231122_112404455.webp",
-      "aspect": 0.5625
-    },
-    {
-      "path": "/photography/PXL_20240703_143745_lmc_8.4.webp",
-      "aspect": 1.1467
-    },
-    {
-      "path": "/photography/PXL_20250717_081902834.webp",
-      "aspect": 0.75
-    },
-    {
-      "path": "/photography/PXL_20250823_145316227.webp",
-      "aspect": 0.75
-    },
-    {
-      "path": "/photography/PXL_20250823_145705043.webp",
-      "aspect": 0.75
-    },
-    {
-      "path": "/photography/PXL_20250823_145827327.webp",
-      "aspect": 0.75
-    },
-    {
-      "path": "/photography/PXL_20250823_170526239.webp",
-      "aspect": 0.75
-    },
-    {
-      "path": "/photography/PXL_20250823_170648177.webp",
-      "aspect": 0.75
-    },
-    {
-      "path": "/photography/PXL_20250830_175014516.webp",
-      "aspect": 1.8208
-    },
-    {
-      "path": "/photography/PXL_20250902_174119666.webp",
-      "aspect": 0.75
-    },
-    {
-      "path": "/photography/PXL_20250907_164619862.webp",
-      "aspect": 0.75
-    },
-    {
-      "path": "/photography/PXL_20250907_211813463.webp",
-      "aspect": 0.7119
-    },
-    {
-      "path": "/photography/PXL_20250911_142726334 (2).webp",
-      "aspect": 0.7727
-    },
-    {
-      "path": "/photography/PXL_20250930_162218420.webp",
-      "aspect": 1.333
-    },
-    {
-      "path": "/photography/PXL_20251005_160734026.webp",
-      "aspect": 0.75
-    },
-    {
-      "path": "/photography/PXL_20251012_113620775 (1).webp",
-      "aspect": 0.75
-    },
-    {
-      "path": "/photography/PXL_20251021_081910435 (1).webp",
-      "aspect": 0.75
-    },
-    {
-      "path": "/photography/PXL_20251023_152309999 (1).webp",
-      "aspect": 0.75
-    },
-    {
-      "path": "/photography/PXL_20251118_165709277.webp",
-      "aspect": 0.75
-    },
-    {
-      "path": "/photography/PXL_20251201_152811501.webp",
-      "aspect": 0.713
-    },
-    {
-      "path": "/photography/PXL_20251206_132346331 (2).webp",
-      "aspect": 0.781
-    },
-    {
-      "path": "/photography/PXL_20251206_132356949.webp",
-      "aspect": 0.7128
-    },
-    {
-      "path": "/photography/PXL_20251211_145745424.webp",
-      "aspect": 0.5623
-    },
-    {
-      "path": "/photography/PXL_20260210_142331510 (2).webp",
-      "aspect": 0.7461
-    },
-    {
-      "path": "/photography/PXL_20260212_085311975 (1).webp",
-      "aspect": 1.6007
-    },
-    {
-      "path": "/photography/PXL_20260213_084138233 (2).webp",
-      "aspect": 1.7771
-    },
-    {
-      "path": "/photography/PXL_20260213_090143495 (1).webp",
-      "aspect": 1.0865
-    },
-    {
-      "path": "/photography/PXL_20260228_090049668.webp",
-      "aspect": 1.973
-    },
-    {
-      "path": "/photography/PXL_20260309_132507705.webp",
-      "aspect": 1.3333
-    },
-    {
-      "path": "/photography/PXL_20260419_173457039.webp",
-      "aspect": 0.8408
-    },
-    {
-      "path": "/photography/PXL_20260503_212237794.webp",
-      "aspect": 1.333
-    },
-    {
-      "path": "/photography/PXL_20260507_131954678.webp",
-      "aspect": 0.75
-    }
-  ]
+  "photography": []
 }

@@ -37,95 +37,104 @@ interface Manifest {
 const LOCAL_DEFAULT_MANIFEST: Manifest = {
   projects: [
     {
-      id: 'wallwidgy',
-      title: 'Wallwidgy',
+      id: '01-material-explorer',
+      title: 'Material Explorer',
+      category: 'Android App',
+      description: 'An Android APK explorer and file manager built with Material Design 3 principles for intuitive navigation, APK inspection, and dynamic theming.',
+      tech: ['Android', 'Kotlin', 'Material Design 3'],
+      visitUrl: 'https://github.com/isaiahscape/materialexp/releases',
+      githubUrl: 'https://github.com/isaiahscape/materialexp',
+      status: 'Active',
+      photos: ['/projects/01-material-explorer/preview.svg']
+    },
+    {
+      id: '02-bedrock',
+      title: 'Bedrock',
+      category: 'Android App',
+      description: 'A minimalist monochrome notes editor for Android with Markdown live preview, interactive checklists, SHA-256 local encryption, and offline sync.',
+      tech: ['Kotlin', 'Jetpack Compose', 'Android', 'Markdown'],
+      visitUrl: 'https://foss.isaiahthings.me',
+      githubUrl: 'https://github.com/isaiahscape/bedrock',
+      status: 'Active',
+      photos: ['/projects/02-bedrock/preview.svg']
+    },
+    {
+      id: '03-snapweb',
+      title: 'Snapseed for Web',
       category: 'Web App',
-      description: 'A wallpaper site made to feel premium while providing a curated collection of high quality wallpapers. Features dynamic filtering and custom palettes.',
-      tech: ['React', 'JavaScript', 'Tailwind CSS', 'Framer Motion'],
-      visitUrl: 'https://github.com',
-      githubUrl: 'https://github.com',
+      description: 'A zero-server client-side photo processing web app inspired by Snapseed, featuring tactile gesture tuning, histograms, and RAW-like filters.',
+      tech: ['TypeScript', 'Tailwind CSS', 'HTML5'],
+      visitUrl: 'https://snapweb.isaiahthings.me/',
+      githubUrl: 'https://github.com/isaiahscape/snapweb-remixed',
       status: 'Active',
-      photos: ['/projects/wallwidgy/tokyo_street.png']
+      photos: ['/projects/03-snapweb/preview.svg']
     },
     {
-      id: 'axion-os',
-      title: 'Axion OS',
-      category: 'System',
-      description: 'A custom Android Open Source Project operating system focused on performance, battery life, and clean UI configurations. Rebuilt kernel optimizations.',
-      tech: ['Android', 'C++', 'Java', 'Linux'],
-      visitUrl: 'https://github.com',
-      githubUrl: 'https://github.com',
-      status: 'Maintained',
-      photos: ['/projects/axion-os/hero.jpg']
-    },
-    {
-      id: 'design-hub',
-      title: 'Design Hub',
-      category: 'Design Platform',
-      description: 'A platform connecting web designers and developers to share mockups, feedback, and assets in a collaborative blueprint workspace.',
-      tech: ['Figma', 'React', 'CSS3', 'Node.js'],
-      visitUrl: 'https://github.com',
-      githubUrl: 'https://github.com',
+      id: '04-mikrotik-manager',
+      title: 'Mikrotik Manager',
+      category: 'Network Utility',
+      description: 'An automated helper utility designed to manage DHCP & IP allocations, prevent IP conflicts, and query active subnets on Mikrotik routers.',
+      tech: ['TypeScript', 'Node.js'],
+      visitUrl: '',
+      githubUrl: 'https://github.com/isaiahscape/mikrotik-ipoemgr',
       status: 'Completed',
-      photos: ['/projects/design-hub/gradient.png']
+      photos: ['/projects/04-mikrotik-manager/preview.svg']
     },
     {
-      id: 'realm-ui',
-      title: 'Realm UI',
-      category: 'Library',
-      description: 'A premium component library featuring dark mode, glassmorphism UI blocks, and highly fluid micro-animations for developer efficiency.',
-      tech: ['Next.js', 'Jotai', 'Tailwind CSS', 'Radix UI'],
-      visitUrl: 'https://github.com',
-      githubUrl: 'https://github.com',
+      id: '05-the-scape-network',
+      title: 'The Scape Network',
+      category: 'Community',
+      description: 'A digital social update log, creative archive channel, and interactive developer/design hub built around Telegram under the Scape Sandbox banner.',
+      tech: ['Telegram', 'Figma'],
+      visitUrl: 'https://telegram.me/thescapenetwork',
+      githubUrl: '',
       status: 'Active',
-      photos: ['/projects/realm-ui/architecture.png']
+      photos: ['/projects/05-the-scape-network/preview.svg']
+    },
+    {
+      id: '06-kairo-bot',
+      title: "Kairo's Old Bot",
+      category: 'Automation',
+      description: 'A legacy open-source modular Telegram utility bot built for fast channel administrative workflows, automated triggers, and group utilities.',
+      tech: ['Python', 'Telegram'],
+      visitUrl: '',
+      githubUrl: 'https://github.com/isaiahscape/KairoKangedBot',
+      status: 'Archived',
+      photos: ['/projects/06-kairo-bot/preview.svg']
     }
   ],
-  designs: {
-    posters: [
-      '/designs/posters/architecture_poster.png',
-      '/designs/posters/hero_design.jpg'
-    ],
-    layouts: [
-      '/designs/layouts/avatar_art.png',
-      '/designs/layouts/tokyo_layout.png'
-    ]
-  },
+  designs: {},
   logos: [
     {
-      id: 'axion',
-      title: 'Axion OS',
-      tag: '// BRAND SYMBOL',
-      desc: 'Minimalist delta shape focusing on structural stability and clean interfaces.',
-      imagePath: '/logos/axion/logo.svg'
+      id: 'shenanigans',
+      title: 'Shenanigans',
+      tag: '// PERSONAL MONOGRAM',
+      desc: "Primary geometric glyph for Shenanigans / Leonardo's Terrace, built with adaptive light and dark contrast.",
+      imagePath: '/logos/shenanigans/logo.svg'
     },
     {
-      id: 'wallwidgy',
-      title: 'Wallwidgy',
-      tag: '// DRAFT WORK',
-      desc: 'Abstract window grid with custom anchor points representing layout modules.',
-      imagePath: '/logos/wallwidgy/logo.svg'
+      id: 'the-scape-network',
+      title: 'The Scape Network',
+      tag: '// COLLECTIVE EMBLEM',
+      desc: 'Minimalist aperture and frame mark for The Scape Network — photography, visual design, and creative tech.',
+      imagePath: '/logos/the-scape-network/logo.svg'
     },
     {
-      id: 'realm-ui',
-      title: 'Realm UI',
-      tag: '// VECTOR ICON',
-      desc: 'Isometric wireframe cube representing dimensional user interfaces.',
-      imagePath: '/logos/realm-ui/logo.svg'
+      id: 'snapweb',
+      title: 'Snapweb',
+      tag: '// PHOTO EDITOR',
+      desc: 'Tactile curve and shutter emblem for Snapseed for Web, a zero-server browser photo processing tool.',
+      imagePath: '/logos/snapweb/logo.svg'
     },
     {
-      id: 'ayan-monogram',
-      title: 'AYAN.DEV',
-      tag: '// MONOGRAM',
-      desc: 'Personal logotype fusing monogram lines with developer geometry constraints.',
-      imagePath: '/logos/ayan-monogram/logo.svg'
+      id: 'bedrock',
+      title: 'Bedrock',
+      tag: '// ANDROID APP',
+      desc: 'Monochrome stone-cut block mark for Bedrock, a distraction-free encrypted Markdown notes app.',
+      imagePath: '/logos/bedrock/logo.svg'
     }
   ],
-  photography: [
-    '/photography/tokyo_street.png',
-    '/photography/architecture.png',
-    '/photography/portrait_study.jpg'
-  ]
+  photography: []
 };
 
 function getTechIconUrl(tech: string): string {
@@ -163,6 +172,14 @@ function getTechIconUrl(tech: string): string {
     'linux': 'linux',
     'android': 'android',
     'java': 'openjdk',
+    'kotlin': 'kotlin',
+    'jetpackcompose': 'jetpackcompose',
+    'materialdesign3': 'materialdesign',
+    'markdown': 'markdown',
+    'telegram': 'telegram',
+    'python': 'python',
+    'figma': 'figma',
+    'typescript': 'typescript',
   };
 
   const finalSlug = customMapping[slug] || slug;
@@ -173,32 +190,36 @@ function InlineSVG({ url, className }: { url: string; className?: string }) {
   const [svgContent, setSvgContent] = useState<string | null>(null);
 
   useEffect(() => {
-    if (url.endsWith('.svg')) {
-      fetch(url)
-        .then((res) => {
-          if (!res.ok) throw new Error('Failed to load SVG');
-          return res.text();
-        })
-        .then((text) => {
-          // Keep only the SVG contents by extracting <svg ... </svg>
-          const svgMatch = text.match(/<svg[\s\S]*<\/svg>/i);
-          if (svgMatch) {
-            // Remove hardcoded width and height attributes to make it responsive
-            const cleanSvg = svgMatch[0]
-              .replace(/width="[^"]*"/gi, '')
-              .replace(/height="[^"]*"/gi, '');
-            setSvgContent(cleanSvg);
-          } else {
-            setSvgContent(text);
-          }
-        })
-        .catch((err) => {
-          console.error('Error loading inline SVG:', err);
-          setSvgContent(null);
-        });
-    } else {
-      setSvgContent(null);
+    if (!url.endsWith('.svg')) {
+      return;
     }
+
+    let active = true;
+    fetch(url)
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to load SVG');
+        return res.text();
+      })
+      .then((text) => {
+        if (!active) return;
+        const svgMatch = text.match(/<svg[\s\S]*<\/svg>/i);
+        if (svgMatch) {
+          const cleanSvg = svgMatch[0]
+            .replace(/width="[^"]*"/gi, '')
+            .replace(/height="[^"]*"/gi, '');
+          setSvgContent(cleanSvg);
+        } else {
+          setSvgContent(text);
+        }
+      })
+      .catch((err) => {
+        console.error('Error loading inline SVG:', err);
+        if (active) setSvgContent(null);
+      });
+
+    return () => {
+      active = false;
+    };
   }, [url]);
 
   if (!url.endsWith('.svg')) {
@@ -279,12 +300,15 @@ export function ProjectsPage({ initialScrollTarget, clearScrollTarget }: Project
     }
   };
 
+  const hasDesigns = manifest.designs && Object.keys(manifest.designs).length > 0;
+  const hasPhotography = manifest.photography && manifest.photography.length > 0;
+
   return (
     <div className="page-view-container fade-in">
       <header className="page-header">
         <h1 className="page-title">creations.</h1>
         <p className="page-description-sub">
-          A catalog of engineering, brand design, layout grids, and visual observations.
+          A catalog of software builds, brand identities, visual design, and photography.
         </p>
 
         {/* Section Navigation Header */}
@@ -327,7 +351,6 @@ export function ProjectsPage({ initialScrollTarget, clearScrollTarget }: Project
         <div className="projects-list-grid">
           {filteredProjects.map((project) => (
             <div key={project.id} id={project.id} className={`project-detail-card ${initialScrollTarget === project.id ? 'highlight-pulse' : ''}`} style={{ overflow: 'hidden' }}>
-              {/* Project main preview banner */}
               {project.photos && project.photos.length > 0 && (
                 <div 
                   className="project-card-banner-frame" 
@@ -359,7 +382,6 @@ export function ProjectsPage({ initialScrollTarget, clearScrollTarget }: Project
               <h3 className="project-card-title">{project.title}</h3>
               <p className="project-card-description">{project.description}</p>
 
-              {/* Extra photos row */}
               {project.photos && project.photos.length > 1 && (
                 <div 
                   className="project-mini-gallery" 
@@ -430,7 +452,7 @@ export function ProjectsPage({ initialScrollTarget, clearScrollTarget }: Project
           <h2 className="section-section-title">logo & branding marks</h2>
         </div>
         <p className="section-intro-text">
-          A small collection of geometric, vector-based logotypes and branding experiments.
+          A collection of geometric logotypes and branding marks built for personal and collective projects.
         </p>
 
         <div className="logo-designs-grid">
@@ -455,10 +477,10 @@ export function ProjectsPage({ initialScrollTarget, clearScrollTarget }: Project
           <h2 className="section-section-title">designs & poster art</h2>
         </div>
         <p className="section-intro-text">
-          Print materials, Swiss typography systems, layout architectures, and visual experiments.
+          Minimalist layouts, event graphics, banners, and visual experiments.
         </p>
 
-        {manifest.designs && Object.keys(manifest.designs).length > 0 && (
+        {hasDesigns ? (
           <div className="designs-subsections-container" style={{ display: 'flex', flexDirection: 'column', gap: '48px', marginTop: '32px' }}>
             {Object.keys(manifest.designs).map((folderName) => (
               <div key={folderName} className="graphic-subsection">
@@ -467,7 +489,6 @@ export function ProjectsPage({ initialScrollTarget, clearScrollTarget }: Project
                   <span className="subsection-line"></span>
                 </div>
 
-                {/* Designs Masonry Grid */}
                 <div className="masonry-grid">
                   {manifest.designs[folderName]?.map((imgItem, idx) => {
                     const isObj = typeof imgItem === 'object' && imgItem !== null;
@@ -495,6 +516,20 @@ export function ProjectsPage({ initialScrollTarget, clearScrollTarget }: Project
               </div>
             ))}
           </div>
+        ) : (
+          <div className="rom-info-card" style={{ marginTop: '24px' }}>
+            <p className="body-para" style={{ fontSize: '14px', marginBottom: '12px' }}>
+              Graphic design sets and commissioned visuals are curated on Instagram and The Scape Network. Drop image folders into <code>public/designs/</code> to render them here automatically.
+            </p>
+            <div className="support-actions">
+              <a href="https://instagram.com/isaiahscape" target="_blank" rel="noopener noreferrer" className="support-action-btn">
+                @isaiahscape on Instagram ↗
+              </a>
+              <a href="https://telegram.me/thescapenetwork" target="_blank" rel="noopener noreferrer" className="support-action-btn">
+                The Scape Network ↗
+              </a>
+            </div>
+          </div>
         )}
       </section>
 
@@ -504,34 +539,46 @@ export function ProjectsPage({ initialScrollTarget, clearScrollTarget }: Project
           <h2 className="section-section-title">photography</h2>
         </div>
         <p className="section-intro-text">
-          Visual captures, architectural lines, high-contrast framing, and street observations.
+          Street captures, urban perspectives, portraits, and light studies shot on Canon EOS 700D.
         </p>
 
-        {/* Photography Masonry Grid */}
-        <div className="masonry-grid">
-          {manifest.photography.map((imgItem, idx) => {
-            const isObj = typeof imgItem === 'object' && imgItem !== null;
-            const imagePath = isObj ? (imgItem as GalleryImage).path : (imgItem as string);
-            const aspect = isObj ? (imgItem as GalleryImage).aspect : undefined;
-            const fileName = imagePath.split('/').pop()?.split('.')[0]?.replace(/_/g, ' ') || 'Photo';
-            return (
-              <div 
-                key={idx} 
-                className="photo-card-wrapper masonry-item" 
-                onClick={() => setExpandedPhoto(imagePath)}
-                style={aspect ? { aspectRatio: String(aspect) } : undefined}
-              >
+        {hasPhotography ? (
+          <div className="masonry-grid">
+            {manifest.photography.map((imgItem, idx) => {
+              const isObj = typeof imgItem === 'object' && imgItem !== null;
+              const imagePath = isObj ? (imgItem as GalleryImage).path : (imgItem as string);
+              const aspect = isObj ? (imgItem as GalleryImage).aspect : undefined;
+              const fileName = imagePath.split('/').pop()?.split('.')[0]?.replace(/_/g, ' ') || 'Photo';
+              return (
                 <div 
-                  className="photo-frame masonry-frame"
+                  key={idx} 
+                  className="photo-card-wrapper masonry-item" 
+                  onClick={() => setExpandedPhoto(imagePath)}
                   style={aspect ? { aspectRatio: String(aspect) } : undefined}
                 >
-                  <LazyImage src={imagePath} alt={fileName} className="gallery-photo" native />
-                  <div className="photo-overlay"></div>
+                  <div 
+                    className="photo-frame masonry-frame"
+                    style={aspect ? { aspectRatio: String(aspect) } : undefined}
+                  >
+                    <LazyImage src={imagePath} alt={fileName} className="gallery-photo" native />
+                    <div className="photo-overlay"></div>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="rom-info-card" style={{ marginTop: '24px' }}>
+            <p className="body-para" style={{ fontSize: '14px', marginBottom: '12px' }}>
+              Photography archives are stored in the private gallery repo and shared on Instagram (@isaiahscape). Add photos to <code>public/photography/</code> and run <code>npm run build</code> to display them in this masonry grid.
+            </p>
+            <div className="support-actions">
+              <a href="https://instagram.com/isaiahscape" target="_blank" rel="noopener noreferrer" className="support-action-btn">
+                View Photography on Instagram ↗
+              </a>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Lightbox Modal */}

@@ -21,7 +21,7 @@ export function GithubSection({ gh }: GithubSectionProps) {
             <div className="github-graph-header">
               <div className="github-graph-header-left">
                 <span className="github-graph-dot-indicator"></span>
-                <span className="github-graph-user">github / not-ayan</span>
+                <span className="github-graph-user">github / isaiahscape</span>
               </div>
               <div className="github-graph-header-right">
                 {gh.loading
@@ -104,7 +104,7 @@ export function GithubSection({ gh }: GithubSectionProps) {
                   </svg>
                 </div>
                 <div className="github-username-info">
-                  <span className="github-mobile-user">not-ayan</span>
+                  <span className="github-mobile-user">isaiahscape</span>
                   <span className="github-mobile-status"><span className="status-dot"></span>{gh.loading ? 'Loading…' : gh.error ? 'Unavailable' : 'Active'}</span>
                 </div>
               </div>

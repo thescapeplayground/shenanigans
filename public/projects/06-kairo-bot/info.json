@@ -1,0 +1,12 @@
+{
+  "title": "Kairo's Old Bot",
+  "category": "Automation",
+  "description": "A legacy open-source modular Telegram utility bot built for fast channel administrative workflows, automated triggers, and group utilities.",
+  "tech": [
+    "Python",
+    "Telegram"
+  ],
+  "visitUrl": "",
+  "githubUrl": "https://github.com/isaiahscape/KairoKangedBot",
+  "status": "Archived"
+}

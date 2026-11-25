@@ -23,7 +23,7 @@ export interface GitHubData {
   recentCommits: Commit[]
 }
 
-const GITHUB_USER = 'not-ayan'
+const GITHUB_USER = 'isaiahscape'
 
 function calcStreak(days: ContribDay[]): number {
   // Walk backwards from today

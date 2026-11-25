@@ -1,3 +1,15 @@
+function computeAge(birthDate: Date): number {
+  const now = new Date();
+  let age = now.getFullYear() - birthDate.getFullYear();
+  const monthDiff = now.getMonth() - birthDate.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && now.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age;
+}
+
+const CURRENT_AGE = computeAge(new Date('2005-07-01T00:00:00+08:00'));
+
 interface AboutSectionProps {
   musicTrack: {
     title: string;
@@ -27,26 +39,26 @@ export function AboutSection({ musicTrack, musicError, FALLBACK_MUSIC_TRACK }: A
       <div className="info-grid">
         {/* Box 1: Location & Bio */}
         <div className="grid-box box-1 reveal-on-scroll reveal-left delay-2">
-          <h4 className="box-title">I am from Assam, India</h4>
+          <h4 className="box-title">I am from Davao, Philippines</h4>
           <p className="box-subtitle">
-            <span className="cursive-text">&</span> i am a <span className="cursive-text">23 y.o</span>
+            <span className="cursive-text">&</span> i am a <span className="cursive-text">{CURRENT_AGE} y.o</span>
           </p>
           <div className="badge-row">
-            <span className="badge">student</span>
-            <span className="badge">web designer</span>
-            <span className="badge">web dev</span>
+            <span className="badge">photographer</span>
             <span className="badge">graphic designer</span>
+            <span className="badge">web dev</span>
+            <span className="badge">it instructor</span>
           </div>
           <p className="and-more-text">and much more...</p>
         </div>
 
-        {/* Box 2: Education Timeline */}
+        {/* Box 2: Experience Timeline */}
         <div className="grid-box box-2 reveal-on-scroll delay-3">
           <div className="timeline">
             <div className="timeline-item">
               <div className="timeline-left">
                 <div className="timeline-badge badge-coral">
-                  <img src="/edu.svg" alt="Education" className="edu-icon" />
+                  <img src="/edu.svg" alt="Experience" className="edu-icon" />
                 </div>
                 <div className="timeline-connector">
                   <span className="diamond top-diamond"></span>
@@ -55,15 +67,15 @@ export function AboutSection({ musicTrack, musicError, FALLBACK_MUSIC_TRACK }: A
                 </div>
               </div>
               <div className="timeline-content">
-                <h5>Tezpur University</h5>
-                <p className="degree">MCA | 2025 - present</p>
+                <h5>The Scape Network</h5>
+                <p className="degree">Founder & Editor | 2023 - Present</p>
               </div>
             </div>
 
             <div className="timeline-item">
               <div className="timeline-left">
                 <div className="timeline-badge badge-gray">
-                  <img src="/edu.svg" alt="Education" className="edu-icon" />
+                  <img src="/edu.svg" alt="Experience" className="edu-icon" />
                 </div>
                 <div className="timeline-connector last-connector">
                   <span className="diamond top-diamond"></span>
@@ -71,8 +83,8 @@ export function AboutSection({ musicTrack, musicError, FALLBACK_MUSIC_TRACK }: A
                 </div>
               </div>
               <div className="timeline-content">
-                <h5>Chaiduar College</h5>
-                <p className="degree">B. Sc | 2021 - 2024</p>
+                <h5>Braintrust Computer Systems</h5>
+                <p className="degree">IT Instructor | 2023 - 2026</p>
               </div>
             </div>
           </div>
@@ -83,42 +95,42 @@ export function AboutSection({ musicTrack, musicError, FALLBACK_MUSIC_TRACK }: A
           <div className="gradient-circle"></div>
         </div>
 
-        {/* Box 4: Project automation & AOSP */}
+        {/* Box 4: Creative Collective & Projects */}
         <div className="grid-box box-4 reveal-on-scroll delay-2">
-          <h4 className="box-title">I automate stuff and maintain Axion AOSP</h4>
+          <h4 className="box-title">I shoot photos, design visuals & build practical tools</h4>
           <p className="box-subtitle-project">
-            i also maintain <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="highlight-link">wallwidgy</a> and a lot of other stuff
+            founder of <a href="https://telegram.me/thescapenetwork" target="_blank" rel="noopener noreferrer" className="highlight-link">The Scape Network</a> and maker of SnapWeb & Bedrock
           </p>
 
           <div className="project-cards-row">
             <div className="project-card">
-              <h6>Design community</h6>
+              <h6>The Scape Network</h6>
               <div className="project-links">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">Channel ↗</a>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">Chat ↗</a>
+                <a href="https://telegram.me/thescapenetwork" target="_blank" rel="noopener noreferrer">Channel ↗</a>
+                <a href="https://t.me/isaiahscape" target="_blank" rel="noopener noreferrer">Contact ↗</a>
               </div>
             </div>
 
             <div className="project-card">
-              <h6>Tech and stuff</h6>
+              <h6>SnapWeb Editor</h6>
               <div className="project-links">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">Channel ↗</a>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">Chat ↗</a>
+                <a href="https://snapweb.isaiahthings.me/" target="_blank" rel="noopener noreferrer">Live App ↗</a>
+                <a href="https://github.com/isaiahscape/snapweb-remixed" target="_blank" rel="noopener noreferrer">Repo ↗</a>
               </div>
             </div>
 
             <div className="project-card">
-              <h6>Wallpapers</h6>
+              <h6>FOSS Releases</h6>
               <div className="project-links">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">Channel ↗</a>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">Chat ↗</a>
+                <a href="https://foss.isaiahthings.me" target="_blank" rel="noopener noreferrer">Portal ↗</a>
+                <a href="https://github.com/isaiahscape/bedrock" target="_blank" rel="noopener noreferrer">Bedrock ↗</a>
               </div>
             </div>
 
             <div className="project-card">
-              <h6>Music Dump</h6>
+              <h6>Playground</h6>
               <div className="project-links">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">Channel ↗</a>
+                <a href="https://play.isaiahthings.me" target="_blank" rel="noopener noreferrer">Visit ↗</a>
               </div>
             </div>
           </div>

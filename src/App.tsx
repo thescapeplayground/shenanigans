@@ -12,205 +12,210 @@ import './App.css'
 
 const WORDS = [
   'Hello',       // English
+  'Kumusta',     // Filipino / Bisaya
   'Bonjour',     // French
   'Ciao',        // Italian
   'Hola',        // Spanish
-  'नमस्ते',       // Hindi
   'こんにちは',    // Japanese
   'Olá',         // Portuguese
   '你好',        // Chinese
   'Hallo'        // German
 ]
 
-const LOCAL_DEFAULT_PROJECTS = [
+function computeAge(birthDate: Date): number {
+  const now = new Date()
+  let age = now.getFullYear() - birthDate.getFullYear()
+  const monthDiff = now.getMonth() - birthDate.getMonth()
+  if (monthDiff < 0 || (monthDiff === 0 && now.getDate() < birthDate.getDate())) {
+    age--
+  }
+  return age
+}
+
+const BIRTHDAY = new Date('2005-07-01T00:00:00+08:00')
+const CURRENT_AGE = computeAge(BIRTHDAY)
+
+interface ProjectItem {
+  id: string
+  title: string
+  category: string
+  description: string
+  tech: string[]
+  visitUrl?: string
+  githubUrl?: string
+  status: string
+  photos?: string[]
+}
+
+interface ProjectMockups {
+  back: {
+    title: string
+    items: Array<{ name: string; gradient: string }>
+  }
+  middle: {
+    gradient: string
+  }
+  front: {
+    title: string
+    walls: string[]
+  }
+}
+
+const LOCAL_DEFAULT_PROJECTS: ProjectItem[] = [
   {
-    id: 'wallwidgy',
-    title: 'Wallwidgy',
+    id: '01-material-explorer',
+    title: 'Material Explorer',
+    category: 'Android App',
+    description: 'An Android APK explorer and file manager built with Material Design 3 principles for intuitive navigation, APK inspection, and dynamic theming.',
+    tech: ['Android', 'Kotlin', 'Material Design 3'],
+    visitUrl: 'https://github.com/isaiahscape/materialexp/releases',
+    githubUrl: 'https://github.com/isaiahscape/materialexp',
+    status: 'Active',
+    photos: ['/projects/01-material-explorer/preview.svg']
+  },
+  {
+    id: '02-bedrock',
+    title: 'Bedrock',
+    category: 'Android App',
+    description: 'A minimalist monochrome notes editor for Android with Markdown live preview, interactive checklists, SHA-256 local encryption, and offline sync.',
+    tech: ['Kotlin', 'Jetpack Compose', 'Android', 'Markdown'],
+    visitUrl: 'https://foss.isaiahthings.me',
+    githubUrl: 'https://github.com/isaiahscape/bedrock',
+    status: 'Active',
+    photos: ['/projects/02-bedrock/preview.svg']
+  },
+  {
+    id: '03-snapweb',
+    title: 'Snapseed for Web',
     category: 'Web App',
-    description: 'A wallpaper site made to feel premium while providing a curated collection of high quality wallpapers. Features dynamic filtering and custom palettes.',
-    tech: ['React', 'JavaScript', 'Tailwind CSS', 'Framer Motion'],
-    visitUrl: 'https://wallwidgy.app',
-    githubUrl: 'https://github.com/not-ayan/wallwidgy',
+    description: 'A zero-server client-side photo processing web app inspired by Snapseed, featuring tactile gesture tuning, histograms, and RAW-like filters.',
+    tech: ['TypeScript', 'Tailwind CSS', 'HTML5'],
+    visitUrl: 'https://snapweb.isaiahthings.me/',
+    githubUrl: 'https://github.com/isaiahscape/snapweb-remixed',
     status: 'Active',
-    photos: ['/projects/wallwidgy/wallwidgy.png']
+    photos: ['/projects/03-snapweb/preview.svg']
   },
   {
-    id: 'axion-os',
-    title: 'Axion OS',
-    category: 'System',
-    description: 'A custom Android Open Source Project operating system focused on performance, battery life, and clean UI configurations. Rebuilt kernel optimizations.',
-    tech: ['Android', 'C++', 'Java', 'Linux'],
-    visitUrl: 'https://github.com',
-    githubUrl: 'https://github.com',
-    status: 'Maintained',
-    photos: ['/projects/axion-os/hero.jpg']
-  },
-  {
-    id: 'design-hub',
-    title: 'Design Hub',
-    category: 'Design Platform',
-    description: 'A platform connecting web designers and developers to share mockups, feedback, and assets in a collaborative blueprint workspace.',
-    tech: ['Figma', 'React', 'CSS3', 'Node.js'],
-    visitUrl: 'https://github.com',
-    githubUrl: 'https://github.com',
+    id: '04-mikrotik-manager',
+    title: 'Mikrotik Manager',
+    category: 'Network Utility',
+    description: 'An automated helper utility designed to manage DHCP & IP allocations, prevent IP conflicts, and query active subnets on Mikrotik routers.',
+    tech: ['TypeScript', 'Node.js'],
+    visitUrl: '',
+    githubUrl: 'https://github.com/isaiahscape/mikrotik-ipoemgr',
     status: 'Completed',
-    photos: ['/projects/design-hub/gradient.png']
+    photos: ['/projects/04-mikrotik-manager/preview.svg']
   },
   {
-    id: 'realm-ui',
-    title: 'Realm UI',
-    category: 'Library',
-    description: 'A premium component library featuring dark mode, glassmorphism UI blocks, and highly fluid micro-animations for developer efficiency.',
-    tech: ['Next.js', 'Jotai', 'Tailwind CSS', 'Radix UI'],
-    visitUrl: 'https://github.com',
-    githubUrl: 'https://github.com',
+    id: '05-the-scape-network',
+    title: 'The Scape Network',
+    category: 'Community',
+    description: 'A digital social update log, creative archive channel, and interactive developer/design hub built around Telegram under the Scape Sandbox banner.',
+    tech: ['Telegram', 'Figma'],
+    visitUrl: 'https://telegram.me/thescapenetwork',
+    githubUrl: '',
     status: 'Active',
-    photos: ['/projects/realm-ui/architecture.png']
+    photos: ['/projects/05-the-scape-network/preview.svg']
   },
   {
-    id: '06-openaula',
-    title: 'OpenAULA',
-    category: 'WebHID App',
-    description: 'A zero-install, cross-platform WebHID controller for the AULA F75 mechanical keyboard. Reverse-engineered proprietary USB HID protocols to control 15 hardware lighting animations, per-key RGB painting, and device parameters directly in the browser.',
-    tech: ['React', 'TypeScript', 'WebHID API', 'Tailwind CSS'],
-    visitUrl: 'https://openaula.vercel.app',
-    githubUrl: 'https://github.com/not-ayan/aula-f75-web',
-    status: 'Active',
-    photos: ['/projects/06-openaula/main.png']
+    id: '06-kairo-bot',
+    title: "Kairo's Old Bot",
+    category: 'Automation',
+    description: 'A legacy open-source modular Telegram utility bot built for fast channel administrative workflows, automated triggers, and group utilities.',
+    tech: ['Python', 'Telegram'],
+    visitUrl: '',
+    githubUrl: 'https://github.com/isaiahscape/KairoKangedBot',
+    status: 'Archived',
+    photos: ['/projects/06-kairo-bot/preview.svg']
   }
 ]
 
-const DEFAULT_MOCKUPS: Record<string, { logo: string; mockups: any }> = {
-  'wallwidgy': {
-    logo: 'w',
+const DEFAULT_MOCKUPS: Record<string, { logo: string; mockups: ProjectMockups }> = {
+  '01-material-explorer': {
+    logo: 'm',
     mockups: {
       back: {
-        title: 'Explore Categories',
+        title: 'File Operations',
         items: [
-          { name: 'Nature', gradient: 'linear-gradient(135deg, #1f4068, #162447)' },
-          { name: 'Anime', gradient: 'linear-gradient(135deg, #F1A5A0, #4e1a3d)' },
-          { name: 'Art', gradient: 'linear-gradient(135deg, #ffd369, #393e46)' }
+          { name: 'APKs', gradient: 'linear-gradient(135deg, #1f4068, #162447)' },
+          { name: 'Storage', gradient: 'linear-gradient(135deg, #F1A5A0, #4e1a3d)' },
+          { name: 'Material You', gradient: 'linear-gradient(135deg, #ffd369, #393e46)' }
         ]
       },
       middle: {
         gradient: 'linear-gradient(to top, #08060d, #cdc8c5)'
       },
       front: {
-        title: 'Wallwidgy',
-        walls: [
-          'linear-gradient(to bottom, #30cfd0 0%, #330867 100%)',
-          'linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)',
-          'linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%)',
-          'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-        ]
+        title: 'Material Explorer',
+        walls: []
       }
     }
   },
-  'axion-os': {
-    logo: 'a',
+  '02-bedrock': {
+    logo: 'b',
     mockups: {
       back: {
-        title: 'System Settings',
+        title: 'Local Vault',
         items: [
-          { name: 'Themes', gradient: 'linear-gradient(135deg, #0f2027, #203a43)' },
-          { name: 'Battery', gradient: 'linear-gradient(135deg, #11998e, #38ef7d)' },
-          { name: 'Gestures', gradient: 'linear-gradient(135deg, #8a2387, #e94057)' }
+          { name: 'Markdown', gradient: 'linear-gradient(135deg, #0f2027, #203a43)' },
+          { name: 'SHA-256', gradient: 'linear-gradient(135deg, #11998e, #38ef7d)' },
+          { name: 'Offline Sync', gradient: 'linear-gradient(135deg, #8a2387, #e94057)' }
         ]
       },
       middle: {
         gradient: 'linear-gradient(135deg, #141e30, #243b55)'
       },
       front: {
-        title: 'Axion OS',
-        walls: [
-          'linear-gradient(135deg, #0f2027, #203a43, #2c5364)',
-          'linear-gradient(to right, #24243e, #300030, #f7797d)',
-          'linear-gradient(135deg, #11998e, #38ef7d)',
-          'linear-gradient(135deg, #7f00ff, #e100ff)'
-        ]
+        title: 'Bedrock',
+        walls: []
       }
     }
   },
-  'design-hub': {
-    logo: 'd',
+  '03-snapweb': {
+    logo: 's',
     mockups: {
       back: {
-        title: 'Community Feed',
+        title: 'Canvas Pipeline',
         items: [
-          { name: 'Hot UI', gradient: 'linear-gradient(135deg, #f857a6, #ff5858)' },
-          { name: 'Feedback', gradient: 'linear-gradient(135deg, #4facfe, #00f2fe)' },
-          { name: 'Assets', gradient: 'linear-gradient(135deg, #f12711, #f5af19)' }
+          { name: 'Ambiance', gradient: 'linear-gradient(135deg, #f857a6, #ff5858)' },
+          { name: 'Histogram', gradient: 'linear-gradient(135deg, #4facfe, #00f2fe)' },
+          { name: 'Zero Server', gradient: 'linear-gradient(135deg, #f12711, #f5af19)' }
         ]
       },
       middle: {
         gradient: 'linear-gradient(135deg, #000428, #004e92)'
       },
       front: {
-        title: 'Design Hub',
-        walls: [
-          'linear-gradient(135deg, #ff0844 0%, #ffb199 100%)',
-          'linear-gradient(to top, #30cfd0 0%, #330867 100%)',
-          'linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9798d5 75%, #a2a1dc 87%, #b5aeeb 100%)',
-          'linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%)'
-        ]
+        title: 'SnapWeb',
+        walls: []
       }
     }
   },
-  'realm-ui': {
-    logo: 'r',
+  '04-mikrotik-manager': {
+    logo: 'mk',
     mockups: {
       back: {
-        title: 'Component Docs',
+        title: 'IPoE Subnets',
         items: [
-          { name: 'Buttons', gradient: 'linear-gradient(135deg, #3a1c1c, #6b2d2d)' },
-          { name: 'Cards', gradient: 'linear-gradient(135deg, #1c2a3a, #2d4f6b)' },
-          { name: 'Modals', gradient: 'linear-gradient(135deg, #1c3a27, #2d6b45)' }
+          { name: 'DHCP Leases', gradient: 'linear-gradient(135deg, #3a1c1c, #6b2d2d)' },
+          { name: 'Conflict Check', gradient: 'linear-gradient(135deg, #1c2a3a, #2d4f6b)' },
+          { name: 'RouterOS API', gradient: 'linear-gradient(135deg, #1c3a27, #2d6b45)' }
         ]
       },
       middle: {
         gradient: 'linear-gradient(to top, #0f172a, #1e293b)'
       },
       front: {
-        title: 'Realm UI',
-        walls: [
-          'linear-gradient(to bottom, #1e293b 0%, #0f172a 100%)',
-          'linear-gradient(120deg, #38bdf8 0%, #0369a1 100%)',
-          'linear-gradient(to top, #ec4899 0%, #be185d 100%)',
-          'linear-gradient(135deg, #818cf8 0%, #4338ca 100%)'
-        ]
-      }
-    }
-  },
-  '06-openaula': {
-    logo: 'o',
-    mockups: {
-      back: {
-        title: 'Hardware Profiles',
-        items: [
-          { name: 'Wave', gradient: 'linear-gradient(135deg, #00f2fe, #4facfe)' },
-          { name: 'Reactive', gradient: 'linear-gradient(135deg, #f093fb, #f5576c)' },
-          { name: 'Matrix RGB', gradient: 'linear-gradient(135deg, #0575e6, #00f260)' }
-        ]
-      },
-      middle: {
-        gradient: 'linear-gradient(to top, #090a0f, #1b2838)'
-      },
-      front: {
-        title: 'OpenAULA Web',
-        walls: [
-          'linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)',
-          'linear-gradient(135deg, #111827 0%, #1f2937 100%)',
-          'linear-gradient(to top, #10b981 0%, #06b6d4 100%)',
-          'linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%)'
-        ]
+        title: 'Mikrotik Manager',
+        walls: []
       }
     }
   }
 }
 
-const LASTFM_API_KEY = import.meta.env.VITE_LASTFM_API_KEY || ''
-const LASTFM_USER = import.meta.env.VITE_LASTFM_USER || ''
-const LASTFM_PROFILE_URL = LASTFM_USER ? `https://www.last.fm/user/${LASTFM_USER}` : ''
+const LASTFM_API_KEY = import.meta.env.VITE_LASTFM_API_KEY || 'c0a8e935644458896a1bda5e8468ec52'
+const LASTFM_USER = import.meta.env.VITE_LASTFM_USER || 'isaiahthings'
+const LASTFM_PROFILE_URL = `https://www.last.fm/user/${LASTFM_USER}`
 
 type MusicTrack = {
   title: string
@@ -221,10 +226,10 @@ type MusicTrack = {
 }
 
 const FALLBACK_MUSIC_TRACK: MusicTrack = {
-  title: 'babydoll',
-  artist: 'boywithuke',
-  url: LASTFM_PROFILE_URL,
-  imageUrl: '/gradient.png',
+  title: 'seasons',
+  artist: 'wave to earth',
+  url: 'https://www.last.fm/music/wave+to+earth/_/seasons',
+  imageUrl: '/assets/hero.jpg',
   isNowPlaying: false
 }
 
@@ -325,6 +330,14 @@ function getTechIconUrl(tech: string): string {
     'linux': 'linux',
     'android': 'android',
     'java': 'openjdk',
+    'kotlin': 'kotlin',
+    'jetpackcompose': 'jetpackcompose',
+    'materialdesign3': 'materialdesign',
+    'markdown': 'markdown',
+    'telegram': 'telegram',
+    'python': 'python',
+    'figma': 'figma',
+    'typescript': 'typescript',
   }
 
   const finalSlug = customMapping[slug] || slug
@@ -360,7 +373,7 @@ function App() {
     return getPageFromHash(window.location.hash)
   })
   const [initialScrollTarget, setInitialScrollTarget] = useState<string | undefined>(undefined)
-  const [manifestProjects, setManifestProjects] = useState<any[]>(LOCAL_DEFAULT_PROJECTS)
+  const [manifestProjects, setManifestProjects] = useState<ProjectItem[]>(LOCAL_DEFAULT_PROJECTS)
   const [failedIcons, setFailedIcons] = useState<Record<string, boolean>>({})
 
   useEffect(() => {
@@ -398,7 +411,7 @@ function App() {
   const handlePageChange = (page: 'home' | 'about' | 'projects' | 'blogs') => {
     setCurrentPage(page)
     window.location.hash = page === 'home' ? '' : page
-    window.scrollTo({ top: 0, behavior: 'instant' as any })
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }
 
   const handleViewProjectDetails = (targetId: string) => {
@@ -440,7 +453,7 @@ function App() {
         minute: '2-digit',
         second: '2-digit',
         hour12: true,
-        timeZone: 'Asia/Kolkata'
+        timeZone: 'Asia/Manila'
       }
       setLocalTime(new Intl.DateTimeFormat('en-US', options).format(new Date()))
     }
@@ -582,12 +595,12 @@ function App() {
         </div>
       )}
 
-      {/* Page Wrapper matching WallWidgy's blueprint layout */}
+      {/* Page Wrapper */}
       <div className="page-wrapper">
         {/* Technical Header */}
         <header className="tech-header">
           <div className="tech-header-col col-1">
-            <a href="#home" onClick={(e) => { e.preventDefault(); handlePageChange('home'); }} className="tech-logo" style={{ cursor: 'pointer' }}>not_ayan</a>
+            <a href="#home" onClick={(e) => { e.preventDefault(); handlePageChange('home'); }} className="tech-logo" style={{ cursor: 'pointer' }}>isaiahscape</a>
           </div>
           <div className="tech-header-col col-3">
             <button onClick={toggleTheme} className="theme-toggle-btn" aria-label="Toggle theme">
@@ -630,26 +643,26 @@ function App() {
               <div className="info-grid">
                 {/* Box 1: Location & Bio */}
                 <div className="grid-box box-1 reveal-on-scroll reveal-left delay-2">
-                  <h4 className="box-title">I am from Assam, India</h4>
+                  <h4 className="box-title">I am from Davao, Philippines</h4>
                   <p className="box-subtitle">
-                    <span className="cursive-text">&</span> i am a <span className="cursive-text">23 y.o</span>
+                    <span className="cursive-text">&</span> i am a <span className="cursive-text">{CURRENT_AGE} y.o</span>
                   </p>
                   <div className="badge-row">
-                    <span className="badge">student</span>
-                    <span className="badge">web designer</span>
-                    <span className="badge">web dev</span>
+                    <span className="badge">photographer</span>
                     <span className="badge">graphic designer</span>
+                    <span className="badge">web dev</span>
+                    <span className="badge">it instructor</span>
                   </div>
                   <p className="and-more-text">and much more...</p>
                 </div>
 
-                {/* Box 2: Education Timeline */}
+                {/* Box 2: Experience Timeline */}
                 <div className="grid-box box-2 reveal-on-scroll delay-3">
                   <div className="timeline">
                     <div className="timeline-item">
                       <div className="timeline-left">
                         <div className="timeline-badge badge-coral">
-                          <img src="/edu.svg" alt="Education" className="edu-icon" />
+                          <img src="/edu.svg" alt="Experience" className="edu-icon" />
                         </div>
                         <div className="timeline-connector">
                           <span className="diamond top-diamond"></span>
@@ -658,15 +671,15 @@ function App() {
                         </div>
                       </div>
                       <div className="timeline-content">
-                        <h5>Tezpur University</h5>
-                        <p className="degree">MCA | 2025 - present</p>
+                        <h5>The Scape Network</h5>
+                        <p className="degree">Founder & Editor | 2023 - Present</p>
                       </div>
                     </div>
 
                     <div className="timeline-item">
                       <div className="timeline-left">
                         <div className="timeline-badge badge-gray">
-                          <img src="/edu.svg" alt="Education" className="edu-icon" />
+                          <img src="/edu.svg" alt="Experience" className="edu-icon" />
                         </div>
                         <div className="timeline-connector last-connector">
                           <span className="diamond top-diamond"></span>
@@ -674,8 +687,8 @@ function App() {
                         </div>
                       </div>
                       <div className="timeline-content">
-                        <h5>Chaiduar College</h5>
-                        <p className="degree">B. Sc | 2021 - 2024</p>
+                        <h5>Braintrust Computer Systems</h5>
+                        <p className="degree">IT Instructor | 2023 - 2026</p>
                       </div>
                     </div>
                   </div>
@@ -686,42 +699,42 @@ function App() {
                   <div className="gradient-circle"></div>
                 </div>
 
-                {/* Box 4: Project automation & AOSP */}
+                {/* Box 4: Creative Collective & Projects */}
                 <div className="grid-box box-4 reveal-on-scroll delay-2">
-                  <h4 className="box-title">I automate stuff and maintain Axion AOSP</h4>
+                  <h4 className="box-title">I shoot photos, design visuals & build practical tools</h4>
                   <p className="box-subtitle-project">
-                    i also maintain <a href="Wallwidgy.app" target="_blank" rel="noopener noreferrer" className="highlight-link">wallwidgy</a> and a lot of other stuff
+                    founder of <a href="https://telegram.me/thescapenetwork" target="_blank" rel="noopener noreferrer" className="highlight-link">The Scape Network</a> and maker of SnapWeb & Bedrock
                   </p>
 
                   <div className="project-cards-row">
                     <div className="project-card">
-                      <h6>Design community</h6>
+                      <h6>The Scape Network</h6>
                       <div className="project-links">
-                        <a href="https://t.me/designverse_zero" target="_blank" rel="noopener noreferrer">Channel ↗</a>
-                        <a href="https://t.me/designverse_chat" target="_blank" rel="noopener noreferrer">Chat ↗</a>
+                        <a href="https://telegram.me/thescapenetwork" target="_blank" rel="noopener noreferrer">Channel ↗</a>
+                        <a href="https://t.me/isaiahscape" target="_blank" rel="noopener noreferrer">Contact ↗</a>
                       </div>
                     </div>
 
                     <div className="project-card">
-                      <h6>Tech and stuff</h6>
+                      <h6>SnapWeb Editor</h6>
                       <div className="project-links">
-                        <a href="https://t.me/ayan_rants" target="_blank" rel="noopener noreferrer">Channel ↗</a>
-                        <a href="https://t.me/stoopid_ayan" target="_blank" rel="noopener noreferrer">Chat ↗</a>
+                        <a href="https://snapweb.isaiahthings.me/" target="_blank" rel="noopener noreferrer">Live App ↗</a>
+                        <a href="https://github.com/isaiahscape/snapweb-remixed" target="_blank" rel="noopener noreferrer">Repo ↗</a>
                       </div>
                     </div>
 
                     <div className="project-card">
-                      <h6>Wallpapers</h6>
+                      <h6>FOSS Releases</h6>
                       <div className="project-links">
-                        <a href="https://t.me/wallwidgy" target="_blank" rel="noopener noreferrer">Channel ↗</a>
-                        <a href="https://t.me/+z-9ISn9K-FQ2MzZl" target="_blank" rel="noopener noreferrer">Chat ↗</a>
+                        <a href="https://foss.isaiahthings.me" target="_blank" rel="noopener noreferrer">Portal ↗</a>
+                        <a href="https://github.com/isaiahscape/bedrock" target="_blank" rel="noopener noreferrer">Bedrock ↗</a>
                       </div>
                     </div>
 
                     <div className="project-card">
-                      <h6>Music Dump</h6>
+                      <h6>Playground</h6>
                       <div className="project-links">
-                        <a href="https://t.me/ayandumps_music" target="_blank" rel="noopener noreferrer">Channel ↗</a>
+                        <a href="https://play.isaiahthings.me" target="_blank" rel="noopener noreferrer">Visit ↗</a>
                       </div>
                     </div>
                   </div>
@@ -862,7 +875,7 @@ function App() {
                   <span className="design-redirect-tag">// CREATIVE WORK</span>
                   <h3 className="design-redirect-title">Looking for my design & photography?</h3>
                   <p className="design-redirect-desc">
-                    Explore a compiled gallery of typography poster experiments, vector branding, interactive user interface systems, and street photography.
+                    Explore my projects, brand marks, visual experiments, and street photography work under The Scape Network.
                   </p>
                 </div>
                 <div className="design-redirect-actions">
@@ -883,25 +896,25 @@ function App() {
                 <div className="skills-left reveal-on-scroll reveal-left delay-1">
                   <span className="skills-sub">my expertise</span>
                   <h2 className="skills-main-title">
-                    crafting digital <span className="cursive-title-text">experiences</span> & solid code.
+                    crafting visual <span className="cursive-title-text">stories</span> & functional code.
                   </h2>
                   <p className="skills-philosophy">
-                    Specializing in building premium frontends, optimizing user interfaces, and custom OS development. I focus on details that make software unforgettable.
+                    Drawn to the intersection of creativity and technology — framing clean shots, building minimalist web apps, Android tools, and reliable network utilities.
                   </p>
                   <div className="skills-cta-box">
                     <span className="cta-spark">✦</span>
-                    <p className="cta-text">Always open to learning new technologies and hacking on interesting projects.</p>
+                    <p className="cta-text">No fluff, just honest work — from photography and branding to hardware builds and full-stack tooling.</p>
                   </div>
                 </div>
 
                 {/* Right Column: Skills Categories */}
                 <div className="skills-right">
                   <div className="skills-category reveal-on-scroll delay-2">
-                    <h3 className="category-title">01 / Frontend & Dev</h3>
+                    <h3 className="category-title">01 / Frontend & Web</h3>
                     <ul className="skills-list">
                       <li className="skill-item">
                         <span className="skill-num">01</span>
-                        <span className="skill-name">React & React Native</span>
+                        <span className="skill-name">React & Next.js</span>
                         <span className="skill-dot"></span>
                       </li>
                       <li className="skill-item">
@@ -911,64 +924,64 @@ function App() {
                       </li>
                       <li className="skill-item">
                         <span className="skill-num">03</span>
-                        <span className="skill-name">TailwindCSS & CSS Grid</span>
+                        <span className="skill-name">Tailwind CSS & Framer Motion</span>
                         <span className="skill-dot"></span>
                       </li>
                       <li className="skill-item">
                         <span className="skill-num">04</span>
-                        <span className="skill-name">HTML5 / Semantic Web</span>
+                        <span className="skill-name">Node.js (Express) & Vite</span>
                         <span className="skill-dot"></span>
                       </li>
                     </ul>
                   </div>
 
                   <div className="skills-category reveal-on-scroll delay-3">
-                    <h3 className="category-title">02 / Design & Creative</h3>
+                    <h3 className="category-title">02 / Design & Visuals</h3>
                     <ul className="skills-list">
                       <li className="skill-item">
                         <span className="skill-num">05</span>
-                        <span className="skill-name">UI/UX Design Systems</span>
+                        <span className="skill-name">Photography & Light Tuning</span>
                         <span className="skill-dot"></span>
                       </li>
                       <li className="skill-item">
                         <span className="skill-num">06</span>
-                        <span className="skill-name">Figma prototyping</span>
+                        <span className="skill-name">Graphic Design & Identities</span>
                         <span className="skill-dot"></span>
                       </li>
                       <li className="skill-item">
                         <span className="skill-num">07</span>
-                        <span className="skill-name">Graphic Design & Vectors</span>
+                        <span className="skill-name">Figma & UI Systems</span>
                         <span className="skill-dot"></span>
                       </li>
                       <li className="skill-item">
                         <span className="skill-num">08</span>
-                        <span className="skill-name">Typography & Layouts</span>
+                        <span className="skill-name">HTML5 Canvas & WebGL</span>
                         <span className="skill-dot"></span>
                       </li>
                     </ul>
                   </div>
 
                   <div className="skills-category reveal-on-scroll delay-4">
-                    <h3 className="category-title">03 / Systems & Core</h3>
+                    <h3 className="category-title">03 / Mobile, Systems & IT</h3>
                     <ul className="skills-list">
                       <li className="skill-item">
                         <span className="skill-num">09</span>
-                        <span className="skill-name">Android ROMs & AOSP</span>
+                        <span className="skill-name">Kotlin & Jetpack Compose</span>
                         <span className="skill-dot"></span>
                       </li>
                       <li className="skill-item">
                         <span className="skill-num">10</span>
-                        <span className="skill-name">C++ / Java development</span>
+                        <span className="skill-name">Android & Material Design 3</span>
                         <span className="skill-dot"></span>
                       </li>
                       <li className="skill-item">
                         <span className="skill-num">11</span>
-                        <span className="skill-name">Git & Command Line</span>
+                        <span className="skill-name">Mikrotik & IPoE Networking</span>
                         <span className="skill-dot"></span>
                       </li>
                       <li className="skill-item">
                         <span className="skill-num">12</span>
-                        <span className="skill-name">Automation & Scripting</span>
+                        <span className="skill-name">PC Builds, Linux & Diagnostics</span>
                         <span className="skill-dot"></span>
                       </li>
                     </ul>
@@ -983,15 +996,15 @@ function App() {
                 <div className="setup-header reveal-on-scroll reveal-left delay-1">
                   <h2 className="setup-main-title">my setup.</h2>
                   <p className="setup-philosophy">
-                    A carefully curated selection of gear and daily drivers that power my design and development workflows.
+                    A curated record of custom hardware configurations, camera gear, audio kits, and daily drivers.
                   </p>
                 </div>
 
                 <div className="setup-grid">
-                  {/* Monitor Card: Spans 7 Columns */}
+                  {/* Workstation PC Card: Spans 7 Columns */}
                   <div className="setup-card card-monitor span-7 reveal-on-scroll delay-2">
                     <div className="setup-card-header">
-                      <span className="setup-tag">// DISPLAY</span>
+                      <span className="setup-tag">// WORKSTATION PC</span>
                       <div className="setup-icon-wrapper">
                         <svg className="setup-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                           <rect x="2" y="3" width="20" height="13" rx="1.5" />
@@ -1000,11 +1013,11 @@ function App() {
                       </div>
                     </div>
                     <div className="setup-card-body">
-                      <h3 className="setup-item-title">Acer 21.5" Monitor</h3>
+                      <h3 className="setup-item-title">Ryzen 7 5700X3D & RTX 4060</h3>
                       <div className="setup-specs">
-                        <span className="spec-tag">100Hz Refresh</span>
-                        <span className="spec-tag">99% sRGB Color</span>
-                        <span className="spec-tag">1ms Response</span>
+                        <span className="spec-tag">MSI MAG B550 Tomahawk</span>
+                        <span className="spec-tag">32GB FURY DDR4</span>
+                        <span className="spec-tag">1TB 990 EVO NVMe</span>
                       </div>
                     </div>
                   </div>
@@ -1021,31 +1034,30 @@ function App() {
                       </div>
                     </div>
                     <div className="setup-card-body">
-                      <h3 className="setup-item-title">Aula F75</h3>
+                      <h3 className="setup-item-title">Aula F75 & HHKB Pro</h3>
                       <div className="setup-specs">
-                        <span className="spec-tag">75% Form Factor</span>
-                        <span className="spec-tag">THOCC</span>
-                        <span className="spec-tag">Gasket Mounted</span>
+                        <span className="spec-tag">75% Wireless Gasket</span>
+                        <span className="spec-tag">HHKB Professional</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Tablet Card: Spans 4 Columns */}
+                  {/* Laptop Card: Spans 4 Columns */}
                   <div className="setup-card card-tablet span-4 reveal-on-scroll delay-2">
                     <div className="setup-card-header">
-                      <span className="setup-tag">// TABLET</span>
+                      <span className="setup-tag">// LAPTOP</span>
                       <div className="setup-icon-wrapper">
                         <svg className="setup-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                          <rect x="4" y="2" width="16" height="20" rx="2" />
-                          <circle cx="12" cy="20" r="0.5" fill="currentColor" />
+                          <rect x="3" y="4" width="18" height="12" rx="2" />
+                          <path d="M2 20h20" />
                         </svg>
                       </div>
                     </div>
                     <div className="setup-card-body">
-                      <h3 className="setup-item-title">Motorola Pad 60 Neo 5G</h3>
+                      <h3 className="setup-item-title">Lenovo Ryzen 5 7530U</h3>
                       <div className="setup-specs">
-                        <span className="spec-tag">COC!!!!</span>
-                        <span className="spec-tag">Media & Notes</span>
+                        <span className="spec-tag">16GB DDR4-3200</span>
+                        <span className="spec-tag">512GB NVMe • 15.6" FHD</span>
                       </div>
                     </div>
                   </div>
@@ -1062,10 +1074,10 @@ function App() {
                       </div>
                     </div>
                     <div className="setup-card-body">
-                      <h3 className="setup-item-title">Motorola G54 5G</h3>
+                      <h3 className="setup-item-title">Samsung Galaxy S24 5G</h3>
                       <div className="setup-specs">
-                        <span className="spec-tag">Primary Driver</span>
-                        <span className="spec-tag">AxionAosp ftw</span>
+                        <span className="spec-tag">Exynos 2400</span>
+                        <span className="spec-tag">120Hz AMOLED 2X</span>
                       </div>
                     </div>
                   </div>
@@ -1082,41 +1094,39 @@ function App() {
                       </div>
                     </div>
                     <div className="setup-card-body">
-                      <h3 className="setup-item-title">Logitech G102</h3>
+                      <h3 className="setup-item-title">Pulsar TenZ Signature</h3>
                       <div className="setup-specs">
-                        <span className="spec-tag">8000 DPI Sensor</span>
-                        <span className="spec-tag">Lightsync RGB</span>
+                        <span className="spec-tag">XS-1 Sensor</span>
+                        <span className="spec-tag">32,000 DPI • 8K PR</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* IEM 1 Card: Spans 6 Columns */}
+                  {/* Camera Card: Spans 6 Columns */}
                   <div className="setup-card card-iem-1 span-6 reveal-on-scroll delay-2">
                     <div className="setup-card-header">
-                      <span className="setup-tag">// AUDIO / IEM</span>
+                      <span className="setup-tag">// CAMERA</span>
                       <div className="setup-icon-wrapper">
                         <svg className="setup-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                          <path d="M3 14c0-4.97 4.03-9 9-9s9 4.03 9 9" />
-                          <rect x="3" y="12" width="4" height="6" rx="1.5" />
-                          <rect x="17" y="12" width="4" height="6" rx="1.5" />
-                          <path d="M7 15h10M9 18h6" />
+                          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                          <circle cx="12" cy="13" r="4" />
                         </svg>
                       </div>
                     </div>
                     <div className="setup-card-body">
-                      <h3 className="setup-item-title">7Hz x Crinacle Zero:2</h3>
+                      <h3 className="setup-item-title">Canon EOS 700D</h3>
                       <div className="setup-specs">
-                        <span className="spec-tag">Audiocular C03 Cable</span>
-                        <span className="spec-tag">Tuned by Crinacle</span>
-                        <span className="spec-tag">10mm Dynamic Driver</span>
+                        <span className="spec-tag">EF 50mm f/1.8 STM</span>
+                        <span className="spec-tag">EF-S 18-55mm IS STM</span>
+                        <span className="spec-tag">Street & Portraits</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* IEM 2 Card: Spans 6 Columns */}
+                  {/* Audio / IEM & DAC Card: Spans 6 Columns */}
                   <div className="setup-card card-iem-2 span-6 reveal-on-scroll delay-3">
                     <div className="setup-card-header">
-                      <span className="setup-tag">// AUDIO / IEM</span>
+                      <span className="setup-tag">// AUDIO / IEM & DAC</span>
                       <div className="setup-icon-wrapper">
                         <svg className="setup-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                           <path d="M3 14c0-4.97 4.03-9 9-9s9 4.03 9 9" />
@@ -1127,11 +1137,11 @@ function App() {
                       </div>
                     </div>
                     <div className="setup-card-body">
-                      <h3 className="setup-item-title">GK Kunten</h3>
+                      <h3 className="setup-item-title">Simgot EW300 & TRN Black Pearl</h3>
                       <div className="setup-specs">
-                        <span className="spec-tag">10mm Super-Linear Driver</span>
-                        <span className="spec-tag">Wired IEM</span>
-                        <span className="spec-tag">V-Shaped Tuning</span>
+                        <span className="spec-tag">1DD + Planar + PZT</span>
+                        <span className="spec-tag">TRN T2 16 Core</span>
+                        <span className="spec-tag">CS43131 DAC / CB5100 Amp</span>
                       </div>
                     </div>
                   </div>
@@ -1149,7 +1159,7 @@ function App() {
                     <div className="github-graph-header">
                       <div className="github-graph-header-left">
                         <span className="github-graph-dot-indicator"></span>
-                        <span className="github-graph-user">github / not-ayan</span>
+                        <span className="github-graph-user">github / isaiahscape</span>
                       </div>
                       <div className="github-graph-header-right">
                         {gh.loading
@@ -1233,7 +1243,7 @@ function App() {
                           </svg>
                         </div>
                         <div className="github-username-info">
-                          <span className="github-mobile-user">not-ayan</span>
+                          <span className="github-mobile-user">isaiahscape</span>
                           <span className="github-mobile-status"><span className="status-dot"></span>{gh.loading ? 'Loading…' : gh.error ? 'Unavailable' : 'Active'}</span>
                         </div>
                       </div>
@@ -1324,12 +1334,12 @@ function App() {
                   <div className="contact-box contact-box-collab reveal-on-scroll reveal-left delay-2">
                     <h3 className="contact-box-title">let's build something.</h3>
                     <p className="contact-box-desc">
-                      Looking for a premium frontend interface, custom Android OS optimization, or a striking digital design? Let's collaborate.
+                      Have a project in mind, need photography & graphic design, or looking for PC builds, repairs, and tech help in Davao? Let's collaborate.
                     </p>
                     <div className="contact-info-tags">
                       <span className="info-tag">Freelance</span>
-                      <span className="info-tag">Contracts</span>
-                      <span className="info-tag">Full-time Roles</span>
+                      <span className="info-tag">Design & Photo</span>
+                      <span className="info-tag">Tech & PC Services</span>
                     </div>
                   </div>
 
@@ -1342,18 +1352,18 @@ function App() {
                     </div>
                     <div className="location-info">
                       <span className="location-label">BASED IN</span>
-                      <p className="location-text">Assam, India 🇮🇳</p>
+                      <p className="location-text">Davao, Philippines 🇵🇭</p>
                     </div>
                   </div>
 
                   {/* Box 3: Direct Email */}
                   <div className="contact-box contact-box-email reveal-on-scroll delay-2">
                     <h4 className="email-label">DIRECT EMAIL</h4>
-                    <a href="mailto:ayan98542@gmail.com" className="email-address-link">
-                      ayan98542@gmail.com
+                    <a href="mailto:isaiahscape@duck.com" className="email-address-link">
+                      isaiahscape@duck.com
                     </a>
                     <div className="email-actions">
-                      <a href="mailto:ayan98542@gmail.com" className="email-btn-send">
+                      <a href="mailto:isaiahscape@duck.com" className="email-btn-send">
                         SEND MESSAGE <span className="arrow">↗</span>
                       </a>
                     </div>
@@ -1363,20 +1373,20 @@ function App() {
                   <div className="contact-box contact-box-socials reveal-on-scroll reveal-right delay-3">
                     <h4 className="socials-label">DIGITAL SPACES</h4>
                     <div className="socials-grid-links">
-                      <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="social-grid-item">
-                        <span className="social-name">Twitter / X</span>
-                        <span className="social-arrow">↗</span>
-                      </a>
-                      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-grid-item">
-                        <span className="social-name">Instagram</span>
-                        <span className="social-arrow">↗</span>
-                      </a>
-                      <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-grid-item">
+                      <a href="https://github.com/isaiahscape" target="_blank" rel="noopener noreferrer" className="social-grid-item">
                         <span className="social-name">GitHub</span>
                         <span className="social-arrow">↗</span>
                       </a>
-                      <a href="https://t.me/not_ayan99" target="_blank" rel="noopener noreferrer" className="social-grid-item">
+                      <a href="https://instagram.com/isaiahscape" target="_blank" rel="noopener noreferrer" className="social-grid-item">
+                        <span className="social-name">Instagram</span>
+                        <span className="social-arrow">↗</span>
+                      </a>
+                      <a href="https://t.me/isaiahscape" target="_blank" rel="noopener noreferrer" className="social-grid-item">
                         <span className="social-name">Telegram</span>
+                        <span className="social-arrow">↗</span>
+                      </a>
+                      <a href="https://linkedin.com/in/isaiahscape" target="_blank" rel="noopener noreferrer" className="social-grid-item">
+                        <span className="social-name">LinkedIn</span>
                         <span className="social-arrow">↗</span>
                       </a>
                     </div>
@@ -1398,8 +1408,8 @@ function App() {
             <div className="footer-column-item">
               <span className="column-label">Made by</span>
               <div className="column-value">
-                not_ayan<br />
-                ALL RIGHTS SALVAGED.
+                Leonardo (isaiahscape)<br />
+                THE SCAPE SERIES: PLAYGROUND.
               </div>
             </div>
 
@@ -1408,7 +1418,7 @@ function App() {
               <span className="column-label">STACK ENGINE</span>
               <div className="column-value">
                 POWERED BY VITE + REACT<br />
-                (and a lot of food)
+                SHENANIGANS V3.0
               </div>
             </div>
 
@@ -1425,7 +1435,7 @@ function App() {
 
             {/* Column 4: Access Status */}
             <div className="footer-column-item status-col">
-              <span className="column-label">Arigato</span>
+              <span className="column-label">Salamat</span>
               <span className="status-badge">Cya!</span>
             </div>
           </div>
@@ -1433,10 +1443,10 @@ function App() {
           <div className="footer-bottom-row">
             <div className="footer-status">
               <span className="status-dot"></span>
-              <span>Available for freelance, contracts & full-time roles</span>
+              <span>Available for freelance, design & tech services</span>
             </div>
             <div className="footer-time">
-              <span>Assam, India — {localTime}</span>
+              <span>Davao, Philippines — {localTime}</span>
             </div>
           </div>
         </footer>
