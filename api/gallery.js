@@ -21,6 +21,12 @@ const ALBUM_META = {
     description: 'Multi-part physical renders, artwork iterations, and tangible experiments.',
     order: 2,
   },
+  socialclub: {
+    id: 'social-club',
+    name: 'Social Club',
+    description: 'Social Club visual series, community captures, and creative archives.',
+    order: 3,
+  },
 };
 
 const KNOWN_ITEM_DETAILS = {
@@ -145,7 +151,8 @@ export default async function handler(req, res) {
 
       const parts = node.path.split('/');
       const folder = parts.length > 1 ? parts[0] : 'misc';
-      const meta = ALBUM_META[folder] || {
+      const folderKey = folder.toLowerCase().replace(/[^a-z0-9]/g, '');
+      const meta = ALBUM_META[folderKey] || {
         id: folder.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
         name: formatFolderName(folder),
         description: `Visual captures and assets from ${folder}.`,

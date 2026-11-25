@@ -140,89 +140,98 @@ export function GalleryPage({ initialAlbum }: GalleryPageProps) {
               {album.description}
             </p>
 
-            <div className="masonry-grid">
-              {album.items.map((item) => {
-                const flatIdx = flatPhotos.findIndex((p) => p.id === item.id && p.src === item.src);
-                const isFailed = Boolean(failedImages[item.src]);
+            {album.items.length > 0 ? (
+              <div className="masonry-grid">
+                {album.items.map((item) => {
+                  const flatIdx = flatPhotos.findIndex((p) => p.id === item.id && p.src === item.src);
+                  const isFailed = Boolean(failedImages[item.src]);
 
-                return (
-                  <div
-                    key={item.id}
-                    className="photo-card-wrapper masonry-item"
-                    onClick={() => {
-                      if (!isFailed && flatIdx >= 0) setSelectedIndex(flatIdx);
-                    }}
-                    style={{ cursor: isFailed ? 'default' : 'pointer' }}
-                  >
+                  return (
                     <div
-                      className="photo-frame masonry-frame"
-                      style={
-                        item.metadata?.aspectRatio
-                          ? { aspectRatio: item.metadata.aspectRatio.replace(':', ' / ') }
-                          : undefined
-                      }
-                    >
-                      {!isFailed ? (
-                        <img
-                          src={item.src}
-                          alt={item.alt || item.title}
-                          className="gallery-photo lazy-img lazy-img--loaded"
-                          loading="lazy"
-                          decoding="async"
-                          onError={() => setFailedImages((prev) => ({ ...prev, [item.src]: true }))}
-                        />
-                      ) : (
-                        <div
-                          style={{
-                            minHeight: '200px',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            padding: '20px',
-                            textAlign: 'center',
-                            gap: '6px',
-                            color: 'var(--text-muted)',
-                            fontFamily: 'var(--mono)',
-                            fontSize: '11px',
-                          }}
-                        >
-                          <span>{item.title}</span>
-                          <span style={{ opacity: 0.7 }}>Requires GITHUB_PHOTOS_TOKEN</span>
-                        </div>
-                      )}
-                      <div className="photo-overlay"></div>
-                    </div>
-
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        padding: '10px 8px 4px',
-                        gap: '8px',
+                      key={item.id}
+                      className="photo-card-wrapper masonry-item"
+                      onClick={() => {
+                        if (!isFailed && flatIdx >= 0) setSelectedIndex(flatIdx);
                       }}
+                      style={{ cursor: isFailed ? 'default' : 'pointer' }}
                     >
-                      <span style={{ fontSize: '13px', fontWeight: 500, color: 'var(--text-dark)' }}>
-                        {item.title}
-                      </span>
-                      {item.metadata?.model && (
-                        <span
-                          style={{
-                            fontFamily: 'var(--mono)',
-                            fontSize: '10px',
-                            color: 'var(--text-muted)',
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          {item.metadata.model}
+                      <div
+                        className="photo-frame masonry-frame"
+                        style={
+                          item.metadata?.aspectRatio
+                            ? { aspectRatio: item.metadata.aspectRatio.replace(':', ' / ') }
+                            : undefined
+                        }
+                      >
+                        {!isFailed ? (
+                          <img
+                            src={item.src}
+                            alt={item.alt || item.title}
+                            className="gallery-photo lazy-img lazy-img--loaded"
+                            loading="lazy"
+                            decoding="async"
+                            onError={() => setFailedImages((prev) => ({ ...prev, [item.src]: true }))}
+                          />
+                        ) : (
+                          <div
+                            style={{
+                              minHeight: '200px',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              padding: '20px',
+                              textAlign: 'center',
+                              gap: '6px',
+                              color: 'var(--text-muted)',
+                              fontFamily: 'var(--mono)',
+                              fontSize: '11px',
+                            }}
+                          >
+                            <span>{item.title}</span>
+                            <span style={{ opacity: 0.7 }}>Requires GITHUB_PHOTOS_TOKEN</span>
+                          </div>
+                        )}
+                        <div className="photo-overlay"></div>
+                      </div>
+
+                      <div
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          padding: '10px 8px 4px',
+                          gap: '8px',
+                        }}
+                      >
+                        <span style={{ fontSize: '13px', fontWeight: 500, color: 'var(--text-dark)' }}>
+                          {item.title}
                         </span>
-                      )}
+                        {item.metadata?.model && (
+                          <span
+                            style={{
+                              fontFamily: 'var(--mono)',
+                              fontSize: '10px',
+                              color: 'var(--text-muted)',
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            {item.metadata.model}
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="rom-info-card">
+                <p className="body-para" style={{ fontSize: '14px' }}>
+                  Frames for <strong>{album.name}</strong> sync live from{' '}
+                  <code>isaiahscape/private-photos</code> when <code>GITHUB_PHOTOS_TOKEN</code> is active.
+                </p>
+              </div>
+            )}
           </section>
         ))}
       </div>

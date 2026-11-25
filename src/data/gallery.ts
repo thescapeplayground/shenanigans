@@ -599,4 +599,12 @@ export const DEFAULT_GALLERY_ALBUMS: GalleryAlbum[] = [
       },
     ],
   },
+  {
+    id: 'social-club',
+    name: 'Social Club',
+    description: 'Social Club visual series, community captures, and creative archives.',
+    coverImage: '',
+    folder: 'social club',
+    items: [],
+  },
 ];
