@@ -336,10 +336,10 @@ export function WorksSection() {
           </p>
         </div>
         <div className="design-redirect-actions">
-          <a href="#projects/photography" className="design-redirect-btn btn-photography">
+          <a href="/projects/photography" className="design-redirect-btn btn-photography">
             Photography <span className="arrow">↗</span>
           </a>
-          <a href="#projects/graphic-design" className="design-redirect-btn btn-design">
+          <a href="/projects/graphic-design" className="design-redirect-btn btn-design">
             Graphic Design <span className="arrow">↗</span>
           </a>
         </div>

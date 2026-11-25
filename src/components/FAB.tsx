@@ -91,7 +91,7 @@ export function FAB({
 
           <nav className="fab-menu-links">
             <a
-              href="#home"
+              href="/"
               onClick={(e) => {
                 e.preventDefault();
                 onPageChange("home");
@@ -108,7 +108,7 @@ export function FAB({
             </a>
 
             <a
-              href="#about"
+              href="/about"
               onClick={(e) => {
                 e.preventDefault();
                 onPageChange("about");
@@ -126,7 +126,7 @@ export function FAB({
             </a>
 
             <a
-              href="#projects"
+              href="/projects"
               onClick={(e) => {
                 e.preventDefault();
                 onPageChange("projects");
@@ -143,7 +143,7 @@ export function FAB({
             </a>
 
             <a
-              href="#blogs"
+              href="/blogs"
               onClick={(e) => {
                 e.preventDefault();
                 onPageChange("blogs");

@@ -91,7 +91,7 @@ function ShareButton({ postId, label = "COPY LINK" }: { postId: string; label?: 
 
   const handleShare = (e: React.MouseEvent) => {
     e.stopPropagation();
-    const url = `${window.location.origin}${window.location.pathname}#blogs/${postId}`;
+    const url = `${window.location.origin}/blogs/${postId}`;
     navigator.clipboard.writeText(url);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -123,38 +123,39 @@ function ShareButton({ postId, label = "COPY LINK" }: { postId: string; label?: 
   );
 }
 
-function getPostIdFromHash(): string | null {
+function getPostIdFromLocation(): string | null {
+  const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
   const hash = window.location.hash.replace(/^#\/?/, '');
-  if (hash.startsWith('blogs/')) {
-    return hash.replace(/^blogs\//, '') || null;
+  const route = path || hash;
+  if (route.startsWith('blogs/')) {
+    return route.replace(/^blogs\//, '') || null;
   }
-  if (hash.startsWith('blog/')) {
-    return hash.replace(/^blog\//, '') || null;
+  if (route.startsWith('blog/')) {
+    return route.replace(/^blog\//, '') || null;
   }
   return null;
 }
 
 export function BlogsPage() {
-  const [selectedPostId, setSelectedPostId] = useState<string | null>(() => getPostIdFromHash());
+  const [selectedPostId, setSelectedPostId] = useState<string | null>(() => getPostIdFromLocation());
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const postId = getPostIdFromHash();
-      setSelectedPostId(postId);
+    const handlePopState = () => {
+      setSelectedPostId(getPostIdFromLocation());
     };
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   const handleSelectPost = (postId: string) => {
     setSelectedPostId(postId);
-    window.history.pushState(null, '', `#blogs/${postId}`);
+    window.history.pushState(null, '', `/blogs/${postId}`);
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
   };
 
   const handleBack = () => {
     setSelectedPostId(null);
-    window.history.pushState(null, '', '#blogs');
+    window.history.pushState(null, '', '/blogs');
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
   };
 

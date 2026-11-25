@@ -355,24 +355,33 @@ function App() {
   const [musicError, setMusicError] = useState(false)
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light')
   const gh = useGitHubData()
-  const getPageFromHash = (rawHash: string): 'home' | 'about' | 'projects' | 'blogs' => {
-    const hash = rawHash.replace(/^#\/?/, '').toLowerCase()
-    if (hash === 'blogs' || hash.startsWith('blogs/') || hash.startsWith('blog/')) {
+  const getPageFromLocation = (pathname: string, rawHash = ''): 'home' | 'about' | 'projects' | 'blogs' => {
+    const cleanPath = pathname.replace(/^\/+|\/+$/g, '').toLowerCase()
+    const cleanHash = rawHash.replace(/^#\/?/, '').toLowerCase()
+    const route = cleanPath || cleanHash
+    if (route === 'blogs' || route.startsWith('blogs/') || route === 'blog' || route.startsWith('blog/')) {
       return 'blogs'
     }
-    if (hash === 'projects' || hash.startsWith('projects/')) {
+    if (route === 'projects' || route.startsWith('projects/')) {
       return 'projects'
     }
-    if (hash === 'about') {
+    if (route === 'about') {
       return 'about'
     }
     return 'home'
   }
 
+  const getProjectTargetFromPath = (pathname: string): string | undefined => {
+    const match = pathname.replace(/\/+$/, '').match(/^\/projects\/([^/]+)$/i)
+    return match ? decodeURIComponent(match[1]) : undefined
+  }
+
   const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'projects' | 'blogs'>(() => {
-    return getPageFromHash(window.location.hash)
+    return getPageFromLocation(window.location.pathname, window.location.hash)
   })
-  const [initialScrollTarget, setInitialScrollTarget] = useState<string | undefined>(undefined)
+  const [initialScrollTarget, setInitialScrollTarget] = useState<string | undefined>(() => {
+    return getProjectTargetFromPath(window.location.pathname)
+  })
   const [manifestProjects, setManifestProjects] = useState<ProjectItem[]>(LOCAL_DEFAULT_PROJECTS)
   const [failedIcons, setFailedIcons] = useState<Record<string, boolean>>({})
 
@@ -408,23 +417,30 @@ function App() {
     }
   })
 
-  const handlePageChange = (page: 'home' | 'about' | 'projects' | 'blogs') => {
+  const handlePageChange = (page: 'home' | 'about' | 'projects' | 'blogs', nextPath?: string) => {
+    if (!nextPath) {
+      setInitialScrollTarget(undefined)
+    }
     setCurrentPage(page)
-    window.location.hash = page === 'home' ? '' : page
+    const targetPath = nextPath ?? (page === 'home' ? '/' : `/${page}`)
+    if (window.location.pathname !== targetPath || window.location.hash) {
+      window.history.pushState(null, '', targetPath)
+    }
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
   }
 
   const handleViewProjectDetails = (targetId: string) => {
     setInitialScrollTarget(targetId)
-    handlePageChange('projects')
+    handlePageChange('projects', `/projects/${encodeURIComponent(targetId)}`)
   }
 
   useEffect(() => {
-    const handleHashChange = () => {
-      setCurrentPage(getPageFromHash(window.location.hash))
+    const handlePopState = () => {
+      setCurrentPage(getPageFromLocation(window.location.pathname, window.location.hash))
+      setInitialScrollTarget(getProjectTargetFromPath(window.location.pathname))
     }
-    window.addEventListener('hashchange', handleHashChange)
-    return () => window.removeEventListener('hashchange', handleHashChange)
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
   }, [])
 
   useEffect(() => {
@@ -600,7 +616,7 @@ function App() {
         {/* Technical Header */}
         <header className="tech-header">
           <div className="tech-header-col col-1">
-            <a href="#home" onClick={(e) => { e.preventDefault(); handlePageChange('home'); }} className="tech-logo" style={{ cursor: 'pointer' }}>isaiahscape</a>
+            <a href="/" onClick={(e) => { e.preventDefault(); handlePageChange('home'); }} className="tech-logo" style={{ cursor: 'pointer' }}>isaiahscape</a>
           </div>
           <div className="tech-header-col col-3">
             <button onClick={toggleTheme} className="theme-toggle-btn" aria-label="Toggle theme">
@@ -879,10 +895,10 @@ function App() {
                   </p>
                 </div>
                 <div className="design-redirect-actions">
-                  <a href="#projects" onClick={(e) => { e.preventDefault(); handleViewProjectDetails('photography'); }} className="design-redirect-btn btn-photography">
+                  <a href="/projects/photography" onClick={(e) => { e.preventDefault(); handleViewProjectDetails('photography'); }} className="design-redirect-btn btn-photography">
                     Photography <span className="arrow">↗</span>
                   </a>
-                  <a href="#projects" onClick={(e) => { e.preventDefault(); handleViewProjectDetails('graphic-design'); }} className="design-redirect-btn btn-design">
+                  <a href="/projects/graphic-design" onClick={(e) => { e.preventDefault(); handleViewProjectDetails('graphic-design'); }} className="design-redirect-btn btn-design">
                     Graphic Design <span className="arrow">↗</span>
                   </a>
                 </div>
@@ -1426,10 +1442,10 @@ function App() {
             <div className="footer-column-item">
               <span className="column-label">NAVIGATION</span>
               <div className="footer-links-grid">
-                <a href="#home" onClick={(e) => { e.preventDefault(); handlePageChange('home'); }} className="footer-nav-link">// HOME</a>
-                <a href="#about" onClick={(e) => { e.preventDefault(); handlePageChange('about'); }} className="footer-nav-link">// ABOUT</a>
-                <a href="#projects" onClick={(e) => { e.preventDefault(); handlePageChange('projects'); }} className="footer-nav-link">// PROJECTS</a>
-                <a href="#blogs" onClick={(e) => { e.preventDefault(); handlePageChange('blogs'); }} className="footer-nav-link">// BLOGS</a>
+                <a href="/" onClick={(e) => { e.preventDefault(); handlePageChange('home'); }} className="footer-nav-link">// HOME</a>
+                <a href="/about" onClick={(e) => { e.preventDefault(); handlePageChange('about'); }} className="footer-nav-link">// ABOUT</a>
+                <a href="/projects" onClick={(e) => { e.preventDefault(); handlePageChange('projects'); }} className="footer-nav-link">// PROJECTS</a>
+                <a href="/blogs" onClick={(e) => { e.preventDefault(); handlePageChange('blogs'); }} className="footer-nav-link">// BLOGS</a>
               </div>
             </div>
 

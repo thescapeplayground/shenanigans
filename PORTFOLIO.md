@@ -68,10 +68,11 @@ The single-page application is structured inside a centered blueprint `page-wrap
 
 ---
 
-## 2.1 Sub-Pages (Hash Routed)
-- **About Page ([AboutPage.tsx](file:///c:/Users/Leonardo/shenanigans/src/components/AboutPage.tsx))**: Full biography, quick facts, live Last.fm scrobbles/stats (`isaiahthings`), and Valorant gaming card.
-- **Projects / Creations Page ([ProjectsPage.tsx](file:///c:/Users/Leonardo/shenanigans/src/components/ProjectsPage.tsx))**: Filterable dev projects, SVG brand marks (`public/logos/`), designs (`public/designs/`), and photography (`public/photography/`) loaded from `/manifest.json`.
-- **Blogs Page ([BlogsPage.tsx](file:///c:/Users/Leonardo/shenanigans/src/components/BlogsPage.tsx))**: Markdown dev logs (*Remaking Snapseed on the Web from Scratch*, *Recreating Shenanigans*, *Hello World*) rendered via `marked`.
+## 2.1 Sub-Pages (Path Routed)
+- **About Page ([AboutPage.tsx](file:///c:/Users/Leonardo/shenanigans/src/components/AboutPage.tsx))** (`/about`): Full biography, quick facts, live Last.fm scrobbles/stats (`isaiahthings`), and Valorant gaming card.
+- **Projects / Creations Page ([ProjectsPage.tsx](file:///c:/Users/Leonardo/shenanigans/src/components/ProjectsPage.tsx))** (`/projects`, `/projects/:section`): Filterable dev projects, SVG brand marks (`public/logos/`), designs (`public/designs/`), and photography (`public/photography/`) loaded from `/manifest.json`.
+- **Blogs Page ([BlogsPage.tsx](file:///c:/Users/Leonardo/shenanigans/src/components/BlogsPage.tsx))** (`/blogs`, `/blogs/:slug`): Markdown dev logs (*Remaking Snapseed on the Web from Scratch*, *Recreating Shenanigans*, *Hello World*) rendered via `marked`.
+- **SPA Routing**: Handled via History API (`pushState` / `popstate`) with fallback rewrites configured in [vercel.json](file:///c:/Users/Leonardo/shenanigans/vercel.json) and [public/_redirects](file:///c:/Users/Leonardo/shenanigans/public/_redirects).
 
 ---
 
