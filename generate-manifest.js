@@ -122,9 +122,10 @@ function scanProjects() {
         try {
           const info = JSON.parse(fs.readFileSync(infoPath, 'utf8'));
           const files = fs.readdirSync(folderPath);
-          const photos = files
+          const localPhotos = files
             .filter(file => isImage(file) && file !== 'logo.svg' && file !== 'logo.png')
             .map(file => `/projects/${folderName}/${file}`);
+          const photos = Array.isArray(info.photos) && info.photos.length > 0 ? info.photos : localPhotos;
 
           projects.push({
             id: folderName,

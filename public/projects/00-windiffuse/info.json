@@ -10,5 +10,11 @@
   ],
   "visitUrl": "https://github.com/isaiahscape/windiffuse/releases",
   "githubUrl": "https://github.com/isaiahscape/windiffuse",
-  "status": "Active"
+  "status": "Active",
+  "photos": [
+    "https://raw.githubusercontent.com/isaiahscape/windiffuse/main/assets/ss-3.png",
+    "https://raw.githubusercontent.com/isaiahscape/windiffuse/main/assets/ss-1.png",
+    "https://raw.githubusercontent.com/isaiahscape/windiffuse/main/assets/ss-2.png",
+    "https://raw.githubusercontent.com/isaiahscape/windiffuse/main/assets/banner.png"
+  ]
 }

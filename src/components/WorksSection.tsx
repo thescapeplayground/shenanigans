@@ -43,7 +43,12 @@ const LOCAL_DEFAULT_MANIFEST: Manifest = {
       visitUrl: 'https://github.com/isaiahscape/windiffuse/releases',
       githubUrl: 'https://github.com/isaiahscape/windiffuse',
       status: 'Active',
-      photos: ['/projects/00-windiffuse/preview.svg']
+      photos: [
+        'https://raw.githubusercontent.com/isaiahscape/windiffuse/main/assets/ss-3.png',
+        'https://raw.githubusercontent.com/isaiahscape/windiffuse/main/assets/ss-1.png',
+        'https://raw.githubusercontent.com/isaiahscape/windiffuse/main/assets/ss-2.png',
+        'https://raw.githubusercontent.com/isaiahscape/windiffuse/main/assets/banner.png'
+      ]
     },
     {
       id: '01-material-explorer',
