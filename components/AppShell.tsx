@@ -29,6 +29,7 @@ function resolveActiveTab(pathname: string): string {
 }
 
 export function AppShell({ children }: { children: React.ReactNode }) {
+  const [showLoading, setShowLoading] = useState(true);
   const [showApp, setShowApp] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -38,11 +39,19 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowApp(true);
-      window.scrollTo(0, 0);
+      setShowLoading(false);
     }, 2200);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (showLoading || showApp) return;
+    const fallback = setTimeout(() => {
+      setShowApp(true);
+      window.scrollTo(0, 0);
+    }, 600);
+    return () => clearTimeout(fallback);
+  }, [showLoading, showApp]);
 
   useEffect(() => {
     if (!showApp) {
@@ -85,8 +94,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <SmoothScrollProvider enabled={showApp}>
-      <AnimatePresence>
-        {!showApp && <LoadingScreen key="loading" />}
+      <AnimatePresence
+        onExitComplete={() => {
+          setShowApp(true);
+          window.scrollTo(0, 0);
+        }}
+      >
+        {showLoading && <LoadingScreen key="loading" />}
       </AnimatePresence>
 
       <CustomCursor />

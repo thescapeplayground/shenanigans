@@ -19,8 +19,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
     <div className="space-y-16 py-4 relative z-10" id="home-section-container">
       <motion.div 
         initial={{ opacity: 0, y: 30, scale: 0.98 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className="-mx-4 sm:-mx-6 lg:-mx-8 -mt-8 px-4 sm:px-6 lg:px-8 min-h-[calc(100dvh-5.5rem)] flex flex-col justify-center space-y-6 sm:space-y-8 text-left relative overflow-hidden" 
         id="home-greeting-block"
@@ -29,8 +28,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
           <div className="lg:col-span-7 xl:col-span-8 space-y-6">
             <motion.div 
               initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               className="flex items-center gap-3"
             >
@@ -42,8 +40,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
 
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-950 dark:text-neutral-50 font-sans leading-[1.1] mt-2"
             >
@@ -52,8 +49,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
             
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-lg sm:text-xl lg:text-2xl text-neutral-700 dark:text-neutral-300 leading-relaxed font-sans"
             >
@@ -62,8 +58,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
 
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-base sm:text-lg text-neutral-500 dark:text-neutral-400 leading-relaxed font-sans"
             >
@@ -72,8 +67,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
 
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
               className="flex flex-wrap items-center gap-3 pt-2"
             >
@@ -97,8 +91,7 @@ export function HomeSection({ profile, experiences }: HomeSectionProps) {
 
           <motion.div
             initial={{ opacity: 0, x: 25, scale: 0.95 }}
-            whileInView={{ opacity: 1, x: 0, scale: 1 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 xl:col-span-4 flex justify-center lg:justify-end items-center pt-4 lg:pt-0"
           >
