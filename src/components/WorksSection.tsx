@@ -35,6 +35,17 @@ interface Manifest {
 const LOCAL_DEFAULT_MANIFEST: Manifest = {
   projects: [
     {
+      id: '00-windiffuse',
+      title: 'Diffuse for Windows',
+      category: 'Windows App',
+      description: 'A native Windows 11 port of Diffuse Music Live Wallpaper featuring a WinUI 3 floating tray flyout, Direct3D 11 + DirectComposition fluid shaders, SMTC Now Playing sync, and WASAPI Live Beats.',
+      tech: ['C#', '.NET', 'WinUI 3', 'Direct3D 11'],
+      visitUrl: 'https://github.com/isaiahscape/windiffuse/releases',
+      githubUrl: 'https://github.com/isaiahscape/windiffuse',
+      status: 'Active',
+      photos: ['/projects/00-windiffuse/preview.svg']
+    },
+    {
       id: '01-material-explorer',
       title: 'Material Explorer',
       category: 'Android App',
@@ -116,7 +127,14 @@ function getTechIconUrl(tech: string): string {
     'markdown': 'markdown',
     'telegram': 'telegram',
     'python': 'python',
-    'figma': 'figma'
+    'figma': 'figma',
+    'csharp': 'dotnet',
+    'net': 'dotnet',
+    'winui3': 'windows11',
+    'direct3d11': 'opengl',
+    'shell': 'gnubash',
+    'magisk': 'magisk',
+    'githubactions': 'githubactions'
   };
 
   const finalSlug = customMapping[slug] || slug;

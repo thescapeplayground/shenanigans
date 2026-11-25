@@ -37,6 +37,17 @@ interface Manifest {
 const LOCAL_DEFAULT_MANIFEST: Manifest = {
   projects: [
     {
+      id: '00-windiffuse',
+      title: 'Diffuse for Windows',
+      category: 'Windows App',
+      description: 'A native Windows 11 port of Diffuse Music Live Wallpaper featuring a WinUI 3 floating tray flyout, Direct3D 11 + DirectComposition fluid shaders, SMTC Now Playing sync, and WASAPI Live Beats.',
+      tech: ['C#', '.NET', 'WinUI 3', 'Direct3D 11'],
+      visitUrl: 'https://github.com/isaiahscape/windiffuse/releases',
+      githubUrl: 'https://github.com/isaiahscape/windiffuse',
+      status: 'Active',
+      photos: ['/projects/00-windiffuse/preview.svg']
+    },
+    {
       id: '01-material-explorer',
       title: 'Material Explorer',
       category: 'Android App',
@@ -101,6 +112,28 @@ const LOCAL_DEFAULT_MANIFEST: Manifest = {
       githubUrl: 'https://github.com/isaiahscape/KairoKangedBot',
       status: 'Archived',
       photos: ['/projects/06-kairo-bot/preview.svg']
+    },
+    {
+      id: '07-nectarlink-services',
+      title: 'Nectarlink Services',
+      category: 'Android System',
+      description: 'A privileged Android priv-app AIDL Binder service for custom ROMs providing screen mirroring, input injection, virtual displays, device/call audio streaming, and clipboard sync for NectarLink without ADB or root.',
+      tech: ['Android', 'Kotlin', 'AIDL', 'AOSP'],
+      visitUrl: '',
+      githubUrl: 'https://github.com/isaiahscape/nectarlink-services',
+      status: 'Active',
+      photos: ['/projects/07-nectarlink-services/preview.svg']
+    },
+    {
+      id: '08-nectarlink-module',
+      title: 'Nectarlink Module',
+      category: 'Root Module',
+      description: 'A systemless root module for Magisk, KernelSU, and APatch/FolkPatch that deploys Nectarlink Services as a privileged system_ext app with SELinux UHID rules and automated CI release bundling.',
+      tech: ['Android', 'Shell', 'Magisk', 'GitHub Actions'],
+      visitUrl: 'https://github.com/isaiahscape/nectarlink-module/releases',
+      githubUrl: 'https://github.com/isaiahscape/nectarlink-module',
+      status: 'Active',
+      photos: ['/projects/08-nectarlink-module/preview.svg']
     }
   ],
   designs: {},
@@ -180,6 +213,13 @@ function getTechIconUrl(tech: string): string {
     'python': 'python',
     'figma': 'figma',
     'typescript': 'typescript',
+    'csharp': 'dotnet',
+    'net': 'dotnet',
+    'winui3': 'windows11',
+    'direct3d11': 'opengl',
+    'shell': 'gnubash',
+    'magisk': 'magisk',
+    'githubactions': 'githubactions',
   };
 
   const finalSlug = customMapping[slug] || slug;

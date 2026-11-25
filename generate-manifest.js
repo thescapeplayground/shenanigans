@@ -110,7 +110,7 @@ function scanProjects() {
     return [];
   }
 
-  const entries = fs.readdirSync(projectsDir, { withFileTypes: true });
+  const entries = fs.readdirSync(projectsDir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name));
 
   for (const entry of entries) {
     if (entry.isDirectory()) {

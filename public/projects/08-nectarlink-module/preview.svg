@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%" fill="none">
+  <rect width="800" height="450" rx="16" fill="#09090b" stroke="#27272a" stroke-width="1.5"/>
+  <text x="36" y="46" fill="#fafafa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600">Nectarlink Services Root Module</text>
+  <text x="36" y="68" fill="#71717a" font-family="monospace" font-size="12">Magisk • KernelSU / SukiSU • APatch / FolkPatch</text>
+  <rect x="36" y="96" width="350" height="314" rx="14" fill="#18181b" stroke="#27272a" stroke-width="1.2"/>
+  <text x="56" y="130" fill="#a855f7" font-family="monospace" font-size="11">MODULE TREE</text>
+  <text x="56" y="164" fill="#fafafa" font-family="monospace" font-size="12">nectarlink-module/</text>
+  <text x="56" y="192" fill="#a1a1aa" font-family="monospace" font-size="11">├── system/system_ext/priv-app/</text>
+  <text x="56" y="216" fill="#a1a1aa" font-family="monospace" font-size="11">├── system/product/app/Nectarlink</text>
+  <text x="56" y="240" fill="#a1a1aa" font-family="monospace" font-size="11">├── customize.sh (Android 8–16)</text>
+  <text x="56" y="264" fill="#a1a1aa" font-family="monospace" font-size="11">├── sepolicy.rule (/dev/uhid)</text>
+  <text x="56" y="288" fill="#a1a1aa" font-family="monospace" font-size="11">├── service.sh &amp; action.sh</text>
+  <text x="56" y="312" fill="#a1a1aa" font-family="monospace" font-size="11">└── module.prop (v0.1.0)</text>
+  <rect x="414" y="96" width="350" height="314" rx="14" fill="#18181b" stroke="#27272a" stroke-width="1.2"/>
+  <text x="434" y="130" fill="#22c55e" font-family="monospace" font-size="11">AUTOMATED CI &amp; PERMISSIONS</text>
+  <rect x="434" y="154" width="310" height="72" rx="10" fill="#09090b" stroke="#27272a"/>
+  <text x="452" y="182" fill="#fafafa" font-family="sans-serif" font-size="13" font-weight="600">Systemless Priv-App Mount</text>
+  <text x="452" y="204" fill="#71717a" font-family="monospace" font-size="10">privapp-permissions + sysconfig</text>
+  <rect x="434" y="240" width="310" height="72" rx="10" fill="#09090b" stroke="#27272a"/>
+  <text x="452" y="268" fill="#fafafa" font-family="sans-serif" font-size="13" font-weight="600">Upstream Release Sync</text>
+  <text x="452" y="290" fill="#71717a" font-family="monospace" font-size="10">Stable • Nightly • Canary APKs</text>
+  <text x="434" y="366" fill="#71717a" font-family="monospace" font-size="11">isaiahscape/nectarlink-module</text>
+</svg>

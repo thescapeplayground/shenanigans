@@ -1,0 +1,14 @@
+{
+  "title": "Nectarlink Module",
+  "category": "Root Module",
+  "description": "A systemless root module for Magisk, KernelSU, and APatch/FolkPatch that deploys Nectarlink Services as a privileged system_ext app with SELinux UHID rules and automated CI release bundling.",
+  "tech": [
+    "Android",
+    "Shell",
+    "Magisk",
+    "GitHub Actions"
+  ],
+  "visitUrl": "https://github.com/isaiahscape/nectarlink-module/releases",
+  "githubUrl": "https://github.com/isaiahscape/nectarlink-module",
+  "status": "Active"
+}
