@@ -7,6 +7,7 @@ import { CustomCursor } from './components/CustomCursor'
 import { useGitHubData } from './hooks/useGitHubData'
 import { AboutPage } from './components/AboutPage'
 import { ProjectsPage } from './components/ProjectsPage'
+import { GalleryPage } from './components/GalleryPage'
 import { BlogsPage } from './components/BlogsPage'
 import './App.css'
 
@@ -420,12 +421,15 @@ function App() {
   const [musicError, setMusicError] = useState(false)
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light')
   const gh = useGitHubData()
-  const getPageFromLocation = (pathname: string, rawHash = ''): 'home' | 'about' | 'projects' | 'blogs' => {
+  const getPageFromLocation = (pathname: string, rawHash = ''): 'home' | 'about' | 'projects' | 'gallery' | 'blogs' => {
     const cleanPath = pathname.replace(/^\/+|\/+$/g, '').toLowerCase()
     const cleanHash = rawHash.replace(/^#\/?/, '').toLowerCase()
     const route = cleanPath || cleanHash
     if (route === 'blogs' || route.startsWith('blogs/') || route === 'blog' || route.startsWith('blog/')) {
       return 'blogs'
+    }
+    if (route === 'gallery' || route.startsWith('gallery/')) {
+      return 'gallery'
     }
     if (route === 'projects' || route.startsWith('projects/')) {
       return 'projects'
@@ -441,11 +445,19 @@ function App() {
     return match ? decodeURIComponent(match[1]) : undefined
   }
 
-  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'projects' | 'blogs'>(() => {
+  const getGalleryAlbumFromPath = (pathname: string): string | undefined => {
+    const match = pathname.replace(/\/+$/, '').match(/^\/gallery\/([^/]+)$/i)
+    return match ? decodeURIComponent(match[1]) : undefined
+  }
+
+  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'projects' | 'gallery' | 'blogs'>(() => {
     return getPageFromLocation(window.location.pathname, window.location.hash)
   })
   const [initialScrollTarget, setInitialScrollTarget] = useState<string | undefined>(() => {
     return getProjectTargetFromPath(window.location.pathname)
+  })
+  const [initialGalleryAlbum, setInitialGalleryAlbum] = useState<string | undefined>(() => {
+    return getGalleryAlbumFromPath(window.location.pathname)
   })
   const [manifestProjects, setManifestProjects] = useState<ProjectItem[]>(LOCAL_DEFAULT_PROJECTS)
   const [failedIcons, setFailedIcons] = useState<Record<string, boolean>>({})
@@ -482,9 +494,10 @@ function App() {
     }
   })
 
-  const handlePageChange = (page: 'home' | 'about' | 'projects' | 'blogs', nextPath?: string) => {
+  const handlePageChange = (page: 'home' | 'about' | 'projects' | 'gallery' | 'blogs', nextPath?: string) => {
     if (!nextPath) {
       setInitialScrollTarget(undefined)
+      setInitialGalleryAlbum(undefined)
     }
     setCurrentPage(page)
     const targetPath = nextPath ?? (page === 'home' ? '/' : `/${page}`)
@@ -503,6 +516,7 @@ function App() {
     const handlePopState = () => {
       setCurrentPage(getPageFromLocation(window.location.pathname, window.location.hash))
       setInitialScrollTarget(getProjectTargetFromPath(window.location.pathname))
+      setInitialGalleryAlbum(getGalleryAlbumFromPath(window.location.pathname))
     }
     window.addEventListener('popstate', handlePopState)
     return () => window.removeEventListener('popstate', handlePopState)
@@ -960,8 +974,8 @@ function App() {
                   </p>
                 </div>
                 <div className="design-redirect-actions">
-                  <a href="/projects/photography" onClick={(e) => { e.preventDefault(); handleViewProjectDetails('photography'); }} className="design-redirect-btn btn-photography">
-                    Photography <span className="arrow">↗</span>
+                  <a href="/gallery" onClick={(e) => { e.preventDefault(); handlePageChange('gallery'); }} className="design-redirect-btn btn-photography">
+                    Gallery & Photography <span className="arrow">↗</span>
                   </a>
                   <a href="/projects/graphic-design" onClick={(e) => { e.preventDefault(); handleViewProjectDetails('graphic-design'); }} className="design-redirect-btn btn-design">
                     Graphic Design <span className="arrow">↗</span>
@@ -1480,6 +1494,7 @@ function App() {
 
         {currentPage === 'about' && <AboutPage username={LASTFM_USER} apiKey={LASTFM_API_KEY} />}
         {currentPage === 'projects' && <ProjectsPage initialScrollTarget={initialScrollTarget} clearScrollTarget={() => setInitialScrollTarget(undefined)} />}
+        {currentPage === 'gallery' && <GalleryPage key={initialGalleryAlbum || 'all'} initialAlbum={initialGalleryAlbum} />}
         {currentPage === 'blogs' && <BlogsPage />}
 
         {/* Blueprint Layout Footer Section */}
@@ -1510,6 +1525,7 @@ function App() {
                 <a href="/" onClick={(e) => { e.preventDefault(); handlePageChange('home'); }} className="footer-nav-link">// HOME</a>
                 <a href="/about" onClick={(e) => { e.preventDefault(); handlePageChange('about'); }} className="footer-nav-link">// ABOUT</a>
                 <a href="/projects" onClick={(e) => { e.preventDefault(); handlePageChange('projects'); }} className="footer-nav-link">// PROJECTS</a>
+                <a href="/gallery" onClick={(e) => { e.preventDefault(); handlePageChange('gallery'); }} className="footer-nav-link">// GALLERY</a>
                 <a href="/blogs" onClick={(e) => { e.preventDefault(); handlePageChange('blogs'); }} className="footer-nav-link">// BLOGS</a>
               </div>
             </div>

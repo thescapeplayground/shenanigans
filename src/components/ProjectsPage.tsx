@@ -618,6 +618,17 @@ export function ProjectsPage({ initialScrollTarget, clearScrollTarget }: Project
               Photography archives are stored in the private gallery repo and shared on Instagram (@isaiahscape). Add photos to <code>public/photography/</code> and run <code>npm run build</code> to display them in this masonry grid.
             </p>
             <div className="support-actions">
+              <a
+                href="/gallery"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.history.pushState(null, '', '/gallery');
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                }}
+                className="support-action-btn"
+              >
+                Open Full Gallery ↗
+              </a>
               <a href="https://instagram.com/isaiahscape" target="_blank" rel="noopener noreferrer" className="support-action-btn">
                 View Photography on Instagram ↗
               </a>
