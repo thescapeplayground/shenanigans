@@ -11,9 +11,11 @@ const CONTENT_TYPES: Record<string, string> = {
   '.gif': 'image/gif',
   '.svg': 'image/svg+xml',
   '.avif': 'image/avif',
+  '.bmp': 'image/bmp',
+  '.jfif': 'image/jpeg',
 }
 
-const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif'])
+const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif', '.svg', '.bmp', '.jfif'])
 
 const ALBUM_META: Record<string, { id: string; name: string; description: string; order: number }> = {
   masonry: {
@@ -42,6 +44,96 @@ const ALBUM_META: Record<string, { id: string; name: string; description: string
   },
 }
 
+const FOLDER_ALIASES: Record<string, string> = {
+  photography: 'masonry',
+  thesocialclub: 'socialclub',
+}
+
+interface AlbumEntry {
+  id: string
+  name: string
+  description: string
+  coverImage: string
+  folder: string
+  order: number
+  items: Array<{ id: string; src: string; alt: string; title: string; folder: string }>
+}
+
+function resolveAlbumMeta(parts: string[]) {
+  const dirs = parts.slice(0, -1)
+  for (let i = 0; i < dirs.length; i++) {
+    const segKey = dirs[i].toLowerCase().replace(/[^a-z0-9]/g, '')
+    const mappedKey = FOLDER_ALIASES[segKey] || segKey
+    if (ALBUM_META[mappedKey]) {
+      return { folder: dirs[i], meta: ALBUM_META[mappedKey] }
+    }
+    if (mappedKey.includes('socialclub')) {
+      return { folder: dirs[i], meta: ALBUM_META.socialclub }
+    }
+    if (i + 1 < dirs.length) {
+      const pairKey = `${segKey}${dirs[i + 1].toLowerCase().replace(/[^a-z0-9]/g, '')}`
+      const mappedPair = FOLDER_ALIASES[pairKey] || pairKey
+      if (ALBUM_META[mappedPair]) {
+        return { folder: `${dirs[i]}/${dirs[i + 1]}`, meta: ALBUM_META[mappedPair] }
+      }
+    }
+  }
+
+  const folder = dirs.length > 0 ? dirs[0] : 'misc'
+  return {
+    folder,
+    meta: {
+      id: folder.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+      name: folder.replace(/[-_]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
+      description: `Visual captures and assets from ${folder}.`,
+      order: 99,
+    },
+  }
+}
+
+function buildAlbumsFromPaths(paths: string[]) {
+  const albumMap = new Map<string, AlbumEntry>()
+  for (const relPath of paths) {
+    const ext = path.extname(relPath).toLowerCase()
+    if (!IMAGE_EXTENSIONS.has(ext)) continue
+    const parts = relPath.split('/').filter(Boolean)
+    if (parts.length === 0) continue
+
+    const { folder, meta } = resolveAlbumMeta(parts)
+    if (!albumMap.has(meta.id)) {
+      albumMap.set(meta.id, { ...meta, coverImage: '', folder, items: [] })
+    }
+    const album = albumMap.get(meta.id)!
+    const src = `/api/photos/${parts.map((p) => encodeURIComponent(p)).join('/')}`
+    const title = path.basename(relPath, ext).replace(/[_-]+/g, ' ').trim() || 'Untitled'
+    if (!album.coverImage) album.coverImage = src
+    album.items.push({ id: `${meta.id}-${album.items.length + 1}`, src, alt: title, title, folder: meta.id })
+  }
+
+  return Array.from(albumMap.values())
+    .sort((a, b) => a.order - b.order || a.name.localeCompare(b.name))
+    .map(({ order: _order, ...rest }) => {
+      void _order
+      return rest
+    })
+}
+
+function scanLocalPhotos(baseDir: string, prefix = ''): string[] {
+  if (!baseDir || !fs.existsSync(baseDir)) return []
+  const results: string[] = []
+  for (const entry of fs.readdirSync(baseDir, { withFileTypes: true })) {
+    if (entry.name.startsWith('.')) continue
+    const rel = prefix ? `${prefix}/${entry.name}` : entry.name
+    const full = path.join(baseDir, entry.name)
+    if (entry.isDirectory()) {
+      results.push(...scanLocalPhotos(full, rel))
+    } else if (entry.isFile()) {
+      results.push(rel)
+    }
+  }
+  return results
+}
+
 function privatePhotosDevApi(token: string): Plugin {
   return {
     name: 'private-photos-dev-api',
@@ -51,69 +143,46 @@ function privatePhotosDevApi(token: string): Plugin {
 
         if (url.pathname === '/api/gallery') {
           res.setHeader('Content-Type', 'application/json')
-          if (!token) {
+          if (token) {
+            try {
+              const ghRes = await fetch(
+                'https://api.github.com/repos/isaiahscape/private-photos/git/trees/HEAD?recursive=1',
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                    Accept: 'application/vnd.github+json',
+                    'User-Agent': 'shenanigans-v3',
+                  },
+                }
+              )
+              if (ghRes.ok) {
+                const data = (await ghRes.json()) as { tree?: Array<{ type: string; path?: string }> }
+                const tree = Array.isArray(data.tree) ? data.tree : []
+                const paths = tree
+                  .filter((node) => node.type === 'blob' && Boolean(node.path))
+                  .map((node) => node.path as string)
+                const albums = buildAlbumsFromPaths(paths)
+                res.statusCode = 200
+                res.end(JSON.stringify({ source: 'github', albums }))
+                return
+              }
+            } catch {
+              // Fall through to local/fallback
+            }
+          }
+
+          const localBase = path.join(process.env.USERPROFILE || '', 'Downloads', 'private-photos')
+          const localPaths = scanLocalPhotos(localBase)
+          if (localPaths.length > 0) {
+            const albums = buildAlbumsFromPaths(localPaths)
             res.statusCode = 200
-            res.end(JSON.stringify({ source: 'fallback', albums: null }))
+            res.end(JSON.stringify({ source: 'local', albums }))
             return
           }
-          try {
-            const ghRes = await fetch(
-              'https://api.github.com/repos/isaiahscape/private-photos/git/trees/main?recursive=1',
-              {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                  Accept: 'application/vnd.github+json',
-                  'User-Agent': 'shenanigans-v3',
-                },
-              }
-            )
-            if (!ghRes.ok) {
-              res.statusCode = 200
-              res.end(JSON.stringify({ source: 'fallback', albums: null }))
-              return
-            }
-            const data = (await ghRes.json()) as { tree?: Array<{ type: string; path?: string }> }
-            const tree = Array.isArray(data.tree) ? data.tree : []
-            const albumMap = new Map<string, { id: string; name: string; description: string; coverImage: string; folder: string; order: number; items: Array<{ id: string; src: string; alt: string; title: string; folder: string }> }>()
 
-            for (const node of tree) {
-              if (node.type !== 'blob' || !node.path) continue
-              const ext = path.extname(node.path).toLowerCase()
-              if (!IMAGE_EXTENSIONS.has(ext)) continue
-              const parts = node.path.split('/')
-              const folder = parts.length > 1 ? parts[0] : 'misc'
-              const folderKey = folder.toLowerCase().replace(/[^a-z0-9]/g, '')
-              const meta = ALBUM_META[folderKey] || {
-                id: folder.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-                name: folder.replace(/[-_]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
-                description: `Visual captures and assets from ${folder}.`,
-                order: 99,
-              }
-              if (!albumMap.has(folder)) {
-                albumMap.set(folder, { ...meta, coverImage: '', folder, items: [] })
-              }
-              const album = albumMap.get(folder)!
-              const src = `/api/photos/${parts.map((p) => encodeURIComponent(p)).join('/')}`
-              const title = path.basename(node.path, ext).replace(/[_-]+/g, ' ').trim() || 'Untitled'
-              if (!album.coverImage) album.coverImage = src
-              album.items.push({ id: `${meta.id}-${album.items.length + 1}`, src, alt: title, title, folder: meta.id })
-            }
-
-            const albums = Array.from(albumMap.values())
-              .sort((a, b) => a.order - b.order || a.name.localeCompare(b.name))
-              .map(({ order: _order, ...rest }) => {
-                void _order
-                return rest
-              })
-
-            res.statusCode = 200
-            res.end(JSON.stringify({ source: 'github', albums }))
-            return
-          } catch {
-            res.statusCode = 200
-            res.end(JSON.stringify({ source: 'fallback', albums: null }))
-            return
-          }
+          res.statusCode = 200
+          res.end(JSON.stringify({ source: 'fallback', albums: null }))
+          return
         }
 
         if (url.pathname.startsWith('/api/photos/')) {
@@ -131,15 +200,29 @@ function privatePhotosDevApi(token: string): Plugin {
 
           if (token) {
             const githubPath = segments.map((s) => encodeURIComponent(s)).join('/')
-            const ghRes = await fetch(`https://raw.githubusercontent.com/isaiahscape/private-photos/main/${githubPath}`, {
+            const rawRes = await fetch(`https://raw.githubusercontent.com/isaiahscape/private-photos/HEAD/${githubPath}`, {
               headers: {
                 Authorization: `Bearer ${token}`,
                 Accept: 'application/vnd.github.v3.raw',
                 'User-Agent': 'shenanigans-v3',
               },
             })
-            if (ghRes.ok) {
-              const buf = Buffer.from(await ghRes.arrayBuffer())
+            if (rawRes.ok) {
+              const buf = Buffer.from(await rawRes.arrayBuffer())
+              res.statusCode = 200
+              res.end(buf)
+              return
+            }
+
+            const contentsRes = await fetch(`https://api.github.com/repos/isaiahscape/private-photos/contents/${githubPath}?ref=HEAD`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                Accept: 'application/vnd.github.raw+json',
+                'User-Agent': 'shenanigans-v3',
+              },
+            })
+            if (contentsRes.ok) {
+              const buf = Buffer.from(await contentsRes.arrayBuffer())
               res.statusCode = 200
               res.end(buf)
               return

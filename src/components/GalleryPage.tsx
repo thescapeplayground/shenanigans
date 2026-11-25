@@ -10,7 +10,7 @@ export function GalleryPage({ initialAlbum }: GalleryPageProps) {
   const [albums, setAlbums] = useState<GalleryAlbum[]>(DEFAULT_GALLERY_ALBUMS);
   const [activeAlbumId, setActiveAlbumId] = useState<string>(() => initialAlbum || 'all');
   const [loading, setLoading] = useState(true);
-  const [syncSource, setSyncSource] = useState<'github' | 'fallback'>('fallback');
+  const [syncSource, setSyncSource] = useState<'github' | 'local' | 'fallback'>('fallback');
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
@@ -32,11 +32,17 @@ export function GalleryPage({ initialAlbum }: GalleryPageProps) {
         if (!res.ok) throw new Error('Failed to load gallery');
         return res.json();
       })
-      .then((data: { source?: 'github' | 'fallback'; albums?: GalleryAlbum[] | null }) => {
+      .then((data: { source?: 'github' | 'local' | 'fallback'; albums?: GalleryAlbum[] | null }) => {
         if (!active) return;
         if (Array.isArray(data?.albums) && data.albums.length > 0) {
-          setAlbums(data.albums);
-          setSyncSource(data.source === 'github' ? 'github' : 'fallback');
+          const returnedIds = new Set(data.albums.map((a) => a.id.toLowerCase()));
+          const missingDefaults = DEFAULT_GALLERY_ALBUMS.filter(
+            (a) => !returnedIds.has(a.id.toLowerCase())
+          ).map((a) => ({ ...a, items: [] }));
+          setAlbums([...data.albums, ...missingDefaults]);
+          setSyncSource(
+            data.source === 'github' ? 'github' : data.source === 'local' ? 'local' : 'fallback'
+          );
         }
       })
       .catch(() => {
@@ -99,7 +105,14 @@ export function GalleryPage({ initialAlbum }: GalleryPageProps) {
     <div className="page-view-container fade-in">
       <header className="page-header">
         <span className="page-label">
-          isaiahscape // private-photos {loading ? '• syncing...' : syncSource === 'github' ? '• live' : ''}
+          isaiahscape // private-photos{' '}
+          {loading
+            ? '• syncing...'
+            : syncSource === 'github'
+              ? '• live'
+              : syncSource === 'local'
+                ? '• local'
+                : '• offline fallback'}
         </span>
         <h1 className="page-title">gallery.</h1>
         <p className="page-description-sub">
@@ -227,8 +240,18 @@ export function GalleryPage({ initialAlbum }: GalleryPageProps) {
             ) : (
               <div className="rom-info-card">
                 <p className="body-para" style={{ fontSize: '14px' }}>
-                  Frames for <strong>{album.name}</strong> sync live from{' '}
-                  <code>isaiahscape/private-photos</code> when <code>GITHUB_PHOTOS_TOKEN</code> is active.
+                  {syncSource === 'fallback' ? (
+                    <>
+                      Frames for <strong>{album.name}</strong> sync live from{' '}
+                      <code>isaiahscape/private-photos</code> when <code>GITHUB_PHOTOS_TOKEN</code> is set (or from{' '}
+                      <code>~/Downloads/private-photos</code> locally).
+                    </>
+                  ) : (
+                    <>
+                      No image frames matched <strong>{album.name}</strong> in{' '}
+                      <code>isaiahscape/private-photos</code> ({syncSource}).
+                    </>
+                  )}
                 </p>
               </div>
             )}

@@ -9,6 +9,8 @@ const CONTENT_TYPES = {
   '.gif': 'image/gif',
   '.svg': 'image/svg+xml',
   '.avif': 'image/avif',
+  '.bmp': 'image/bmp',
+  '.jfif': 'image/jpeg',
 };
 
 function decodeSegment(seg) {
@@ -59,9 +61,9 @@ export default async function handler(req, res) {
     const token = process.env.GITHUB_PHOTOS_TOKEN || process.env.GITHUB_TOKEN;
     if (token) {
       const githubPath = segments.map((s) => encodeURIComponent(s)).join('/');
-      const githubUrl = `https://raw.githubusercontent.com/isaiahscape/private-photos/main/${githubPath}`;
+      const rawUrl = `https://raw.githubusercontent.com/isaiahscape/private-photos/HEAD/${githubPath}`;
 
-      const ghResponse = await fetch(githubUrl, {
+      const rawResponse = await fetch(rawUrl, {
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: 'application/vnd.github.v3.raw',
@@ -69,8 +71,22 @@ export default async function handler(req, res) {
         },
       });
 
-      if (ghResponse.ok) {
-        const buffer = Buffer.from(await ghResponse.arrayBuffer());
+      if (rawResponse.ok) {
+        const buffer = Buffer.from(await rawResponse.arrayBuffer());
+        return res.status(200).send(buffer);
+      }
+
+      const contentsUrl = `https://api.github.com/repos/isaiahscape/private-photos/contents/${githubPath}?ref=HEAD`;
+      const contentsResponse = await fetch(contentsUrl, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: 'application/vnd.github.raw+json',
+          'User-Agent': 'shenanigans-v3',
+        },
+      });
+
+      if (contentsResponse.ok) {
+        const buffer = Buffer.from(await contentsResponse.arrayBuffer());
         return res.status(200).send(buffer);
       }
     }

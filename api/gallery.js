@@ -1,6 +1,7 @@
+import fs from 'fs';
 import path from 'path';
 
-const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif']);
+const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif', '.svg', '.bmp', '.jfif']);
 
 const ALBUM_META = {
   masonry: {
@@ -27,6 +28,11 @@ const ALBUM_META = {
     description: 'Social Club visual series, community captures, and creative archives.',
     order: 3,
   },
+};
+
+const FOLDER_ALIASES = {
+  photography: 'masonry',
+  thesocialclub: 'socialclub',
 };
 
 const KNOWN_ITEM_DETAILS = {
@@ -111,6 +117,102 @@ function formatFolderName(folder) {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+function resolveAlbumMeta(parts) {
+  const dirs = parts.slice(0, -1);
+  for (let i = 0; i < dirs.length; i++) {
+    const segKey = dirs[i].toLowerCase().replace(/[^a-z0-9]/g, '');
+    const mappedKey = FOLDER_ALIASES[segKey] || segKey;
+    if (ALBUM_META[mappedKey]) {
+      return { folder: dirs[i], meta: ALBUM_META[mappedKey] };
+    }
+    if (mappedKey.includes('socialclub')) {
+      return { folder: dirs[i], meta: ALBUM_META.socialclub };
+    }
+    if (i + 1 < dirs.length) {
+      const pairKey = `${segKey}${dirs[i + 1].toLowerCase().replace(/[^a-z0-9]/g, '')}`;
+      const mappedPair = FOLDER_ALIASES[pairKey] || pairKey;
+      if (ALBUM_META[mappedPair]) {
+        return { folder: `${dirs[i]}/${dirs[i + 1]}`, meta: ALBUM_META[mappedPair] };
+      }
+    }
+  }
+
+  const folder = dirs.length > 0 ? dirs[0] : 'misc';
+  return {
+    folder,
+    meta: {
+      id: folder.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+      name: formatFolderName(folder),
+      description: `Visual captures and assets from ${folder}.`,
+      order: 99,
+    },
+  };
+}
+
+function buildAlbumsFromPaths(paths) {
+  const albumMap = new Map();
+
+  for (const relPath of paths) {
+    const ext = path.extname(relPath).toLowerCase();
+    if (!IMAGE_EXTENSIONS.has(ext)) continue;
+
+    const parts = relPath.split('/').filter(Boolean);
+    if (parts.length === 0) continue;
+
+    const { folder, meta } = resolveAlbumMeta(parts);
+    if (!albumMap.has(meta.id)) {
+      albumMap.set(meta.id, {
+        id: meta.id,
+        name: meta.name,
+        description: meta.description,
+        coverImage: '',
+        folder,
+        order: meta.order,
+        items: [],
+      });
+    }
+
+    const encodedPath = parts.map((p) => encodeURIComponent(p)).join('/');
+    const src = `/api/photos/${encodedPath}`;
+    const known = KNOWN_ITEM_DETAILS[relPath];
+    const album = albumMap.get(meta.id);
+
+    const item = {
+      id: `${meta.id}-${album.items.length + 1}`,
+      src,
+      alt: known?.title || formatTitle(relPath),
+      title: known?.title || formatTitle(relPath),
+      folder: meta.id,
+      metadata: known?.metadata,
+    };
+
+    if (!album.coverImage) {
+      album.coverImage = src;
+    }
+    album.items.push(item);
+  }
+
+  return Array.from(albumMap.values())
+    .sort((a, b) => a.order - b.order || a.name.localeCompare(b.name))
+    .map(({ order: _order, ...rest }) => rest);
+}
+
+function scanLocalPhotos(baseDir, prefix = '') {
+  if (!baseDir || !fs.existsSync(baseDir)) return [];
+  const results = [];
+  for (const entry of fs.readdirSync(baseDir, { withFileTypes: true })) {
+    if (entry.name.startsWith('.')) continue;
+    const rel = prefix ? `${prefix}/${entry.name}` : entry.name;
+    const full = path.join(baseDir, entry.name);
+    if (entry.isDirectory()) {
+      results.push(...scanLocalPhotos(full, rel));
+    } else if (entry.isFile()) {
+      results.push(rel);
+    }
+  }
+  return results;
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
     res.setHeader('Allow', 'GET');
@@ -118,86 +220,45 @@ export default async function handler(req, res) {
   }
 
   const token = process.env.GITHUB_PHOTOS_TOKEN || process.env.GITHUB_TOKEN;
-  res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
+  res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=120');
 
-  if (!token) {
-    return res.status(200).json({ source: 'fallback', albums: null });
+  if (token) {
+    try {
+      const treeRes = await fetch(
+        'https://api.github.com/repos/isaiahscape/private-photos/git/trees/HEAD?recursive=1',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/vnd.github+json',
+            'User-Agent': 'shenanigans-v3',
+          },
+        }
+      );
+
+      if (treeRes.ok) {
+        const data = await treeRes.json();
+        const tree = Array.isArray(data.tree) ? data.tree : [];
+        const paths = tree
+          .filter((node) => node.type === 'blob' && Boolean(node.path))
+          .map((node) => node.path);
+        const albums = buildAlbumsFromPaths(paths);
+        return res.status(200).json({ source: 'github', albums });
+      }
+    } catch (err) {
+      console.warn('[api/gallery] GitHub fetch failed, trying fallback:', err);
+    }
   }
 
   try {
-    const treeRes = await fetch(
-      'https://api.github.com/repos/isaiahscape/private-photos/git/trees/main?recursive=1',
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: 'application/vnd.github+json',
-          'User-Agent': 'shenanigans-v3',
-        },
-      }
-    );
-
-    if (!treeRes.ok) {
-      return res.status(200).json({ source: 'fallback', albums: null });
+    const localBasePath = path.join(process.env.USERPROFILE || '', 'Downloads', 'private-photos');
+    const localPaths = scanLocalPhotos(localBasePath);
+    if (localPaths.length > 0) {
+      const albums = buildAlbumsFromPaths(localPaths);
+      return res.status(200).json({ source: 'local', albums });
     }
-
-    const data = await treeRes.json();
-    const tree = Array.isArray(data.tree) ? data.tree : [];
-    const albumMap = new Map();
-
-    for (const node of tree) {
-      if (node.type !== 'blob' || !node.path) continue;
-      const ext = path.extname(node.path).toLowerCase();
-      if (!IMAGE_EXTENSIONS.has(ext)) continue;
-
-      const parts = node.path.split('/');
-      const folder = parts.length > 1 ? parts[0] : 'misc';
-      const folderKey = folder.toLowerCase().replace(/[^a-z0-9]/g, '');
-      const meta = ALBUM_META[folderKey] || {
-        id: folder.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-        name: formatFolderName(folder),
-        description: `Visual captures and assets from ${folder}.`,
-        order: 99,
-      };
-
-      if (!albumMap.has(folder)) {
-        albumMap.set(folder, {
-          id: meta.id,
-          name: meta.name,
-          description: meta.description,
-          coverImage: '',
-          folder,
-          order: meta.order,
-          items: [],
-        });
-      }
-
-      const encodedPath = parts.map((p) => encodeURIComponent(p)).join('/');
-      const src = `/api/photos/${encodedPath}`;
-      const known = KNOWN_ITEM_DETAILS[node.path];
-      const album = albumMap.get(folder);
-
-      const item = {
-        id: `${meta.id}-${album.items.length + 1}`,
-        src,
-        alt: known?.title || formatTitle(node.path),
-        title: known?.title || formatTitle(node.path),
-        folder: meta.id,
-        metadata: known?.metadata,
-      };
-
-      if (!album.coverImage) {
-        album.coverImage = src;
-      }
-      album.items.push(item);
-    }
-
-    const albums = Array.from(albumMap.values())
-      .sort((a, b) => a.order - b.order || a.name.localeCompare(b.name))
-      .map(({ order: _order, ...rest }) => rest);
-
-    return res.status(200).json({ source: 'github', albums });
   } catch (err) {
-    console.warn('[api/gallery] Falling back to static album list:', err);
-    return res.status(200).json({ source: 'fallback', albums: null });
+    console.warn('[api/gallery] Local scan failed:', err);
   }
+
+  return res.status(200).json({ source: 'fallback', albums: null });
 }
