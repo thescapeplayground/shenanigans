@@ -79,6 +79,28 @@ const LOCAL_DEFAULT_PROJECTS: ProjectItem[] = [
     ]
   },
   {
+    id: '07-nectarlink-services',
+    title: 'Nectarlink Services',
+    category: 'Android System',
+    description: 'A privileged Android priv-app AIDL Binder service for custom ROMs providing screen mirroring, input injection, virtual displays, device/call audio streaming, and clipboard sync for NectarLink without ADB or root.',
+    tech: ['Android', 'Kotlin', 'AIDL', 'AOSP'],
+    visitUrl: '',
+    githubUrl: 'https://github.com/isaiahscape/nectarlink-services',
+    status: 'Active',
+    photos: ['/projects/07-nectarlink-services/preview.svg']
+  },
+  {
+    id: '08-nectarlink-module',
+    title: 'Nectarlink Module',
+    category: 'Root Module',
+    description: 'A systemless root module for Magisk, KernelSU, and APatch/FolkPatch that deploys Nectarlink Services as a privileged system_ext app with SELinux UHID rules and automated CI release bundling.',
+    tech: ['Android', 'Shell', 'Magisk', 'GitHub Actions'],
+    visitUrl: 'https://github.com/isaiahscape/nectarlink-module/releases',
+    githubUrl: 'https://github.com/isaiahscape/nectarlink-module',
+    status: 'Active',
+    photos: ['/projects/08-nectarlink-module/preview.svg']
+  },
+  {
     id: '01-material-explorer',
     title: 'Material Explorer',
     category: 'Android App',
@@ -143,28 +165,6 @@ const LOCAL_DEFAULT_PROJECTS: ProjectItem[] = [
     githubUrl: 'https://github.com/isaiahscape/KairoKangedBot',
     status: 'Archived',
     photos: ['/projects/06-kairo-bot/preview.svg']
-  },
-  {
-    id: '07-nectarlink-services',
-    title: 'Nectarlink Services',
-    category: 'Android System',
-    description: 'A privileged Android priv-app AIDL Binder service for custom ROMs providing screen mirroring, input injection, virtual displays, device/call audio streaming, and clipboard sync for NectarLink without ADB or root.',
-    tech: ['Android', 'Kotlin', 'AIDL', 'AOSP'],
-    visitUrl: '',
-    githubUrl: 'https://github.com/isaiahscape/nectarlink-services',
-    status: 'Active',
-    photos: ['/projects/07-nectarlink-services/preview.svg']
-  },
-  {
-    id: '08-nectarlink-module',
-    title: 'Nectarlink Module',
-    category: 'Root Module',
-    description: 'A systemless root module for Magisk, KernelSU, and APatch/FolkPatch that deploys Nectarlink Services as a privileged system_ext app with SELinux UHID rules and automated CI release bundling.',
-    tech: ['Android', 'Shell', 'Magisk', 'GitHub Actions'],
-    visitUrl: 'https://github.com/isaiahscape/nectarlink-module/releases',
-    githubUrl: 'https://github.com/isaiahscape/nectarlink-module',
-    status: 'Active',
-    photos: ['/projects/08-nectarlink-module/preview.svg']
   }
 ]
 

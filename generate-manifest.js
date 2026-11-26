@@ -128,6 +128,7 @@ function scanProjects() {
           const photos = Array.isArray(info.photos) && info.photos.length > 0 ? info.photos : localPhotos;
 
           projects.push({
+            _order: typeof info.order === 'number' ? info.order : 999,
             id: folderName,
             title: info.title || folderName,
             category: info.category || 'General',
@@ -144,7 +145,9 @@ function scanProjects() {
       }
     }
   }
-  return projects;
+  return projects
+    .sort((a, b) => a._order - b._order || a.id.localeCompare(b.id))
+    .map(({ _order, ...project }) => project);
 }
 
 function scanDesigns() {

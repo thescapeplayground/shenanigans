@@ -1,4 +1,5 @@
 {
+  "order": 1,
   "title": "Nectarlink Services",
   "category": "Android System",
   "description": "A privileged Android priv-app AIDL Binder service for custom ROMs providing screen mirroring, input injection, virtual displays, device/call audio streaming, and clipboard sync for NectarLink without ADB or root.",

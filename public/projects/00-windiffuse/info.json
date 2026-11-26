@@ -1,4 +1,5 @@
 {
+  "order": 0,
   "title": "Diffuse for Windows",
   "category": "Windows App",
   "description": "A native Windows 11 port of Diffuse Music Live Wallpaper featuring a WinUI 3 floating tray flyout, Direct3D 11 + DirectComposition fluid shaders, SMTC Now Playing sync, and WASAPI Live Beats.",
