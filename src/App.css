@@ -5669,14 +5669,14 @@ picture {
 
 .lastfm-stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   margin-top: 12px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .lastfm-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 12px;
   }
 }
@@ -5777,6 +5777,16 @@ picture {
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   padding: 0 16px 16px 16px;
+}
+
+.lastfm-track-actions .game-link-badge {
+  text-align: center;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Modern Gaming Section Redesign */

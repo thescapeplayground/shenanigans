@@ -290,11 +290,13 @@ type MusicTrack = {
   isNowPlaying: boolean
 }
 
+const FALLBACK_ALBUM_ART = 'https://lastfm-img.freetls.fastly.net/i/u/300x300/9efc83368bf5ec624dcf258499d8051c.jpg'
+
 const FALLBACK_MUSIC_TRACK: MusicTrack = {
   title: 'seasons',
   artist: 'wave to earth',
   url: 'https://www.last.fm/music/wave+to+earth/_/seasons',
-  imageUrl: '/assets/hero.jpg',
+  imageUrl: FALLBACK_ALBUM_ART,
   isNowPlaying: false
 }
 
@@ -307,20 +309,24 @@ function getBestLastFmImage(images?: Array<{ '#text': string; size: string }>) {
 }
 
 async function getItunesArtwork(title: string, artist: string, signal: AbortSignal) {
-  const params = new URLSearchParams({
-    term: `${artist} ${title}`,
-    media: 'music',
-    entity: 'song',
-    limit: '1'
-  })
+  try {
+    const params = new URLSearchParams({
+      term: `${artist} ${title}`,
+      media: 'music',
+      entity: 'song',
+      limit: '1'
+    })
 
-  const response = await fetch(`https://itunes.apple.com/search?${params.toString()}`, { signal })
-  if (!response.ok) return ''
+    const response = await fetch(`https://itunes.apple.com/search?${params.toString()}`, { signal })
+    if (!response.ok) return ''
 
-  const data = await response.json()
-  const artworkUrl = data?.results?.[0]?.artworkUrl100
+    const data = await response.json()
+    const artworkUrl = data?.results?.[0]?.artworkUrl100
 
-  return typeof artworkUrl === 'string' ? artworkUrl.replace('100x100bb', '600x600bb') : ''
+    return typeof artworkUrl === 'string' ? artworkUrl.replace('100x100bb', '600x600bb') : ''
+  } catch {
+    return ''
+  }
 }
 
 async function getLatestMusicTrack(signal: AbortSignal): Promise<MusicTrack> {
@@ -339,6 +345,8 @@ async function getLatestMusicTrack(signal: AbortSignal): Promise<MusicTrack> {
   if (!response.ok) throw new Error('Could not load Last.fm recent tracks')
 
   const data = await response.json()
+  if (data?.error) throw new Error(data.message || 'Last.fm API error')
+
   const recentTrack = data?.recenttracks?.track
   const track = Array.isArray(recentTrack) ? recentTrack[0] : recentTrack
 

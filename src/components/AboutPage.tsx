@@ -196,69 +196,203 @@ interface AboutPageProps {
   apiKey: string;
 }
 
+const FALLBACK_TRACK_ART = 'https://lastfm-img.freetls.fastly.net/i/u/300x300/9efc83368bf5ec624dcf258499d8051c.jpg';
+
+const FALLBACK_RECENT_TRACKS: LastFMTrack[] = [
+  {
+    name: 'seasons',
+    artist: { '#text': 'wave to earth' },
+    album: { '#text': 'summer flows 0.02' },
+    image: 'https://lastfm-img.freetls.fastly.net/i/u/300x300/9efc83368bf5ec624dcf258499d8051c.jpg',
+    url: 'https://www.last.fm/music/wave+to+earth/_/seasons',
+  },
+  {
+    name: 'Fade Into You',
+    artist: { '#text': 'Mazzy Star' },
+    album: { '#text': 'So Tonight That I Might See' },
+    image: 'https://lastfm-img.freetls.fastly.net/i/u/300x300/60615ead3d8383e70e84a526817de4bf.jpg',
+    url: 'https://www.last.fm/music/Mazzy+Star/_/Fade+Into+You',
+  },
+  {
+    name: 'o ninanais',
+    artist: { '#text': 'Arthur Nery' },
+    album: { '#text': 'o ninanais' },
+    image: 'https://lastfm-img.freetls.fastly.net/i/u/300x300/60debcb8374abd3a287340925b2209c6.jpg',
+    url: 'https://www.last.fm/music/Arthur+Nery/_/o+ninanais',
+  },
+  {
+    name: 'Higa',
+    artist: { '#text': 'Arthur Nery' },
+    album: { '#text': 'Elevator' },
+    image: 'https://lastfm-img.freetls.fastly.net/i/u/300x300/60debcb8374abd3a287340925b2209c6.jpg',
+    url: 'https://www.last.fm/music/Arthur+Nery/_/Higa',
+  },
+  {
+    name: 'Sino',
+    artist: { '#text': 'Unique Salonga' },
+    album: { '#text': 'Grandma' },
+    image: 'https://lastfm-img.freetls.fastly.net/i/u/300x300/4ea90d03368f45e0a9170e47b012f5b5.jpg',
+    url: 'https://www.last.fm/music/Unique+Salonga/_/Sino',
+  },
+];
+
+const FALLBACK_STATS: LastFMStats = {
+  user: {
+    playcount: '5',
+    name: 'isaiahthings',
+    url: 'https://www.last.fm/user/isaiahthings',
+    realname: 'Leonardo',
+    image: [
+      {
+        '#text': 'https://lastfm-img.freetls.fastly.net/i/u/300x300/49eacbb6c1314c60ec27ed2c740a272b.png',
+        size: 'extralarge',
+      },
+    ],
+  },
+  recentTracks: FALLBACK_RECENT_TRACKS,
+  topArtist: {
+    name: 'wave to earth',
+    playcount: '—',
+    url: 'https://www.last.fm/music/wave+to+earth',
+  },
+  topTracks: [
+    {
+      name: 'seasons',
+      artist: { '#text': 'wave to earth' },
+      url: 'https://www.last.fm/music/wave+to+earth/_/seasons',
+    },
+  ],
+  weeklyPlaycount: '0',
+};
+
+function getBestLastFmImage(images?: LastFMImageItem[]): string {
+  const valid = [...(images ?? [])]
+    .reverse()
+    .find((i) => i['#text'] && !i['#text'].includes('2a96cbd8b46e442fc41c2b86b821562f'));
+  return valid?.['#text'] || '';
+}
+
+async function fetchItunesArt(title: string, artist: string, signal: AbortSignal): Promise<string> {
+  try {
+    const params = new URLSearchParams({
+      term: `${artist} ${title}`,
+      media: 'music',
+      entity: 'song',
+      limit: '1',
+    });
+    const res = await fetch(`https://itunes.apple.com/search?${params.toString()}`, { signal });
+    if (!res.ok) return '';
+    const json = await res.json();
+    const url = json?.results?.[0]?.artworkUrl100;
+    return typeof url === 'string' ? url.replace('100x100bb', '300x300bb') : '';
+  } catch {
+    return '';
+  }
+}
+
 export function AboutPage({ username, apiKey }: AboutPageProps) {
-  const [stats, setStats] = useState<LastFMStats | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState<LastFMStats>(FALLBACK_STATS);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    async function fetchJson(url: string) {
+      try {
+        const res = await fetch(url, { signal });
+        if (!res.ok) return null;
+        const data = await res.json();
+        return data?.error ? null : data;
+      } catch {
+        return null;
+      }
+    }
+
     async function fetchStats() {
       try {
         const baseUrl = "https://ws.audioscrobbler.com/2.0";
+        const userParam = encodeURIComponent(username);
+        const keyParam = encodeURIComponent(apiKey);
 
         const [userInfo, recentTracks, topArtists, topTracks, weeklyChart] = await Promise.all([
-          fetch(`${baseUrl}/?method=user.getinfo&user=${username}&api_key=${apiKey}&format=json`).then((res) => res.json().catch(() => null)),
-          fetch(`${baseUrl}/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=8`).then((res) => res.json().catch(() => null)),
-          fetch(`${baseUrl}/?method=user.gettopartists&user=${username}&api_key=${apiKey}&format=json&limit=1&period=overall`).then((res) => res.json().catch(() => null)),
-          fetch(`${baseUrl}/?method=user.gettoptracks&user=${username}&api_key=${apiKey}&format=json&limit=1&period=overall`).then((res) => res.json().catch(() => null)),
-          fetch(`${baseUrl}/?method=user.getweeklytrackchart&user=${username}&api_key=${apiKey}&format=json`).then((res) => res.json().catch(() => null)),
+          fetchJson(`${baseUrl}/?method=user.getinfo&user=${userParam}&api_key=${keyParam}&format=json`),
+          fetchJson(`${baseUrl}/?method=user.getrecenttracks&user=${userParam}&api_key=${keyParam}&format=json&limit=8`),
+          fetchJson(`${baseUrl}/?method=user.gettopartists&user=${userParam}&api_key=${keyParam}&format=json&limit=1&period=overall`),
+          fetchJson(`${baseUrl}/?method=user.gettoptracks&user=${userParam}&api_key=${keyParam}&format=json&limit=1&period=overall`),
+          fetchJson(`${baseUrl}/?method=user.getweeklytrackchart&user=${userParam}&api_key=${keyParam}&format=json`),
         ]);
 
-        const recentTracksList = (recentTracks?.recenttracks?.track as LastFMRawRecentTrack[] | undefined)?.map((track) => {
-          const imgUrl = track.image?.find((i) => i.size === 'extralarge' || i.size === 'large')?.['#text'] || track.image?.[0]?.['#text'] || '';
-          return {
-            name: track.name,
-            artist: track.artist,
-            album: track.album,
-            image: imgUrl,
-            url: track.url,
-            "@attr": track["@attr"],
-          };
-        }) || [];
+        if (signal.aborted) return;
+
+        const rawRecent = recentTracks?.recenttracks?.track;
+        const recentArr: LastFMRawRecentTrack[] = Array.isArray(rawRecent)
+          ? rawRecent
+          : rawRecent
+            ? [rawRecent]
+            : [];
+
+        const recentTracksList: LastFMTrack[] = await Promise.all(
+          recentArr.map(async (track) => {
+            const artistName = track.artist?.['#text'] || track.artist?.name || '';
+            const lfmImg = getBestLastFmImage(track.image);
+            const imgUrl = lfmImg || (track.name ? await fetchItunesArt(track.name, artistName, signal) : '');
+            return {
+              name: track.name,
+              artist: { '#text': artistName },
+              album: track.album,
+              image: imgUrl || FALLBACK_TRACK_ART,
+              url: track.url,
+              "@attr": track["@attr"],
+            };
+          })
+        );
+
+        if (signal.aborted) return;
 
         const topArtist = topArtists?.topartists?.artist?.[0];
 
-        const topTracksList = (topTracks?.toptracks?.track as LastFMRawTopTrack[] | undefined)?.map((track) => ({
+        const rawTopTracks = topTracks?.toptracks?.track;
+        const topTrackArr: LastFMRawTopTrack[] = Array.isArray(rawTopTracks)
+          ? rawTopTracks
+          : rawTopTracks
+            ? [rawTopTracks]
+            : [];
+
+        const topTracksList = topTrackArr.map((track) => ({
           name: track.name,
           artist: { "#text": track.artist?.name || "" },
           url: track.url,
           playcount: track.playcount,
-        })) || [];
+        }));
 
         const weeklyPlaycount = weeklyChart?.weeklytrackchart?.["@attr"]?.total || "0";
 
-        if (userInfo && userInfo.user) {
-          setStats({
-            user: userInfo.user,
-            recentTracks: recentTracksList,
-            topArtist: topArtist ? {
-              name: topArtist.name,
-              playcount: topArtist.playcount,
-              url: topArtist.url,
-            } : undefined,
-            topTracks: topTracksList,
-            weeklyPlaycount,
-          });
-        }
+        setStats({
+          user: userInfo?.user ?? { ...FALLBACK_STATS.user, name: username },
+          recentTracks: recentTracksList.length > 0 ? recentTracksList : FALLBACK_RECENT_TRACKS,
+          topArtist: topArtist
+            ? {
+                name: topArtist.name,
+                playcount: topArtist.playcount,
+                url: topArtist.url,
+              }
+            : FALLBACK_STATS.topArtist,
+          topTracks: topTracksList.length > 0 ? topTracksList : FALLBACK_STATS.topTracks,
+          weeklyPlaycount,
+        });
       } catch (error) {
-        console.error("Error fetching LastFM stats:", error);
-      } finally {
-        setLoading(false);
+        if (!signal.aborted) {
+          console.error("Error fetching LastFM stats:", error);
+        }
       }
     }
 
     fetchStats();
     const interval = setInterval(fetchStats, 60000);
-    return () => clearInterval(interval);
+    return () => {
+      controller.abort();
+      clearInterval(interval);
+    };
   }, [username, apiKey]);
 
   return (
@@ -336,14 +470,11 @@ export function AboutPage({ username, apiKey }: AboutPageProps) {
       {/* Last.fm Music Section */}
       <h2 className="category-title" style={{ marginTop: '24px' }}>LAST.FM MUSIC & SCROBBLES</h2>
       <div className="about-md-body" style={{ padding: '0 0 24px 0', marginBottom: '24px' }}>
-        {loading ? (
-          <p className="body-para" style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Loading music stats...</p>
-        ) : stats ? (
           <div>
             {/* Profile Info Row */}
             <div className="lastfm-profile-card">
               <img
-                src={stats.user.image?.[2]?.['#text'] || '/assets/hero.jpg'}
+                src={getBestLastFmImage(stats.user.image) || FALLBACK_STATS.user.image?.[0]?.['#text'] || '/assets/hero.jpg'}
                 alt={stats.user.name}
                 className="lastfm-avatar"
                 onError={(e) => { e.currentTarget.src = '/assets/hero.jpg' }}
@@ -372,8 +503,8 @@ export function AboutPage({ username, apiKey }: AboutPageProps) {
               When I'm not behind a camera or a keyboard, I'm usually exploring new music and tinkering with audio gear. My rotation leans toward OPM, indie, dreampop, and late-night tracks — artists like wave to earth, Mazzy Star, Arthur Nery, and Unique Salonga.
             </p>
 
-            {/* Stats & Weekly Chart */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4" style={{ marginBottom: '32px' }}>
+            {/* Stats Grid */}
+            <div className="lastfm-stats-grid" style={{ marginBottom: '32px' }}>
               <div className="lastfm-stat-box">
                 <span className="lastfm-stat-lbl">Total Scrobbles</span>
                 <span className="lastfm-stat-val">{Number(stats.user.playcount).toLocaleString()}</span>
@@ -383,7 +514,9 @@ export function AboutPage({ username, apiKey }: AboutPageProps) {
                   <span className="lastfm-stat-lbl">Top Artist</span>
                   <span className="lastfm-stat-val" style={{ fontSize: '16px', fontWeight: '600' }}>{stats.topArtist.name}</span>
                   <span className="lastfm-stat-lbl" style={{ fontSize: '9px', marginTop: '2px' }}>
-                    {Number(stats.topArtist.playcount).toLocaleString()} plays
+                    {stats.topArtist.playcount && !Number.isNaN(Number(stats.topArtist.playcount))
+                      ? `${Number(stats.topArtist.playcount).toLocaleString()} plays`
+                      : 'Favorite rotation'}
                   </span>
                 </div>
               )}
@@ -404,13 +537,13 @@ export function AboutPage({ username, apiKey }: AboutPageProps) {
             </h3>
             <div className="lastfm-track-grid">
               {stats.recentTracks?.map((track, idx) => (
-                <div key={idx} className="lastfm-track-card">
+                <div key={`${track.name}-${idx}`} className="lastfm-track-card">
                   <div className="lastfm-track-main">
                     <img
-                      src={track.image || '/assets/hero.jpg'}
+                      src={track.image || FALLBACK_TRACK_ART}
                       alt={track.name}
                       className="lastfm-track-art"
-                      onError={(e) => { e.currentTarget.src = '/assets/hero.jpg' }}
+                      onError={(e) => { e.currentTarget.src = FALLBACK_TRACK_ART }}
                     />
                     <div className="lastfm-track-info">
                       <span className="lastfm-track-title truncate" title={track.name}>
@@ -448,9 +581,6 @@ export function AboutPage({ username, apiKey }: AboutPageProps) {
               ))}
             </div>
           </div>
-        ) : (
-          <p className="body-para" style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Could not load scrobbler stats.</p>
-        )}
       </div>
 
       {/* Games Section */}
