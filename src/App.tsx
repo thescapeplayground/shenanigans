@@ -3,7 +3,6 @@ import { ReactLenis } from 'lenis/react'
 import { PaperTexture } from '@paper-design/shaders-react'
 import { FAB } from './components/FAB'
 import { Hero } from './components/Hero'
-import { CustomCursor } from './components/CustomCursor'
 import { useGitHubData } from './hooks/useGitHubData'
 import { AboutPage } from './components/AboutPage'
 import { ProjectsPage } from './components/ProjectsPage'
@@ -1393,7 +1392,6 @@ function App() {
 
       {/* Floating Action Button Quick Navigation */}
       {!loading && <FAB currentPage={currentPage} onPageChange={handlePageChange} />}
-      {!loading && <CustomCursor />}
     </ReactLenis>
   )
 }

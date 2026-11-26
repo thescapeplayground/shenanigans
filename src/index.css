@@ -117,60 +117,6 @@ a {
   text-decoration: none;
 }
 
-.custom-cursor-pointer,
-.custom-cursor-trail,
-.custom-cursor-pulse {
-  position: fixed;
-  top: 0;
-  left: 0;
-  border-radius: 999px;
-  opacity: 0;
-  pointer-events: none;
-  will-change: transform, opacity;
-}
-
-.custom-cursor-pointer {
-  z-index: 99998;
-  background: #fff;
-  mix-blend-mode: difference;
-  view-transition-name: custom-cursor-pointer;
-}
-
-.custom-cursor-trail {
-  z-index: 99999;
-  background: #fff;
-  mix-blend-mode: difference;
-  opacity: 0.8;
-  box-shadow: 0 0 16px var(--accent-glow);
-  view-transition-name: custom-cursor-trail;
-}
-
-.custom-cursor-pulse {
-  width: 40px;
-  height: 40px;
-  margin-left: -20px;
-  margin-top: -20px;
-  z-index: 99997;
-  border: 1.5px solid #fff;
-  mix-blend-mode: difference;
-  transition:
-    transform 0.4s cubic-bezier(0.1, 0.8, 0.3, 1),
-    opacity 0.4s cubic-bezier(0.1, 0.8, 0.3, 1);
-}
-
-@media (pointer: coarse), (max-width: 767px) {
-  .custom-cursor-pointer,
-  .custom-cursor-trail,
-  .custom-cursor-pulse {
-    display: none;
-  }
-}
-
-::view-transition-group(custom-cursor-pointer),
-::view-transition-group(custom-cursor-trail) {
-  animation-duration: 0s !important;
-}
-
 @keyframes fade-out {
   from { opacity: 1; }
   to { opacity: 0; }
