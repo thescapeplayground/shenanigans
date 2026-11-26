@@ -31,7 +31,7 @@ export function AccordionGallery({
   accentColor = 'var(--accent)',
   overlayColor = '#060708',
   textColor = '#ffffff',
-  grayscale = true,
+  grayscale = false,
   showLabels = true,
   duration = 0.6,
   parallax = 0.5,
