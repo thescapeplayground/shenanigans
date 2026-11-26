@@ -5,8 +5,8 @@ export function FAB({
   currentPage,
   onPageChange,
 }: {
-  currentPage: 'home' | 'about' | 'projects' | 'gallery' | 'blogs';
-  onPageChange: (page: 'home' | 'about' | 'projects' | 'gallery' | 'blogs') => void;
+  currentPage: 'home' | 'about' | 'projects' | 'services' | 'gallery' | 'blogs';
+  onPageChange: (page: 'home' | 'about' | 'projects' | 'services' | 'gallery' | 'blogs') => void;
 }) {
   const [open, setOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
@@ -139,6 +139,22 @@ export function FAB({
                 <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
               </svg>
               <span>Projects</span>
+              <span className="link-arrow">→</span>
+            </a>
+
+            <a
+              href="/services"
+              onClick={(e) => {
+                e.preventDefault();
+                onPageChange("services");
+                setOpen(false);
+              }}
+              className={`fab-menu-link ${currentPage === "services" ? "active" : ""}`}
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="link-icon">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+              </svg>
+              <span>Services</span>
               <span className="link-arrow">→</span>
             </a>
 

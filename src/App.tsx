@@ -6,6 +6,7 @@ import { Hero } from './components/Hero'
 import { useGitHubData } from './hooks/useGitHubData'
 import { AboutPage } from './components/AboutPage'
 import { ProjectsPage } from './components/ProjectsPage'
+import { ServicesPage } from './components/ServicesPage'
 import { GalleryPage } from './components/GalleryPage'
 import { BlogsPage } from './components/BlogsPage'
 import './App.css'
@@ -426,7 +427,7 @@ function App() {
   const [musicError, setMusicError] = useState(false)
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light')
   const gh = useGitHubData()
-  const getPageFromLocation = (pathname: string, rawHash = ''): 'home' | 'about' | 'projects' | 'gallery' | 'blogs' => {
+  const getPageFromLocation = (pathname: string, rawHash = ''): 'home' | 'about' | 'projects' | 'services' | 'gallery' | 'blogs' => {
     const cleanPath = pathname.replace(/^\/+|\/+$/g, '').toLowerCase()
     const cleanHash = rawHash.replace(/^#\/?/, '').toLowerCase()
     const route = cleanPath || cleanHash
@@ -435,6 +436,9 @@ function App() {
     }
     if (route === 'gallery' || route.startsWith('gallery/')) {
       return 'gallery'
+    }
+    if (route === 'services' || route.startsWith('services/')) {
+      return 'services'
     }
     if (route === 'projects' || route.startsWith('projects/')) {
       return 'projects'
@@ -455,7 +459,7 @@ function App() {
     return match ? decodeURIComponent(match[1]) : undefined
   }
 
-  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'projects' | 'gallery' | 'blogs'>(() => {
+  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'projects' | 'services' | 'gallery' | 'blogs'>(() => {
     return getPageFromLocation(window.location.pathname, window.location.hash)
   })
   const [initialScrollTarget, setInitialScrollTarget] = useState<string | undefined>(() => {
@@ -499,7 +503,7 @@ function App() {
     }
   })
 
-  const handlePageChange = (page: 'home' | 'about' | 'projects' | 'gallery' | 'blogs', nextPath?: string) => {
+  const handlePageChange = (page: 'home' | 'about' | 'projects' | 'services' | 'gallery' | 'blogs', nextPath?: string) => {
     if (!nextPath) {
       setInitialScrollTarget(undefined)
       setInitialGalleryAlbum(undefined)
@@ -510,6 +514,16 @@ function App() {
       window.history.pushState(null, '', targetPath)
     }
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+  }
+
+  const handleGoToContact = () => {
+    handlePageChange('home')
+    setTimeout(() => {
+      const contactEl = document.getElementById('contact')
+      if (contactEl) {
+        contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }, 60)
   }
 
   const handleViewProjectDetails = (targetId: string) => {
@@ -1340,6 +1354,7 @@ function App() {
 
         {currentPage === 'about' && <AboutPage username={LASTFM_USER} apiKey={LASTFM_API_KEY} />}
         {currentPage === 'projects' && <ProjectsPage initialScrollTarget={initialScrollTarget} clearScrollTarget={() => setInitialScrollTarget(undefined)} />}
+        {currentPage === 'services' && <ServicesPage onContactClick={handleGoToContact} />}
         {currentPage === 'gallery' && <GalleryPage key={initialGalleryAlbum || 'all'} initialAlbum={initialGalleryAlbum} />}
         {currentPage === 'blogs' && <BlogsPage />}
 
@@ -1371,6 +1386,7 @@ function App() {
                 <a href="/" onClick={(e) => { e.preventDefault(); handlePageChange('home'); }} className="footer-nav-link">// HOME</a>
                 <a href="/about" onClick={(e) => { e.preventDefault(); handlePageChange('about'); }} className="footer-nav-link">// ABOUT</a>
                 <a href="/projects" onClick={(e) => { e.preventDefault(); handlePageChange('projects'); }} className="footer-nav-link">// PROJECTS</a>
+                <a href="/services" onClick={(e) => { e.preventDefault(); handlePageChange('services'); }} className="footer-nav-link">// SERVICES</a>
                 <a href="/gallery" onClick={(e) => { e.preventDefault(); handlePageChange('gallery'); }} className="footer-nav-link">// GALLERY</a>
                 <a href="/blogs" onClick={(e) => { e.preventDefault(); handlePageChange('blogs'); }} className="footer-nav-link">// BLOGS</a>
               </div>
