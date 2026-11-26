@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type ReactNode } from 'react';
 
 function computeAge(birthDate: Date): number {
   const now = new Date();
@@ -32,6 +32,103 @@ const gamesList = [
       { label: "PC", href: "https://playvalorant.com" }
     ]
   }
+];
+
+interface SetupCardItem {
+  tag: string;
+  title: string;
+  specs: string[];
+  className: string;
+  icon: ReactNode;
+}
+
+const setupItems: SetupCardItem[] = [
+  {
+    tag: '// WORKSTATION PC',
+    title: 'Ryzen 7 5700X3D & RTX 4060',
+    specs: ['MSI MAG B550 Tomahawk', '32GB FURY DDR4', '1TB 990 EVO NVMe'],
+    className: 'card-monitor span-7',
+    icon: (
+      <svg className="setup-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <rect x="2" y="3" width="20" height="13" rx="1.5" />
+        <path d="M12 16v5M8 21h8" />
+      </svg>
+    ),
+  },
+  {
+    tag: '// INPUT',
+    title: 'Aula F75 & HHKB Pro',
+    specs: ['75% Wireless Gasket', 'HHKB Professional'],
+    className: 'card-keyboard span-5',
+    icon: (
+      <svg className="setup-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <rect x="2" y="6" width="20" height="12" rx="2" />
+        <path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M6 14h.01M18 14h.01M9 14h6" />
+      </svg>
+    ),
+  },
+  {
+    tag: '// LAPTOP',
+    title: 'Lenovo Ryzen 5 7530U',
+    specs: ['16GB DDR4-3200', '512GB NVMe • 15.6" FHD'],
+    className: 'card-tablet span-4',
+    icon: (
+      <svg className="setup-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <rect x="3" y="4" width="18" height="12" rx="2" />
+        <path d="M2 20h20" />
+      </svg>
+    ),
+  },
+  {
+    tag: '// PHONE',
+    title: 'Samsung Galaxy S24 5G',
+    specs: ['Exynos 2400', '120Hz AMOLED 2X'],
+    className: 'card-phone span-4',
+    icon: (
+      <svg className="setup-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <rect x="5" y="2" width="14" height="20" rx="2" />
+        <path d="M12 18h.01" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    tag: '// MOUSE',
+    title: 'ATKGEAR A9 Pro Plus 2.0',
+    specs: ['PAW3395', '32,000 DPI • 1K NK'],
+    className: 'card-mouse span-4',
+    icon: (
+      <svg className="setup-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M12 2C9.24 2 7 4.24 7 7v10c0 2.76 2.24 5 5 5s5-2.24 5-5V7c0-2.76-2.24-5-5-5z" />
+        <path d="M12 2v7M7 9h10" />
+      </svg>
+    ),
+  },
+  {
+    tag: '// CAMERA',
+    title: 'Canon EOS 700D',
+    specs: ['EF 50mm f/1.8 STM', 'EF-S 18-55mm IS STM', 'Street & Portraits'],
+    className: 'card-iem-1 span-6',
+    icon: (
+      <svg className="setup-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+        <circle cx="12" cy="13" r="4" />
+      </svg>
+    ),
+  },
+  {
+    tag: '// AUDIO / IEM & DAC',
+    title: 'Simgot EW300 & TRN Black Pearl',
+    specs: ['1DD + Planar + PZT', 'TRN T2 16 Core', 'CS43131 DAC / CB5100 Amp'],
+    className: 'card-iem-2 span-6',
+    icon: (
+      <svg className="setup-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M3 14c0-4.97 4.03-9 9-9s9 4.03 9 9" />
+        <rect x="3" y="12" width="4" height="6" rx="1.5" />
+        <rect x="17" y="12" width="4" height="6" rx="1.5" />
+        <path d="M7 15h10M9 18h6" />
+      </svg>
+    ),
+  },
 ];
 
 interface LastFMTrack {
@@ -202,6 +299,34 @@ export function AboutPage({ username, apiKey }: AboutPageProps) {
               <div className="about-widget-body">
                 <span className="about-widget-val">{item.value}</span>
                 <span className="about-widget-unit">{item.unit}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* My Setup Section */}
+      <h2 className="category-title" id="setup" style={{ marginTop: '24px' }}>MY SETUP</h2>
+      <div className="about-md-body" style={{ padding: '16px 0 24px 0', marginBottom: '24px' }}>
+        <p className="body-para" style={{ marginBottom: '20px' }}>
+          A curated record of custom hardware configurations, camera gear, audio kits, and daily drivers.
+        </p>
+        <div className="setup-grid">
+          {setupItems.map((item) => (
+            <div key={item.tag} className={`setup-card ${item.className}`}>
+              <div className="setup-card-header">
+                <span className="setup-tag">{item.tag}</span>
+                <div className="setup-icon-wrapper">{item.icon}</div>
+              </div>
+              <div className="setup-card-body">
+                <h3 className="setup-item-title">{item.title}</h3>
+                <div className="setup-specs">
+                  {item.specs.map((spec) => (
+                    <span key={spec} className="spec-tag">
+                      {spec}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           ))}

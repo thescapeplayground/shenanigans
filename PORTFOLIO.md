@@ -49,27 +49,17 @@ The single-page application is structured inside a centered blueprint `page-wrap
 ### 6. Skills Section
 - Categorized skills across **Frontend & Web** (React, Next.js, TypeScript, Tailwind CSS, Node.js, Vite), **Design & Visuals** (Photography, Graphic Design, Figma, HTML5 Canvas/WebGL), and **Mobile, Systems & IT** (Kotlin, Jetpack Compose, Android/Material Design 3, Mikrotik & IPoE, PC Builds & Linux).
 
-### 7. My Setup Section
-- 12-column hardware & daily driver grid:
-  - **Workstation PC (span 7)**: Ryzen 7 5700X3D, RTX 4060, MSI MAG B550 Tomahawk, 32GB FURY DDR4, 1TB 990 EVO NVMe.
-  - **Keyboard (span 5)**: Aula F75 & HHKB Professional.
-  - **Laptop (span 4)**: Lenovo Ryzen 5 7530U (16GB DDR4-3200, 512GB NVMe).
-  - **Phone (span 4)**: Samsung Galaxy S24 5G.
-  - **Mouse (span 4)**: Pulsar TenZ Signature Edition.
-  - **Camera (span 6)**: Canon EOS 700D (EF 50mm f/1.8 STM, EF-S 18-55mm IS STM).
-  - **Audio / IEM & DAC (span 6)**: Simgot EW300 & TRN Black Pearl.
+### 7. GitHub Contribution Graph
+- Live GitHub contribution calendar and stats fetched for `isaiahscape` via [useGitHubData.ts](file:///c:/Users/Leonardo/Documents/shenanigans/src/hooks/useGitHubData.ts).
 
-### 8. GitHub Contribution Graph
-- Live GitHub contribution calendar and stats fetched for `isaiahscape` via [useGitHubData.ts](file:///c:/Users/Leonardo/shenanigans/src/hooks/useGitHubData.ts).
-
-### 9. Contact & Editorial Footer
+### 8. Contact & Editorial Footer
 - **Contact Section**: Availability in Davao, Philippines, direct email (`isaiahscape@duck.com`), and social links (`GitHub`, `Instagram`, `Telegram`, `LinkedIn`).
 - **Footer**: Attribution (`Leonardo (isaiahscape)` / `The Scape Series: Playground`), navigation links, and live local time in `Asia/Manila`.
 
 ---
 
 ## 2.1 Sub-Pages (Path Routed)
-- **About Page ([AboutPage.tsx](file:///c:/Users/Leonardo/shenanigans/src/components/AboutPage.tsx))** (`/about`): Full biography, quick facts, live Last.fm scrobbles/stats (`isaiahthings`), and Valorant gaming card.
+- **About Page ([AboutPage.tsx](file:///c:/Users/Leonardo/Documents/shenanigans/src/components/AboutPage.tsx))** (`/about`): Full biography, quick facts, **My Setup** hardware/camera/audio grid (Workstation PC, Aula F75 & HHKB Pro, Lenovo Ryzen 5 7530U, Galaxy S24 5G, Pulsar TenZ Signature, Canon EOS 700D, Simgot EW300 & TRN Black Pearl), live Last.fm scrobbles/stats (`isaiahthings`), and Valorant gaming card.
 - **Projects / Creations Page ([ProjectsPage.tsx](file:///c:/Users/Leonardo/shenanigans/src/components/ProjectsPage.tsx))** (`/projects`, `/projects/:section`): Filterable dev projects, SVG brand marks (`public/logos/`), designs (`public/designs/`), and photography (`public/photography/`) loaded from `/manifest.json`.
 - **Gallery Page ([GalleryPage.tsx](file:///c:/Users/Leonardo/Documents/shenanigans/src/components/GalleryPage.tsx))** (`/gallery`, `/gallery/:album`): Album-filterable masonry gallery (*Photography*, *TV Showcase*, *Tangible Stuff*, and *Social Club*) and EXIF lightbox backed by `isaiahscape/private-photos` via Vercel Serverless Functions (`api/gallery.js`, `api/photos.js`) using `GITHUB_PHOTOS_TOKEN` (with static catalog fallback in [src/data/gallery.ts](file:///c:/Users/Leonardo/Documents/shenanigans/src/data/gallery.ts) and local Vite dev middleware in [vite.config.ts](file:///c:/Users/Leonardo/Documents/shenanigans/vite.config.ts)).
 - **Blogs Page ([BlogsPage.tsx](file:///c:/Users/Leonardo/shenanigans/src/components/BlogsPage.tsx))** (`/blogs`, `/blogs/:slug`): Markdown dev logs (*Remaking Snapseed on the Web from Scratch*, *Recreating Shenanigans*, *Hello World*) rendered via `marked`.
