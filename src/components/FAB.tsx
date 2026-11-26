@@ -203,6 +203,10 @@ export function FAB({
             <span className="footer-divider">•</span>
             <a href="https://t.me/isaiahscape" target="_blank" rel="noopener noreferrer" className="footer-social-link">Telegram</a>
             <span className="footer-divider">•</span>
+            <a href="https://youtube.com/@isaiahscape" target="_blank" rel="noopener noreferrer" className="footer-social-link">YouTube</a>
+            <span className="footer-divider">•</span>
+            <a href="https://twitch.tv/isaiahscape" target="_blank" rel="noopener noreferrer" className="footer-social-link">Twitch</a>
+            <span className="footer-divider">•</span>
             <a href="mailto:isaiahscape@duck.com" className="footer-social-link">Email</a>
           </div>
         </div>

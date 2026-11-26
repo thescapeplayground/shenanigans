@@ -1352,6 +1352,14 @@ function App() {
                         <span className="social-name">LinkedIn</span>
                         <span className="social-arrow">↗</span>
                       </a>
+                      <a href="https://youtube.com/@isaiahscape" target="_blank" rel="noopener noreferrer" className="social-grid-item">
+                        <span className="social-name">YouTube</span>
+                        <span className="social-arrow">↗</span>
+                      </a>
+                      <a href="https://twitch.tv/isaiahscape" target="_blank" rel="noopener noreferrer" className="social-grid-item">
+                        <span className="social-name">Twitch</span>
+                        <span className="social-arrow">↗</span>
+                      </a>
                     </div>
                   </div>
                 </div>

@@ -32,7 +32,7 @@ The single-page application is structured inside a centered blueprint `page-wrap
 
 ### 3. Hero Section ([Hero.tsx](file:///c:/Users/Leonardo/Documents/shenanigans/src/components/Hero.tsx))
 - **Visual Card**: Interactive **Accordion Gallery** cover ([AccordionGallery.tsx](file:///c:/Users/Leonardo/Documents/shenanigans/src/components/AccordionGallery.tsx)) with hover/focus/click expanding full-color panels, 3D tilt, parallax drift, and captions, populated from interleaved *Photography* and *Social Club* photos via `/api/gallery` (with `/assets/folder-texture.jpg` image-error fallback), and overlapping circular avatar (`/assets/hero.jpg` with `/favicon-with-bg.svg` fallback).
-- **Details Row**: Title ("I am Leonardo"), tagline ("photographer, graphic designer & developer — keeping things real, minimal, and functional."), and social buttons linking to GitHub (`isaiahscape`), Instagram (`@isaiahscape`), Telegram (`@isaiahscape`), and LinkedIn (`isaiahscape`).
+- **Details Row**: Title ("I am Leonardo"), tagline ("photographer, graphic designer & developer — keeping things real, minimal, and functional."), and social buttons linking to GitHub (`isaiahscape`), Instagram (`@isaiahscape`), Telegram (`@isaiahscape`), LinkedIn (`isaiahscape`), YouTube (`@isaiahscape`), and Twitch (`isaiahscape`).
 
 ### 4. About Info Grid
 - **Box 1**: Davao, Philippines location, dynamically computed age (born July 1, 2005), and role badges (`photographer`, `graphic designer`, `web dev`, `it instructor`).
@@ -53,7 +53,7 @@ The single-page application is structured inside a centered blueprint `page-wrap
 - Live GitHub contribution calendar and stats fetched for `isaiahscape` via [useGitHubData.ts](file:///c:/Users/Leonardo/Documents/shenanigans/src/hooks/useGitHubData.ts).
 
 ### 8. Contact & Editorial Footer
-- **Contact Section**: Availability in Davao, Philippines, direct email (`isaiahscape@duck.com`), and social links (`GitHub`, `Instagram`, `Telegram`, `LinkedIn`).
+- **Contact Section**: Availability in Davao, Philippines, direct email (`isaiahscape@duck.com`), and social links (`GitHub`, `Instagram`, `Telegram`, `LinkedIn`, `YouTube`, `Twitch`).
 - **Footer**: Attribution (`Leonardo (isaiahscape)` / `The Scape Series: Playground`), navigation links, and live local time in `Asia/Manila`.
 
 ---

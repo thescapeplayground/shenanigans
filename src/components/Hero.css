@@ -177,6 +177,8 @@
 /* Social Row */
 .hero-social-row {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 12px;
   align-self: flex-end;
   /* Align to the bottom of the details block */
@@ -189,13 +191,15 @@
   border-radius: 6px;
   border: 1px solid var(--button-border);
   background-color: transparent;
+  color: var(--text-dark);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.hero-social-button img {
+.hero-social-button img,
+.hero-social-button svg {
   height: 18px;
   width: auto;
   transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
@@ -207,7 +211,8 @@
   transform: translateY(-2px);
 }
 
-.hero-social-button:hover img {
+.hero-social-button:hover img,
+.hero-social-button:hover svg {
   transform: scale(1.08);
 }
 

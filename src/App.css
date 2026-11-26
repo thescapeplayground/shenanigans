@@ -2841,11 +2841,17 @@ picture {
 
 /* Inside Socials Card */
 .socials-grid-links {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
   margin-top: auto;
   width: 100%;
+}
+
+@media (max-width: 520px) {
+  .socials-grid-links {
+    grid-template-columns: 1fr;
+  }
 }
 
 .social-grid-item {
