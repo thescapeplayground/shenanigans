@@ -30,8 +30,8 @@ The single-page application is structured inside a centered blueprint `page-wrap
 ### 2. Preloader Screen
 - Cycles through multilingual greetings (`Hello`, `Kumusta`, `Bonjour`, `Ciao`, etc.) with keyframe word fade-ins and a pulsing progress dot.
 
-### 3. Hero Section ([Hero.tsx](file:///c:/Users/Leonardo/shenanigans/src/components/Hero.tsx))
-- **Visual Card**: Banner image (`/assets/folder-texture.jpg`) with interactive `Lens` zoom effect, and overlapping circular avatar (`/assets/hero.jpg` with `/favicon-with-bg.svg` fallback).
+### 3. Hero Section ([Hero.tsx](file:///c:/Users/Leonardo/Documents/shenanigans/src/components/Hero.tsx))
+- **Visual Card**: Interactive **Accordion Gallery** cover ([AccordionGallery.tsx](file:///c:/Users/Leonardo/Documents/shenanigans/src/components/AccordionGallery.tsx)) with hover/focus/click expanding panels, 3D tilt, parallax drift, grayscale-to-color transition, and captions, populated from interleaved *Photography* and *Social Club* photos via `/api/gallery` (with `/assets/folder-texture.jpg` image-error fallback), and overlapping circular avatar (`/assets/hero.jpg` with `/favicon-with-bg.svg` fallback).
 - **Details Row**: Title ("I am Leonardo"), tagline ("photographer, graphic designer & developer — keeping things real, minimal, and functional."), and social buttons linking to GitHub (`isaiahscape`), Instagram (`@isaiahscape`), Telegram (`@isaiahscape`), and LinkedIn (`isaiahscape`).
 
 ### 4. About Info Grid

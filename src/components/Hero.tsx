@@ -1,22 +1,78 @@
-import { useState } from "react";
-import { Lens } from "./Lens";
+import { useState, useEffect } from "react";
+import { AccordionGallery, type AccordionGalleryItem } from "./AccordionGallery";
+import { DEFAULT_GALLERY_ALBUMS, type GalleryAlbum } from "../data/gallery";
 import "./Hero.css";
 
 interface HeroProps {
   showContent: boolean;
 }
 
+const COVER_PANEL_COUNT = 6;
+
+function buildCoverItems(albums: GalleryAlbum[]): AccordionGalleryItem[] {
+  const photography = albums.find((a) => a.id.toLowerCase() === "photography")?.items ?? [];
+  const socialClub = albums.find((a) => a.id.toLowerCase() === "social-club")?.items ?? [];
+
+  const toGalleryItem = (
+    item: GalleryAlbum["items"][number],
+    tag: string
+  ): AccordionGalleryItem => ({
+    image: item.src,
+    label: item.title,
+    tag,
+    alt: item.alt || item.title,
+    fallbackImage: "/assets/folder-texture.jpg",
+  });
+
+  const result: AccordionGalleryItem[] = [];
+  const maxLen = Math.max(photography.length, socialClub.length);
+
+  for (let i = 0; i < maxLen && result.length < COVER_PANEL_COUNT; i++) {
+    if (i < photography.length && result.length < COVER_PANEL_COUNT) {
+      result.push(toGalleryItem(photography[i], "Photography"));
+    }
+    if (i < socialClub.length && result.length < COVER_PANEL_COUNT) {
+      result.push(toGalleryItem(socialClub[i], "Social Club"));
+    }
+  }
+
+  return result.length > 0
+    ? result
+    : [{ image: "/assets/folder-texture.jpg", label: "Visual Archive", tag: "Portfolio" }];
+}
+
 export function Hero({ showContent }: HeroProps) {
-  const [hovering, setHovering] = useState(false);
+  const [coverItems, setCoverItems] = useState<AccordionGalleryItem[]>(() =>
+    buildCoverItems(DEFAULT_GALLERY_ALBUMS)
+  );
+
+  useEffect(() => {
+    let active = true;
+
+    fetch("/api/gallery")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: { albums?: GalleryAlbum[] | null } | null) => {
+        if (!active || !Array.isArray(data?.albums) || data.albums.length === 0) return;
+        const nextItems = buildCoverItems(data.albums);
+        if (nextItems.length > 0) {
+          setCoverItems(nextItems);
+        }
+      })
+      .catch(() => {
+        // Keep default fallback photography frames
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   return (
     <div className="hero-container">
       {/* Banner Card at the top */}
       <div className={`hero-visual-card reveal-item reveal-scale ${showContent ? "animate-reveal delay-1" : ""
         }`}>
-        <Lens hovering={hovering} setHovering={setHovering} lensSize={180} zoomFactor={1.5}>
-          <img src="/assets/folder-texture.jpg" alt="Hero Banner" className="hero-banner-image" fetchPriority="high" loading="eager" decoding="sync" />
-        </Lens>
+        <AccordionGallery items={coverItems} defaultIndex={2} />
       </div>
 
       {/* Overlapping profile picture */}
