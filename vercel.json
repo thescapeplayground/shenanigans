@@ -3,13 +3,19 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "images": {
+    "sizes": [640, 750, 828, 1080, 1200],
+    "qualities": [75],
+    "formats": ["image/avif", "image/webp"],
+    "minimumCacheTTL": 86400
+  },
   "rewrites": [
     {
       "source": "/api/photos/:path*",
       "destination": "/api/photos?path=:path*"
     },
     {
-      "source": "/((?!api/).*)",
+      "source": "/((?!api/|_vercel/).*)",
       "destination": "/index.html"
     }
   ]

@@ -3,6 +3,7 @@ import './AccordionGallery.css';
 
 export interface AccordionGalleryItem {
   image: string;
+  rawImage?: string;
   label?: string;
   tag?: string;
   alt?: string;
@@ -42,7 +43,7 @@ export function AccordionGallery({
 }: AccordionGalleryProps) {
   const safeDefault = items.length > 0 ? Math.min(Math.max(defaultIndex, 0), items.length - 1) : 0;
   const [activeIndex, setActiveIndex] = useState<number>(safeDefault);
-  const [failedSrcs, setFailedSrcs] = useState<Record<string, boolean>>({});
+  const [errorStage, setErrorStage] = useState<Record<string, number>>({});
 
   const clampedActive = items.length > 0 ? Math.min(activeIndex, items.length - 1) : 0;
 
@@ -66,7 +67,11 @@ export function AccordionGallery({
         const delta = idx - clampedActive;
         const panelTilt = isActive ? 0 : delta < 0 ? tilt : -tilt;
         const imgShift = isActive ? 0 : (delta < 0 ? -1 : 1) * 6 * parallax;
-        const resolvedSrc = failedSrcs[item.image] && item.fallbackImage ? item.fallbackImage : item.image;
+        const candidates = Array.from(
+          new Set([item.image, item.rawImage, item.fallbackImage].filter((v): v is string => Boolean(v)))
+        );
+        const stage = errorStage[item.image] ?? 0;
+        const resolvedSrc = candidates[Math.min(stage, Math.max(candidates.length - 1, 0))] || item.image;
 
         return (
           <div
@@ -107,8 +112,8 @@ export function AccordionGallery({
               decoding="async"
               draggable={false}
               onError={() => {
-                if (!failedSrcs[item.image]) {
-                  setFailedSrcs((prev) => ({ ...prev, [item.image]: true }));
+                if (stage + 1 < candidates.length) {
+                  setErrorStage((prev) => ({ ...prev, [item.image]: stage + 1 }));
                 }
               }}
               style={{

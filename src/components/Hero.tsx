@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { AccordionGallery, type AccordionGalleryItem } from "./AccordionGallery";
 import { DEFAULT_GALLERY_ALBUMS, type GalleryAlbum } from "../data/gallery";
+import { getPreviewImageUrl } from "../lib/imagePreview";
 import "./Hero.css";
 
 interface HeroProps {
@@ -17,7 +18,8 @@ function buildCoverItems(albums: GalleryAlbum[]): AccordionGalleryItem[] {
     item: GalleryAlbum["items"][number],
     tag: string
   ): AccordionGalleryItem => ({
-    image: item.src,
+    image: getPreviewImageUrl(item.src, 1080, 75),
+    rawImage: item.src,
     label: item.title,
     tag,
     alt: item.alt || item.title,

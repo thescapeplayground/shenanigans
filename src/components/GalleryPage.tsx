@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { DEFAULT_GALLERY_ALBUMS, type GalleryAlbum, type GalleryItem } from '../data/gallery';
+import { getPreviewImageUrl } from '../lib/imagePreview';
 
 interface GalleryPageProps {
   initialAlbum?: string;
@@ -12,6 +13,7 @@ export function GalleryPage({ initialAlbum }: GalleryPageProps) {
   const [loading, setLoading] = useState(true);
   const [syncSource, setSyncSource] = useState<'github' | 'local' | 'fallback'>('fallback');
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [rawFallbackImages, setRawFallbackImages] = useState<Record<string, boolean>>({});
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
@@ -157,6 +159,9 @@ export function GalleryPage({ initialAlbum }: GalleryPageProps) {
               <div className="masonry-grid">
                 {album.items.map((item) => {
                   const flatIdx = flatPhotos.findIndex((p) => p.id === item.id && p.src === item.src);
+                  const optimizedSrc = getPreviewImageUrl(item.src, 828, 75);
+                  const useRaw = Boolean(rawFallbackImages[item.src]) || optimizedSrc === item.src;
+                  const previewSrc = useRaw ? item.src : optimizedSrc;
                   const isFailed = Boolean(failedImages[item.src]);
 
                   return (
@@ -178,12 +183,18 @@ export function GalleryPage({ initialAlbum }: GalleryPageProps) {
                       >
                         {!isFailed ? (
                           <img
-                            src={item.src}
+                            src={previewSrc}
                             alt={item.alt || item.title}
                             className="gallery-photo lazy-img lazy-img--loaded"
                             loading="lazy"
                             decoding="async"
-                            onError={() => setFailedImages((prev) => ({ ...prev, [item.src]: true }))}
+                            onError={() => {
+                              if (!useRaw) {
+                                setRawFallbackImages((prev) => ({ ...prev, [item.src]: true }));
+                              } else {
+                                setFailedImages((prev) => ({ ...prev, [item.src]: true }));
+                              }
+                            }}
                           />
                         ) : (
                           <div
