@@ -11,5 +11,9 @@
   ],
   "visitUrl": "https://github.com/isaiahscape/nectarlink-module/releases",
   "githubUrl": "https://github.com/isaiahscape/nectarlink-module",
-  "status": "Active"
+  "status": "Active",
+  "photos": [
+    "/assets/nectarlink-module.png",
+    "/projects/08-nectarlink-module/preview.svg"
+  ]
 }

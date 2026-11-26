@@ -11,5 +11,9 @@
   ],
   "visitUrl": "",
   "githubUrl": "https://github.com/isaiahscape/nectarlink-services",
-  "status": "Active"
+  "status": "Active",
+  "photos": [
+    "/assets/nectarlink-services.png",
+    "/projects/07-nectarlink-services/preview.svg"
+  ]
 }

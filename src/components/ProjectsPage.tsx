@@ -61,7 +61,10 @@ const LOCAL_DEFAULT_MANIFEST: Manifest = {
       visitUrl: '',
       githubUrl: 'https://github.com/isaiahscape/nectarlink-services',
       status: 'Active',
-      photos: ['/projects/07-nectarlink-services/preview.svg']
+      photos: [
+        '/assets/nectarlink-services.png',
+        '/projects/07-nectarlink-services/preview.svg'
+      ]
     },
     {
       id: '08-nectarlink-module',
@@ -72,7 +75,10 @@ const LOCAL_DEFAULT_MANIFEST: Manifest = {
       visitUrl: 'https://github.com/isaiahscape/nectarlink-module/releases',
       githubUrl: 'https://github.com/isaiahscape/nectarlink-module',
       status: 'Active',
-      photos: ['/projects/08-nectarlink-module/preview.svg']
+      photos: [
+        '/assets/nectarlink-module.png',
+        '/projects/08-nectarlink-module/preview.svg'
+      ]
     },
     {
       id: '01-material-explorer',

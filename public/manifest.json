@@ -36,6 +36,7 @@
       "githubUrl": "https://github.com/isaiahscape/nectarlink-services",
       "status": "Active",
       "photos": [
+        "/assets/nectarlink-services.png",
         "/projects/07-nectarlink-services/preview.svg"
       ]
     },
@@ -54,6 +55,7 @@
       "githubUrl": "https://github.com/isaiahscape/nectarlink-module",
       "status": "Active",
       "photos": [
+        "/assets/nectarlink-module.png",
         "/projects/08-nectarlink-module/preview.svg"
       ]
     },
