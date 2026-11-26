@@ -444,9 +444,9 @@ export function ProjectsPage({ initialScrollTarget, clearScrollTarget }: Project
                     paddingBottom: '6px'
                   }}
                 >
-                  {project.photos.slice(1).map((photo, pIdx) => (
+                  {project.photos.slice(1).map((photo) => (
                     <LazyImage 
-                      key={pIdx} 
+                      key={photo} 
                       src={photo} 
                       alt="" 
                       onClick={() => setExpandedPhoto(photo)}
