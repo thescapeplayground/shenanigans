@@ -25,7 +25,7 @@ The site adheres to a sleek, modern, digital grid aesthetic with a global tactil
 The single-page application is structured inside a centered blueprint `page-wrapper` within [App.tsx](file:///c:/Users/Leonardo/shenanigans/src/App.tsx) and styled via [App.css](file:///c:/Users/Leonardo/shenanigans/src/App.css):
 
 ### 1. Page Wrapper & Technical Header
-- **Technical Header**: Displays branding (`isaiahscape`) on the left and light/dark theme toggle on the right (with View Transitions support).
+- **Technical Header**: Displays branding (`isaiahscape`) on the left and a 3-mode theme toggle (`AUTO` system-following via `prefers-color-scheme`, `LIGHT`, `DARK`) on the right (with View Transitions and pre-hydration FOUC prevention).
 
 ### 2. Preloader Screen
 - Cycles through multilingual greetings (`Hello`, `Kumusta`, `Bonjour`, `Ciao`, etc.) with keyframe word fade-ins and a pulsing progress dot.

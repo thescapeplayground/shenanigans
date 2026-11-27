@@ -434,7 +434,18 @@ function App() {
   const [localTime, setLocalTime] = useState('')
   const [musicTrack, setMusicTrack] = useState<MusicTrack>(FALLBACK_MUSIC_TRACK)
   const [musicError, setMusicError] = useState(false)
-  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light')
+  const getSystemTheme = (): 'light' | 'dark' =>
+    typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light'
+
+  const [themeMode, setThemeMode] = useState<'system' | 'light' | 'dark'>(() => {
+    const saved = localStorage.getItem('theme')
+    if (saved === 'light' || saved === 'dark' || saved === 'system') return saved
+    return 'system'
+  })
+  const [systemTheme, setSystemTheme] = useState<'light' | 'dark'>(() => getSystemTheme())
+  const resolvedTheme = themeMode === 'system' ? systemTheme : themeMode
   const gh = useGitHubData()
   const getPageFromLocation = (pathname: string, rawHash = ''): 'home' | 'about' | 'projects' | 'services' | 'gallery' | 'blogs' => {
     const cleanPath = pathname.replace(/^\/+|\/+$/g, '').toLowerCase()
@@ -551,21 +562,44 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (theme === 'dark') {
+    const mql = window.matchMedia?.('(prefers-color-scheme: dark)')
+    if (!mql) return
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setSystemTheme(e.matches ? 'dark' : 'light')
+    }
+
+    mql.addEventListener('change', handleChange)
+    return () => mql.removeEventListener('change', handleChange)
+  }, [])
+
+  useEffect(() => {
+    if (resolvedTheme === 'dark') {
       document.documentElement.classList.add('dark')
     } else {
       document.documentElement.classList.remove('dark')
     }
-    localStorage.setItem('theme', theme)
-  }, [theme])
+    document.documentElement.style.colorScheme = resolvedTheme
+    localStorage.setItem('theme', themeMode)
+  }, [resolvedTheme, themeMode])
 
   const toggleTheme = () => {
+    const getNextMode = (prev: 'system' | 'light' | 'dark'): 'system' | 'light' | 'dark' => {
+      if (prev === 'system') {
+        return systemTheme === 'dark' ? 'light' : 'dark'
+      }
+      if (prev === 'light') {
+        return systemTheme === 'light' ? 'system' : 'dark'
+      }
+      return systemTheme === 'dark' ? 'system' : 'light'
+    }
+
     if (!document.startViewTransition) {
-      setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
+      setThemeMode(getNextMode)
       return
     }
     document.startViewTransition(() => {
-      setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
+      setThemeMode(getNextMode)
     })
   }
 
@@ -726,8 +760,23 @@ function App() {
             <a href="/" onClick={(e) => { e.preventDefault(); handlePageChange('home'); }} className="tech-logo" style={{ cursor: 'pointer' }}>isaiahscape</a>
           </div>
           <div className="tech-header-col col-3">
-            <button onClick={toggleTheme} className="theme-toggle-btn" aria-label="Toggle theme">
-              {theme === 'light' ? (
+            <button
+              onClick={toggleTheme}
+              className="theme-toggle-btn"
+              aria-label={`Theme mode: ${themeMode} (active: ${resolvedTheme}). Click to switch.`}
+              title={
+                themeMode === 'system'
+                  ? `Auto (${resolvedTheme} from system) — click to override`
+                  : `Theme: ${themeMode} — click to cycle`
+              }
+            >
+              {themeMode === 'system' ? (
+                <svg className="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+              ) : themeMode === 'dark' ? (
                 <svg className="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
                 </svg>
@@ -744,7 +793,9 @@ function App() {
                   <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
                 </svg>
               )}
-              <span className="theme-toggle-text">{theme === 'light' ? 'DARK' : 'LIGHT'}</span>
+              <span className="theme-toggle-text">
+                {themeMode === 'system' ? 'AUTO' : themeMode.toUpperCase()}
+              </span>
             </button>
           </div>
         </header>
