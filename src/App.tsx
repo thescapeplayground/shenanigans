@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from 'react'
+import { useState, useEffect, useRef, lazy, Suspense } from 'react'
 import { ReactLenis } from 'lenis/react'
 import { PaperTexture } from '@paper-design/shaders-react'
 import { FAB } from './components/FAB'
@@ -495,6 +495,9 @@ function App() {
   })
   const [manifestProjects, setManifestProjects] = useState<ProjectItem[]>(LOCAL_DEFAULT_PROJECTS)
   const [failedIcons, setFailedIcons] = useState<Record<string, boolean>>({})
+  const [pageTransitionStage, setPageTransitionStage] = useState<'idle' | 'exiting' | 'entering'>('idle')
+  const transitionTimerRef = useRef<number | null>(null)
+  const pendingContactScrollRef = useRef(false)
 
   useEffect(() => {
     fetch('/manifest.json')
@@ -528,27 +531,86 @@ function App() {
     }
   })
 
+  const clearTransitionTimer = () => {
+    if (transitionTimerRef.current !== null) {
+      window.clearTimeout(transitionTimerRef.current)
+      transitionTimerRef.current = null
+    }
+  }
+
+  const triggerEnterTransition = () => {
+    clearTransitionTimer()
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+      setPageTransitionStage('idle')
+      return
+    }
+    setPageTransitionStage('entering')
+    transitionTimerRef.current = window.setTimeout(() => {
+      setPageTransitionStage('idle')
+      transitionTimerRef.current = null
+    }, 420)
+  }
+
+  useEffect(() => {
+    return () => clearTransitionTimer()
+  }, [])
+
+  useEffect(() => {
+    if (currentPage === 'home' && pendingContactScrollRef.current) {
+      pendingContactScrollRef.current = false
+      const scrollTimer = window.setTimeout(() => {
+        const contactEl = document.getElementById('contact')
+        if (contactEl) {
+          contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+      }, 60)
+      return () => window.clearTimeout(scrollTimer)
+    }
+  }, [currentPage])
+
   const handlePageChange = (page: 'home' | 'about' | 'projects' | 'services' | 'gallery' | 'blogs', nextPath?: string) => {
-    if (!nextPath) {
-      setInitialScrollTarget(undefined)
-      setInitialGalleryAlbum(undefined)
-    }
-    setCurrentPage(page)
     const targetPath = nextPath ?? (page === 'home' ? '/' : `/${page}`)
-    if (window.location.pathname !== targetPath || window.location.hash) {
-      window.history.pushState(null, '', targetPath)
+    const isSameRoute = page === currentPage && window.location.pathname === targetPath && !window.location.hash
+
+    if (isSameRoute && !pendingContactScrollRef.current) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return
     }
-    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+
+    clearTransitionTimer()
+
+    const applyPageSwap = () => {
+      if (!nextPath) {
+        setInitialScrollTarget(undefined)
+        setInitialGalleryAlbum(undefined)
+      }
+      setCurrentPage(page)
+      if (window.location.pathname !== targetPath || window.location.hash) {
+        window.history.pushState(null, '', targetPath)
+      }
+      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+      triggerEnterTransition()
+    }
+
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+      applyPageSwap()
+      return
+    }
+
+    setPageTransitionStage('exiting')
+    transitionTimerRef.current = window.setTimeout(applyPageSwap, 160)
   }
 
   const handleGoToContact = () => {
-    handlePageChange('home')
-    setTimeout(() => {
+    if (currentPage === 'home') {
       const contactEl = document.getElementById('contact')
       if (contactEl) {
         contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
-    }, 60)
+      return
+    }
+    pendingContactScrollRef.current = true
+    handlePageChange('home')
   }
 
   const handleViewProjectDetails = (targetId: string) => {
@@ -561,6 +623,8 @@ function App() {
       setCurrentPage(getPageFromLocation(window.location.pathname, window.location.hash))
       setInitialScrollTarget(getProjectTargetFromPath(window.location.pathname))
       setInitialGalleryAlbum(getGalleryAlbumFromPath(window.location.pathname))
+      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+      triggerEnterTransition()
     }
     window.addEventListener('popstate', handlePopState)
     return () => window.removeEventListener('popstate', handlePopState)
@@ -814,14 +878,15 @@ function App() {
           </div>
         </header>
 
-        {currentPage === 'home' && (
-          <>
-            {/* Main Home Page Section */}
-            <main className="hero-section" id="home">
-              <Hero showContent={showContent} onOpenGallery={() => handlePageChange('gallery')} />
-            </main>
+        <div key={currentPage} className={`page-transition-stage page-transition--${pageTransitionStage}`}>
+          {currentPage === 'home' ? (
+            <>
+              {/* Main Home Page Section */}
+              <main className="hero-section" id="home">
+                <Hero showContent={showContent} onOpenGallery={() => handlePageChange('gallery')} />
+              </main>
 
-            {/* About Info Grid Section */}
+              {/* About Info Grid Section */}
             <section className="about-section" id="about">
               <div className="about-header reveal-on-scroll delay-1">
                 <h2 className="about-title-small">so, who am i?</h2>
@@ -1363,15 +1428,16 @@ function App() {
               </div>
             </section>
           </>
-        )}
-
-        <Suspense fallback={null}>
-          {currentPage === 'about' && <AboutPage username={LASTFM_USER} apiKey={LASTFM_API_KEY} />}
-          {currentPage === 'projects' && <ProjectsPage initialScrollTarget={initialScrollTarget} clearScrollTarget={() => setInitialScrollTarget(undefined)} />}
-          {currentPage === 'services' && <ServicesPage onContactClick={handleGoToContact} />}
-          {currentPage === 'gallery' && <GalleryPage key={initialGalleryAlbum || 'all'} initialAlbum={initialGalleryAlbum} />}
-          {currentPage === 'blogs' && <BlogsPage />}
-        </Suspense>
+          ) : (
+            <Suspense fallback={<div className="page-view-container page-loading-fallback" aria-hidden="true" />}>
+              {currentPage === 'about' && <AboutPage username={LASTFM_USER} apiKey={LASTFM_API_KEY} />}
+              {currentPage === 'projects' && <ProjectsPage initialScrollTarget={initialScrollTarget} clearScrollTarget={() => setInitialScrollTarget(undefined)} />}
+              {currentPage === 'services' && <ServicesPage onContactClick={handleGoToContact} />}
+              {currentPage === 'gallery' && <GalleryPage key={initialGalleryAlbum || 'all'} initialAlbum={initialGalleryAlbum} />}
+              {currentPage === 'blogs' && <BlogsPage />}
+            </Suspense>
+          )}
+        </div>
 
         {/* Blueprint Layout Footer Section */}
         <footer className="footer-section">

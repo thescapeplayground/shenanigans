@@ -162,7 +162,7 @@ export function BlogsPage() {
   if (selectedPostId) {
     const article = BLOG_POSTS.find(p => p.id === selectedPostId);
     return (
-      <div className="page-view-container fade-in">
+      <div key={`blog-post-${selectedPostId}`} className="page-view-container fade-in">
         <div className="blog-top-bar">
           <button className="back-btn" onClick={handleBack}>
             ← BACK TO LOGS
@@ -216,7 +216,7 @@ export function BlogsPage() {
   }
 
   return (
-    <div className="page-view-container fade-in">
+    <div key="blog-list" className="page-view-container fade-in">
       <header className="page-header">
         <span className="page-label">dev logs // photography notes // thoughts</span>
         <h1 className="page-title">blogs & build logs.</h1>
