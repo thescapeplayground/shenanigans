@@ -12,16 +12,13 @@
 .hero-visual-card {
   position: relative;
   width: 100%;
-  height: 340px;
+  height: 350px;
   /* High-res cover accordion */
   border-radius: 28px;
   border: 1px solid var(--border-color);
   overflow: hidden;
   background: var(--bg-tan);
   box-shadow: 0 8px 30px rgba(8, 6, 13, 0.04);
-  isolation: isolate;
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
-  mask-image: radial-gradient(white, black);
 }
 
 .hero-gallery-btn {
@@ -34,9 +31,7 @@
   gap: 6px;
   padding: 7px 13px;
   border-radius: 999px;
-  background: rgba(12, 10, 16, 0.72);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(12, 10, 16, 0.84);
   border: 1px solid rgba(255, 255, 255, 0.18);
   color: #ffffff;
   font-family: var(--mono), monospace;
@@ -44,7 +39,7 @@
   font-weight: 500;
   letter-spacing: 0.04em;
   text-decoration: none;
-  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.25s ease, background-color 0.25s ease;
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .hero-gallery-btn:hover {

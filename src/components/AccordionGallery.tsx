@@ -34,10 +34,7 @@ export function AccordionGallery({
   textColor = '#ffffff',
   grayscale = false,
   showLabels = true,
-  duration = 0.6,
-  parallax = 0.5,
-  tilt = 8,
-  stagger = 0.06,
+  duration = 0.4,
   trigger = 'hover',
   className = '',
 }: AccordionGalleryProps) {
@@ -58,15 +55,11 @@ export function AccordionGallery({
           '--ag-accent': accentColor,
           '--ag-overlay': overlayColor,
           '--ag-text': textColor,
-          '--ag-stagger': `${stagger}s`,
         } as CSSProperties
       }
     >
       {items.map((item, idx) => {
         const isActive = idx === clampedActive;
-        const delta = idx - clampedActive;
-        const panelTilt = isActive ? 0 : delta < 0 ? tilt : -tilt;
-        const imgShift = isActive ? 0 : (delta < 0 ? -1 : 1) * 6 * parallax;
         const candidates = Array.from(
           new Set([item.image, item.rawImage, item.fallbackImage].filter((v): v is string => Boolean(v)))
         );
@@ -98,26 +91,18 @@ export function AccordionGallery({
                 setActiveIndex((idx - 1 + items.length) % items.length);
               }
             }}
-            style={
-              {
-                transform: `rotateY(${panelTilt}deg) scale(${isActive ? 1 : 0.985})`,
-              } as CSSProperties
-            }
           >
             <img
               src={resolvedSrc}
               alt={item.alt || item.label || `Cover photo ${idx + 1}`}
               className="accordion-panel-img"
-              loading={isActive ? 'eager' : 'lazy'}
+              loading="eager"
               decoding="async"
               draggable={false}
               onError={() => {
                 if (stage + 1 < candidates.length) {
                   setErrorStage((prev) => ({ ...prev, [item.image]: stage + 1 }));
                 }
-              }}
-              style={{
-                transform: `translateX(${imgShift}%) scale(${isActive ? 1.03 : 1.12})`,
               }}
             />
 

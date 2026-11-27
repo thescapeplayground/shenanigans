@@ -9,7 +9,7 @@ interface HeroProps {
   onOpenGallery?: () => void;
 }
 
-const COVER_PANEL_COUNT = 8;
+const COVER_PANEL_COUNT = 6;
 
 function buildCoverItems(albums: GalleryAlbum[]): AccordionGalleryItem[] {
   const photography = albums.find((a) => a.id.toLowerCase() === "photography")?.items ?? [];
@@ -19,7 +19,7 @@ function buildCoverItems(albums: GalleryAlbum[]): AccordionGalleryItem[] {
     item: GalleryAlbum["items"][number],
     tag: string
   ): AccordionGalleryItem => ({
-    image: getPreviewImageUrl(item.src, 1080, 75),
+    image: getPreviewImageUrl(item.src, 640, 75),
     rawImage: item.src,
     label: item.title,
     tag,
