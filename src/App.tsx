@@ -439,13 +439,17 @@ function App() {
       ? 'dark'
       : 'light'
 
-  const [themeMode, setThemeMode] = useState<'system' | 'light' | 'dark'>(() => {
-    const saved = localStorage.getItem('theme')
-    if (saved === 'light' || saved === 'dark' || saved === 'system') return saved
-    return 'system'
+  const [themeMode, setThemeMode] = useState<'auto' | 'light' | 'dark'>(() => {
+    try {
+      const saved = localStorage.getItem('theme-mode')
+      if (saved === 'light' || saved === 'dark' || saved === 'auto') return saved
+    } catch {
+      // Ignore storage access errors and fall back to auto
+    }
+    return 'auto'
   })
   const [systemTheme, setSystemTheme] = useState<'light' | 'dark'>(() => getSystemTheme())
-  const resolvedTheme = themeMode === 'system' ? systemTheme : themeMode
+  const resolvedTheme = themeMode === 'auto' ? systemTheme : themeMode
   const gh = useGitHubData()
   const getPageFromLocation = (pathname: string, rawHash = ''): 'home' | 'about' | 'projects' | 'services' | 'gallery' | 'blogs' => {
     const cleanPath = pathname.replace(/^\/+|\/+$/g, '').toLowerCase()
@@ -580,18 +584,27 @@ function App() {
       document.documentElement.classList.remove('dark')
     }
     document.documentElement.style.colorScheme = resolvedTheme
-    localStorage.setItem('theme', themeMode)
+    try {
+      localStorage.removeItem('theme')
+      if (themeMode === 'auto') {
+        localStorage.removeItem('theme-mode')
+      } else {
+        localStorage.setItem('theme-mode', themeMode)
+      }
+    } catch {
+      // Ignore storage access errors
+    }
   }, [resolvedTheme, themeMode])
 
   const toggleTheme = () => {
-    const getNextMode = (prev: 'system' | 'light' | 'dark'): 'system' | 'light' | 'dark' => {
-      if (prev === 'system') {
+    const getNextMode = (prev: 'auto' | 'light' | 'dark'): 'auto' | 'light' | 'dark' => {
+      if (prev === 'auto') {
         return systemTheme === 'dark' ? 'light' : 'dark'
       }
       if (prev === 'light') {
-        return systemTheme === 'light' ? 'system' : 'dark'
+        return systemTheme === 'light' ? 'auto' : 'dark'
       }
-      return systemTheme === 'dark' ? 'system' : 'light'
+      return systemTheme === 'dark' ? 'auto' : 'light'
     }
 
     if (!document.startViewTransition) {
@@ -765,12 +778,12 @@ function App() {
               className="theme-toggle-btn"
               aria-label={`Theme mode: ${themeMode} (active: ${resolvedTheme}). Click to switch.`}
               title={
-                themeMode === 'system'
+                themeMode === 'auto'
                   ? `Auto (${resolvedTheme} from system) — click to override`
                   : `Theme: ${themeMode} — click to cycle`
               }
             >
-              {themeMode === 'system' ? (
+              {themeMode === 'auto' ? (
                 <svg className="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="2" y="3" width="20" height="14" rx="2" />
                   <line x1="8" y1="21" x2="16" y2="21" />
@@ -794,7 +807,7 @@ function App() {
                 </svg>
               )}
               <span className="theme-toggle-text">
-                {themeMode === 'system' ? 'AUTO' : themeMode.toUpperCase()}
+                {themeMode.toUpperCase()}
               </span>
             </button>
           </div>

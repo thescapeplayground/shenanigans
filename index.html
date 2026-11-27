@@ -15,9 +15,9 @@
     <script>
       (function () {
         try {
-          var saved = localStorage.getItem('theme');
+          var saved = localStorage.getItem('theme-mode');
           var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-          var isDark = saved === 'dark' || ((!saved || saved === 'system') && prefersDark);
+          var isDark = saved === 'dark' || (saved !== 'light' && prefersDark);
           if (isDark) {
             document.documentElement.classList.add('dark');
             document.documentElement.style.colorScheme = 'dark';
