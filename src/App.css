@@ -464,8 +464,9 @@ picture {
 .box-3-wrapper {
   grid-column: span 3;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   justify-content: center;
+  padding: 6px;
 }
 
 .box-4 {
@@ -707,13 +708,14 @@ picture {
 /* Box 3 Contents */
 .gradient-circle {
   width: 100%;
+  max-width: 224px;
   aspect-ratio: 1 / 1;
+  flex-shrink: 0;
   border-radius: 50%;
   background: radial-gradient(circle at 30% 28%, #e8cbb0 0%, #c1875a 38%, #6d4128 72%, #241710 100%);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 8px 30px rgba(36, 23, 16, 0.14);
+  border: 0;
+  box-shadow: 0 12px 32px rgba(24, 15, 10, 0.22);
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  align-self: center;
 }
 
 .gradient-circle:hover {
