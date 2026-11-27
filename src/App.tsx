@@ -1381,16 +1381,16 @@ function App() {
               <span className="column-label">Made by</span>
               <div className="column-value">
                 Leonardo (isaiahscape)<br />
-                THE SCAPE SERIES: PLAYGROUND.
+                Scape Collective Series: it's coffee time.
               </div>
             </div>
 
             {/* Column 2: Tech Engine */}
             <div className="footer-column-item">
-              <span className="column-label">STACK ENGINE</span>
+              <span className="column-label">Main Engine</span>
               <div className="column-value">
-                POWERED BY VITE + REACT<br />
-                SHENANIGANS V3.0
+                Powered with Vite, React,<br />
+                shenanigans, and realm.
               </div>
             </div>
 
@@ -1398,12 +1398,12 @@ function App() {
             <div className="footer-column-item">
               <span className="column-label">NAVIGATION</span>
               <div className="footer-links-grid">
-                <a href="/" onClick={(e) => { e.preventDefault(); handlePageChange('home'); }} className="footer-nav-link">// HOME</a>
-                <a href="/about" onClick={(e) => { e.preventDefault(); handlePageChange('about'); }} className="footer-nav-link">// ABOUT</a>
-                <a href="/projects" onClick={(e) => { e.preventDefault(); handlePageChange('projects'); }} className="footer-nav-link">// PROJECTS</a>
-                <a href="/services" onClick={(e) => { e.preventDefault(); handlePageChange('services'); }} className="footer-nav-link">// SERVICES</a>
-                <a href="/gallery" onClick={(e) => { e.preventDefault(); handlePageChange('gallery'); }} className="footer-nav-link">// GALLERY</a>
-                <a href="/blogs" onClick={(e) => { e.preventDefault(); handlePageChange('blogs'); }} className="footer-nav-link">// BLOGS</a>
+                <a href="/" onClick={(e) => { e.preventDefault(); handlePageChange('home'); }} className="footer-nav-link">Home</a>
+                <a href="/about" onClick={(e) => { e.preventDefault(); handlePageChange('about'); }} className="footer-nav-link">About</a>
+                <a href="/projects" onClick={(e) => { e.preventDefault(); handlePageChange('projects'); }} className="footer-nav-link">Projects</a>
+                <a href="/services" onClick={(e) => { e.preventDefault(); handlePageChange('services'); }} className="footer-nav-link">Services</a>
+                <a href="/gallery" onClick={(e) => { e.preventDefault(); handlePageChange('gallery'); }} className="footer-nav-link">Gallery</a>
+                <a href="/blogs" onClick={(e) => { e.preventDefault(); handlePageChange('blogs'); }} className="footer-nav-link">Blogs</a>
               </div>
             </div>
 
@@ -1417,7 +1417,7 @@ function App() {
           <div className="footer-bottom-row">
             <div className="footer-status">
               <span className="status-dot"></span>
-              <span>Available for freelance, design & tech services</span>
+              <span>Available for freelance, design & tech services anytime if I'm active</span>
             </div>
             <div className="footer-time">
               <span>Davao, Philippines — {localTime}</span>

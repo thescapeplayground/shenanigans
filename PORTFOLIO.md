@@ -54,7 +54,7 @@ The single-page application is structured inside a centered blueprint `page-wrap
 
 ### 8. Contact & Editorial Footer
 - **Contact Section**: Availability in Davao, Philippines, Resend-backed direct contact form (`POST /api/contact` via [api/contact.js](file:///c:/Users/Leonardo/Documents/shenanigans/api/contact.js) with copyable `isaiahscape@duck.com` shortcut), and `@isaiahscape` social links (`GitHub`, `Instagram`, `Telegram`, `LinkedIn`, `YouTube`, `Twitch`, `TikTok`, `X / Twitter`, `Threads`, `Facebook`).
-- **Footer**: Attribution (`Leonardo (isaiahscape)` / `The Scape Series: Playground`), navigation links, and live local time in `Asia/Manila`.
+- **Footer**: Attribution (`Leonardo (isaiahscape)` / `Scape Collective Series: it's dinner time.`), navigation links, and live local time in `Asia/Manila`.
 
 ---
 
