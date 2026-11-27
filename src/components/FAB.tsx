@@ -81,12 +81,12 @@ export function FAB({
         <div className="fab-menu-card">
           {/* Top Banner Image */}
           <div className="fab-menu-banner">
-            <img src="/assets/folder-texture.jpg" alt="Menu banner" className="fab-menu-banner-img" />
+            <img src="/assets/fab-coffee-cover.jpg" alt="Coffee palette menu banner" className="fab-menu-banner-img" />
           </div>
 
           <div className="fab-menu-header">
             <img src="/logo.svg" alt="Logo" className="menu-header-logo" style={{ objectFit: 'contain', padding: '1px' }} />
-            <span className="menu-header-title">leonardo.</span>
+            <span className="menu-header-title">leonardo's shenanigans</span>
           </div>
 
           <nav className="fab-menu-links">

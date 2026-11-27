@@ -49,7 +49,7 @@ function buildCoverItems(albums: GalleryAlbum[]): AccordionGalleryItem[] {
     label: item.title,
     tag,
     alt: item.alt || item.title,
-    fallbackImage: "/assets/folder-texture.jpg",
+    fallbackImage: "/assets/fab-coffee-cover.jpg",
   });
 
   const result: AccordionGalleryItem[] = [];
@@ -66,7 +66,7 @@ function buildCoverItems(albums: GalleryAlbum[]): AccordionGalleryItem[] {
 
   return result.length > 0
     ? result
-    : [{ image: "/assets/folder-texture.jpg", label: "Visual Archive", tag: "Portfolio" }];
+    : [{ image: "/assets/fab-coffee-cover.jpg", label: "Visual Archive", tag: "Portfolio" }];
 }
 
 export function Hero({ showContent, onOpenGallery }: HeroProps) {
