@@ -181,14 +181,7 @@ export function GalleryPage({ initialAlbum }: GalleryPageProps) {
                       }}
                       style={{ cursor: isFailed ? 'default' : 'pointer' }}
                     >
-                      <div
-                        className="photo-frame masonry-frame"
-                        style={
-                          item.metadata?.aspectRatio
-                            ? { aspectRatio: item.metadata.aspectRatio.replace(':', ' / ') }
-                            : undefined
-                        }
-                      >
+                      <div className="photo-frame masonry-frame">
                         {!isFailed ? (
                           <img
                             src={previewSrc}
