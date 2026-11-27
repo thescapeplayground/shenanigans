@@ -28,13 +28,22 @@
   user-select: none;
 }
 
+:root.dark .accordion-panel,
 [data-theme='dark'] .accordion-panel {
   border-color: rgba(255, 255, 255, 0.09);
 }
 
 .accordion-panel.is-active {
-  flex: 5.5 1 0%;
+  flex: 0 0 230px;
   border-color: var(--accent-border, rgba(241, 165, 160, 0.45));
+}
+
+.accordion-panel.is-active:only-child {
+  flex: 1 1 100%;
+}
+
+.accordion-panel.is-active .accordion-panel-img {
+  transform: translateX(0) scale(1) !important;
 }
 
 .accordion-panel:focus-visible {
@@ -67,10 +76,10 @@
   inset: 0;
   pointer-events: none;
   background: linear-gradient(
-    to top,
-    rgba(6, 7, 8, 0.68) 0%,
-    rgba(6, 7, 8, 0.16) 45%,
-    rgba(6, 7, 8, 0.08) 100%
+    to bottom,
+    rgba(6, 7, 8, 0.52) 0%,
+    rgba(6, 7, 8, 0.1) 45%,
+    rgba(6, 7, 8, 0.55) 100%
   );
   opacity: 0.72;
   transition: opacity var(--ag-duration, 0.6s) ease;
@@ -80,18 +89,18 @@
   opacity: 0.48;
 }
 
-/* Positioned on bottom-right so it clears the overlapping bottom-left profile avatar */
+/* Positioned at top-left so it clears both the bottom-left avatar and bottom-right Gallery button */
 .accordion-panel-caption {
   position: absolute;
-  right: 18px;
-  bottom: 16px;
-  max-width: calc(100% - 36px);
+  left: 16px;
+  top: 16px;
+  max-width: calc(100% - 32px);
   display: flex;
   align-items: stretch;
   gap: 10px;
   pointer-events: none;
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(-8px);
   transition:
     opacity 0.35s ease,
     transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
@@ -165,8 +174,8 @@
   }
 
   .accordion-panel-caption {
-    right: 12px;
-    bottom: 12px;
+    left: 12px;
+    top: 12px;
     max-width: calc(100% - 24px);
     gap: 8px;
   }

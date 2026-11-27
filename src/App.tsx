@@ -753,7 +753,7 @@ function App() {
           <>
             {/* Main Home Page Section */}
             <main className="hero-section" id="home">
-              <Hero showContent={showContent} />
+              <Hero showContent={showContent} onOpenGallery={() => handlePageChange('gallery')} />
             </main>
 
             {/* About Info Grid Section */}
