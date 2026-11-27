@@ -53,7 +53,7 @@ The single-page application is structured inside a centered blueprint `page-wrap
 - Live GitHub contribution calendar and stats fetched for `isaiahscape` via [useGitHubData.ts](file:///c:/Users/Leonardo/Documents/shenanigans/src/hooks/useGitHubData.ts).
 
 ### 8. Contact & Editorial Footer
-- **Contact Section**: Availability in Davao, Philippines, direct email (`isaiahscape@duck.com`), and social links (`GitHub`, `Instagram`, `Telegram`, `LinkedIn`, `YouTube`, `Twitch`).
+- **Contact Section**: Availability in Davao, Philippines, Resend-backed direct contact form (`POST /api/contact` via [api/contact.js](file:///c:/Users/Leonardo/Documents/shenanigans/api/contact.js) with copyable `isaiahscape@duck.com` shortcut), and social links (`GitHub`, `Instagram`, `Telegram`, `LinkedIn`, `YouTube`, `Twitch`).
 - **Footer**: Attribution (`Leonardo (isaiahscape)` / `The Scape Series: Playground`), navigation links, and live local time in `Asia/Manila`.
 
 ---

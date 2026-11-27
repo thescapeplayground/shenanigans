@@ -1,3 +1,158 @@
+import { useState, type FormEvent } from 'react';
+
+const CONTACT_EMAIL = 'isaiahscape@duck.com';
+
+export function ContactFormCard({ className = '' }: { className?: string }) {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [sending, setSending] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(CONTACT_EMAIL);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleSendMessage = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || !email.trim() || !message.trim()) return;
+
+    setSending(true);
+    setErrorMessage(null);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          message: message.trim(),
+        }),
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        const errText =
+          (data && typeof data === 'object' && 'error' in data && typeof data.error === 'string' && data.error) ||
+          'Failed to deliver your message. Please try again later.';
+        throw new Error(errText);
+      }
+
+      setFormSubmitted(true);
+      setName('');
+      setEmail('');
+      setMessage('');
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error ? error.message : 'Failed to deliver your message. Please try again later.'
+      );
+    } finally {
+      setSending(false);
+    }
+  };
+
+  return (
+    <div className={`contact-box contact-box-email ${className}`.trim()}>
+      <div className="contact-email-header">
+        <h4 className="email-label">DIRECT MESSAGE</h4>
+        <button
+          type="button"
+          onClick={handleCopyEmail}
+          className="contact-copy-btn"
+          title="Copy email address"
+        >
+          <span>{copied ? 'Copied!' : CONTACT_EMAIL}</span>
+        </button>
+      </div>
+
+      {!formSubmitted ? (
+        <form onSubmit={handleSendMessage} className="contact-form">
+          <div className="contact-field">
+            <label htmlFor="contact-name" className="contact-label">
+              How should I call you? *
+            </label>
+            <input
+              id="contact-name"
+              type="text"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="e.g. Robin"
+              className="contact-input"
+            />
+          </div>
+
+          <div className="contact-field">
+            <label htmlFor="contact-email" className="contact-label">
+              Your return address *
+            </label>
+            <input
+              id="contact-email"
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="e.g. robin@domain.com"
+              className="contact-input contact-input-mono"
+            />
+          </div>
+
+          <div className="contact-field">
+            <label htmlFor="contact-message" className="contact-label">
+              Tell me about your idea *
+            </label>
+            <textarea
+              id="contact-message"
+              required
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="I'm planning to build..."
+              className="contact-textarea"
+            />
+          </div>
+
+          {errorMessage && (
+            <p className="contact-error-msg" role="alert">
+              {errorMessage}
+            </p>
+          )}
+
+          <button type="submit" disabled={sending} className="email-btn-send contact-submit-btn">
+            <span>{sending ? 'DELIVERING NOTE...' : 'DELIVER NOTE'}</span>
+            <span className="arrow" aria-hidden="true">↗</span>
+          </button>
+        </form>
+      ) : (
+        <div className="contact-success-state">
+          <div className="contact-success-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M9 12l2 2 4-4" />
+            </svg>
+          </div>
+          <h5 className="contact-success-title">Note Delivered!</h5>
+          <p className="contact-success-desc">
+            Your message has been queued successfully. I will get back to your return address as soon as possible.
+          </p>
+          <button
+            type="button"
+            onClick={() => setFormSubmitted(false)}
+            className="contact-reset-btn"
+          >
+            Send Another Message
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function ContactSection() {
   return (
     <section className="contact-section" id="contact">
@@ -33,18 +188,8 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* Box 3: Direct Email */}
-          <div className="contact-box contact-box-email reveal-on-scroll delay-2">
-            <h4 className="email-label">DIRECT EMAIL</h4>
-            <a href="mailto:isaiahscape@duck.com" className="email-address-link">
-              isaiahscape@duck.com
-            </a>
-            <div className="email-actions">
-              <a href="mailto:isaiahscape@duck.com" className="email-btn-send">
-                SEND MESSAGE <span className="arrow">↗</span>
-              </a>
-            </div>
-          </div>
+          {/* Box 3: Contact Form */}
+          <ContactFormCard className="reveal-on-scroll delay-2" />
 
           {/* Box 4: Social Channels */}
           <div className="contact-box contact-box-socials reveal-on-scroll reveal-right delay-3">

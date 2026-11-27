@@ -2791,7 +2791,171 @@ picture {
   margin-top: 4px;
 }
 
-/* Inside Email Card */
+/* Inside Email / Contact Form Card */
+.contact-email-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.contact-email-header .email-label {
+  margin-bottom: 0;
+}
+
+.contact-copy-btn {
+  font-family: var(--mono), monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--container-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.contact-copy-btn:hover {
+  color: var(--text-dark);
+  border-color: var(--accent-border);
+  background: var(--surface-raised-hover);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.contact-label {
+  font-family: var(--mono), monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.contact-input,
+.contact-textarea {
+  width: 100%;
+  background: var(--container-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  color: var(--text-dark);
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.contact-input-mono {
+  font-family: var(--mono), monospace;
+  font-size: 12.5px;
+}
+
+.contact-textarea {
+  min-height: 88px;
+  resize: vertical;
+  line-height: 1.45;
+}
+
+.contact-input:focus,
+.contact-textarea:focus {
+  border-color: var(--accent-border);
+  background: var(--surface-raised);
+}
+
+.contact-input::placeholder,
+.contact-textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.65;
+}
+
+.contact-error-msg {
+  font-family: var(--mono), monospace;
+  font-size: 11px;
+  line-height: 1.45;
+  color: #e11d48;
+}
+
+.contact-submit-btn {
+  width: 100%;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.contact-submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.contact-success-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  padding: 28px 12px;
+  margin: auto 0;
+}
+
+.contact-success-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-success-title {
+  font-family: var(--mono), monospace;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.contact-success-desc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  max-width: 280px;
+}
+
+.contact-reset-btn {
+  margin-top: 6px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: var(--container-bg);
+  color: var(--text-dark);
+  font-family: var(--mono), monospace;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.contact-reset-btn:hover {
+  border-color: var(--accent-border);
+  background: var(--surface-raised-hover);
+}
+
 .email-address-link {
   font-size: clamp(1.2rem, 2.5vw, 1.8rem);
   font-weight: 500;

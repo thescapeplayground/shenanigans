@@ -9,6 +9,7 @@ import { ProjectsPage } from './components/ProjectsPage'
 import { ServicesPage } from './components/ServicesPage'
 import { GalleryPage } from './components/GalleryPage'
 import { BlogsPage } from './components/BlogsPage'
+import { ContactFormCard } from './components/ContactSection'
 import './App.css'
 
 const WORDS = [
@@ -1319,18 +1320,8 @@ function App() {
                     </div>
                   </div>
 
-                  {/* Box 3: Direct Email */}
-                  <div className="contact-box contact-box-email reveal-on-scroll delay-2">
-                    <h4 className="email-label">DIRECT EMAIL</h4>
-                    <a href="mailto:isaiahscape@duck.com" className="email-address-link">
-                      isaiahscape@duck.com
-                    </a>
-                    <div className="email-actions">
-                      <a href="mailto:isaiahscape@duck.com" className="email-btn-send">
-                        SEND MESSAGE <span className="arrow">↗</span>
-                      </a>
-                    </div>
-                  </div>
+                  {/* Box 3: Resend Contact Form */}
+                  <ContactFormCard className="reveal-on-scroll delay-2" />
 
                   {/* Box 4: Social Channels */}
                   <div className="contact-box contact-box-socials reveal-on-scroll reveal-right delay-3">

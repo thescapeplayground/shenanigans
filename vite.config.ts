@@ -134,12 +134,41 @@ function scanLocalPhotos(baseDir: string, prefix = ''): string[] {
   return results
 }
 
-function privatePhotosDevApi(token: string): Plugin {
+function privatePhotosDevApi(
+  token: string,
+  resendConfig: { apiKey: string; fromAddress: string; toAddress: string }
+): Plugin {
   return {
     name: 'private-photos-dev-api',
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
         const url = new URL(req.url || '/', 'http://localhost')
+
+        if (url.pathname === '/api/contact') {
+          const contactHandler = (await import('./api/contact.js')).default
+          if (!process.env.RESEND_API_KEY && resendConfig.apiKey) {
+            process.env.RESEND_API_KEY = resendConfig.apiKey
+          }
+          if (!process.env.RESEND_FROM_ADDRESS && resendConfig.fromAddress) {
+            process.env.RESEND_FROM_ADDRESS = resendConfig.fromAddress
+          }
+          if (!process.env.CONTACT_TO_ADDRESS && resendConfig.toAddress) {
+            process.env.CONTACT_TO_ADDRESS = resendConfig.toAddress
+          }
+          const wrappedRes = Object.assign(res, {
+            status(code: number) {
+              res.statusCode = code
+              return wrappedRes
+            },
+            json(payload: unknown) {
+              res.setHeader('Content-Type', 'application/json')
+              res.end(JSON.stringify(payload))
+              return wrappedRes
+            },
+          })
+          await contactHandler(req, wrappedRes)
+          return
+        }
 
         if (url.pathname === '/api/gallery') {
           res.setHeader('Content-Type', 'application/json')
@@ -251,8 +280,13 @@ function privatePhotosDevApi(token: string): Plugin {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   const token = env.GITHUB_PHOTOS_TOKEN || process.env.GITHUB_PHOTOS_TOKEN || env.GITHUB_TOKEN || process.env.GITHUB_TOKEN || ''
+  const resendConfig = {
+    apiKey: env.RESEND_API_KEY || process.env.RESEND_API_KEY || '',
+    fromAddress: env.RESEND_FROM_ADDRESS || process.env.RESEND_FROM_ADDRESS || '',
+    toAddress: env.CONTACT_TO_ADDRESS || process.env.CONTACT_TO_ADDRESS || '',
+  }
 
   return {
-    plugins: [react(), privatePhotosDevApi(token)],
+    plugins: [react(), privatePhotosDevApi(token, resendConfig)],
   }
 })
