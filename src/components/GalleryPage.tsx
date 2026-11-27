@@ -75,6 +75,14 @@ export function GalleryPage({ initialAlbum }: GalleryPageProps) {
     return list;
   }, [visibleAlbums]);
 
+  const flatIndexMap = useMemo(() => {
+    const map = new Map<string, number>();
+    flatPhotos.forEach((p, idx) => {
+      map.set(`${p.id}::${p.src}`, idx);
+    });
+    return map;
+  }, [flatPhotos]);
+
   const selectedPhoto = selectedIndex !== null ? flatPhotos[selectedIndex] ?? null : null;
 
   useEffect(() => {
@@ -158,8 +166,8 @@ export function GalleryPage({ initialAlbum }: GalleryPageProps) {
             {album.items.length > 0 ? (
               <div className="masonry-grid">
                 {album.items.map((item) => {
-                  const flatIdx = flatPhotos.findIndex((p) => p.id === item.id && p.src === item.src);
-                  const optimizedSrc = getPreviewImageUrl(item.src, 828, 75);
+                  const flatIdx = flatIndexMap.get(`${item.id}::${item.src}`) ?? -1;
+                  const optimizedSrc = getPreviewImageUrl(item.src, 640, 75);
                   const useRaw = Boolean(rawFallbackImages[item.src]) || optimizedSrc === item.src;
                   const previewSrc = useRaw ? item.src : optimizedSrc;
                   const isFailed = Boolean(failedImages[item.src]);

@@ -4736,6 +4736,7 @@ picture {
   border-radius: 14px;
   position: relative;
   overflow: hidden;
+  contain: layout paint;
   background-color: rgba(8, 6, 13, 0.04);
 }
 
@@ -4790,6 +4791,7 @@ picture {
   border-radius: 20px;
   gap: 0;
   border: 1px solid rgba(8, 6, 13, 0.08); /* Finer border stroke */
+  contain: layout style;
 }
 
 [data-theme='dark'] .masonry-item.photo-card-wrapper {
@@ -4813,13 +4815,12 @@ picture {
   border-radius: 28px;
   padding: 16px;
   box-sizing: border-box;
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.25s ease;
 }
 
 .photo-card-wrapper:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   border-color: var(--accent-border);
-  box-shadow: 0 12px 32px rgba(8, 6, 13, 0.03);
 }
 
 .photo-frame {
@@ -4835,11 +4836,11 @@ picture {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .photo-card-wrapper:hover .gallery-photo {
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
 .photo-overlay {
@@ -6134,17 +6135,6 @@ picture {
 /* Photo Lightbox & Hover Zoom Effects */
 .photo-card-wrapper {
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.photo-card-wrapper:hover {
-  transform: translateY(-6px) scale(1.015) !important;
-  border-color: var(--accent-border) !important;
-  box-shadow: 0 16px 36px rgba(8, 6, 13, 0.06) !important;
-}
-
-.photo-card-wrapper:hover .gallery-photo {
-  transform: scale(1.06) !important;
 }
 
 .photo-frame {
@@ -6178,9 +6168,9 @@ picture {
 .photo-lightbox-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(8, 6, 13, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background-color: rgba(8, 6, 13, 0.9);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   z-index: 9999;
   display: flex;
   align-items: center;
