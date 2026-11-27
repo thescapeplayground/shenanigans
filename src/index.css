@@ -39,33 +39,33 @@
 }
 
 :root.dark {
-  --bg-tan: #120c08;
-  --text-dark: #f4ebe1;
-  --text-muted: #b5a191;
+  --bg-tan: #12100e;
+  --text-dark: #f3ede6;
+  --text-muted: #afa49b;
   --accent: #d49a6a;
   --accent-soft: rgba(212, 154, 106, 0.14);
   --accent-border: rgba(212, 154, 106, 0.38);
   --accent-glow: rgba(212, 154, 106, 0.45);
-  --border-color: rgba(244, 235, 225, 0.11);
-  --button-bg: #1b130d;
-  --button-hover: #251a12;
-  --button-border: rgba(244, 235, 225, 0.15);
-  --surface-raised: #1f160f;
-  --surface-raised-hover: #2a1e15;
-  --card-bg: #18100b;
-  --card-bg-opaque: #18100b;
-  --container-bg: #150e09;
-  --preview-bg: #100a06;
+  --border-color: rgba(243, 237, 230, 0.11);
+  --button-bg: #1c1916;
+  --button-hover: #26221e;
+  --button-border: rgba(243, 237, 230, 0.15);
+  --surface-raised: #201c19;
+  --surface-raised-hover: #2b2621;
+  --card-bg: #181512;
+  --card-bg-opaque: #181512;
+  --container-bg: #151311;
+  --preview-bg: #0e0c0b;
   --avatar-shadow: 0 0 0 1px rgba(212, 154, 106, 0.2), 0 14px 38px rgba(212, 154, 106, 0.16);
-  --contrib-bg-0: rgba(244, 235, 225, 0.06);
+  --contrib-bg-0: rgba(243, 237, 230, 0.06);
   --contrib-bg-1: rgba(212, 154, 106, 0.22);
   --contrib-bg-2: rgba(212, 154, 106, 0.44);
   --contrib-bg-3: rgba(212, 154, 106, 0.7);
   --contrib-bg-4: #d49a6a;
   /* FAB opaque overrides */
-  --fab-surface: #1d140e;
-  --fab-surface-hover: #271b13;
-  --fab-card-bg: #18100b;
+  --fab-surface: #1c1916;
+  --fab-surface-hover: #26221e;
+  --fab-card-bg: #181512;
 }
 
 * {

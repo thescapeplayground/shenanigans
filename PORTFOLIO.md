@@ -13,7 +13,7 @@ This document details the visual identity, structure, and instructions for build
 ## 1. Visual Identity & Design System
 
 The site adheres to a sleek, warm, coffee-inspired digital grid aesthetic with a global tactile paper texture overlay:
-- **Core Background**: Oat latte cream (`--bg-tan` / `#efe7dd`) in light mode and dark espresso roast (`#120c08`) in dark mode.
+- **Core Background**: Oat latte cream (`--bg-tan` / `#efe7dd`) in light mode and dark espresso roast (`#12100e`) in dark mode.
 - **Typography**: Clean display and sans-serif fonts using the variable font `Aspekta` (`--sans` / AspektaVF). Monospaced fonts for status/meta lines (`--mono`).
 - **Card Panels**: Translucent warm cream/espresso panels (`--card-bg`) with fine borders (`--border-color`) and rounded corners.
 - **Accents**: Roasted caramel crema (`--accent` / `#9c5c34` light, `#d49a6a` dark) paired with high-contrast espresso/steamed-milk typography (`--text-dark`, `--text-muted`).
