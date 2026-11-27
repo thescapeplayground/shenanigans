@@ -2,6 +2,44 @@ import { useState, type FormEvent } from 'react';
 
 const CONTACT_EMAIL = 'isaiahscape@duck.com';
 
+const DIGITAL_SPACES = [
+  { name: 'GitHub', href: 'https://github.com/isaiahscape' },
+  { name: 'Instagram', href: 'https://instagram.com/isaiahscape' },
+  { name: 'Telegram', href: 'https://t.me/isaiahscape' },
+  { name: 'LinkedIn', href: 'https://linkedin.com/in/isaiahscape' },
+  { name: 'YouTube', href: 'https://youtube.com/@isaiahscape' },
+  { name: 'Twitch', href: 'https://twitch.tv/isaiahscape' },
+  { name: 'TikTok', href: 'https://tiktok.com/@isaiahscape' },
+  { name: 'X / Twitter', href: 'https://x.com/isaiahscape' },
+  { name: 'Threads', href: 'https://threads.net/@isaiahscape' },
+  { name: 'Facebook', href: 'https://facebook.com/isaiahscape' },
+];
+
+export function DigitalSpacesCard({ className = '' }: { className?: string }) {
+  return (
+    <div className={`contact-box contact-box-socials ${className}`.trim()}>
+      <div className="contact-socials-header">
+        <h4 className="socials-label">DIGITAL SPACES</h4>
+        <span className="contact-handle-pill">@isaiahscape</span>
+      </div>
+      <div className="socials-grid-links">
+        {DIGITAL_SPACES.map((item) => (
+          <a
+            key={item.name}
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-grid-item"
+          >
+            <span className="social-name">{item.name}</span>
+            <span className="social-arrow">↗</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function ContactFormCard({ className = '' }: { className?: string }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -192,35 +230,7 @@ export function ContactSection() {
           <ContactFormCard className="reveal-on-scroll delay-2" />
 
           {/* Box 4: Social Channels */}
-          <div className="contact-box contact-box-socials reveal-on-scroll reveal-right delay-3">
-            <h4 className="socials-label">DIGITAL SPACES</h4>
-            <div className="socials-grid-links">
-              <a href="https://github.com/isaiahscape" target="_blank" rel="noopener noreferrer" className="social-grid-item">
-                <span className="social-name">GitHub</span>
-                <span className="social-arrow">↗</span>
-              </a>
-              <a href="https://instagram.com/isaiahscape" target="_blank" rel="noopener noreferrer" className="social-grid-item">
-                <span className="social-name">Instagram</span>
-                <span className="social-arrow">↗</span>
-              </a>
-              <a href="https://t.me/isaiahscape" target="_blank" rel="noopener noreferrer" className="social-grid-item">
-                <span className="social-name">Telegram</span>
-                <span className="social-arrow">↗</span>
-              </a>
-              <a href="https://linkedin.com/in/isaiahscape" target="_blank" rel="noopener noreferrer" className="social-grid-item">
-                <span className="social-name">LinkedIn</span>
-                <span className="social-arrow">↗</span>
-              </a>
-              <a href="https://youtube.com/@isaiahscape" target="_blank" rel="noopener noreferrer" className="social-grid-item">
-                <span className="social-name">YouTube</span>
-                <span className="social-arrow">↗</span>
-              </a>
-              <a href="https://twitch.tv/isaiahscape" target="_blank" rel="noopener noreferrer" className="social-grid-item">
-                <span className="social-name">Twitch</span>
-                <span className="social-arrow">↗</span>
-              </a>
-            </div>
-          </div>
+          <DigitalSpacesCard className="reveal-on-scroll reveal-right delay-3" />
         </div>
       </div>
     </section>

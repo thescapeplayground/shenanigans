@@ -9,7 +9,7 @@ import { ProjectsPage } from './components/ProjectsPage'
 import { ServicesPage } from './components/ServicesPage'
 import { GalleryPage } from './components/GalleryPage'
 import { BlogsPage } from './components/BlogsPage'
-import { ContactFormCard } from './components/ContactSection'
+import { ContactFormCard, DigitalSpacesCard } from './components/ContactSection'
 import './App.css'
 
 const WORDS = [
@@ -1324,35 +1324,7 @@ function App() {
                   <ContactFormCard className="reveal-on-scroll delay-2" />
 
                   {/* Box 4: Social Channels */}
-                  <div className="contact-box contact-box-socials reveal-on-scroll reveal-right delay-3">
-                    <h4 className="socials-label">DIGITAL SPACES</h4>
-                    <div className="socials-grid-links">
-                      <a href="https://github.com/isaiahscape" target="_blank" rel="noopener noreferrer" className="social-grid-item">
-                        <span className="social-name">GitHub</span>
-                        <span className="social-arrow">↗</span>
-                      </a>
-                      <a href="https://instagram.com/isaiahscape" target="_blank" rel="noopener noreferrer" className="social-grid-item">
-                        <span className="social-name">Instagram</span>
-                        <span className="social-arrow">↗</span>
-                      </a>
-                      <a href="https://t.me/isaiahscape" target="_blank" rel="noopener noreferrer" className="social-grid-item">
-                        <span className="social-name">Telegram</span>
-                        <span className="social-arrow">↗</span>
-                      </a>
-                      <a href="https://linkedin.com/in/isaiahscape" target="_blank" rel="noopener noreferrer" className="social-grid-item">
-                        <span className="social-name">LinkedIn</span>
-                        <span className="social-arrow">↗</span>
-                      </a>
-                      <a href="https://youtube.com/@isaiahscape" target="_blank" rel="noopener noreferrer" className="social-grid-item">
-                        <span className="social-name">YouTube</span>
-                        <span className="social-arrow">↗</span>
-                      </a>
-                      <a href="https://twitch.tv/isaiahscape" target="_blank" rel="noopener noreferrer" className="social-grid-item">
-                        <span className="social-name">Twitch</span>
-                        <span className="social-arrow">↗</span>
-                      </a>
-                    </div>
-                  </div>
+                  <DigitalSpacesCard className="reveal-on-scroll reveal-right delay-3" />
                 </div>
               </div>
             </section>
