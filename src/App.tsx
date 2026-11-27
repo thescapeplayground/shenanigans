@@ -824,8 +824,7 @@ function App() {
             {/* About Info Grid Section */}
             <section className="about-section" id="about">
               <div className="about-header reveal-on-scroll delay-1">
-                <h2 className="about-title-small">now you might wonder</h2>
-                <h3 className="about-title-large">who is this guy even...</h3>
+                <h2 className="about-title-small">so, who am i?</h2>
               </div>
 
               <div className="info-grid">
@@ -833,7 +832,7 @@ function App() {
                 <div className="grid-box box-1 reveal-on-scroll reveal-left delay-2">
                   <h4 className="box-title">I am from Davao, Philippines</h4>
                   <p className="box-subtitle">
-                    <span className="cursive-text">&</span> i am a <span className="cursive-text">{CURRENT_AGE} y.o</span>
+                  <span className="cursive-text">{CURRENT_AGE} years old</span>
                   </p>
                   <div className="badge-row">
                     <span className="badge">photographer</span>
@@ -889,9 +888,9 @@ function App() {
 
                 {/* Box 4: Creative Collective & Projects */}
                 <div className="grid-box box-4 reveal-on-scroll delay-2">
-                  <h4 className="box-title">I shoot photos, design visuals & build practical tools</h4>
+                  <h4 className="box-title">I shoot photos, design visuals and create random stuff.</h4>
                   <p className="box-subtitle-project">
-                    founder of <a href="https://telegram.me/thescapenetwork" target="_blank" rel="noopener noreferrer" className="highlight-link">The Scape Network</a> and maker of SnapWeb & Bedrock
+                    founder of <a href="https://telegram.me/thescapenetwork" target="_blank" rel="noopener noreferrer" className="highlight-link">The Scape Network</a> and maker of Snapseed for Web & Diffuse for Windows
                   </p>
 
                   <div className="project-cards-row">
@@ -914,15 +913,15 @@ function App() {
                     <div className="project-card">
                       <h6>FOSS Releases</h6>
                       <div className="project-links">
-                        <a href="https://foss.isaiahthings.me" target="_blank" rel="noopener noreferrer">Portal ↗</a>
-                        <a href="https://github.com/isaiahscape/bedrock" target="_blank" rel="noopener noreferrer">Bedrock ↗</a>
+                        <a href="https://isaiahthings.me/projects" target="_blank" rel="noopener noreferrer">Portal ↗</a>
+                        <a href="https://github.com/isaiahscape/windiffuse" target="_blank" rel="noopener noreferrer">Diffuse for Windows ↗</a>
                       </div>
                     </div>
 
                     <div className="project-card">
                       <h6>Playground</h6>
                       <div className="project-links">
-                        <a href="https://play.isaiahthings.me" target="_blank" rel="noopener noreferrer">Visit ↗</a>
+                        <a href="https://isaiahplayground.vercel.app" target="_blank" rel="noopener noreferrer">Visit ↗</a>
                       </div>
                     </div>
                   </div>
@@ -1091,7 +1090,7 @@ function App() {
                   </p>
                   <div className="skills-cta-box">
                     <span className="cta-spark">✦</span>
-                    <p className="cta-text">No fluff, just honest work — from photography and branding to hardware builds and full-stack tooling.</p>
+                    <p className="cta-text">Definitely not a fakerist: from photography and branding to hardware builds and full-stack tooling.</p>
                   </div>
                 </div>
 
@@ -1102,22 +1101,7 @@ function App() {
                     <ul className="skills-list">
                       <li className="skill-item">
                         <span className="skill-num">01</span>
-                        <span className="skill-name">React & Next.js</span>
-                        <span className="skill-dot"></span>
-                      </li>
-                      <li className="skill-item">
-                        <span className="skill-num">02</span>
-                        <span className="skill-name">TypeScript / JavaScript</span>
-                        <span className="skill-dot"></span>
-                      </li>
-                      <li className="skill-item">
-                        <span className="skill-num">03</span>
-                        <span className="skill-name">Tailwind CSS & Framer Motion</span>
-                        <span className="skill-dot"></span>
-                      </li>
-                      <li className="skill-item">
-                        <span className="skill-num">04</span>
-                        <span className="skill-name">Node.js (Express) & Vite</span>
+                        <span className="skill-name">React, Vite & Next.js</span>
                         <span className="skill-dot"></span>
                       </li>
                     </ul>
@@ -1133,17 +1117,7 @@ function App() {
                       </li>
                       <li className="skill-item">
                         <span className="skill-num">06</span>
-                        <span className="skill-name">Graphic Design & Identities</span>
-                        <span className="skill-dot"></span>
-                      </li>
-                      <li className="skill-item">
-                        <span className="skill-num">07</span>
-                        <span className="skill-name">Figma & UI Systems</span>
-                        <span className="skill-dot"></span>
-                      </li>
-                      <li className="skill-item">
-                        <span className="skill-num">08</span>
-                        <span className="skill-name">HTML5 Canvas & WebGL</span>
+                        <span className="skill-name">Graphic UI/UX Designer</span>
                         <span className="skill-dot"></span>
                       </li>
                     </ul>
@@ -1158,18 +1132,13 @@ function App() {
                         <span className="skill-dot"></span>
                       </li>
                       <li className="skill-item">
-                        <span className="skill-num">10</span>
-                        <span className="skill-name">Android & Material Design 3</span>
-                        <span className="skill-dot"></span>
-                      </li>
-                      <li className="skill-item">
                         <span className="skill-num">11</span>
                         <span className="skill-name">Mikrotik & IPoE Networking</span>
                         <span className="skill-dot"></span>
                       </li>
                       <li className="skill-item">
                         <span className="skill-num">12</span>
-                        <span className="skill-name">PC Builds, Linux & Diagnostics</span>
+                        <span className="skill-name">PC Builds and Diagnostics</span>
                         <span className="skill-dot"></span>
                       </li>
                     </ul>

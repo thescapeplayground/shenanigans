@@ -168,7 +168,7 @@ export function Hero({ showContent, onOpenGallery }: HeroProps) {
         <div className="hero-bottom-row">
           <div className="hero-text-container">
             <p className="hero-description">
-              photographer, graphic designer & developer — keeping things real, minimal, and functional.
+              a photographer, graphic designer & developer.
             </p>
           </div>
 

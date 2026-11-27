@@ -417,7 +417,6 @@ export function AboutPage({ username, apiKey }: AboutPageProps) {
           and automation. I also worked as a part-time IT instructor at Braintrust Computer Systems,
           technical support at Alorica Philippines, and with the HCDC College of Technology Students
           Organization Productions Committee. I believe in keeping things real, minimal, and functional.
-          No fluff, just honest work.
         </p>
       </div>
 
@@ -500,7 +499,7 @@ export function AboutPage({ username, apiKey }: AboutPageProps) {
             </div>
 
             <p className="body-para" style={{ fontSize: '14px', marginBottom: '20px' }}>
-              When I'm not behind a camera or a keyboard, I'm usually exploring new music and tinkering with audio gear. My rotation leans toward OPM, indie, dreampop, and late-night tracks — artists like wave to earth, Mazzy Star, Arthur Nery, and Unique Salonga.
+              When I'm not behind a camera or a keyboard, I'm usually exploring new music and tinkering with audio gear. My rotation leans toward OPM, indie, dreampop, and late-night tracks — artists like wave to earth, IV of Spades, Arthur Nery, and Unique Salonga.
             </p>
 
             {/* Stats Grid */}
