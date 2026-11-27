@@ -7,65 +7,65 @@
 }
 
 :root {
-  --bg-tan: #e9e5e2;
-  --text-dark: #08060d;
-  --text-muted: #5e5768;
-  --accent: #F1A5A0;
-  --accent-soft: rgba(241, 165, 160, 0.16);
-  --accent-border: rgba(241, 165, 160, 0.45);
-  --accent-glow: rgba(241, 165, 160, 0.55);
-  --border-color: rgba(8, 6, 13, 0.12);
-  --button-bg: rgba(255, 255, 255, 0.3);
-  --button-hover: rgba(255, 255, 255, 0.5);
-  --button-border: rgba(8, 6, 13, 0.15);
-  --surface-raised: rgba(255, 255, 255, 0.34);
-  --surface-raised-hover: rgba(255, 255, 255, 0.52);
-  --card-bg: rgba(255, 255, 255, 0.45);
-  --card-bg-opaque: rgba(255, 255, 255, 0.92);
-  --container-bg: rgba(255, 255, 255, 0.25);
-  --preview-bg: rgba(8, 6, 13, 0.04);
-  --avatar-shadow: 0 10px 30px rgba(8, 6, 13, 0.08);
-  --contrib-bg-0: rgba(8, 6, 13, 0.05);
-  --contrib-bg-1: rgba(241, 165, 160, 0.28);
-  --contrib-bg-2: rgba(241, 165, 160, 0.52);
-  --contrib-bg-3: rgba(241, 165, 160, 0.78);
-  --contrib-bg-4: #F1A5A0;
+  --bg-tan: #efe7dd;
+  --text-dark: #241710;
+  --text-muted: #6f5a4b;
+  --accent: #9c5c34;
+  --accent-soft: rgba(156, 92, 52, 0.14);
+  --accent-border: rgba(156, 92, 52, 0.42);
+  --accent-glow: rgba(156, 92, 52, 0.45);
+  --border-color: rgba(36, 23, 16, 0.13);
+  --button-bg: rgba(255, 250, 244, 0.5);
+  --button-hover: rgba(255, 250, 244, 0.78);
+  --button-border: rgba(36, 23, 16, 0.16);
+  --surface-raised: rgba(255, 249, 242, 0.55);
+  --surface-raised-hover: rgba(255, 249, 242, 0.8);
+  --card-bg: rgba(252, 247, 240, 0.65);
+  --card-bg-opaque: rgba(252, 247, 240, 0.94);
+  --container-bg: rgba(247, 239, 229, 0.55);
+  --preview-bg: rgba(36, 23, 16, 0.05);
+  --avatar-shadow: 0 10px 30px rgba(36, 23, 16, 0.1);
+  --contrib-bg-0: rgba(36, 23, 16, 0.06);
+  --contrib-bg-1: rgba(156, 92, 52, 0.25);
+  --contrib-bg-2: rgba(156, 92, 52, 0.5);
+  --contrib-bg-3: rgba(156, 92, 52, 0.76);
+  --contrib-bg-4: #9c5c34;
   --sans: 'Aspekta', system-ui, -apple-system, sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   /* FAB opaque overrides */
-  --fab-surface: #ffffff;
-  --fab-surface-hover: #f0ece8;
-  --fab-card-bg: #f7f4f1;
+  --fab-surface: #fbf6ef;
+  --fab-surface-hover: #f1e6d8;
+  --fab-card-bg: #f8f1e7;
 }
 
 :root.dark {
-  --bg-tan: #060606;
-  --text-dark: #f3eff2;
-  --text-muted: #b2adb7;
-  --accent: #F1A5A0;
-  --accent-soft: rgba(241, 165, 160, 0.13);
-  --accent-border: rgba(241, 165, 160, 0.38);
-  --accent-glow: rgba(241, 165, 160, 0.5);
-  --border-color: rgba(255, 255, 255, 0.1);
-  --button-bg: #0d0d0d;
-  --button-hover: #151515;
-  --button-border: rgba(255, 255, 255, 0.14);
-  --surface-raised: #111111;
-  --surface-raised-hover: #1a1a1a;
-  --card-bg: #0c0c0c;
-  --card-bg-opaque: #0c0c0c;
-  --container-bg: #090909;
-  --preview-bg: #070707;
-  --avatar-shadow: 0 0 0 1px rgba(241, 165, 160, 0.16), 0 14px 38px rgba(241, 165, 160, 0.18);
-  --contrib-bg-0: rgba(255, 255, 255, 0.06);
-  --contrib-bg-1: rgba(241, 165, 160, 0.22);
-  --contrib-bg-2: rgba(241, 165, 160, 0.42);
-  --contrib-bg-3: rgba(241, 165, 160, 0.68);
-  --contrib-bg-4: #F1A5A0;
+  --bg-tan: #120c08;
+  --text-dark: #f4ebe1;
+  --text-muted: #b5a191;
+  --accent: #d49a6a;
+  --accent-soft: rgba(212, 154, 106, 0.14);
+  --accent-border: rgba(212, 154, 106, 0.38);
+  --accent-glow: rgba(212, 154, 106, 0.45);
+  --border-color: rgba(244, 235, 225, 0.11);
+  --button-bg: #1b130d;
+  --button-hover: #251a12;
+  --button-border: rgba(244, 235, 225, 0.15);
+  --surface-raised: #1f160f;
+  --surface-raised-hover: #2a1e15;
+  --card-bg: #18100b;
+  --card-bg-opaque: #18100b;
+  --container-bg: #150e09;
+  --preview-bg: #100a06;
+  --avatar-shadow: 0 0 0 1px rgba(212, 154, 106, 0.2), 0 14px 38px rgba(212, 154, 106, 0.16);
+  --contrib-bg-0: rgba(244, 235, 225, 0.06);
+  --contrib-bg-1: rgba(212, 154, 106, 0.22);
+  --contrib-bg-2: rgba(212, 154, 106, 0.44);
+  --contrib-bg-3: rgba(212, 154, 106, 0.7);
+  --contrib-bg-4: #d49a6a;
   /* FAB opaque overrides */
-  --fab-surface: #111111;
-  --fab-surface-hover: #1a1a1a;
-  --fab-card-bg: #0c0c0c;
+  --fab-surface: #1d140e;
+  --fab-surface-hover: #271b13;
+  --fab-card-bg: #18100b;
 }
 
 * {

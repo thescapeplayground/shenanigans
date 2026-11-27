@@ -220,8 +220,8 @@ picture {
   /* Reduced corner radius to rounded rectangle */
   border-radius: 24px;
   background-image: repeating-linear-gradient(-45deg,
-      #7b7876,
-      #7b7876 4px,
+      #8b6d57,
+      #8b6d57 4px,
       /* Decreased stroke thickness */
       transparent 4px,
       transparent 16px);
@@ -709,11 +709,9 @@ picture {
   width: 100%;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background-image: url('/gradient.webp');
-  background-size: cover;
-  background-position: center;
-  border: 1px solid rgba(8, 6, 13, 0.08);
-  box-shadow: 0 8px 30px rgba(8, 6, 13, 0.08);
+  background: radial-gradient(circle at 30% 28%, #e8cbb0 0%, #c1875a 38%, #6d4128 72%, #241710 100%);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 30px rgba(36, 23, 16, 0.14);
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   align-self: center;
 }
@@ -1077,8 +1075,8 @@ picture {
   justify-content: center;
   width: 32px;
   height: 32px;
-  background: #08060d;
-  color: #ffffff;
+  background: var(--text-dark);
+  color: var(--bg-tan);
   border-radius: 8px;
   font-size: 16px;
   font-weight: 500;
@@ -6168,7 +6166,7 @@ picture {
 .photo-lightbox-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(8, 6, 13, 0.9);
+  background-color: rgba(16, 10, 6, 0.92);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   z-index: 9999;
