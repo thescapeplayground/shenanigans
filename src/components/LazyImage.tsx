@@ -12,6 +12,8 @@ interface LazyImageProps {
   native?: boolean;
 }
 
+const loadedImageCache = new Set<string>();
+
 export function LazyImage({
   src,
   alt,
@@ -21,19 +23,27 @@ export function LazyImage({
   priority = false,
 }: LazyImageProps) {
   const imgRef = useRef<HTMLImageElement>(null);
-  const [loadedSrc, setLoadedSrc] = useState<string | null>(priority ? src : null);
+  const [loadedSrc, setLoadedSrc] = useState<string | null>(() =>
+    priority || (src && loadedImageCache.has(src)) ? src : null
+  );
+
+  const markLoaded = (url: string) => {
+    if (url) loadedImageCache.add(url);
+    setLoadedSrc(url);
+  };
 
   useEffect(() => {
     const img = imgRef.current;
     if (!img || !src) return;
 
-    if (img.complete && img.naturalWidth > 0) {
+    if (loadedImageCache.has(src) || (img.complete && img.naturalWidth > 0)) {
+      loadedImageCache.add(src);
       const id = requestAnimationFrame(() => setLoadedSrc(src));
       return () => cancelAnimationFrame(id);
     }
   }, [src]);
 
-  const loaded = priority || (Boolean(src) && loadedSrc === src);
+  const loaded = priority || (Boolean(src) && (loadedSrc === src || loadedImageCache.has(src)));
 
   return (
     <img
@@ -42,8 +52,8 @@ export function LazyImage({
       alt={alt}
       className={`lazy-img${loaded ? ' lazy-img--loaded' : ''} ${className}`.trim()}
       style={style}
-      onLoad={() => setLoadedSrc(src)}
-      onError={() => setLoadedSrc(src)}
+      onLoad={() => markLoaded(src)}
+      onError={() => markLoaded(src)}
       onClick={onClick}
       loading={priority ? 'eager' : 'lazy'}
       decoding={priority ? 'sync' : 'async'}

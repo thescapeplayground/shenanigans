@@ -3723,18 +3723,17 @@ picture {
 /* --- Page Route Transitions --- */
 .page-transition-stage {
   width: 100%;
-  transition: opacity 0.16s cubic-bezier(0.4, 0, 1, 1), transform 0.16s cubic-bezier(0.4, 0, 1, 1), filter 0.16s cubic-bezier(0.4, 0, 1, 1);
+  transition: opacity 0.14s cubic-bezier(0.4, 0, 1, 1), transform 0.14s cubic-bezier(0.4, 0, 1, 1);
 }
 
 .page-transition-stage.page-transition--exiting {
   opacity: 0;
-  transform: translateY(-8px);
-  filter: blur(4px);
+  transform: translate3d(0, -6px, 0);
   pointer-events: none;
 }
 
 .page-transition-stage.page-transition--entering {
-  animation: page-stage-enter 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: page-stage-enter 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .page-transition-stage.page-transition--entering .page-view-container.fade-in {
@@ -3748,13 +3747,11 @@ picture {
 @keyframes page-stage-enter {
   from {
     opacity: 0;
-    transform: translateY(14px);
-    filter: blur(4px);
+    transform: translate3d(0, 10px, 0);
   }
   to {
     opacity: 1;
     transform: none;
-    filter: none;
   }
 }
 
@@ -3766,7 +3763,6 @@ picture {
     animation: none !important;
     transition: none !important;
     transform: none !important;
-    filter: none !important;
   }
 }
 

@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { AccordionGallery, type AccordionGalleryItem } from "./AccordionGallery";
 import { DEFAULT_GALLERY_ALBUMS, type GalleryAlbum } from "../data/gallery";
+import { fetchGalleryData, getCachedGalleryData } from "../lib/galleryCache";
 import { getPreviewImageUrl } from "../lib/imagePreview";
 import "./Hero.css";
 
 interface HeroProps {
   showContent: boolean;
+  animateEntrance?: boolean;
   onOpenGallery?: () => void;
 }
 
@@ -69,9 +71,9 @@ function buildCoverItems(albums: GalleryAlbum[]): AccordionGalleryItem[] {
     : [{ image: "/assets/fab-coffee-cover.jpg", label: "Visual Archive", tag: "Portfolio" }];
 }
 
-export function Hero({ showContent, onOpenGallery }: HeroProps) {
+export function Hero({ showContent, animateEntrance = true, onOpenGallery }: HeroProps) {
   const [coverItems, setCoverItems] = useState<AccordionGalleryItem[]>(() =>
-    buildCoverItems(DEFAULT_GALLERY_ALBUMS)
+    buildCoverItems(getCachedGalleryData()?.albums ?? DEFAULT_GALLERY_ALBUMS)
   );
   const [availability, setAvailability] = useState<AvailabilityState>(() =>
     computePhtAvailability()
@@ -85,31 +87,31 @@ export function Hero({ showContent, onOpenGallery }: HeroProps) {
   }, []);
 
   useEffect(() => {
+    if (getCachedGalleryData()) return;
     let active = true;
 
-    fetch("/api/gallery")
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data: { albums?: GalleryAlbum[] | null } | null) => {
-        if (!active || !Array.isArray(data?.albums) || data.albums.length === 0) return;
-        const nextItems = buildCoverItems(data.albums);
-        if (nextItems.length > 0) {
-          setCoverItems(nextItems);
-        }
-      })
-      .catch(() => {
-        // Keep default fallback photography frames
-      });
+    fetchGalleryData().then(({ albums }) => {
+      if (!active || albums.length === 0) return;
+      const nextItems = buildCoverItems(albums);
+      if (nextItems.length > 0) {
+        setCoverItems(nextItems);
+      }
+    });
 
     return () => {
       active = false;
     };
   }, []);
 
+  const revealClass = (variant: string, delay: string) =>
+    animateEntrance
+      ? `${variant} ${showContent ? `animate-reveal ${delay}` : ""}`.trim()
+      : "";
+
   return (
     <div className="hero-container">
       {/* Banner Card at the top */}
-      <div className={`hero-visual-card reveal-item reveal-scale ${showContent ? "animate-reveal delay-1" : ""
-        }`}>
+      <div className={`hero-visual-card ${revealClass("reveal-item reveal-scale", "delay-1")}`.trim()}>
         <AccordionGallery items={coverItems} defaultIndex={2} />
         <a
           href="/gallery"
@@ -136,8 +138,7 @@ export function Hero({ showContent, onOpenGallery }: HeroProps) {
       </div>
 
       {/* Overlapping profile picture */}
-      <div className={`hero-avatar-wrap reveal-item reveal-scale ${showContent ? "animate-reveal delay-2" : ""
-        }`}>
+      <div className={`hero-avatar-wrap ${revealClass("reveal-item reveal-scale", "delay-2")}`.trim()}>
         <img
           src="/assets/hero.jpg"
           alt="Leonardo (Isiaih Rafael Pavia) Profile"
@@ -152,8 +153,7 @@ export function Hero({ showContent, onOpenGallery }: HeroProps) {
       </div>
 
       {/* Details Row (Name + Availability, Tagline, and Social Buttons aligned beside the avatar) */}
-      <div className={`hero-details-row reveal-item ${showContent ? "animate-reveal delay-3" : ""
-        }`}>
+      <div className={`hero-details-row ${revealClass("reveal-item", "delay-3")}`.trim()}>
         <div className="hero-title-row">
           <h1 className="hero-main-title">I am Leonardo</h1>
           <span

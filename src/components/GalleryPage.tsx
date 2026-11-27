@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { DEFAULT_GALLERY_ALBUMS, type GalleryAlbum, type GalleryItem } from '../data/gallery';
+import { fetchGalleryData, getCachedGalleryData } from '../lib/galleryCache';
 import { getPreviewImageUrl } from '../lib/imagePreview';
 
 interface GalleryPageProps {
@@ -8,10 +9,11 @@ interface GalleryPageProps {
 }
 
 export function GalleryPage({ initialAlbum }: GalleryPageProps) {
-  const [albums, setAlbums] = useState<GalleryAlbum[]>(DEFAULT_GALLERY_ALBUMS);
+  const initialCache = getCachedGalleryData();
+  const [albums, setAlbums] = useState<GalleryAlbum[]>(() => initialCache?.albums ?? DEFAULT_GALLERY_ALBUMS);
   const [activeAlbumId, setActiveAlbumId] = useState<string>(() => initialAlbum || 'all');
-  const [loading, setLoading] = useState(true);
-  const [syncSource, setSyncSource] = useState<'github' | 'local' | 'fallback'>('fallback');
+  const [loading, setLoading] = useState(() => !initialCache);
+  const [syncSource, setSyncSource] = useState<'github' | 'local' | 'fallback'>(() => initialCache?.source ?? 'fallback');
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [rawFallbackImages, setRawFallbackImages] = useState<Record<string, boolean>>({});
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
@@ -27,28 +29,17 @@ export function GalleryPage({ initialAlbum }: GalleryPageProps) {
   }, []);
 
   useEffect(() => {
+    if (getCachedGalleryData()) {
+      setLoading(false);
+      return;
+    }
     let active = true;
 
-    fetch('/api/gallery')
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to load gallery');
-        return res.json();
-      })
-      .then((data: { source?: 'github' | 'local' | 'fallback'; albums?: GalleryAlbum[] | null }) => {
+    fetchGalleryData()
+      .then((data) => {
         if (!active) return;
-        if (Array.isArray(data?.albums) && data.albums.length > 0) {
-          const returnedIds = new Set(data.albums.map((a) => a.id.toLowerCase()));
-          const missingDefaults = DEFAULT_GALLERY_ALBUMS.filter(
-            (a) => !returnedIds.has(a.id.toLowerCase())
-          ).map((a) => ({ ...a, items: [] }));
-          setAlbums([...data.albums, ...missingDefaults]);
-          setSyncSource(
-            data.source === 'github' ? 'github' : data.source === 'local' ? 'local' : 'fallback'
-          );
-        }
-      })
-      .catch(() => {
-        // Keep DEFAULT_GALLERY_ALBUMS fallback
+        setAlbums(data.albums);
+        setSyncSource(data.source);
       })
       .finally(() => {
         if (active) setLoading(false);

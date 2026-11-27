@@ -7,11 +7,19 @@ import { useGitHubData } from './hooks/useGitHubData'
 import { ContactFormCard, DigitalSpacesCard } from './components/ContactSection'
 import './App.css'
 
-const AboutPage = lazy(() => import('./components/AboutPage').then((m) => ({ default: m.AboutPage })))
-const ProjectsPage = lazy(() => import('./components/ProjectsPage').then((m) => ({ default: m.ProjectsPage })))
-const ServicesPage = lazy(() => import('./components/ServicesPage').then((m) => ({ default: m.ServicesPage })))
-const GalleryPage = lazy(() => import('./components/GalleryPage').then((m) => ({ default: m.GalleryPage })))
-const BlogsPage = lazy(() => import('./components/BlogsPage').then((m) => ({ default: m.BlogsPage })))
+const routeLoaders = {
+  about: () => import('./components/AboutPage'),
+  projects: () => import('./components/ProjectsPage'),
+  services: () => import('./components/ServicesPage'),
+  gallery: () => import('./components/GalleryPage'),
+  blogs: () => import('./components/BlogsPage'),
+} as const
+
+const AboutPage = lazy(() => routeLoaders.about().then((m) => ({ default: m.AboutPage })))
+const ProjectsPage = lazy(() => routeLoaders.projects().then((m) => ({ default: m.ProjectsPage })))
+const ServicesPage = lazy(() => routeLoaders.services().then((m) => ({ default: m.ServicesPage })))
+const GalleryPage = lazy(() => routeLoaders.gallery().then((m) => ({ default: m.GalleryPage })))
+const BlogsPage = lazy(() => routeLoaders.blogs().then((m) => ({ default: m.BlogsPage })))
 
 const WORDS = [
   'Hello',       // English
@@ -496,8 +504,10 @@ function App() {
   const [manifestProjects, setManifestProjects] = useState<ProjectItem[]>(LOCAL_DEFAULT_PROJECTS)
   const [failedIcons, setFailedIcons] = useState<Record<string, boolean>>({})
   const [pageTransitionStage, setPageTransitionStage] = useState<'idle' | 'exiting' | 'entering'>('idle')
+  const [initialHomeEntrance, setInitialHomeEntrance] = useState(true)
   const transitionTimerRef = useRef<number | null>(null)
   const pendingContactScrollRef = useRef(false)
+  const navigationSeqRef = useRef(0)
 
   useEffect(() => {
     fetch('/manifest.json')
@@ -548,12 +558,27 @@ function App() {
     transitionTimerRef.current = window.setTimeout(() => {
       setPageTransitionStage('idle')
       transitionTimerRef.current = null
-    }, 420)
+    }, 340)
   }
 
   useEffect(() => {
     return () => clearTransitionTimer()
   }, [])
+
+  useEffect(() => {
+    if (!showContent) return
+    const warmRoutes = () => {
+      Object.values(routeLoaders).forEach((load) => {
+        void load().catch(() => {})
+      })
+    }
+    if (typeof window.requestIdleCallback === 'function' && typeof window.cancelIdleCallback === 'function') {
+      const id = window.requestIdleCallback(warmRoutes, { timeout: 1500 })
+      return () => window.cancelIdleCallback(id)
+    }
+    const timer = window.setTimeout(warmRoutes, 400)
+    return () => window.clearTimeout(timer)
+  }, [showContent])
 
   useEffect(() => {
     if (currentPage === 'home' && pendingContactScrollRef.current) {
@@ -578,8 +603,14 @@ function App() {
     }
 
     clearTransitionTimer()
+    const seq = ++navigationSeqRef.current
+    const preloadPromise = page === 'home' ? Promise.resolve() : routeLoaders[page]().catch(() => {})
 
     const applyPageSwap = () => {
+      if (seq !== navigationSeqRef.current) return
+      if (page !== 'home') {
+        setInitialHomeEntrance(false)
+      }
       if (!nextPath) {
         setInitialScrollTarget(undefined)
         setInitialGalleryAlbum(undefined)
@@ -593,12 +624,18 @@ function App() {
     }
 
     if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
-      applyPageSwap()
+      void preloadPromise.then(applyPageSwap)
       return
     }
 
     setPageTransitionStage('exiting')
-    transitionTimerRef.current = window.setTimeout(applyPageSwap, 160)
+    const exitDelay = new Promise<void>((resolve) => {
+      transitionTimerRef.current = window.setTimeout(() => {
+        transitionTimerRef.current = null
+        resolve()
+      }, 140)
+    })
+    void Promise.all([exitDelay, preloadPromise]).then(applyPageSwap)
   }
 
   const handleGoToContact = () => {
@@ -620,6 +657,8 @@ function App() {
 
   useEffect(() => {
     const handlePopState = () => {
+      navigationSeqRef.current++
+      setInitialHomeEntrance(false)
       setCurrentPage(getPageFromLocation(window.location.pathname, window.location.hash))
       setInitialScrollTarget(getProjectTargetFromPath(window.location.pathname))
       setInitialGalleryAlbum(getGalleryAlbumFromPath(window.location.pathname))
@@ -883,7 +922,11 @@ function App() {
             <>
               {/* Main Home Page Section */}
               <main className="hero-section" id="home">
-                <Hero showContent={showContent} onOpenGallery={() => handlePageChange('gallery')} />
+                <Hero
+                showContent={showContent}
+                animateEntrance={initialHomeEntrance}
+                onOpenGallery={() => handlePageChange('gallery')}
+              />
               </main>
 
               {/* About Info Grid Section */}
