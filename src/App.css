@@ -219,8 +219,8 @@ picture {
   /* Reduced corner radius to rounded rectangle */
   border-radius: 24px;
   background-image: repeating-linear-gradient(-45deg,
-      #8b6d57,
-      #8b6d57 4px,
+      #737373,
+      #737373 4px,
       /* Decreased stroke thickness */
       transparent 4px,
       transparent 16px);
@@ -711,9 +711,9 @@ picture {
   aspect-ratio: 1 / 1;
   flex-shrink: 0;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 28%, #e8cbb0 0%, #c1875a 38%, #6d4128 72%, #241710 100%);
+  background: radial-gradient(circle at 30% 28%, #e8cbb0 0%, #c1875a 38%, #6d4128 72%, #141414 100%);
   border: 0;
-  box-shadow: 0 12px 32px rgba(24, 15, 10, 0.22);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -6177,7 +6177,7 @@ picture {
 .photo-lightbox-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(16, 10, 6, 0.92);
+  background-color: rgba(10, 10, 10, 0.92);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   z-index: 9999;

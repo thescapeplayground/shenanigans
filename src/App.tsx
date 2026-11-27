@@ -520,7 +520,7 @@ function App() {
       logo: p.title.charAt(0).toLowerCase(),
       mockups: {
         back: { title: 'Details', items: [] },
-        middle: { gradient: 'linear-gradient(135deg, #2d1d14, #140c08)' },
+        middle: { gradient: 'linear-gradient(135deg, #262626, #0a0a0a)' },
         front: { title: p.title, walls: [] }
       }
     }
@@ -801,8 +801,8 @@ function App() {
         <PaperTexture
           width="100%"
           height="100%"
-          colorBack="#f5ede3"
-          colorFront="#c9b49e"
+          colorBack="#ffffff"
+          colorFront="#d4d4d4"
           contrast={0.25}
           roughness={0.35}
           fiber={0.25}
