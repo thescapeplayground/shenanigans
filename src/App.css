@@ -3736,10 +3736,6 @@ picture {
   animation: page-stage-enter 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.page-transition-stage.page-transition--entering .page-view-container.fade-in {
-  animation: none;
-}
-
 .page-loading-fallback {
   min-height: 85vh;
 }

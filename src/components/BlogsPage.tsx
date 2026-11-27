@@ -138,9 +138,11 @@ function getPostIdFromLocation(): string | null {
 
 export function BlogsPage() {
   const [selectedPostId, setSelectedPostId] = useState<string | null>(() => getPostIdFromLocation());
+  const [animateSubView, setAnimateSubView] = useState(false);
 
   useEffect(() => {
     const handlePopState = () => {
+      setAnimateSubView(true);
       setSelectedPostId(getPostIdFromLocation());
     };
     window.addEventListener('popstate', handlePopState);
@@ -148,12 +150,14 @@ export function BlogsPage() {
   }, []);
 
   const handleSelectPost = (postId: string) => {
+    setAnimateSubView(true);
     setSelectedPostId(postId);
     window.history.pushState(null, '', `/blogs/${postId}`);
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
   };
 
   const handleBack = () => {
+    setAnimateSubView(true);
     setSelectedPostId(null);
     window.history.pushState(null, '', '/blogs');
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
@@ -162,7 +166,10 @@ export function BlogsPage() {
   if (selectedPostId) {
     const article = BLOG_POSTS.find(p => p.id === selectedPostId);
     return (
-      <div key={`blog-post-${selectedPostId}`} className="page-view-container fade-in">
+      <div
+        key={`blog-post-${selectedPostId}`}
+        className={animateSubView ? 'page-view-container fade-in' : 'page-view-container'}
+      >
         <div className="blog-top-bar">
           <button className="back-btn" onClick={handleBack}>
             ← BACK TO LOGS
@@ -216,7 +223,10 @@ export function BlogsPage() {
   }
 
   return (
-    <div key="blog-list" className="page-view-container fade-in">
+    <div
+      key="blog-list"
+      className={animateSubView ? 'page-view-container fade-in' : 'page-view-container'}
+    >
       <header className="page-header">
         <span className="page-label">dev logs // photography notes // thoughts</span>
         <h1 className="page-title">blogs & build logs.</h1>

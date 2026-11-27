@@ -355,7 +355,7 @@ export function ProjectsPage({ initialScrollTarget, clearScrollTarget }: Project
   const hasPhotography = manifest.photography && manifest.photography.length > 0;
 
   return (
-    <div className="page-view-container fade-in">
+    <div className="page-view-container">
       <header className="page-header">
         <h1 className="page-title">creations.</h1>
         <p className="page-description-sub">

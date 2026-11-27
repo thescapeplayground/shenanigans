@@ -179,7 +179,7 @@ export function ServicesPage({ onContactClick }: ServicesPageProps) {
   };
 
   return (
-    <div className="page-view-container fade-in">
+    <div className="page-view-container">
       <header className="page-header services-page-header">
         <div className="services-meta-badges">
           <span className="services-brand-pill">Leonardo&apos;s Tangible Stuff</span>

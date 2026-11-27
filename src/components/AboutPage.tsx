@@ -396,7 +396,7 @@ export function AboutPage({ username, apiKey }: AboutPageProps) {
   }, [username, apiKey]);
 
   return (
-    <div className="page-view-container fade-in">
+    <div className="page-view-container">
       <header className="page-header">
         <span className="page-label">leonardo // isaiahscape</span>
         <h1 className="page-title">about me.</h1>

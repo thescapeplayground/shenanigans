@@ -103,7 +103,7 @@ export function GalleryPage({ initialAlbum }: GalleryPageProps) {
   const totalCount = albums.reduce((sum, album) => sum + album.items.length, 0);
 
   return (
-    <div className="page-view-container fade-in">
+    <div className="page-view-container">
       <header className="page-header">
         <span className="page-label">
           isaiahscape // private-photos{' '}
