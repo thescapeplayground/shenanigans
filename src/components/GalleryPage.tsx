@@ -296,7 +296,7 @@ export function GalleryPage({ initialAlbum }: GalleryPageProps) {
               <div
                 style={{
                   background: 'var(--card-bg-opaque, rgba(16, 16, 20, 0.92))',
-                  border: '1px solid var(--border-color)',
+                  border: 'none',
                   borderRadius: '16px',
                   padding: '14px 18px',
                   display: 'flex',

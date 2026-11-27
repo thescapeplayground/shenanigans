@@ -158,8 +158,8 @@ picture {
   width: 72px;
   height: 48px;
   border-radius: 14px;
-  border: 1px solid var(--button-border);
-  background-color: transparent;
+  border: none;
+  background-color: var(--button-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -175,7 +175,6 @@ picture {
 
 .social-button:hover {
   background-color: var(--surface-raised-hover);
-  border-color: var(--accent-border);
   transform: translateY(-2px);
 }
 
@@ -437,7 +436,7 @@ picture {
 
 .grid-box {
   background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 12px;
   padding: 32px;
   display: flex;
@@ -751,7 +750,7 @@ picture {
 .project-card {
   flex: 1;
   background: var(--surface-raised);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 18px;
   padding: 20px 16px 16px;
   display: flex;
@@ -763,7 +762,6 @@ picture {
 }
 
 .project-card:hover {
-  border-color: var(--accent-border);
   background-color: var(--surface-raised-hover);
   transform: translateY(-2px);
 }
@@ -1019,7 +1017,7 @@ picture {
 .works-container {
   width: 100%;
   background: var(--container-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 12px;
   padding: 24px;
   display: grid;
@@ -1030,7 +1028,7 @@ picture {
 /* Left Panel: Project Info */
 .project-info-panel {
   background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 8px;
   padding: 28px !important;
   display: flex;
@@ -1147,7 +1145,7 @@ picture {
 .btn-visit {
   padding: 10px 14px;
   background: #ffffff;
-  border: 1.5px solid var(--border-color);
+  border: none;
   border-radius: 6px;
   font-size: 11px;
   letter-spacing: 0.05em;
@@ -1165,14 +1163,13 @@ picture {
 .btn-visit:hover {
   background: var(--text-dark);
   color: #ffffff;
-  border-color: var(--text-dark);
   transform: translateY(-1px);
 }
 
 .btn-github {
   padding: 10px 14px;
-  background: transparent;
-  border: 1.5px solid var(--border-color);
+  background: var(--button-bg);
+  border: none;
   border-radius: 6px;
   font-size: 11px;
   letter-spacing: 0.05em;
@@ -1187,7 +1184,6 @@ picture {
 
 .btn-github:hover {
   background: var(--surface-raised-hover);
-  border-color: var(--accent-border);
   transform: translateY(-1px);
 }
 
@@ -1200,7 +1196,7 @@ picture {
   width: 32px;
   height: 32px;
   border-radius: 6px;
-  border: 1px solid var(--border-color);
+  border: none;
   background: var(--button-bg);
   color: var(--text-dark);
   font-size: 14px;
@@ -1214,7 +1210,6 @@ picture {
 
 .pag-btn:hover {
   background: var(--button-hover);
-  border-color: var(--text-dark);
 }
 
 .pag-btn:active {
@@ -1224,7 +1219,7 @@ picture {
 /* Right Panel: Project Preview Stack */
 .project-preview-panel {
   background: var(--preview-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -1254,7 +1249,7 @@ picture {
   width: 290px;
   height: 180px;
   background: #0c0b11;
-  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border: none;
   border-radius: 14px;
   box-shadow: 0 15px 35px rgba(8, 6, 13, 0.3);
   display: flex;
@@ -1348,7 +1343,7 @@ picture {
   align-items: center;
   gap: 8px;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: none;
   border-radius: 6px;
   padding: 6px 10px;
 }
@@ -1514,7 +1509,7 @@ picture {
   width: 100%;
   max-width: 100%;
   background: var(--card-bg);
-  border: 1px solid rgba(8, 6, 13, 0.12);
+  border: none;
   border-radius: 12px;
   padding: 32px 40px;
   display: flex;
@@ -1525,13 +1520,12 @@ picture {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 8px 32px rgba(8, 6, 13, 0.04);
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: box-shadow 0.3s;
   margin-top: 10px;
   overflow: hidden;
 }
 
 .design-redirect-banner:hover {
-  border-color: rgba(8, 6, 13, 0.25);
   box-shadow: 0 12px 38px rgba(8, 6, 13, 0.08);
 }
 
@@ -1601,27 +1595,25 @@ picture {
 }
 
 .btn-photography {
-  background: transparent;
+  background: var(--button-bg);
   color: var(--text-dark);
-  border: 1.5px solid var(--border-color);
+  border: none;
 }
 
 .btn-photography:hover {
   background: var(--button-hover);
-  border-color: var(--text-dark);
   transform: translateY(-1px);
 }
 
 .btn-design {
   background: var(--text-dark);
   color: var(--bg-tan);
-  border: 1.5px solid var(--text-dark);
+  border: none;
   box-shadow: 0 2px 6px rgba(8, 6, 13, 0.08);
 }
 
 .btn-design:hover {
   background: var(--text-muted);
-  border-color: var(--text-muted);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(8, 6, 13, 0.08);
 }
@@ -1747,7 +1739,7 @@ picture {
   gap: 12px;
   padding: 20px;
   background: var(--surface-raised);
-  border: 1px dashed var(--border-color);
+  border: none;
   border-radius: 20px;
   margin-top: auto;
   text-align: left;
@@ -1807,14 +1799,13 @@ picture {
   padding: 10px 16px;
   border-radius: 14px;
   background: var(--surface-raised);
-  border: 1px solid var(--border-color);
+  border: none;
   transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
   box-sizing: border-box;
 }
 
 .skill-item:hover {
   background: var(--surface-raised-hover);
-  border-color: var(--accent-border);
   transform: translateX(6px);
   box-shadow: 0 4px 12px rgba(8, 6, 13, 0.02);
 }
@@ -1928,7 +1919,7 @@ picture {
 
 .setup-card {
   background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 28px;
   padding: 24px;
   box-sizing: border-box;
@@ -1944,7 +1935,6 @@ picture {
 
 .setup-card:hover {
   transform: translateY(-5px);
-  border-color: var(--accent-border);
   box-shadow: 0 12px 40px rgba(224, 90, 90, 0.06), 0 4px 12px rgba(8, 6, 13, 0.03);
 }
 
@@ -2107,7 +2097,7 @@ picture {
 .github-graph-wrapper {
   width: 100%;
   background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 12px;
   padding: 32px;
   box-sizing: border-box;
@@ -2439,7 +2429,7 @@ picture {
 
 .github-stat-card {
   background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 8px;
   padding: 14px;
   display: flex;
@@ -2474,7 +2464,7 @@ picture {
 /* Mobile Graph Section */
 .github-mobile-graph-section {
   background: var(--container-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 24px;
@@ -2580,7 +2570,7 @@ picture {
   background: var(--container-bg);
   border-radius: 8px;
   padding: 10px 14px;
-  border: 1px solid var(--border-color);
+  border: none;
 }
 
 .push-time {
@@ -2652,7 +2642,7 @@ picture {
 
 .contact-box {
   background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 12px;
   padding: 32px;
   display: flex;
@@ -2810,7 +2800,7 @@ picture {
   font-size: 11px;
   color: var(--text-muted);
   background: var(--container-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 999px;
   padding: 4px 10px;
   cursor: pointer;
@@ -2819,7 +2809,6 @@ picture {
 
 .contact-copy-btn:hover {
   color: var(--text-dark);
-  border-color: var(--accent-border);
   background: var(--surface-raised-hover);
 }
 
@@ -2942,7 +2931,7 @@ picture {
   margin-top: 6px;
   padding: 8px 16px;
   border-radius: 999px;
-  border: 1px solid var(--border-color);
+  border: none;
   background: var(--container-bg);
   color: var(--text-dark);
   font-family: var(--mono), monospace;
@@ -2952,7 +2941,6 @@ picture {
 }
 
 .contact-reset-btn:hover {
-  border-color: var(--accent-border);
   background: var(--surface-raised-hover);
 }
 
@@ -3047,13 +3035,12 @@ picture {
   align-items: center;
   padding: 14px 20px;
   background: var(--container-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 12px;
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .social-grid-item:hover {
-  border-color: var(--accent-border);
   background-color: var(--surface-raised-hover);
   transform: translateX(4px);
 }
@@ -3586,8 +3573,8 @@ picture {
 
 /* Theme Toggle Button */
 .theme-toggle-btn {
-  background: transparent;
-  border: 1px solid var(--button-border);
+  background: var(--button-bg);
+  border: none;
   color: var(--text-dark);
   padding: 6px 12px;
   border-radius: 6px;
@@ -3604,7 +3591,6 @@ picture {
 
 .theme-toggle-btn:hover {
   background: var(--button-hover);
-  border-color: var(--text-dark);
   transform: translateY(-1px);
 }
 
@@ -3791,7 +3777,7 @@ picture {
 
 .about-bio-card {
   background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 16px;
   padding: 32px;
   display: flex;
@@ -3849,7 +3835,7 @@ picture {
 
 .about-sidebar-card {
   background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 16px;
   padding: 24px;
   backdrop-filter: blur(10px);
@@ -3915,7 +3901,7 @@ picture {
 
 .skill-group-card {
   background-color: var(--container-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 12px;
   padding: 24px;
 }
@@ -3973,13 +3959,12 @@ picture {
   gap: 8px;
   padding: 6px 12px;
   border-radius: 6px;
-  border: 1px solid var(--button-border);
+  border: none;
   transition: all 0.2s ease;
 }
 
 .nav-anchor-btn:hover {
   color: var(--text-dark);
-  border-color: var(--text-dark);
   background-color: var(--surface-raised);
 }
 
@@ -4055,7 +4040,7 @@ picture {
   font-size: 11px;
   padding: 8px 16px;
   border-radius: 8px;
-  border: 1px solid var(--button-border);
+  border: none;
   background-color: var(--button-bg);
   color: var(--text-muted);
   cursor: pointer;
@@ -4065,7 +4050,6 @@ picture {
 .filter-btn:hover, .filter-btn.active {
   background-color: var(--text-dark);
   color: var(--bg-tan);
-  border-color: var(--text-dark);
 }
 
 .projects-list-grid {
@@ -4078,15 +4062,12 @@ picture {
 @keyframes projectPulse {
   0% {
     box-shadow: 0 0 0 0px var(--accent-soft);
-    border-color: var(--border-color);
   }
   50% {
     box-shadow: 0 0 0 8px var(--accent-soft);
-    border-color: var(--accent);
   }
   100% {
     box-shadow: 0 0 0 0px var(--accent-soft);
-    border-color: var(--border-color);
   }
 }
 
@@ -4097,19 +4078,18 @@ picture {
 .project-detail-card {
   /* Using a slightly more opaque background color to avoid expensive real-time backdrop blur on scroll */
   background-color: var(--card-bg-opaque, rgba(255, 255, 255, 0.92));
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 28px;
   padding: 28px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
 }
 
 .project-detail-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 32px rgba(8, 6, 13, 0.04);
-  border-color: var(--accent-border);
 }
 
 .project-card-header {
@@ -4277,7 +4257,7 @@ picture {
 .visit-btn {
   background-color: var(--text-dark);
   color: var(--bg-tan);
-  border: 1px solid var(--text-dark);
+  border: none;
 }
 
 .visit-btn:hover {
@@ -4285,14 +4265,13 @@ picture {
 }
 
 .github-btn {
-  border: 1px solid var(--button-border);
+  border: none;
   background-color: var(--button-bg);
   color: var(--text-dark);
 }
 
 .github-btn:hover {
   background-color: var(--button-hover);
-  border-color: var(--text-dark);
 }
 
 /* Logos Section Spacing */
@@ -4305,7 +4284,7 @@ picture {
 
 .logo-design-card {
   background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 28px;
   overflow: clip;
   display: flex;
@@ -4315,7 +4294,6 @@ picture {
 
 .logo-design-card:hover {
   transform: translateY(-4px);
-  border-color: var(--accent-border);
   box-shadow: 0 8px 32px rgba(8, 6, 13, 0.03);
 }
 
@@ -4557,7 +4535,7 @@ picture {
 
 .ad-card-wrapper {
   background: var(--surface-raised);
-  border: 1px dashed var(--border-color);
+  border: none;
   border-radius: 28px;
   padding: 10px;
   box-sizing: border-box;
@@ -4567,12 +4545,11 @@ picture {
 
 .ad-card-wrapper:hover {
   transform: translateY(-4px);
-  border-color: var(--accent-border);
 }
 
 .ad-card {
   background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 20px;
   padding: 32px;
   text-align: left;
@@ -4681,7 +4658,7 @@ picture {
 .ad-action-btn {
   background: var(--text-dark);
   color: var(--bg-tan);
-  border: 1px solid var(--text-dark);
+  border: none;
   padding: 6px 14px;
   border-radius: 8px;
   font-size: 10px;
@@ -4691,7 +4668,7 @@ picture {
 }
 
 .ad-action-btn:hover {
-  background: transparent;
+  background: var(--button-hover);
   color: var(--text-dark);
 }
 
@@ -4790,12 +4767,12 @@ picture {
   padding: 6px;
   border-radius: 20px;
   gap: 0;
-  border: 1px solid rgba(8, 6, 13, 0.08); /* Finer border stroke */
+  border: none;
   contain: layout style;
 }
 
 [data-theme='dark'] .masonry-item.photo-card-wrapper {
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: none;
 }
 
 .photo-gallery-grid {
@@ -4811,16 +4788,15 @@ picture {
   gap: 16px;
   width: 100%;
   background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 28px;
   padding: 16px;
   box-sizing: border-box;
-  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .photo-card-wrapper:hover {
   transform: translateY(-2px);
-  border-color: var(--accent-border);
 }
 
 .photo-frame {
@@ -4944,7 +4920,7 @@ picture {
 
 .blog-summary-card {
   background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 16px;
   padding: 28px;
   cursor: pointer;
@@ -4953,7 +4929,6 @@ picture {
 }
 
 .blog-summary-card:hover {
-  border-color: var(--accent-border);
   transform: translateX(4px);
   background-color: var(--surface-raised-hover);
 }
@@ -5014,7 +4989,7 @@ picture {
   font-size: 11px;
   font-weight: 500;
   background: var(--surface-raised);
-  border: 1px solid var(--button-border);
+  border: none;
   padding: 8px 14px;
   border-radius: 8px;
   color: var(--text-dark);
@@ -5024,14 +4999,12 @@ picture {
 }
 
 .blog-share-btn:hover {
-  border-color: var(--accent);
   color: var(--accent);
   transform: translateY(-1px);
 }
 
 .blog-share-btn.copied {
   background: var(--accent);
-  border-color: var(--accent);
   color: #ffffff;
 }
 
@@ -5047,8 +5020,8 @@ picture {
 .back-btn {
   font-family: var(--mono), monospace;
   font-size: 11px;
-  background: none;
-  border: 1px solid var(--button-border);
+  background: var(--button-bg);
+  border: none;
   padding: 8px 16px;
   border-radius: 8px;
   color: var(--text-dark);
@@ -5060,7 +5033,6 @@ picture {
 .back-btn:hover {
   background-color: var(--text-dark);
   color: var(--bg-tan);
-  border-color: var(--text-dark);
 }
 
 .blog-article {
@@ -5275,7 +5247,7 @@ picture {
   aspect-ratio: 3 / 1;
   max-height: 240px;
   border-radius: 16px;
-  border: 1px solid var(--border-color);
+  border: none;
   overflow: hidden;
   margin-bottom: 32px;
   background-color: var(--preview-bg);
@@ -5314,7 +5286,7 @@ picture {
 
 .rom-info-card {
   background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 16px;
   padding: 28px;
   margin-bottom: 24px;
@@ -5378,17 +5350,12 @@ picture {
 
 .rom-download-subcard {
   background-color: var(--container-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 12px;
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  transition: border-color 0.2s;
-}
-
-.rom-download-subcard:hover {
-  border-color: var(--accent-border);
 }
 
 .rom-subcard-header {
@@ -5449,7 +5416,7 @@ picture {
   border-radius: 8px;
   background-color: var(--text-dark);
   color: var(--bg-tan);
-  border: 1px solid var(--text-dark);
+  border: none;
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 500;
@@ -5468,7 +5435,6 @@ picture {
 
 .rom-download-action-btn.secondary-btn {
   background-color: var(--button-bg);
-  border-color: var(--button-border);
   color: var(--text-dark);
 }
 
@@ -5479,7 +5445,7 @@ picture {
 /* Collapsible Panel */
 .collapsible-panel {
   background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 16px;
   margin-bottom: 20px;
   overflow: hidden;
@@ -5585,7 +5551,7 @@ picture {
 .support-action-btn {
   padding: 10px 20px;
   border-radius: 8px;
-  border: 1px solid var(--button-border);
+  border: none;
   background-color: var(--button-bg);
   color: var(--text-dark);
   font-family: var(--sans);
@@ -5601,7 +5567,6 @@ picture {
 
 .support-action-btn:hover {
   background-color: var(--button-hover);
-  border-color: var(--text-dark);
 }
 
 /* --- Redesigned About Widgets & Layout Blocks --- */
@@ -5622,7 +5587,7 @@ picture {
 
 .about-widget-card {
   background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -5670,7 +5635,7 @@ picture {
 .about-md-file {
   width: 100%;
   background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 24px;
@@ -5718,19 +5683,18 @@ picture {
 
 .game-spec-card {
   background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 12px;
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   backdrop-filter: blur(10px);
-  transition: transform 0.2s, border-color 0.2s;
+  transition: transform 0.2s;
 }
 
 .game-spec-card:hover {
   transform: translateY(-2px);
-  border-color: var(--accent-border);
 }
 
 .game-spec-header {
@@ -5772,7 +5736,7 @@ picture {
   padding: 3px 8px;
   border-radius: 4px;
   background-color: var(--preview-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   color: var(--text-dark);
   text-decoration: none;
   transition: all 0.2s;
@@ -5781,7 +5745,6 @@ picture {
 .game-link-badge:hover {
   background-color: var(--text-dark);
   color: var(--bg-tan);
-  border-color: var(--text-dark);
 }
 
 .game-acc-tag {
@@ -5818,7 +5781,7 @@ picture {
   align-items: center;
   gap: 16px;
   background-color: var(--container-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 20px;
@@ -5877,7 +5840,7 @@ picture {
 
 .lastfm-stat-box {
   background-color: var(--container-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 8px;
   padding: 12px;
   text-align: center;
@@ -5917,7 +5880,7 @@ picture {
 
 .lastfm-track-card {
   background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -5987,7 +5950,7 @@ picture {
 .game-card-modern {
   position: relative;
   background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 16px;
   padding: 24px;
   display: flex;
@@ -6019,7 +5982,6 @@ picture {
 
 .game-card-modern:hover {
   transform: translateY(-4px);
-  border-color: var(--game-theme-color);
   box-shadow: 0 12px 30px var(--game-shadow-color);
 }
 
@@ -6082,7 +6044,7 @@ picture {
   justify-content: space-between;
   font-size: 11px;
   background-color: var(--preview-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   padding: 8px 12px;
   border-radius: 8px;
   color: var(--text-dark);
@@ -6091,7 +6053,6 @@ picture {
 
 .coc-account-badge:hover {
   background-color: var(--surface-raised-hover);
-  border-color: var(--game-theme-color);
 }
 
 .coc-acc-title {
@@ -6110,7 +6071,7 @@ picture {
   padding: 6px 12px;
   border-radius: 6px;
   background-color: var(--preview-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   color: var(--text-dark);
   text-decoration: none;
   font-weight: 500;
@@ -6123,7 +6084,6 @@ picture {
 .game-link-badge-modern:hover {
   background-color: var(--game-theme-color);
   color: var(--bg-tan);
-  border-color: var(--game-theme-color);
 }
 
 .game-theme-lineage {
@@ -6156,12 +6116,11 @@ picture {
 
 .project-mini-gallery img {
   cursor: zoom-in;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .project-mini-gallery img:hover {
   transform: scale(1.1);
-  border-color: var(--accent-border) !important;
 }
 
 /* Lightbox Modal */
@@ -6303,19 +6262,18 @@ picture {
 
 .service-card {
   background-color: var(--card-bg-opaque);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 24px;
   padding: 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 18px;
-  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s ease;
 }
 
 .service-card:hover {
   transform: translateY(-3px);
-  border-color: var(--accent-border);
   box-shadow: 0 12px 30px rgba(8, 6, 13, 0.05);
 }
 
@@ -6422,7 +6380,7 @@ picture {
   padding: 12px 14px;
   border-radius: 14px;
   background-color: var(--preview-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   font-family: var(--mono), monospace;
   font-size: 11.5px;
   line-height: 1.5;
@@ -6472,15 +6430,9 @@ picture {
 
 .service-faq-item {
   background-color: var(--card-bg-opaque);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 16px;
   overflow: hidden;
-  transition: border-color 0.2s ease;
-}
-
-.service-faq-item:hover,
-.service-faq-item.open {
-  border-color: var(--accent-border);
 }
 
 .service-faq-trigger {
@@ -6557,7 +6509,7 @@ picture {
   margin-top: 40px;
   padding: 26px 28px;
   border-radius: 22px;
-  border: 1px solid var(--border-color);
+  border: none;
   background-color: var(--card-bg-opaque);
   display: flex;
   align-items: center;
@@ -6608,7 +6560,7 @@ picture {
 .services-cta-btn.primary {
   background-color: var(--text-dark);
   color: var(--bg-tan);
-  border: 1px solid var(--text-dark);
+  border: none;
 }
 
 .services-cta-btn.primary:hover {
@@ -6619,10 +6571,9 @@ picture {
 .services-cta-btn.secondary {
   background-color: var(--button-bg);
   color: var(--text-dark);
-  border: 1px solid var(--button-border);
+  border: none;
 }
 
 .services-cta-btn.secondary:hover {
   background-color: var(--surface-raised-hover);
-  border-color: var(--accent-border);
 }

@@ -15,7 +15,7 @@
   width: 46px;
   height: 46px;
   border-radius: 12px;
-  border: 1px solid var(--border-color);
+  border: none;
   background-color: var(--fab-surface);
   color: var(--text-dark);
   display: flex;
@@ -29,7 +29,6 @@
 
 .fab-btn:hover {
   background-color: var(--fab-surface-hover);
-  border-color: var(--accent-border);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(8, 6, 13, 0.1);
 }
@@ -82,7 +81,6 @@
 .main-fab-btn.open {
   background-color: var(--text-dark);
   color: var(--bg-tan);
-  border-color: var(--text-dark);
 }
 
 .toggle-icon {
@@ -108,7 +106,7 @@
   right: 0;
   width: 240px;
   background-color: var(--fab-card-bg);
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 20px;
   padding: 16px;
   box-shadow: 0 12px 32px rgba(8, 6, 13, 0.08);

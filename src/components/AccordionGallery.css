@@ -18,23 +18,15 @@
   overflow: hidden;
   cursor: pointer;
   outline: none;
-  border: 1px solid rgba(8, 6, 13, 0.08);
+  border: none;
   contain: layout paint;
   will-change: flex-grow;
-  transition:
-    flex var(--ag-duration, 0.4s) cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.25s ease;
+  transition: flex var(--ag-duration, 0.4s) cubic-bezier(0.22, 1, 0.36, 1);
   user-select: none;
-}
-
-:root.dark .accordion-panel,
-[data-theme='dark'] .accordion-panel {
-  border-color: rgba(244, 235, 225, 0.1);
 }
 
 .accordion-panel.is-active {
   flex: 1.95 1 0%;
-  border-color: var(--accent-border, rgba(212, 154, 106, 0.45));
 }
 
 .accordion-panel.is-active:only-child {

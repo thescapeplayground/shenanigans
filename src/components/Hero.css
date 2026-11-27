@@ -15,7 +15,7 @@
   height: 350px;
   /* High-res cover accordion */
   border-radius: 28px;
-  border: 1px solid var(--border-color);
+  border: none;
   overflow: hidden;
   background: var(--bg-tan);
   box-shadow: 0 8px 30px rgba(8, 6, 13, 0.04);
@@ -32,20 +32,19 @@
   padding: 7px 13px;
   border-radius: 999px;
   background: rgba(24, 16, 11, 0.84);
-  border: 1px solid rgba(244, 235, 225, 0.18);
+  border: none;
   color: #f4ebe1;
   font-family: var(--mono), monospace;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.04em;
   text-decoration: none;
-  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.2s ease, background-color 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.2s ease;
 }
 
 .hero-gallery-btn:hover {
   transform: translateY(-2px);
   background: rgba(24, 16, 11, 0.94);
-  border-color: var(--accent-border, rgba(212, 154, 106, 0.55));
 }
 
 .hero-gallery-btn .arrow {
@@ -163,8 +162,8 @@
   height: 48px;
   padding: 0 18px;
   border-radius: 6px;
-  border: 1px solid var(--button-border);
-  background-color: transparent;
+  border: none;
+  background-color: var(--button-bg);
   color: var(--text-dark);
   display: inline-flex;
   align-items: center;
@@ -181,7 +180,6 @@
 
 .hero-availability-badge:hover {
   background-color: var(--surface-raised-hover);
-  border-color: var(--accent-border);
   transform: translateY(-2px);
 }
 
@@ -312,8 +310,8 @@
   width: 72px;
   height: 48px;
   border-radius: 6px;
-  border: 1px solid var(--button-border);
-  background-color: transparent;
+  border: none;
+  background-color: var(--button-bg);
   color: var(--text-dark);
   display: flex;
   align-items: center;
@@ -330,7 +328,6 @@
 
 .hero-social-button:hover {
   background-color: var(--surface-raised-hover);
-  border-color: var(--accent-border);
   transform: translateY(-2px);
 }
 

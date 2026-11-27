@@ -412,7 +412,7 @@ export function ProjectsPage({ initialScrollTarget, clearScrollTarget }: Project
                     overflow: 'hidden', 
                     borderRadius: '18px', 
                     marginBottom: '8px',
-                    border: '1px solid var(--border-color)',
+                    border: 'none',
                   }}
                 >
                   <LazyImage 
@@ -455,7 +455,7 @@ export function ProjectsPage({ initialScrollTarget, clearScrollTarget }: Project
                         height: '45px', 
                         objectFit: 'cover', 
                         borderRadius: '8px', 
-                        border: '1px solid var(--border-color)', 
+                        border: 'none', 
                         flexShrink: 0 
                       }} 
                     />
