@@ -372,5 +372,35 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react(), privatePhotosDevApi(token, resendConfig)],
+    build: {
+      rolldownOptions: {
+        output: {
+          codeSplitting: {
+            groups: [
+              {
+                name: 'vendor-react',
+                test: /node_modules[/\\](react|react-dom|scheduler)[/\\]/,
+                priority: 30,
+              },
+              {
+                name: 'vendor-shaders',
+                test: /node_modules[/\\]@paper-design[/\\]/,
+                priority: 25,
+              },
+              {
+                name: 'vendor-motion',
+                test: /node_modules[/\\](framer-motion|motion(-dom|-utils)?)[/\\]/,
+                priority: 20,
+              },
+              {
+                name: 'vendor',
+                test: /node_modules[/\\]/,
+                priority: 10,
+              },
+            ],
+          },
+        },
+      },
+    },
   }
 })

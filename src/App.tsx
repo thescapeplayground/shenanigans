@@ -1,16 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import { ReactLenis } from 'lenis/react'
 import { PaperTexture } from '@paper-design/shaders-react'
 import { FAB } from './components/FAB'
 import { Hero } from './components/Hero'
 import { useGitHubData } from './hooks/useGitHubData'
-import { AboutPage } from './components/AboutPage'
-import { ProjectsPage } from './components/ProjectsPage'
-import { ServicesPage } from './components/ServicesPage'
-import { GalleryPage } from './components/GalleryPage'
-import { BlogsPage } from './components/BlogsPage'
 import { ContactFormCard, DigitalSpacesCard } from './components/ContactSection'
 import './App.css'
+
+const AboutPage = lazy(() => import('./components/AboutPage').then((m) => ({ default: m.AboutPage })))
+const ProjectsPage = lazy(() => import('./components/ProjectsPage').then((m) => ({ default: m.ProjectsPage })))
+const ServicesPage = lazy(() => import('./components/ServicesPage').then((m) => ({ default: m.ServicesPage })))
+const GalleryPage = lazy(() => import('./components/GalleryPage').then((m) => ({ default: m.GalleryPage })))
+const BlogsPage = lazy(() => import('./components/BlogsPage').then((m) => ({ default: m.BlogsPage })))
 
 const WORDS = [
   'Hello',       // English
@@ -1395,11 +1396,13 @@ function App() {
           </>
         )}
 
-        {currentPage === 'about' && <AboutPage username={LASTFM_USER} apiKey={LASTFM_API_KEY} />}
-        {currentPage === 'projects' && <ProjectsPage initialScrollTarget={initialScrollTarget} clearScrollTarget={() => setInitialScrollTarget(undefined)} />}
-        {currentPage === 'services' && <ServicesPage onContactClick={handleGoToContact} />}
-        {currentPage === 'gallery' && <GalleryPage key={initialGalleryAlbum || 'all'} initialAlbum={initialGalleryAlbum} />}
-        {currentPage === 'blogs' && <BlogsPage />}
+        <Suspense fallback={null}>
+          {currentPage === 'about' && <AboutPage username={LASTFM_USER} apiKey={LASTFM_API_KEY} />}
+          {currentPage === 'projects' && <ProjectsPage initialScrollTarget={initialScrollTarget} clearScrollTarget={() => setInitialScrollTarget(undefined)} />}
+          {currentPage === 'services' && <ServicesPage onContactClick={handleGoToContact} />}
+          {currentPage === 'gallery' && <GalleryPage key={initialGalleryAlbum || 'all'} initialAlbum={initialGalleryAlbum} />}
+          {currentPage === 'blogs' && <BlogsPage />}
+        </Suspense>
 
         {/* Blueprint Layout Footer Section */}
         <footer className="footer-section">
