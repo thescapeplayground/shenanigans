@@ -9,6 +9,31 @@ interface HeroProps {
   onOpenGallery?: () => void;
 }
 
+type AvailabilityState = {
+  status: "available" | "busy" | "away";
+  text: string;
+};
+
+function computePhtAvailability(): AvailabilityState {
+  const now = new Date();
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  const pht = new Date(utc + 8 * 3600000);
+  const hour = pht.getHours();
+  const day = pht.getDay();
+  const isWeekend = day === 0 || day === 6;
+
+  if (hour >= 21 || hour < 8) {
+    return { status: "away", text: "Sleep" };
+  }
+  if (isWeekend) {
+    return { status: "busy", text: "Busy (Weekend)" };
+  }
+  if ((hour >= 8 && hour < 12) || (hour >= 13 && hour < 16)) {
+    return { status: "available", text: "Active now" };
+  }
+  return { status: "away", text: "Away" };
+}
+
 const COVER_PANEL_COUNT = 6;
 
 function buildCoverItems(albums: GalleryAlbum[]): AccordionGalleryItem[] {
@@ -48,6 +73,16 @@ export function Hero({ showContent, onOpenGallery }: HeroProps) {
   const [coverItems, setCoverItems] = useState<AccordionGalleryItem[]>(() =>
     buildCoverItems(DEFAULT_GALLERY_ALBUMS)
   );
+  const [availability, setAvailability] = useState<AvailabilityState>(() =>
+    computePhtAvailability()
+  );
+
+  useEffect(() => {
+    const updateAvailability = () => setAvailability(computePhtAvailability());
+    updateAvailability();
+    const interval = setInterval(updateAvailability, 60000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     let active = true;
@@ -116,17 +151,28 @@ export function Hero({ showContent, onOpenGallery }: HeroProps) {
         />
       </div>
 
-      {/* Details Row (Name, Tagline, and Social Buttons aligned beside the avatar) */}
+      {/* Details Row (Name + Availability, Tagline, and Social Buttons aligned beside the avatar) */}
       <div className={`hero-details-row reveal-item ${showContent ? "animate-reveal delay-3" : ""
         }`}>
-        <div className="hero-text-container">
+        <div className="hero-title-row">
           <h1 className="hero-main-title">I am Leonardo</h1>
-          <p className="hero-description">
-            photographer, graphic designer & developer — keeping things real, minimal, and functional.
-          </p>
+          <span
+            className={`hero-availability-badge status-${availability.status}`}
+            title="Live status based on Asia/Manila time (GMT+8)"
+          >
+            <span className="hero-availability-dot" aria-hidden="true" />
+            <span>{availability.text}</span>
+          </span>
         </div>
 
-        <div className="hero-social-row">
+        <div className="hero-bottom-row">
+          <div className="hero-text-container">
+            <p className="hero-description">
+              photographer, graphic designer & developer — keeping things real, minimal, and functional.
+            </p>
+          </div>
+
+          <div className="hero-social-row">
           <a
             href="https://github.com/isaiahscape"
             target="_blank"
@@ -206,6 +252,7 @@ export function Hero({ showContent, onOpenGallery }: HeroProps) {
               <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0H6zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714v9.429z" />
             </svg>
           </a>
+          </div>
         </div>
       </div>
     </div>

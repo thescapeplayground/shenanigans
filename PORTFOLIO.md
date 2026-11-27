@@ -32,7 +32,7 @@ The single-page application is structured inside a centered blueprint `page-wrap
 
 ### 3. Hero Section ([Hero.tsx](file:///c:/Users/Leonardo/Documents/shenanigans/src/components/Hero.tsx))
 - **Visual Card**: Interactive **Accordion Gallery** cover ([AccordionGallery.tsx](file:///c:/Users/Leonardo/Documents/shenanigans/src/components/AccordionGallery.tsx)) with 6 portrait-proportioned panels on desktop (`flex: 1.95 1 0%` at `350px` card height), top-left captions, a bottom-right **Gallery ↗** quick-link button, populated from interleaved *Photography* and *Social Club* photos via `/api/gallery` (with `/assets/folder-texture.jpg` image-error fallback), and overlapping circular avatar (`/assets/hero.jpg` with `/favicon-with-bg.svg` fallback).
-- **Details Row**: Title ("I am Leonardo"), tagline ("photographer, graphic designer & developer — keeping things real, minimal, and functional."), and social buttons linking to GitHub (`isaiahscape`), Instagram (`@isaiahscape`), Telegram (`@isaiahscape`), LinkedIn (`isaiahscape`), YouTube (`@isaiahscape`), and Twitch (`isaiahscape`).
+- **Details Row**: Title ("I am Leonardo") paired with a live time-aware `Asia/Manila` availability badge (`Active now`, `Busy (Weekend)`, `Away`, `Sleep`), tagline ("photographer, graphic designer & developer — keeping things real, minimal, and functional."), and social buttons linking to GitHub (`isaiahscape`), Instagram (`@isaiahscape`), Telegram (`@isaiahscape`), LinkedIn (`isaiahscape`), YouTube (`@isaiahscape`), and Twitch (`isaiahscape`).
 
 ### 4. About Info Grid
 - **Box 1**: Davao, Philippines location, dynamically computed age (born July 1, 2005), and role badges (`photographer`, `graphic designer`, `web dev`, `it instructor`).
