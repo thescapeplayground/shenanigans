@@ -13,7 +13,7 @@ This document details the visual identity, structure, and instructions for build
 ## 1. Visual Identity & Design System
 
 The site adheres to a sleek monochrome aesthetic with warm coffee accents and a global tactile paper texture overlay:
-- **Core Background**: Clean neutral white (`--bg-tan` / `#f4f4f4`) in light mode and obsidian black (`#090909`) in dark mode.
+- **Core Background**: Clean neutral white (`--bg-tan` / `#f4f4f4`) in light mode and pure black (`#000000`) in dark mode.
 - **Typography**: Clean display and sans-serif fonts using the variable font `Aspekta` (`--sans` / AspektaVF). Monospaced fonts for status/meta lines (`--mono`).
 - **Card Panels**: Clean borderless monochrome surface panels (`--card-bg`) with soft corner radii (`--border-color` reserved for structural section dividers).
 - **Accents**: Roasted coffee caramel (`--accent` / `#9c5c34` light, `#d49a6a` dark) paired with high-contrast monochrome typography (`--text-dark`, `--text-muted`).

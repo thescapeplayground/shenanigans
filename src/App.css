@@ -3707,7 +3707,7 @@ picture {
 /* Dark Mode Tactile Grain Blend adjustment */
 :root.dark .global-paper-overlay {
   mix-blend-mode: screen;
-  opacity: 0.05;
+  opacity: 0.015;
 }
 
 /* --- Premium Custom Page Views Styling --- */

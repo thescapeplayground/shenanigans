@@ -39,7 +39,7 @@
 }
 
 :root.dark {
-  --bg-tan: #090909;
+  --bg-tan: #000000;
   --text-dark: #f5f5f5;
   --text-muted: #a3a3a3;
   --accent: #d49a6a;
@@ -47,14 +47,14 @@
   --accent-border: rgba(212, 154, 106, 0.38);
   --accent-glow: rgba(212, 154, 106, 0.45);
   --border-color: rgba(255, 255, 255, 0.11);
-  --button-bg: #191919;
-  --button-hover: #242424;
+  --button-bg: #141414;
+  --button-hover: #1f1f1f;
   --button-border: rgba(255, 255, 255, 0.15);
-  --surface-raised: #1a1a1a;
-  --surface-raised-hover: #242424;
-  --card-bg: #141414;
-  --card-bg-opaque: #141414;
-  --container-bg: #101010;
+  --surface-raised: #161616;
+  --surface-raised-hover: #212121;
+  --card-bg: #0f0f0f;
+  --card-bg-opaque: #0f0f0f;
+  --container-bg: #0a0a0a;
   --preview-bg: #050505;
   --avatar-shadow: 0 0 0 1px rgba(212, 154, 106, 0.2), 0 14px 38px rgba(212, 154, 106, 0.16);
   --contrib-bg-0: rgba(255, 255, 255, 0.06);
@@ -63,9 +63,9 @@
   --contrib-bg-3: rgba(212, 154, 106, 0.7);
   --contrib-bg-4: #d49a6a;
   /* FAB opaque overrides */
-  --fab-surface: #191919;
-  --fab-surface-hover: #242424;
-  --fab-card-bg: #141414;
+  --fab-surface: #141414;
+  --fab-surface-hover: #1f1f1f;
+  --fab-card-bg: #0f0f0f;
 }
 
 * {
