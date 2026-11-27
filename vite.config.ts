@@ -134,6 +134,40 @@ function scanLocalPhotos(baseDir: string, prefix = ''): string[] {
   return results
 }
 
+const CONTACT_EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+const CONTACT_HTML_ESCAPES: Record<string, string> = {
+  '&': '&#38;',
+  '<': '&#60;',
+  '>': '&#62;',
+  '"': '&#34;',
+  "'": '&#39;',
+}
+
+function escapeContactHtml(value: string): string {
+  return value.replace(/[&<>"']/g, (char) => CONTACT_HTML_ESCAPES[char])
+}
+
+function readJsonBody(req: import('node:http').IncomingMessage): Promise<Record<string, unknown>> {
+  return new Promise((resolve) => {
+    let raw = ''
+    req.on('data', (chunk: Buffer | string) => {
+      raw += chunk.toString()
+      if (raw.length > 64 * 1024) {
+        resolve({})
+      }
+    })
+    req.on('end', () => {
+      try {
+        resolve(raw ? (JSON.parse(raw) as Record<string, unknown>) : {})
+      } catch {
+        resolve({})
+      }
+    })
+    req.on('error', () => resolve({}))
+  })
+}
+
 function privatePhotosDevApi(
   token: string,
   resendConfig: { apiKey: string; fromAddress: string; toAddress: string }
@@ -145,28 +179,78 @@ function privatePhotosDevApi(
         const url = new URL(req.url || '/', 'http://localhost')
 
         if (url.pathname === '/api/contact') {
-          const contactHandler = (await import('./api/contact.js')).default
-          if (!process.env.RESEND_API_KEY && resendConfig.apiKey) {
-            process.env.RESEND_API_KEY = resendConfig.apiKey
+          res.setHeader('Content-Type', 'application/json')
+          if (req.method !== 'POST') {
+            res.setHeader('Allow', 'POST')
+            res.statusCode = 405
+            res.end(JSON.stringify({ error: 'Method Not Allowed' }))
+            return
           }
-          if (!process.env.RESEND_FROM_ADDRESS && resendConfig.fromAddress) {
-            process.env.RESEND_FROM_ADDRESS = resendConfig.fromAddress
+
+          try {
+            const body = await readJsonBody(req)
+            const name = typeof body.name === 'string' ? body.name.trim() : ''
+            const email = typeof body.email === 'string' ? body.email.trim() : ''
+            const message = typeof body.message === 'string' ? body.message.trim() : ''
+
+            if (!name || !email || !message) {
+              res.statusCode = 400
+              res.end(JSON.stringify({ error: 'Missing required fields: name, email, message.' }))
+              return
+            }
+
+            if (!CONTACT_EMAIL_RE.test(email)) {
+              res.statusCode = 400
+              res.end(JSON.stringify({ error: 'Please provide a valid return email address.' }))
+              return
+            }
+
+            if (!resendConfig.apiKey) {
+              res.statusCode = 503
+              res.end(JSON.stringify({ error: 'Email delivery is not configured.' }))
+              return
+            }
+
+            const fromAddress = resendConfig.fromAddress || "Leonardo's Terrace <onboarding@resend.dev>"
+            const toAddress = resendConfig.toAddress || 'lqlp0011@gmail.com'
+            const html = `
+              <div style="font-family: ui-sans-serif, system-ui, sans-serif; max-width: 560px; margin: 0 auto; padding: 24px; color: #18181b;">
+                <h2 style="margin: 0 0 16px 0; font-size: 18px;">New message from Leonardo's Terrace</h2>
+                <p style="margin: 0 0 12px 0;"><strong>Name:</strong> ${escapeContactHtml(name)}</p>
+                <p style="margin: 0 0 12px 0;"><strong>Reply-to:</strong> ${escapeContactHtml(email)}</p>
+                <hr style="border: none; border-top: 1px solid #e4e4e7; margin: 16px 0;" />
+                <p style="white-space: pre-wrap; line-height: 1.6; margin: 0;">${escapeContactHtml(message)}</p>
+              </div>
+            `
+
+            const resendRes = await fetch('https://api.resend.com/emails', {
+              method: 'POST',
+              headers: {
+                Authorization: `Bearer ${resendConfig.apiKey}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                from: fromAddress,
+                to: [toAddress],
+                reply_to: email,
+                subject: `New contact form message from ${name}`,
+                html,
+              }),
+            })
+
+            const data = (await resendRes.json().catch(() => ({}))) as { message?: string; error?: string }
+            if (!resendRes.ok) {
+              res.statusCode = resendRes.status || 502
+              res.end(JSON.stringify({ error: data.message || data.error || 'Failed to deliver your message.' }))
+              return
+            }
+
+            res.statusCode = 200
+            res.end(JSON.stringify(data))
+          } catch {
+            res.statusCode = 500
+            res.end(JSON.stringify({ error: 'Something went wrong while delivering your message.' }))
           }
-          if (!process.env.CONTACT_TO_ADDRESS && resendConfig.toAddress) {
-            process.env.CONTACT_TO_ADDRESS = resendConfig.toAddress
-          }
-          const wrappedRes = Object.assign(res, {
-            status(code: number) {
-              res.statusCode = code
-              return wrappedRes
-            },
-            json(payload: unknown) {
-              res.setHeader('Content-Type', 'application/json')
-              res.end(JSON.stringify(payload))
-              return wrappedRes
-            },
-          })
-          await contactHandler(req, wrappedRes)
           return
         }
 
