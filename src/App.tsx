@@ -3,6 +3,7 @@ import { ReactLenis } from 'lenis/react'
 import { PaperTexture } from '@paper-design/shaders-react'
 import { FAB } from './components/FAB'
 import { Hero } from './components/Hero'
+import { CoreTechnologiesSection } from './components/CoreTechnologiesSection'
 import { useGitHubData } from './hooks/useGitHubData'
 import { ContactFormCard, DigitalSpacesCard } from './components/ContactSection'
 import './App.css'
@@ -1481,6 +1482,8 @@ function App() {
             </Suspense>
           )}
         </div>
+
+        <CoreTechnologiesSection />
 
         {/* Blueprint Layout Footer Section */}
         <footer className="footer-section">
