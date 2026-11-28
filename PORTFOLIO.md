@@ -54,7 +54,7 @@ The single-page application is structured inside a centered blueprint `page-wrap
 
 ### 8. Contact, Core Technologies & Editorial Footer
 - **Contact Section**: Availability in Davao, Philippines, Resend-backed direct contact form (`POST /api/contact` via [api/contact.js](file:///c:/Users/Leonardo/Documents/shenanigans/api/contact.js) with copyable `isaiahscape@duck.com` shortcut), and `@isaiahscape` social links (`GitHub`, `Instagram`, `Telegram`, `LinkedIn`, `YouTube`, `Twitch`, `TikTok`, `X / Twitter`, `Threads`, `Facebook`).
-- **Core Technologies ([CoreTechnologiesSection.tsx](file:///c:/Users/Leonardo/Documents/shenanigans/src/components/CoreTechnologiesSection.tsx))**: Two-column stack & deployment showcase above the footer highlighting `React 19`, `TypeScript`, `Vite 8`, `Paper Shaders`, `Motion`, `Lenis`, `Marked`, `Serverless APIs`, `Vercel`, and `Cloudflare Pages`, paired with an open-source GitHub strip (`API Routes` + `View Source`).
+- **Core Technologies ([CoreTechnologiesSection.tsx](file:///c:/Users/Leonardo/Documents/shenanigans/src/components/CoreTechnologiesSection.tsx))**: Home-only two-column stack & deployment showcase below Contact highlighting `React 19`, `TypeScript`, `Vite 8`, `Paper Shaders`, `Motion`, `Lenis`, `Marked`, `Serverless APIs`, `Vercel`, and `Cloudflare Pages`, paired with an open-source GitHub strip (`API Routes` + `View Source`).
 - **Footer**: Attribution (`Leonardo (isaiahscape)` / `Scape Collective Series: it's coffee time.`), navigation links, and live local time in `Asia/Manila`.
 
 ---

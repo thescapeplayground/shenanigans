@@ -1471,6 +1471,9 @@ function App() {
                 </div>
               </div>
             </section>
+
+            {/* Core Technologies Section */}
+            <CoreTechnologiesSection />
           </>
           ) : (
             <Suspense fallback={<div className="page-view-container page-loading-fallback" aria-hidden="true" />}>
@@ -1482,8 +1485,6 @@ function App() {
             </Suspense>
           )}
         </div>
-
-        <CoreTechnologiesSection />
 
         {/* Blueprint Layout Footer Section */}
         <footer className="footer-section">

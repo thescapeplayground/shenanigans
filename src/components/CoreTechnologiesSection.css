@@ -1,13 +1,8 @@
 .core-tech-section {
   width: 100%;
-  border-top: 1px solid var(--border-color);
   background: transparent;
   padding: 80px 48px;
   box-sizing: border-box;
-}
-
-.page-wrapper > .page-transition-stage:has(.contact-section) + .core-tech-section {
-  border-top: none;
 }
 
 .core-tech-inner {
