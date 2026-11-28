@@ -141,21 +141,7 @@ export function CoreTechnologiesSection() {
     <section className="core-tech-section" aria-label="Core Technologies">
       <div className="core-tech-inner">
         <div className="core-tech-header">
-          <svg
-            className="core-tech-header-icon"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <polyline points="16 18 22 12 16 6" />
-            <polyline points="8 6 2 12 8 18" />
-            <line x1="14" y1="4" x2="10" y2="20" />
-          </svg>
-          <span>CORE TECHNOLOGIES</span>
+          <h2 className="core-tech-title">core technologies.</h2>
         </div>
 
         <div className="core-tech-grid">
