@@ -932,7 +932,7 @@ function App() {
               {/* About Info Grid Section */}
             <section className="about-section" id="about">
               <div className="about-header reveal-on-scroll delay-1">
-                <h2 className="about-title-small">so, who am i?</h2>
+                <h2 className="about-title-large">so, who am i?</h2>
               </div>
 
               <div className="info-grid">
